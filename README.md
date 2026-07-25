@@ -53,6 +53,22 @@ The included `.npmrc` ensures every package installs into `./node_modules` insid
 /backup           Backups of the original working studio (untouched reference)
 ```
 
+## Repository contents (what git tracks)
+
+This repo holds **source code only** (~6 MB). To stay lean and within GitHub's
+file-size limits, these heavy binary assets are intentionally **not tracked**
+(see `.gitignore`) — they remain on the working machine and are served/regenerated
+at runtime:
+
+- `frontend/refs/` — reference-image library (~535 MB)
+- `kibookal-gallery/` — bundled gallery archive (~964 MB, incl. a 259 MB zip that
+  exceeds GitHub's 100 MB per-file limit). The gallery has its own repo:
+  **[kibookal-gallery](https://github.com/rohanani01/kibookal-gallery)**
+- `outputs/`, `storage/`, `backup/`, `database/*.sqlite`, `.env` — runtime data & secrets
+
+To version the excluded images too, use **Git LFS** or attach them as a GitHub
+release asset.
+
 ## Existing studio preserved
 
 The original working studio at `C:\Users\Admin\Desktop\new work on html\studio` is **completely untouched**. This platform mirrors it into `frontend/` so refactoring can proceed safely without ever risking the production-ready studio.
