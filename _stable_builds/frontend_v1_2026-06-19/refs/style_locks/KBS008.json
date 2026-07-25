@@ -1,0 +1,44 @@
+{
+  "style_id": "KBS008",
+  "name": "Minimal Character Spot Illustration",
+  "zip_source": "08_inspiration__batch__10Jun-0809",
+  "best_for": [
+    "animal cards",
+    "small mascot poses",
+    "activity icons",
+    "flashcards"
+  ],
+  "composition": "Single character/animal on clean flat colour or white ground; strong pose; simple shadow; minimal background.",
+  "visual_traits": [
+    "simple animal/person character",
+    "clean silhouette",
+    "stylized shapes",
+    "soft humour",
+    "few colours",
+    "large negative space"
+  ],
+  "prompt_core": "Create a clean Kibookal minimal spot illustration of [SUBJECT]. Use a single clear character or object with a strong silhouette, stylized proportions, expressive pose, limited flat colours and lots of negative space. Add only one or two small props that reveal the story. Make it warm, funny and instantly readable.",
+  "negative": "no busy background, no complex panels, no realism, no generic emoji style",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS008/IMG-20260610-WA0079.jpg",
+    "refs/kbs_refs/KBS008/IMG-20260610-WA0080.jpg",
+    "refs/kbs_refs/KBS008/IMG-20260610-WA0081.jpg",
+    "refs/kbs_refs/KBS008/IMG-20260610-WA0082.jpg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "simple animal/person character",
+    "linework": "clean silhouette",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "large negative space",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

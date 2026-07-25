@@ -1,0 +1,54 @@
+{
+  "style_id": "KBS032",
+  "name": "Kibookal Field-Journal Spread",
+  "zip_source": "KIBOOKAL Spread Production System v1.docx + WhatsApp ref batch (jose_naranja-derived six-layer spread logic)",
+  "best_for": [
+    "two-page investigation spreads",
+    "case-file pages",
+    "evidence-board layouts",
+    "field-journal storytelling",
+    "Mischief / Devi / Gang series spreads"
+  ],
+  "_canvas": "3:2",
+  "page_format": "TWO A5 portrait pages side by side = one A4-landscape spread (≈296×210mm, √2 landscape). A visible centre gutter / spine fold runs down the middle. Each A5 half must be a complete, readable page on its own; together they form one unified spread.",
+  "composition": "Dense A5+A5 two-page journal spread (left A5 page + right A5 page joined at a centre gutter/spine fold) built from six simultaneous layers: (1) ANCHOR — one dominant subject illustration that crosses the gutter to unify the two A5 pages; (2) FIELD NOTES — handwritten dual-register paragraphs (observation + philosophy together); (3) EVIDENCE — found stamps, labels, tickets, fragments with codes; (4) CLASSIFICATION BADGES — black rectangles, stamp circles, yellow highlights, red caps, orange date boxes; (5) MICRO-MAP — hand-drawn relational diagram with origin/destination/waypoints; (6) VERDICT — a bold case-status stamp. The page must feel discovered, not designed.",
+  "visual_traits": [
+    "black ink + watercolour on warm cream paper",
+    "handwritten dual-register field notes",
+    "found-object evidence: stamps, tickets, labels, serial codes",
+    "official classification badges and archive stamps",
+    "hand-drawn relational micro-maps with measurements",
+    "six-level typography hierarchy (title caps → stamp frames → handwritten caps → body → annotations → marginalia)",
+    "semantic colour system: marigold/ochre primary, deep red intensity, teal adventure, yellow highlight",
+    "marginal interjections from recurring characters",
+    "case-file / evidence-board / portable-museum feeling"
+  ],
+  "prompt_core": "Create a Kibookal Field-Journal Spread about [SUBJECT] as TWO A5 PORTRAIT PAGES SIDE BY SIDE forming a single A4-LANDSCAPE spread (left A5 page + right A5 page, with a visible centre gutter / spine fold running down the middle; each A5 half is a complete readable page). A dense, intelligent two-page investigation spread that feels discovered, not designed. Build it from six simultaneous layers: a dominant hand-inked watercolour ANCHOR illustration of [SUBJECT] crossing the centre gutter to bridge the two A5 pages; handwritten FIELD NOTES in a child-investigator's first-person voice where every line reports a physical observation AND draws a philosophical or taxonomic conclusion; found EVIDENCE items (stamps, tickets, labels, fragments) carrying codes and official markings; CLASSIFICATION BADGES (black rectangle department headers, circular archive stamps, yellow-highlighted key terms, red-caps intensifiers, orange date boxes); a hand-drawn relational MICRO-MAP with origin, destination, waypoints and measurements; and a bold VERDICT stamp (CASE STATUS: OPEN / CLOSED / MISCLASSIFIED). Black archival ink and watercolour on warm cream paper, six-level typographic hierarchy, marigold-ochre-red-teal semantic colour, marginalia and corrections in the margins. Render the requested subject fully INTO this style.",
+  "negative": "no clean infographic, no Instagram graphic, no school worksheet, no poster, no flat vector, no glossy 3D, no photoreal, no decorative scrapbook, no single-register caption-only text, no empty/airy layout, no exact reference copy",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style — a six-layer Kibookal field-journal investigation spread. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, evidence-board logic, badge system, typography and finish are 100% this style. ANY character, deity, creature, person, animal, object or place can be rendered as a Field-Journal Spread — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "black archival ink + watercolour on warm cream paper",
+    "linework": "confident hand-drawn ink contour with watercolour wash",
+    "palette": "cream paper, black ink, marigold/ochre primary, deep red intensity, teal accents, yellow highlighter",
+    "texture": "aged paper, found-object stamps and labels, taped fragments",
+    "finish": "investigation evidence-board / portable museum, discovered not designed",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Any subject becomes the ANCHOR of a six-layer field-journal spread. Identity stays recognizable; medium, layers, badges, typography and palette are 100% this style.",
+    "consistency": [
+      "Match the built-in reference images for linework, palette, evidence-board density and badge style.",
+      "Always include all six layers (anchor, field notes, evidence, badges, micro-map, verdict).",
+      "Hold the cream-paper + black-ink + watercolour finish identical across every render.",
+      "Field notes must be dual-register; badges must look official; the map must be relational."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS032/kbs032__field-journal-spread__ref001.jpeg",
+    "refs/kbs_refs/KBS032/kbs032__field-journal-spread__ref002.jpeg",
+    "refs/kbs_refs/KBS032/kbs032__field-journal-spread__ref003.jpeg",
+    "refs/kbs_refs/KBS032/kbs032__field-journal-spread__ref004.jpeg",
+    "refs/kbs_refs/KBS032/kbs032__field-journal-spread__ref005.jpeg",
+    "refs/kbs_refs/KBS032/kbs032__field-journal-spread__ref006.jpeg",
+    "refs/kbs_refs/KBS032/kbs032__field-journal-spread__ref007.jpeg",
+    "refs/kbs_refs/KBS032/kbs032__field-journal-spread__ref008.jpeg"
+  ]
+}

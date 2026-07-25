@@ -1,0 +1,92 @@
+{
+  "bible_id": "TRIGUN_CHARACTERS_V1",
+  "world": "Trigun: Balance of the Universe",
+  "purpose": "Locked, style-independent character descriptions + reference images so EVERY render of a character is consistent across all pages and across any KBS visual style. When a page needs a character, inject that character-s lock_line and attach its ref_images.",
+  "global_consistency_rule": "Treat each character-s locked_appearance as a fixed identity sheet. Across every page the SAME face, hair, body, skin tone, signature colour and signature items must repeat exactly. Only pose, expression and scene change. Always attach the character-s ref_images so the model copies the face and costume; describe them in words too. Never restyle a character-s identity to fit a layout — adapt the pose, keep the identity.",
+  "code_colour_map": {
+    "Rajas": "red",
+    "Tamas": "dark blue / indigo",
+    "Sattva": "green",
+    "final_master": "yellow"
+  },
+  "characters": [
+    {
+      "id": "ekta",
+      "name": "Ekta",
+      "title": "Dhar Rakshak (Book-Protector) - Age 13",
+      "role": "protagonist / detective",
+      "guna": null,
+      "palette": "ochre, mustard, warm brown, red + indigo block-print",
+      "lock_line": "Ekta - a sharp-eyed Indian girl of 13: warm brown skin, large expressive dark-brown eyes, thick wavy near-black hair pulled into a messy bun with loose strands framing the face; wears a mustard/ochre angarkha-style kurta over red-and-indigo Rajasthani block-print harem pants, a worn brown leather satchel slung cross-body, simple flat sandals, a few thin bangles, faint henna-ink doodles on her hands; almost always carrying the ancient cracked dark-leather book (the Bramhaanda Vichaar). Curious, impulsive, quick-witted.",
+      "signature_items": ["ancient cracked-leather book (Bramhaanda Vichaar)", "brown leather cross-body satchel", "Imli/Bali-vali toffee", "ink doodles on hands"],
+      "expressions": ["curious & excited", "impulsive", "self-doubting", "convinced"],
+      "ref_images": ["refs/trigun_refs/ekta_fig.png", "refs/trigun_refs/book_card_ekta.png", "refs/trigun_refs/card_ekta.png"],
+      "consistency_note": "Match the rendered Ekta card (book_card_ekta) EXACTLY: warm brown skin, dark messy bun with loose strands, mustard/ochre kurta, red-and-indigo block-print pants, brown cross-body satchel, the old book. The only modern-dressed human child — keep her unmistakable and identical to her card on every page."
+    },
+    {
+      "id": "jwalika",
+      "name": "Jwalika",
+      "title": "Rajasic Force - Mahamantri of Endless Meetings",
+      "role": "guna spirit (Rajas)",
+      "guna": "Rajas",
+      "palette": "fiery red, orange, gold",
+      "lock_line": "Jwalika, the Rajas force - a warm radiant woman draped in deep red-and-gold cloth that ripples like living flame even in still air; round warm face, glowing amber-toned skin, dark hair bound with gold ornaments, restless and always mid-motion as if every room is too small; carries a clay pot like a stage prop. She is semi-translucent, like a richly saturated figure developed from a very old photographic negative - real but not fully committed to ordinary physics.",
+      "signature_items": ["clay pot", "rippling red-gold drape", "gold ornaments"],
+      "expressions": ["animated", "impatient", "warm", "theatrical"],
+      "ref_images": ["refs/trigun_refs/book_card_jwalika.png", "refs/trigun_refs/card_jwalika.png"],
+      "consistency_note": "Match the rendered Jwalika card (book_card_jwalika): warm round face, amber skin, dark hair with gold ornaments, rippling deep red-and-gold drape, clay pot, faint fiery glow, semi-translucent. Never calm, never cold-coloured."
+    },
+    {
+      "id": "mohika",
+      "name": "Mohika",
+      "title": "Tamasic Force - Adhyaksha of the Afternoon Naps",
+      "role": "guna spirit (Tamas)",
+      "guna": "Tamas",
+      "palette": "black, charcoal, deep indigo",
+      "lock_line": "Mohika, the Tamas force - a tall, languid woman draped entirely in flowing black, long straight dark hair, dramatic architectural earrings, kohl-dark eyes, snake-like dark jewellery; leans and stays still with studied philosophical ease, holding a glass bottle of something pale and fizzing she half-hides when noticed. Semi-translucent like an old saturated negative; unhurried, heavy-lidded, magnetic.",
+      "signature_items": ["glass bottle of pale fizzing liquid", "long black drape", "snake-like jewellery", "large earrings"],
+      "expressions": ["languid", "amused", "watchful", "sleepy"],
+      "ref_images": ["refs/trigun_refs/book_card_mohika.png", "refs/trigun_refs/card_mohika.png"],
+      "consistency_note": "Match the rendered Mohika card (book_card_mohika): tall, long straight black hair, large earrings, flowing black sari, kohl eyes, warm natural skin, glass bottle, semi-translucent. Always all-black; never bright, never busy."
+    },
+    {
+      "id": "suchi",
+      "name": "Suchi",
+      "title": "Sattvic Force - Rapids of Hearts and Headaches",
+      "role": "guna spirit (Sattva) / mediator",
+      "guna": "Sattva",
+      "palette": "white, cream, pale gold",
+      "lock_line": "Suchi, the Sattva force - a serene woman, river-ancient and clear; plain white sari so simple it looks deliberate, white hair in one long simple braid, calm unhurried gaze that sees several layers of possibility beneath a thing; minimal ornament, faint pale-gold glow. Semi-translucent like the others; perfectly still, the steady centre between Jwalika and Mohika.",
+      "signature_items": ["plain white sari", "single long white braid", "stillness"],
+      "expressions": ["calm", "knowing", "gentle", "patient"],
+      "ref_images": ["refs/trigun_refs/book_card_suchi.png", "refs/trigun_refs/card_suchi.png"],
+      "consistency_note": "Match the Suchi card: WARM NATURAL skin (never green), plain white cotton sari, one long WHITE braid, calm ANCIENT gaze, faint pale aura. She is river-ancient and plain — NOT angelic, NOT a glowing fantasy figure, NO wings, NO halo, NO glamour. The visual opposite of Jwalika-s motion and Mohika-s darkness."
+    },
+    {
+      "id": "mara",
+      "name": "Mahamoha",
+      "title": "The Other Voice (also called Mara) - The Beginning of All Endings",
+      "role": "antagonist",
+      "guna": null,
+      "palette": "indigo-black smoke, cold faint glow",
+      "lock_line": "Mara (Mahamoha), the antagonist - a tall shadow-formed figure of dark indigo-black smoke with no fixed face, long trailing smoke-hair and dissolving edges, a faint cold inner glow; elegant and unhurried but menacing, half-formed as if assembling itself from doubt and mist. The voice that mocks and tempts; signs its letters Dharakshak / tick tock.",
+      "signature_items": ["formless smoke body", "cold faint glow", "no fixed face"],
+      "expressions": ["mocking", "tempting", "patient menace"],
+      "ref_images": ["refs/trigun_refs/book_card_mara.png", "refs/trigun_refs/card_mara_mahamoha.png"],
+      "consistency_note": "Match the rendered Mara card (book_card_mara): tall faceless indigo-black smoke figure, long trailing smoke-hair, dissolving edges, cold faint glow. Never give Mara a clear human face."
+    },
+    {
+      "id": "dadi",
+      "name": "Dadi",
+      "title": "Ekta-s grandmother (keeper of the haveli & the book)",
+      "role": "mentor (mostly via letters/photos)",
+      "guna": null,
+      "palette": "soft white, faded cotton, warm sepia",
+      "lock_line": "Dadi - a compact, watchful elderly Rajasthani woman, white hair drawn back, a simple faded cotton sari, kind but sharp eyes that say less than they know; appears mostly in old sepia photographs and in her own precise handwriting. Warm, quiet, wise.",
+      "signature_items": ["faded cotton sari", "precise handwriting", "old photographs"],
+      "expressions": ["watchful", "kind", "quietly amused"],
+      "ref_images": [],
+      "consistency_note": "Rendered chiefly in photos/letters. When shown, always elderly, white-haired, simple sari, gentle-sharp gaze."
+    }
+  ]
+}

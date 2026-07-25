@@ -1,0 +1,47 @@
+{
+  "style_id": "KBS035",
+  "name": "Kibookal Madhubani Mithila Folk",
+  "zip_source": "chitrastori folk-art reference batch (16 Jun)",
+  "best_for": [
+    "festive narrative pages",
+    "deity and nature scenes",
+    "fish/sun/lotus motifs",
+    "story panels",
+    "celebratory covers"
+  ],
+  "composition": "A dense Mithila folk composition on warm handmade-paper cream; the subject built from bold double-outline forms filled with fine hatching, cross-hatch and dot patterns; every empty space packed with flowers, fish, birds, suns and geometric fill; strong double-line border.",
+  "visual_traits": [
+    "warm cream handmade-paper ground",
+    "bold double black outlines",
+    "dense line-fill: hatching, cross-hatch, dots",
+    "vibrant flat folk colour (vermilion, indigo, ochre, green, pink)",
+    "sun, fish, lotus, peacock, birds motifs",
+    "strong double-line border",
+    "no empty space — horror vacui"
+  ],
+  "prompt_core": "Create a Kibookal Madhubani (Mithila) folk illustration of [SUBJECT] on warm handmade-paper cream: build [SUBJECT] from bold black double-outlines filled with dense hatching, cross-hatch and dot patterns, vibrant flat folk colours (vermilion, indigo, turmeric, leaf-green, rose-pink). Fill every surrounding space with Mithila motifs — sun faces, fish, lotuses, peacocks, birds, flowering vines and geometric fill — inside a strong double-line border. Festive, narrative, hand-painted village-art energy; no empty space.",
+  "negative": "no phone UI, no status bar, no Instagram interface, no caption text, no screenshot border; no photoreal, no 3D, no smooth gradients, no Western cartoon, no exact reference copy",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject identity, key features and intended action recognizable, but the medium, palette, linework, motifs, ornament and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "natural pigment + ink on handmade paper",
+    "linework": "bold black double-outline with dense fill",
+    "palette": "cream ground, vermilion, indigo, turmeric, green, rose",
+    "texture": "handmade-paper grain",
+    "finish": "Mithila folk, horror-vacui",
+    "character_rule": "Render the requested SUBJECT fully in THIS exact tradition; identity stays recognizable, medium/palette/motifs/finish are 100% this style.",
+    "consistency": [
+      "Match the built-in reference images for palette, motifs, linework and density.",
+      "Hold the palette and finish identical across every render.",
+      "Authentic Indian folk-art tradition — never Western, never anime."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS035/kbs035__madhubani__ref001.jpeg",
+    "refs/kbs_refs/KBS035/kbs035__madhubani__ref002.jpeg",
+    "refs/kbs_refs/KBS035/kbs035__madhubani__ref003.jpeg",
+    "refs/kbs_refs/KBS035/kbs035__madhubani__ref004.jpeg",
+    "refs/kbs_refs/KBS035/kbs035__madhubani__ref005.jpeg",
+    "refs/kbs_refs/KBS035/kbs035__madhubani__ref006.jpeg"
+  ]
+}

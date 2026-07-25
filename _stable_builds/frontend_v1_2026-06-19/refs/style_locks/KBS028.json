@@ -1,0 +1,222 @@
+{
+  "style_id": "KBS028",
+  "name": "Kibookal Neo-Glyph Poster Style",
+  "zip_source": "KIBOOKAL SANSKRIT CONSTRUCTED GLYPH SYSTEM v1.0 (doc) - Sanskrit word-machines",
+  "self_contained": true,
+  "subject_is": "a Sanskrit / Devanagari WORD (e.g. शक्ति / काल / अग्नि / शिव / नक्षत्र)",
+  "best_for": [
+    "Sanskrit / Devanagari word-posters",
+    "deity-presence glyphs (no illustration)",
+    "section dividers, covers, seals & titles",
+    "puzzle / seek-and-discover artifacts",
+    "ancient-futurist Indian visual identity"
+  ],
+  "composition": "Vertical compressed totem on a hidden grid (4x6 / 5x7 / 6x8 / 8x8 / 8x12). Architecture is built FIRST (slabs, voids, bindus, channels, axis), then the Devanagari is embedded as modular parts. Structural shirorekha as a load-bearing top beam; meaningful bindus as activation points; negative space carved into corridors and chambers; one unified machine-object; ~70-85% filled, 15-30% void; 70% order / 30% disruption; outer margin >= 1 unit.",
+  "visual_traits": [
+    "constructed glyph machine",
+    "modular Devanagari",
+    "akshara artifact",
+    "yantra-letter hybrid",
+    "ritual control panel",
+    "compressed totem",
+    "hidden-grid discipline",
+    "architectural shirorekha",
+    "activation bindus",
+    "negative-space corridors",
+    "flat geometric poster",
+    "Brahmi + Bauhaus + yantra + street-sign + control-panel",
+    "delayed readability",
+    "ancient-futurist Indian, zero ornament"
+  ],
+  "style_palette": "Black #050505, cream #F4EDC8 and red #EF2B2D as the core; optionally ONE secondary accent - electric blue #0057FF, deep indigo #172A88, teal #1B9A96, olive #89813B, purple #6C4BA3 or burnt orange #F04A24. Maximum 4 colours, prefer 3. FLAT colour only - no gradients, no shadows, no bevels, no metallic, no texture.",
+  "prompt_core": "Create a flat, high-contrast, vertical constructed-glyph POSTER of the Sanskrit / Devanagari word [SUBJECT] using the Kibookal Sanskrit Constructed Glyph System. This is NOT typography, calligraphy, lettering or illustration - it is a CONSTRUCTION language. Rebuild the WHOLE word as ONE compressed totemic object that is at once a word + seal + machine + shrine-panel + puzzle. WORD BEFORE LETTERS: begin from the word's essence (force / time / fire / river / axis / void / knowledge / protection), not its letterforms. ASSIGN A MACHINE FAMILY and build to its logic - AXIS (shiva/yoga/dhyana/meru: central vertical spine, balanced side slabs, one central bindu, silent top beam, contained void); FORCE (shakti/devi/durga/vira/bala: heavy compression, large red activation bindus, locked thick slabs, strong vertical mass); RIVER (ganga/sarasvati/pravaha: blue channels constrained inside rigid structure, controlled wave corridors, descending stream); FIRE (agni/tej/tapas: red-orange ignition bindus, radiating heat bars, a vertical ignition spine); TIME (kala/kshana/ananta/yuga: closed rings, recursive corridors, repeated modules, trapped circular motion); COSMIC (nakshatra/akasha/brahma/tara: large black voids, small star bindus, orbital circles, asymmetrical space); KNOWLEDGE (jnana/vidya/sutra/mantra: intersections, thin linking lines, small bindus, modular network slots); PROTECTION (kavacha/raksha/sudarshana/astra: nested frames, a central protected bindu, barriers, radial containment). HIDDEN GRID: lock every shape to an invisible grid (4x6, 5x7, 6x8, 8x8 or 8x12 - taller words use 6x8 / 8x12). Nothing floats; everything looks engineered. PART LIBRARY ONLY: thick rectangles, vertical slabs, horizontal beams, rounded elbows, quarter/half/full circles, dots/bindus, capsules, slots, channels, frames, T- and cross-junctions, stepped blocks, parallel-line sets and cut-out negative-space chambers - nothing else. SHIROREKHA AS STRUCTURE: turn the Devanagari head-line into a load-bearing beam / rail / bridge / weapon-line capable of supporting the whole composition. BINDU IS POWER: every circle is an event (eye, seed, planet, switch, portal, heart, target, void) - small=information, medium=emphasis, large=power, oversized=deity-level presence; never decorative. NEGATIVE SPACE IS MATERIAL: voids are corridors, gates, chambers, tunnels and hidden routes - the glyph must feel inhabitable and traversable. DEITY WITHOUT ILLUSTRATION: for deity words NEVER draw a face, body, halo, temple, snake, weapon or scene pasted on top - build presence purely through structure (axis, containment, force, protection, breath, velocity, transformation). READABILITY DELAY: the word must NOT read instantly - first a mysterious machine-object, then after a few seconds the Sanskrit word [SUBJECT] is discovered inside it. COMPRESSION: dense, forged, inevitable; about 70-85% filled and 15-30% structural void; 70% order with 30% deliberate disruption (one unexpected bindu, one broken rail, one shifted chamber, one impossible turn). Embed the correct Devanagari of [SUBJECT] as modular parts, preserving just enough letter logic for delayed recognition. Outer margin at least one grid unit.",
+  "negative": "Do not use calligraphy, handwriting or brush strokes. No decorative Indian ornament, paisley, floral patterns, lotus borders, mandala decoration or temple borders. No realistic faces, no literal deity illustration, no mythological scene, no weapons/symbols pasted on top. No gradients, shadows, bevels, 3D, glow or texture. Do not make it look like a normal font, too clean/corporate, cartoonish or cute. Do not make it instantly readable, and do not make it completely unreadable. No more than four colours.",
+  "glyph_system": {
+    "final_formula": "Brahmi + Bauhaus + Yantra + Indian street sign + shrine door + puzzle box + sci-fi control panel, reduced to strict essential geometry.",
+    "allowed_grids": [
+      "4x6",
+      "5x7",
+      "6x8",
+      "8x8",
+      "8x12"
+    ],
+    "machine_taxonomy": {
+      "axis": {
+        "forms": [
+          "vertical rod",
+          "central bindu",
+          "balanced side slabs",
+          "silent top beam",
+          "contained void"
+        ]
+      },
+      "force": {
+        "forms": [
+          "large bindu",
+          "thick slabs",
+          "locked blocks",
+          "dense grid",
+          "red pressure points"
+        ]
+      },
+      "river": {
+        "forms": [
+          "horizontal channels",
+          "controlled wave paths",
+          "blue bands",
+          "cut-through corridors",
+          "descending stream"
+        ]
+      },
+      "fire": {
+        "forms": [
+          "radiating channels",
+          "red/orange bindus",
+          "vertical ignition spine",
+          "repeating heat bars"
+        ]
+      },
+      "time": {
+        "forms": [
+          "closed rings",
+          "spiral-like corridors",
+          "repeated modules",
+          "interrupted cycles"
+        ]
+      },
+      "knowledge": {
+        "forms": [
+          "intersections",
+          "thin linking lines",
+          "small bindus",
+          "network slots",
+          "modular blocks"
+        ]
+      },
+      "cosmic": {
+        "forms": [
+          "large black fields",
+          "small star bindus",
+          "orbital circles",
+          "asymmetrical voids"
+        ]
+      },
+      "protection": {
+        "forms": [
+          "nested frames",
+          "central protected bindu",
+          "barriers",
+          "radial containment"
+        ]
+      }
+    },
+    "part_library": [
+      "thick rectangle",
+      "vertical slab",
+      "horizontal beam",
+      "rounded elbow",
+      "quarter circle",
+      "half circle",
+      "full circle",
+      "dot/bindu",
+      "capsule",
+      "slot",
+      "channel",
+      "frame",
+      "T-junction",
+      "cross-junction",
+      "cut-out chamber",
+      "stepped block",
+      "parallel line set",
+      "large void"
+    ],
+    "forbidden_parts": [
+      "brush stroke",
+      "calligraphic flourish",
+      "random curve",
+      "illustrative face",
+      "decorative animal",
+      "ornamental border",
+      "texture",
+      "gradient",
+      "shadow",
+      "3D bevel",
+      "gold shine",
+      "realistic object"
+    ],
+    "colour_system": {
+      "primary": {
+        "black": "#050505",
+        "cream": "#F4EDC8",
+        "red": "#EF2B2D"
+      },
+      "secondary": {
+        "electric_blue": "#0057FF",
+        "deep_indigo": "#172A88",
+        "teal": "#1B9A96",
+        "olive": "#89813B",
+        "purple": "#6C4BA3",
+        "burnt_orange": "#F04A24"
+      },
+      "max_colours": 4,
+      "flat_only": true
+    },
+    "quality_control": {
+      "passing_score": 80,
+      "excellent": 92,
+      "weights": {
+        "word_essence": 10,
+        "machine_logic": 15,
+        "grid_discipline": 15,
+        "part_library_purity": 10,
+        "shirorekha_structure": 10,
+        "bindu_meaning": 10,
+        "negative_space": 10,
+        "readability_delay": 10,
+        "colour_discipline": 5,
+        "no_ornament": 5
+      }
+    },
+    "automatic_fail": [
+      "looks like an ordinary Devanagari font",
+      "looks like calligraphy",
+      "looks like mythological illustration",
+      "random ornament",
+      "more than four colours",
+      "gradient/shadow/3D",
+      "instantly readable and boring",
+      "completely unreadable",
+      "no hidden grid",
+      "bindus used as decoration",
+      "background not used as negative-space architecture"
+    ],
+    "child_test": "Fail = 'nice poster'. Good = 'what is that?'. Mastery = the child traces the pathways and discovers the Sanskrit word."
+  },
+  "version": "1.0",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "constructed glyph machine",
+    "linework": "modular Devanagari",
+    "palette": "Black #050505, cream #F4EDC8 and red #EF2B2D as the core; optionally ONE secondary accent - electric blue #0057FF, deep indigo #172A88, teal #1B9A96, olive #89813B, purple #6C4BA3 or burnt orange #F04A24. Maximum 4 colours, prefer 3. FLAT colour only - no gradients, no shadows, no bevels, no metallic, no texture.",
+    "texture": "see visual_traits",
+    "finish": "ancient-futurist Indian, zero ornament",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS028/kbs028_ref001.jpeg",
+    "refs/kbs_refs/KBS028/kbs028_ref003.jpeg",
+    "refs/kbs_refs/KBS028/kbs028_ref005.jpeg",
+    "refs/kbs_refs/KBS028/kbs028_ref007.jpeg",
+    "refs/kbs_refs/KBS028/kbs028_ref009.jpeg",
+    "refs/kbs_refs/KBS028/kbs028_ref011.jpeg",
+    "refs/kbs_refs/KBS028/kbs028_ref013.jpeg",
+    "refs/kbs_refs/KBS028/kbs028_ref015.jpeg"
+  ]
+}

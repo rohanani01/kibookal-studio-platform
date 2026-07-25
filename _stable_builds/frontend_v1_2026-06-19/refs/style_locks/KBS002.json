@@ -1,0 +1,43 @@
+{
+  "style_id": "KBS002",
+  "name": "Biospheric Totem Plate",
+  "zip_source": "KIBOOKAL SACRED ECOLOGICAL VISUAL OPERATING SYSTEM .docx Register B",
+  "best_for": [
+    "covers",
+    "chapter openers",
+    "collectible deity plates",
+    "hero posters"
+  ],
+  "composition": "Giant iconic central subject occupying 60-75% visual power; strong halo/mandala; little or no text; dense internal world in body/cloak/object; ornamental ecology around the subject.",
+  "visual_traits": [
+    "sacred symmetry softened by organic variation",
+    "body becomes landscape/archive",
+    "ornate but readable",
+    "high awe",
+    "strong silhouette"
+  ],
+  "prompt_core": "Create a Kibookal Biospheric Totem Plate of [SUBJECT]. The figure is front-facing or near-symmetrical, monumental and sacred, with a powerful readable silhouette and calm intelligent eyes. The body/clothing/object contains tiny worlds: rivers, shrines, forests, caves, seed chambers, hidden figures, animals, ritual scenes and ecological networks. Add a strong lotus/mandala/sun halo and flowing vines around the plate. Use cream handmade paper, thick ink contours, rich flat mineral colours and devotional manuscript detail. No explanatory text; let the image carry the story.",
+  "negative": "no labels, no text paragraphs, no generic goddess glamour, no cinematic glow, no realistic painting, no overcrowded face",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "sacred symmetry softened by organic variation",
+    "linework": "body becomes landscape/archive",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "strong silhouette",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS002/kbs002__corrected__ref001.png",
+    "refs/kbs_refs/KBS002/kbs002__corrected__ref002.png",
+    "refs/kbs_refs/KBS002/kbs002__corrected__ref003.png"
+  ],
+  "_ref_note": "Refs corrected 2026-06-15: replaced mismatched cartoon-buffalo refs with verified on-style dossier renders."
+}

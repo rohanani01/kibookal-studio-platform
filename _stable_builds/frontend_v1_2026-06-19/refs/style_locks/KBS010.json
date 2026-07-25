@@ -1,0 +1,43 @@
+{
+  "style_id": "KBS010",
+  "name": "Pencil Sticker Sheet Micro-Doodle",
+  "zip_source": "10_inspiration__this-also__10Jun-0818",
+  "best_for": [
+    "character explorations",
+    "icons",
+    "activity stickers",
+    "rough concept sheets"
+  ],
+  "composition": "Notebook page filled with small repeated doodles, character variants, object studies and tiny frames.",
+  "visual_traits": [
+    "blue/graphite pencil",
+    "small square doodles",
+    "simple expressive faces",
+    "rough construction marks",
+    "low colour or monochrome"
+  ],
+  "prompt_core": "Create a Kibookal pencil sticker-sheet study for [SUBJECT]. Show many small hand-drawn variations, poses, icons, props and expression studies on a notebook page. Use rough pencil or blue pencil line, simple boxes, tiny arrows, blank labels and handmade imperfections. Keep it exploratory, cute and practical for character development.",
+  "negative": "no final polished poster, no colour overload, no photorealism, no clean vector",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS010/IMG-20260610-WA0039.jpg",
+    "refs/kbs_refs/KBS010/IMG-20260610-WA0040.jpg",
+    "refs/kbs_refs/KBS010/IMG-20260610-WA0041.jpg",
+    "refs/kbs_refs/KBS010/IMG-20260610-WA0042.jpg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "blue/graphite pencil",
+    "linework": "small square doodles",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "low colour or monochrome",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+node_modules/
+.env
+database/*.sqlite
+database/*.sqlite-journal
+debug/logs/*.log
+outputs/**
+!outputs/.gitkeep
+storage/projects/**
+!storage/projects/.gitkeep
+storage/vault/**/v*
+backup/**
+!backup/.gitkeep
+.DS_Store
+Thumbs.db
+*.mojibake.bak
+
+# --- Heavy binary assets excluded from source repo (added for GitHub push) ---
+# Reference-image library (~535MB) and bundled gallery archive are not tracked.
+# Gallery has its own repo. Use Git LFS or a release asset to version these.
+frontend/refs/
+kibookal-gallery/
+*.backup-*

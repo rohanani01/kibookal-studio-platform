@@ -1,0 +1,55 @@
+{
+  "style_id": "KBS033",
+  "name": "Kibookal Field Notebook",
+  "zip_source": "Kibookal NOTEBOOK ENGINE.docx + WhatsApp ref batch (jose_naranja-derived single-page field-notebook engine)",
+  "best_for": [
+    "single-page field notes",
+    "object study pages",
+    "creature / asura observation pages",
+    "museum catalogue pages",
+    "evidence file pages",
+    "travel-from-world pages"
+  ],
+  "_canvas": "A5",
+  "page_format": "ONE A5 portrait page (148×210mm). A single dense field-notebook page, taller than wide.",
+  "composition": "A dense single A5-portrait Kibookal field-notebook page with EXCELLENT typographic hierarchy and several DIFFERENT text-block types: a large hand-lettered masthead title + archive code/date; a flowing first-person LEAD OBSERVATION paragraph; a central illustration with 4-6 callout labels on curved arrows; a short bulleted FIELD FACTS list; a boxed CLASSIFICATION / RATING / STATUS panel; 2-3 marginal side-notes; one bold PULL-QUOTE line; and a framed closing UNANSWERED QUESTION. Mixed block shapes, generous breathing room, hand-designed feel — discovered, not designed.",
+  "visual_traits": [
+    "strong typographic hierarchy",
+    "varied text blocks (flowing paragraph, bullet list, boxed panel, marginalia, framed question)",
+    "large hand-lettered masthead + archive code",
+    "callout labels on fine curved arrows",
+    "boxed classification / rating / status panel",
+    "angular marginal notes and corrections",
+    "bold pull-quote line",
+    "warm cream paper, black ink + watercolour",
+    "generous breathing room, hand-designed"
+  ],
+  "prompt_core": "Create a beautifully laid-out Kibookal Field Notebook page about [SUBJECT] on warm cream paper in black archival ink and watercolour. Use STRONG typographic hierarchy and SEVERAL DIFFERENT kinds of text blocks, each visually distinct with real breathing room: (1) a LARGE hand-lettered title with a small-caps archive code and date under a thin rule; (2) a flowing 3-4 line first-person LEAD OBSERVATION paragraph in the investigator voice; (3) the central hand-inked watercolour drawing of [SUBJECT] with 4-6 tiny callout labels joined by fine curved arrows to its parts; (4) a short bulleted FIELD FACTS list of measurements and traits; (5) a boxed, stamp-like CLASSIFICATION / RATING / STATUS panel; (6) two or three small angular MARGINAL notes and corrections; (7) one bold PULL-QUOTE aphorism line; (8) a framed closing UNANSWERED QUESTION. Title largest, section labels in small-caps with underlines, handwritten body, micro callout-labels, smallest marginalia. Intelligent, curious, hand-designed — never a worksheet or clean infographic. Render the requested subject fully INTO this style.",
+  "negative": "no school worksheet, no scrapbook decoration, no pretty journaling, no poster, no Instagram graphic, no clean infographic, no finished textbook spread, no flat vector, no photoreal, no glossy 3D, no exact reference copy",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style — a dense single-page Kibookal field notebook. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, evidence layers, marginalia, classification and finish are 100% this style. ANY character, deity, creature, person, animal, object or place can become a field-notebook page — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "black archival ink + watercolour on warm cream paper",
+    "linework": "confident hand-drawn ink with watercolour wash and handmade imperfect marks",
+    "palette": "cream paper, black ink, ochre/marigold, muted red, teal, yellow highlight",
+    "texture": "aged field-notebook paper, taped artifacts, stamps and seals",
+    "finish": "found field page / portable museum, discovered not designed",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Any subject becomes the central curiosity of a single dense field-notebook page. Identity stays recognizable; medium, layers, marginalia, classification and palette are 100% this style.",
+    "consistency": [
+      "Match the built-in reference images for linework, palette, density and marginalia.",
+      "Always include: central drawing, physical evidence, small facts, marginal notes, a classification/rating, and one unanswered question.",
+      "Hold the cream-paper + black-ink + watercolour finish identical across every render.",
+      "The page must feel found, intelligent and curious — never a clean worksheet."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS033/kbs033__field-notebook__ref001.jpeg",
+    "refs/kbs_refs/KBS033/kbs033__field-notebook__ref002.jpeg",
+    "refs/kbs_refs/KBS033/kbs033__field-notebook__ref003.jpeg",
+    "refs/kbs_refs/KBS033/kbs033__field-notebook__ref004.jpeg",
+    "refs/kbs_refs/KBS033/kbs033__field-notebook__ref005.jpeg",
+    "refs/kbs_refs/KBS033/kbs033__field-notebook__ref006.jpeg",
+    "refs/kbs_refs/KBS033/kbs033__field-notebook__ref007.jpeg",
+    "refs/kbs_refs/KBS033/kbs033__field-notebook__ref008.jpeg"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "style_id": "KBS025",
+  "name": "Whimsical Chibi Cartoon Illustration",
+  "zip_source": "more styles.zip / Whimsical Chibi Cartoon Illustration (55 curated inspiration refs)",
+  "best_for": [
+    "young-kid comic/cartoon pages",
+    "activity scenes",
+    "app/screen art",
+    "covers"
+  ],
+  "composition": "Chibi characters in a fun, uncluttered adventure scene with bright cheerful colour.",
+  "visual_traits": [
+    "chibi proportions",
+    "clean flat colour",
+    "bright saturated palette",
+    "adventure scenes",
+    "kid-friendly",
+    "big friendly eyes"
+  ],
+  "prompt_core": "Create a Kibookal Whimsical Chibi Cartoon illustration of [SUBJECT]: chibi-proportioned friendly characters with big heads and simple bold shapes, clean flat saturated colour, a fun adventure scene and bright cheerful lighting; lively and very kid-friendly.",
+  "negative": "no photoreal, no painterly texture, no dark or gritty mood, no muted palette, no exact reference copy",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS025/kbs025__whimsical-chibi-cartoon-illustration__ref001.jpeg",
+    "refs/kbs_refs/KBS025/kbs025__whimsical-chibi-cartoon-illustration__ref002.jpeg",
+    "refs/kbs_refs/KBS025/kbs025__whimsical-chibi-cartoon-illustration__ref003.jpeg",
+    "refs/kbs_refs/KBS025/kbs025__whimsical-chibi-cartoon-illustration__ref004.jpeg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "chibi proportions",
+    "linework": "clean flat colour",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "big friendly eyes",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

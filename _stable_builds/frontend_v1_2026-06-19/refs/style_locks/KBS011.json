@@ -1,0 +1,44 @@
+{
+  "style_id": "KBS011",
+  "name": "Stylized Adventure Character Frame",
+  "zip_source": "11_inspiration__batch__10Jun-0822",
+  "best_for": [
+    "comic/action characters",
+    "storybook panels",
+    "animation pitch frames",
+    "funny villains"
+  ],
+  "composition": "Dynamic character pose or scene with clear staging, simplified shape design, cinematic but graphic background blocks.",
+  "visual_traits": [
+    "animation concept energy",
+    "stylized anatomy",
+    "bold pose",
+    "simple warm backgrounds",
+    "expressive faces",
+    "adventure/comic tone"
+  ],
+  "prompt_core": "Create a Kibookal stylized adventure illustration of [SUBJECT]. Use a dynamic readable pose, simplified expressive anatomy, strong shape design, warm graphic background, clear storytelling prop and playful action. Keep it child-safe, cinematic but not realistic, with confident hand-drawn line and painterly flat colour.",
+  "negative": "no hyperviolence, no adult grimdark, no photorealism, no anime imitation, no over-rendered game art",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS011/IMG-20260610-WA0009.jpg",
+    "refs/kbs_refs/KBS011/IMG-20260610-WA0010.jpg",
+    "refs/kbs_refs/KBS011/IMG-20260610-WA0011.jpg",
+    "refs/kbs_refs/KBS011/IMG-20260610-WA0012.jpg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "animation concept energy",
+    "linework": "stylized anatomy",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "adventure/comic tone",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

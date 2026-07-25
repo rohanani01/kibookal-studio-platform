@@ -1,0 +1,47 @@
+{
+  "style_id": "KBS036",
+  "name": "Kibookal Warli Tribal Mural",
+  "zip_source": "chitrastori folk-art reference batch (16 Jun)",
+  "best_for": [
+    "village-life scenes",
+    "rhythmic crowd compositions",
+    "simple symbolic narratives",
+    "process/cycle diagrams",
+    "minimal motifs"
+  ],
+  "composition": "A terracotta / mud-brown ground covered with white Warli motifs: triangle-bodied stick figures, the tarpa-dance spiral, trees, huts, animals and the central circle, arranged in rhythmic repeating bands; minimal, monochrome white-on-earth.",
+  "visual_traits": [
+    "terracotta / mud-brown ground",
+    "white pigment motifs only",
+    "triangle-bodied stick figures",
+    "rhythmic repetition and spirals",
+    "trees, huts, sun, animals",
+    "minimal monochrome",
+    "tribal mural texture"
+  ],
+  "prompt_core": "Create a Kibookal Warli tribal mural of [SUBJECT] on a terracotta mud-brown ground, drawn ONLY in white pigment: render [SUBJECT] and its world from Warli motifs — triangle-bodied stick figures, the spiral tarpa dance, trees, huts, the central sun-circle and animals — in rhythmic repeating bands. Minimal, monochrome white-on-earth, hand-painted village-wall texture, symbolic and joyful.",
+  "negative": "no phone UI, no status bar, no Instagram interface, no caption text; no colour beyond white-on-terracotta, no photoreal, no 3D, no shading, no Western cartoon, no exact reference copy",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject identity, key features and intended action recognizable, but the medium, palette, linework, motifs, ornament and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "white rice-paste on mud wall",
+    "linework": "thin white geometric line",
+    "palette": "terracotta/mud ground, white pigment only",
+    "texture": "mud-wall mural",
+    "finish": "Warli tribal, minimal monochrome",
+    "character_rule": "Render the requested SUBJECT fully in THIS exact tradition; identity stays recognizable, medium/palette/motifs/finish are 100% this style.",
+    "consistency": [
+      "Match the built-in reference images for palette, motifs, linework and density.",
+      "Hold the palette and finish identical across every render.",
+      "Authentic Indian folk-art tradition — never Western, never anime."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS036/kbs036__warli__ref001.jpeg",
+    "refs/kbs_refs/KBS036/kbs036__warli__ref002.jpeg",
+    "refs/kbs_refs/KBS036/kbs036__warli__ref003.jpeg",
+    "refs/kbs_refs/KBS036/kbs036__warli__ref004.jpeg",
+    "refs/kbs_refs/KBS036/kbs036__warli__ref005.jpeg",
+    "refs/kbs_refs/KBS036/kbs036__warli__ref006.jpeg"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "style_id": "KBS013",
+  "name": "Kibookal Sacred Manuscript Infographic Mythology",
+  "zip_source": "current user references + 04 visual system docs",
+  "best_for": [
+    "Devi Mahatmya pages",
+    "Rama/Ravana/Hanuman profiles",
+    "one-page myth education",
+    "poster-dossiers"
+  ],
+  "composition": "A complete myth on one ornate parchment page; central deity/hero/being; side panels and bottom strip; floral borders; peacocks/birds; internal story panels inside robes/body; readable sacred hierarchy.",
+  "visual_traits": [
+    "Indian sacred manuscript",
+    "ecological dossier",
+    "ornate borders",
+    "flat mineral colours",
+    "large serif-like headings if text_mode allows",
+    "body contains story universe",
+    "humour through small observation panels"
+  ],
+  "prompt_core": "Create a Kibookal sacred manuscript infographic mythology plate of [SUBJECT]. The page feels like an ancient-future Indian children’s sacred archive: cream parchment, floral borders, birds, lotus motifs, ritual symbols, archive cards and tiny diagram panels. Place the subject front-facing or dignified, with calm intelligent eyes, strong halo and body/clothing containing the full story universe: [STORY_SEED]. Use flat mineral colours, dark brown-black ink contours, controlled hatching, ornate but readable linework, and child-intelligent mystery. If text_mode is none, remove all writing and keep only decorative blank panels, icons and symbolic marks.",
+  "negative": "no generic myth poster, no AI fantasy glow, no photorealism, no clutter on face, no inaccurate random text, no copying reference layout exactly",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "Indian sacred manuscript",
+    "linework": "ecological dossier",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "humour through small observation panels",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS013/kbs004__devi-kibookal-mythology-activity-magazine__ref008.jpg",
+    "refs/kbs_refs/KBS013/kbs004__devi-kibookal-mythology-activity-magazine__ref016.jpg",
+    "refs/kbs_refs/KBS013/kbs004__devi-kibookal-mythology-activity-magazine__ref046.jpg",
+    "refs/kbs_refs/KBS013/kbs004__devi-kibookal-mythology-activity-magazine__ref057.png"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "style_id": "KBS037",
+  "name": "Kibookal Kalamkari Scroll",
+  "zip_source": "chitrastori folk-art reference batch (16 Jun)",
+  "best_for": [
+    "mythological narrative scrolls",
+    "deity panels with floral grounds",
+    "temple-cloth storytelling",
+    "border-rich compositions"
+  ],
+  "composition": "A hand-drawn Kalamkari panel on natural cotton-cream; the subject in fine pen-line detail surrounded by dense floral and creeper grounds, bordered by repeating motif bands; earthy natural-dye palette of indigo, madder-red, mustard, black and undyed cream.",
+  "visual_traits": [
+    "natural cotton-cream ground",
+    "fine pen (kalam) linework",
+    "natural-dye palette: indigo, madder red, mustard, black",
+    "dense floral / creeper fill ground",
+    "repeating motif border bands",
+    "mythological narrative figures",
+    "temple-cloth feel"
+  ],
+  "prompt_core": "Create a Kibookal Kalamkari scroll panel of [SUBJECT] on natural cotton-cream cloth: render [SUBJECT] in fine pen (kalam) linework with the earthy natural-dye palette of indigo, madder red, mustard-yellow, black and undyed cream. Surround the figure with dense floral and creeper grounds and frame it in repeating Kalamkari motif border bands. Mythological, narrative, hand-drawn temple-cloth storytelling.",
+  "negative": "no phone UI, no status bar, no Instagram interface, no caption text; no neon colour, no photoreal, no 3D, no smooth gradient, no Western cartoon, no exact reference copy",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject identity, key features and intended action recognizable, but the medium, palette, linework, motifs, ornament and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "pen + natural dyes on cotton",
+    "linework": "fine kalam pen line",
+    "palette": "cream, indigo, madder red, mustard, black",
+    "texture": "block-printed cotton cloth",
+    "finish": "Kalamkari temple-cloth scroll",
+    "character_rule": "Render the requested SUBJECT fully in THIS exact tradition; identity stays recognizable, medium/palette/motifs/finish are 100% this style.",
+    "consistency": [
+      "Match the built-in reference images for palette, motifs, linework and density.",
+      "Hold the palette and finish identical across every render.",
+      "Authentic Indian folk-art tradition — never Western, never anime."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS037/kbs037__kalamkari__ref001.jpeg",
+    "refs/kbs_refs/KBS037/kbs037__kalamkari__ref002.jpeg",
+    "refs/kbs_refs/KBS037/kbs037__kalamkari__ref003.jpeg",
+    "refs/kbs_refs/KBS037/kbs037__kalamkari__ref004.jpeg",
+    "refs/kbs_refs/KBS037/kbs037__kalamkari__ref005.jpeg",
+    "refs/kbs_refs/KBS037/kbs037__kalamkari__ref006.jpeg"
+  ]
+}

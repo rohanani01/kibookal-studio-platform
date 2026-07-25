@@ -1,0 +1,222 @@
+﻿/* ===========================================================================
+   Kibookal Studio — v7.10 theme
+   Combined palette:
+     • Red-violet  #C53678   (primary brand / CTAs in light mode)
+     • Sunset orange #FF5841 (accent / hot CTA — pops in dark mode)
+     • Turquoise   #178582   (secondary / cool counterpoint)
+     • Gold        #BFA181   (ornament / trim)
+     • Dark navy   #0A1828   (deep ink in light · canvas in dark)
+     • Brand red   #B4121B   (errors / warnings)
+
+   Day / night via [data-theme="dark"] on <html>.
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Brand */
+  --brand:        #C53678;       /* red-violet — primary brand */
+  --brand-2:      #d85091;
+  --brand-deep:   #8e2356;
+  --accent:       #FF5841;       /* sunset orange — hot CTA */
+  --accent-2:     #ff7c69;
+  --cool:         #178582;       /* turquoise — secondary */
+  --cool-2:       #1ea49f;
+  --gold:         #BFA181;
+  --gold-2:       #d8c19f;
+  --navy:         #0A1828;
+  --navy-2:       #142536;
+  --red:          #B4121B;       /* errors */
+
+  /* Mapped tokens — overridden by [data-theme="dark"] below */
+  --ink:          #0A1828;        /* navy as ink */
+  --paper:        #ffffff;
+  --paper-2:      #f5f0e9;
+  --bg:           #fdfbf7;
+  --line:         #e6dccb;
+  --line-strong:  #d3c3a4;
+  --hl:           #fff6ee;
+  --ash:          #5a5247;
+  --ash-2:        #8b8174;
+  --deep:         #0A1828;
+  --saffron:      var(--brand);
+  --saffron-2:    var(--accent);
+  --green:        var(--cool);
+
+  --shadow-sm: 0 1px 2px rgba(10, 24, 40, 0.06);
+  --shadow:    0 6px 18px rgba(10, 24, 40, 0.09);
+  --shadow-lg: 0 18px 44px rgba(10, 24, 40, 0.14);
+}
+
+/* === DARK THEME ============================================================ */
+:root[data-theme="dark"] {
+  --ink:          #f3ecdc;
+  --paper:        #142536;
+  --paper-2:      #1c2f44;
+  --bg:           #0A1828;
+  --line:         #2a3e57;
+  --line-strong:  #3a527a;
+  --hl:           #1a3a5c;
+  --ash:          #b6a78a;
+  --ash-2:        #8b7d63;
+  --deep:         #f3ecdc;
+  --saffron:      var(--accent);      /* sunset orange pops on dark */
+  --saffron-2:    var(--brand);
+  --green:        var(--cool);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow:    0 8px 22px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 22px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* === FONT STACK ============================================================ */
+body {
+  font-family: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif !important;
+  letter-spacing: 0.005em;
+  color: var(--ink) !important;
+  background-color: var(--bg) !important;
+  background-image:
+    radial-gradient(at 20% 0%, color-mix(in srgb, var(--accent) 7%, transparent) 0, transparent 50%),
+    radial-gradient(at 80% 100%, color-mix(in srgb, var(--cool) 7%, transparent) 0, transparent 50%) !important;
+  background-attachment: fixed;
+}
+:root[data-theme="dark"] body {
+  background-image:
+    radial-gradient(at 20% 0%, color-mix(in srgb, var(--brand) 9%, transparent) 0, transparent 55%),
+    radial-gradient(at 75% 100%, color-mix(in srgb, var(--cool) 9%, transparent) 0, transparent 55%) !important;
+}
+
+.brand {
+  font-family: 'Playfair Display', 'Cinzel', serif !important;
+  font-style: italic;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+}
+.brand span { color: var(--brand) !important; font-style: normal; font-weight: 700; }
+.brand sup { color: var(--gold) !important; }
+
+.card-title {
+  font-family: 'Playfair Display', 'Cinzel', serif !important;
+  font-size: 12px !important;
+  letter-spacing: 0.12em !important;
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+/* === COMPONENT TOUCH-UPS UNDER NEW THEME =================================== */
+.topbar {
+  background: color-mix(in srgb, var(--paper) 92%, transparent) !important;
+}
+:root[data-theme="dark"] .topbar { background: color-mix(in srgb, var(--paper) 88%, transparent) !important; }
+
+.tab.active {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--brand) 35%, transparent) !important;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%) !important;
+  border-color: transparent !important;
+  color: white !important;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--brand) 28%, transparent), 0 1px 0 rgba(255,255,255,0.18) inset !important;
+}
+.btn.primary:hover {
+  background: linear-gradient(135deg, var(--brand-deep) 0%, var(--brand) 100%) !important;
+  border-color: transparent !important;
+  filter: brightness(1.04);
+}
+.btn:hover {
+  border-color: var(--brand) !important;
+  background: var(--hl) !important;
+  color: var(--brand) !important;
+}
+
+.card { background: var(--paper); color: var(--ink); }
+:root[data-theme="dark"] .card { border-color: var(--line); }
+:root[data-theme="dark"] .card:hover { border-color: var(--cool-2); }
+.card-head {
+  background: linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 100%) !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+.card-head .card-title { color: var(--ink) !important; }
+.card-title em { color: var(--brand) !important; }
+
+input[type="text"], input[type="number"], input[type="password"], select, textarea {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+}
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] select,
+:root[data-theme="dark"] textarea {
+  background: var(--paper-2) !important;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--brand) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 18%, transparent) !important;
+}
+
+.provider-pill {
+  color: var(--brand) !important;
+  border-color: var(--gold-2) !important;
+}
+
+.icon-btn {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+}
+.icon-btn:hover {
+  background: var(--hl) !important;
+  border-color: var(--brand) !important;
+  color: var(--brand) !important;
+  transform: translateY(-1px);
+}
+
+/* Studio canvas frame keeps high contrast against either theme */
+.canvas-frame { border-color: var(--ink) !important; }
+
+/* Section dividers / hr */
+hr { border: none; border-top: 1px solid var(--line); }
+
+/* Toast tweaks */
+.toast {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line-strong) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+.toast.ok { border-left: 4px solid var(--cool) !important; }
+.toast.error { border-left: 4px solid var(--red) !important; }
+.toast.warn { border-left: 4px solid var(--gold) !important; }
+
+/* The big primary "Generate" buttons get a slight subtle glow */
+.btn.primary.lg {
+  box-shadow:
+    0 6px 20px color-mix(in srgb, var(--brand) 30%, transparent),
+    0 1px 0 rgba(255,255,255,0.2) inset !important;
+}
+
+/* Empty-state polish */
+.empty-state,
+.es-h { color: var(--ash) !important; }
+.es-h { font-family: 'Playfair Display', serif !important; font-style: italic; }
+
+/* Caveat marker text — bump colour to brand */
+[style*="Caveat"], .caption { color: var(--brand) !important; }
+
+/* Top scrollbar */
+html { scrollbar-color: var(--gold-2) transparent; }
+::selection { background: var(--brand); color: white; }
+
+/* Smooth theme switch */
+* {
+  transition:
+    background-color .3s ease,
+    border-color .3s ease,
+    color .25s ease,
+    box-shadow .25s ease;
+}
+
+

@@ -1,0 +1,44 @@
+{
+  "style_id": "KBS005",
+  "name": "Creepy-Cute Gothic Field Scrapbook",
+  "zip_source": "05_inspiration__also-this-style__09Jun-2035",
+  "best_for": [
+    "friendly asuras",
+    "fear creatures",
+    "shadow emotions",
+    "comic monster pages"
+  ],
+  "composition": "Tall scrapbook page or simple character poster with big-eyed central figure, rough notes, ink stains, torn paper, scribbles and small emotional captions.",
+  "visual_traits": [
+    "big eyes",
+    "thin fragile limbs",
+    "messy gothic sketchbook",
+    "pink/red/gray/black washes",
+    "funny darkness",
+    "not actually horror"
+  ],
+  "prompt_core": "Create an original Kibookal creepy-cute gothic scrapbook portrait of [SUBJECT]. The character is odd, emotionally readable, slightly spooky but safe and funny, with big expressive eyes, thin handmade ink lines, rough paper, scribbled blank note areas, little flowers, tiny side creatures and charming imperfections. Use muted cream paper with black ink, dusty pink, dirty red, pale teal and small colour stains. The mood is tender, strange and humorous, never scary-gory.",
+  "negative": "no gore, no horror violence, no realistic fear, no copying specific social media art, no polished vector",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS005/IMG-20260610-WA0183.jpg",
+    "refs/kbs_refs/KBS005/IMG-20260610-WA0185.jpg",
+    "refs/kbs_refs/KBS005/IMG-20260610-WA0186.jpg",
+    "refs/kbs_refs/KBS005/IMG-20260610-WA0187.jpg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "big eyes",
+    "linework": "thin fragile limbs",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "not actually horror",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kibookal Comic Book Production Process — PDF Builder</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #2d1f0e; color: #f5ebd8; font-family: Georgia, serif; min-height: 100vh; }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 28px; text-align: center; }
+  h1 { font-family: 'Cinzel', Georgia, serif; color: #f5ebd8; font-size: 28px; margin: 0 0 8px; letter-spacing: 0.04em; }
+  .tag { color: #d4b896; font-style: italic; margin-bottom: 30px; font-size: 15px; }
+  button { background: #b85c3c; color: #f5ebd8; border: none; padding: 18px 36px; border-radius: 8px; cursor: pointer; font-family: 'Cinzel', Georgia, serif; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: 0 6px 24px rgba(184,92,60,0.4); transition: all 0.2s; }
+  button:hover:not(:disabled) { background: #d4623a; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,98,58,0.5); }
+  button:disabled { opacity: 0.5; cursor: wait; }
+  .preview { background: #f5ebd8; color: #2d1f0e; border-radius: 8px; padding: 30px; margin-top: 30px; text-align: left; font-size: 12px; line-height: 1.5; }
+  .preview h2 { font-family: 'Cinzel', Georgia, serif; color: #b85c3c; margin: 16px 0 6px; font-size: 14px; }
+  .preview h2:first-child { margin-top: 0; }
+  .status { margin-top: 16px; min-height: 24px; color: #d4b896; font-style: italic; font-size: 14px; }
+  .ok { color: #86d57e; }
+  .err { color: #ff8866; }
+  .path { font-family: 'Courier New', monospace; font-size: 11px; color: #b89a4a; margin-top: 12px; word-break: break-all; }
+  .lotus { color: #b85c3c; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📕 Kibookal Comic Book Production Process</h1>
+  <div class="tag">Click below to build the 2-page PDF — opens in your downloads folder.</div>
+  <button id="buildBtn">📥 Build &amp; Download PDF</button>
+  <div class="status" id="status">Ready.</div>
+
+  <div class="preview">
+    <h2>Page 1 — Overview &amp; the five inputs</h2>
+    <div>Title · Tagline · "What this document is" · The five inputs: per-page prompts, master JSON, reference images, character sheets, page format · The pipeline at a glance · Why each step matters table</div>
+    <h2>Page 2 — Step-by-step &amp; QC</h2>
+    <div>8 sequential steps from opening the studio to exporting · What the QC layer checks · Tips for production-quality output</div>
+  </div>
+
+  <div class="path">Output file: <b>Kibookal_Comic_Book_Production_Process.pdf</b> (in your default downloads folder)</div>
+</div>
+
+<script>
+const { jsPDF } = window.jspdf;
+const COL = {
+  paper:   [245, 235, 216],   // #F5EBD8
+  paperA:  [243, 236, 224],
+  ink:     [45, 31, 14],      // #2D1F0E
+  saffron: [184, 92, 60],     // #B85C3C
+  gold:    [184, 154, 74],    // #B89A4A
+  earth:   [138, 98, 56],     // #8A6238
+  teak:    [107, 74, 46],     // #6B4A2E
+  green:   [90, 122, 68],     // #5A7A44
+  ash:     [110, 99, 87]
+};
+
+function setColor(pdf, type, rgb) {
+  if (type === 'fill') pdf.setFillColor(rgb[0], rgb[1], rgb[2]);
+  else if (type === 'draw') pdf.setDrawColor(rgb[0], rgb[1], rgb[2]);
+  else if (type === 'text') pdf.setTextColor(rgb[0], rgb[1], rgb[2]);
+}
+
+// Draw a rounded card with optional left-accent border
+function drawCard(pdf, x, y, w, h, opts = {}) {
+  setColor(pdf, 'fill', opts.bg || [255, 255, 255]);
+  setColor(pdf, 'draw', opts.border || COL.gold);
+  pdf.setLineWidth(opts.lineWidth || 0.3);
+  pdf.roundedRect(x, y, w, h, 1.5, 1.5, 'FD');
+  if (opts.accent) {
+    setColor(pdf, 'fill', opts.accent);
+    pdf.rect(x, y, 0.9, h, 'F');
+  }
+}
+
+// Wrap and render multiline text
+function drawText(pdf, text, x, y, opts = {}) {
+  const size = opts.size || 10;
+  const lineHeight = opts.lineHeight || size * 0.4;
+  setColor(pdf, 'text', opts.color || COL.ink);
+  pdf.setFont(opts.font || 'helvetica', opts.style || 'normal');
+  pdf.setFontSize(size);
+  const maxWidth = opts.maxWidth || 180;
+  const lines = pdf.splitTextToSize(text, maxWidth);
+  pdf.text(lines, x, y, opts.align ? { align: opts.align } : undefined);
+  return y + lines.length * lineHeight;
+}
+
+function drawDivider(pdf, y, opts = {}) {
+  setColor(pdf, 'draw', opts.color || COL.gold);
+  pdf.setLineDashPattern(opts.dash || [0.6, 0.6], 0);
+  pdf.setLineWidth(0.2);
+  pdf.line(opts.x1 || 14, y, opts.x2 || 196, y);
+  pdf.setLineDashPattern([], 0);
+}
+
+function buildPDF() {
+  const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const W = 210, H = 297;
+
+  // ========== PAGE 1 ==========
+  setColor(pdf, 'fill', COL.paper); pdf.rect(0, 0, W, H, 'F');
+
+  // Title
+  pdf.setFont('times', 'bold'); pdf.setFontSize(20);
+  setColor(pdf, 'text', COL.saffron);
+  pdf.text('The Kibookal Comic Book Production Process', 14, 22);
+
+  // Tagline
+  pdf.setFont('times', 'italic'); pdf.setFontSize(10.5);
+  setColor(pdf, 'text', COL.teak);
+  pdf.text('From story script to print-ready PDF — character & style locked end-to-end', 14, 28);
+
+  // Title underline
+  setColor(pdf, 'draw', COL.saffron); pdf.setLineWidth(0.6);
+  pdf.line(14, 30.5, 196, 30.5);
+
+  // Section: What this document is
+  pdf.setFont('times', 'bold'); pdf.setFontSize(12);
+  setColor(pdf, 'text', COL.earth); pdf.text('WHAT THIS DOCUMENT IS', 14, 38);
+  pdf.setFont('times', 'normal'); pdf.setFontSize(9.5);
+  setColor(pdf, 'text', COL.ink);
+  drawText(pdf, "A two-page reference for the process we use in the Kibookal Studio to turn a written story into a fully-illustrated comic book where every character looks the same on every page and the art style stays consistent across all spreads. Five inputs feed the studio; one polished PDF + PNG ZIP come out.", 14, 43, { maxWidth: 182, size: 9.5, lineHeight: 4 });
+
+  // Section: The five inputs
+  pdf.setFont('times', 'bold'); pdf.setFontSize(12);
+  setColor(pdf, 'text', COL.earth); pdf.text('THE FIVE INPUTS', 14, 62);
+  drawDivider(pdf, 64);
+
+  // Input 1 — per-page prompts (large saffron card)
+  drawCard(pdf, 14, 67, 182, 32, { bg: [251, 240, 232], border: COL.saffron, accent: COL.saffron });
+  pdf.setFont('times', 'bold'); pdf.setFontSize(10.5);
+  setColor(pdf, 'text', COL.saffron); pdf.text('1. Per-page prompt document', 18, 72);
+  pdf.setFont('times', 'italic'); pdf.setFontSize(8); pdf.setTextColor(110, 70, 50);
+  pdf.text('(required)', 70, 72);
+  pdf.setFont('times', 'normal'); pdf.setFontSize(9);
+  setColor(pdf, 'text', COL.ink);
+  drawText(pdf, 'A .pdf, .docx, or .txt with one block per page in the form:', 18, 77, { maxWidth: 174, size: 9, lineHeight: 4 });
+  pdf.setFont('courier', 'normal'); pdf.setFontSize(8.5);
+  setColor(pdf, 'text', COL.teak);
+  pdf.text([
+    'PAGE 1',
+    '<style notes — Tintin clean line + Indian watercolor on cream paper>',
+    '<panel description — characters, action, setting, dialogue>',
+    '<CHARACTER BIBLE — non-negotiable signatures>',
+    '<NEGATIVE — what to avoid>',
+    '================== PAGE 2...'
+  ], 18, 82);
+
+  // Inputs 2, 3 — two-column gold cards
+  drawCard(pdf, 14, 102, 88, 28, { bg: [250, 244, 222], border: COL.gold, accent: COL.gold });
+  pdf.setFont('times', 'bold'); pdf.setFontSize(10);
+  setColor(pdf, 'text', COL.gold); pdf.text('2. Master JSON', 18, 107);
+  pdf.setFont('times', 'italic'); pdf.setFontSize(7.5);
+  pdf.text('(recommended)', 41, 107);
+  pdf.setFont('times', 'normal'); pdf.setFontSize(8.5);
+  setColor(pdf, 'text', COL.ink);
+  drawText(pdf, "Single file defining every character (id, name, age, scale, skin, hair, costume, props, expressions, poses, forbidden list), global style DNA, palette, prompt template, master negative.", 18, 112, { maxWidth: 82, size: 8.5, lineHeight: 3.6 });
+
+  drawCard(pdf, 108, 102, 88, 28, { bg: [250, 244, 222], border: COL.gold, accent: COL.gold });
+  pdf.setFont('times', 'bold'); pdf.setFontSize(10);
+  setColor(pdf, 'text', COL.gold); pdf.text('3. Reference images', 112, 107);
+  pdf.setFont('times', 'italic'); pdf.setFontSize(7.5);
+  pdf.text('(recommended)', 142, 107);
+  pdf.setFont('times', 'normal'); pdf.setFontSize(8.5);
+  setColor(pdf, 'text', COL.ink);
+  drawText(pdf, "3–8 finished pages from a previous version or hand-curated style boards. Claude analyses them and extracts a style JSON: palette, linework, lighting, panel layout, fonts.", 112, 112, { maxWidth: 82, size: 8.5, lineHeight: 3.6 });
+
+  // Inputs 4, 5 — two-column plain cards
+  drawCard(pdf, 14, 133, 88, 26, { bg: [255, 255, 255], border: COL.gold });
+  pdf.setFont('times', 'bold'); pdf.setFontSize(10);
+  setColor(pdf, 'text', COL.saffron); pdf.text('4. Character sheets', 18, 138);
+  pdf.setFont('times', 'italic'); pdf.setFontSize(7.5); pdf.setTextColor(110, 70, 50);
+  pdf.text('(optional)', 49, 138);
+  pdf.setFont('times', 'normal'); pdf.setFontSize(8.5);
+  setColor(pdf, 'text', COL.ink);
+  drawText(pdf, "Generated via 'Generate character sheets' or uploaded. One locked reference per cast member used as image conditioning on every render.", 18, 143, { maxWidth: 82, size: 8.5, lineHeight: 3.6 });
+
+  drawCard(pdf, 108, 133, 88, 26, { bg: [255, 255, 255], border: COL.gold });
+  pdf.setFont('times', 'bold'); pdf.setFontSize(10);
+  setColor(pdf, 'text', COL.saffron); pdf.text('5. Page format choice', 112, 138);
+  pdf.setFont('times', 'normal'); pdf.setFontSize(8.5);
+  setColor(pdf, 'text', COL.ink);
+  drawText(pdf, "Single A5 — 1 image per page (210x148mm portrait). Spread — 2 consecutive pages paired into one wide image (297x210mm landscape). 36 pages → 18 spreads.", 112, 143, { maxWidth: 82, size: 8.5, lineHeight: 3.6 });
+
+  // Pipeline section
+  pdf.setFont('times', 'bold'); pdf.setFontSize(12);
+  setColor(pdf, 'text', COL.earth); pdf.text('THE PIPELINE AT A GLANCE', 14, 167);
+  drawDivider(pdf, 169);
+
+  drawCard(pdf, 14, 172, 182, 32, { bg: [250, 244, 230], border: COL.earth });
+  pdf.setFont('times', 'bold'); pdf.setFontSize(9.5);
+  setColor(pdf, 'text', COL.saffron);
+  pdf.text('Inputs  →  Parse  →  Lock  →  Render  →  QC  →  Retry  →  Export', 105, 178, { align: 'center' });
+  pdf.setFont('courier', 'normal'); pdf.setFontSize(7.5);
+  setColor(pdf, 'text', COL.teak);
+  pdf.text([
+    'Parse   splits the prompt doc on PAGE N markers, auto-detects spread vs single per page',
+    'Lock    master JSON identity + ref images + extracted style JSON + ages all merged',
+    'Render  each page sent to image model (Nano Banana Pro / gpt-image-1) with locks attached',
+    'QC      Claude vision inspects every render, scores 0-10 against character bible + style',
+    'Retry   pages scoring <8 auto-regenerate up to 3x with Claude\'s targeted fix hint',
+    'Export  mixed-orientation A4 PDF (landscape spreads + portrait singles) + ZIP of PNGs'
+  ], 18, 184);
+
+  // Why each step matters table
+  pdf.setFont('times', 'bold'); pdf.setFontSize(12);
+  setColor(pdf, 'text', COL.earth); pdf.text('WHY EACH STEP MATTERS', 14, 215);
+  drawDivider(pdf, 217);
+
+  // Table header
+  setColor(pdf, 'fill', [231, 213, 198]); pdf.rect(14, 220, 182, 5.5, 'F');
+  pdf.setFont('times', 'bold'); pdf.setFontSize(9);
+  setColor(pdf, 'text', COL.teak);
+  pdf.text('Step', 17, 224); pdf.text('What it prevents', 60, 224);
+  setColor(pdf, 'draw', COL.saffron); pdf.setLineWidth(0.4); pdf.line(14, 226, 196, 226);
+
+  const rows = [
+    ['Master JSON', 'Character drift, costume color drift, age-compression, forbidden-item violations'],
+    ['Reference images', 'Style drift, palette drift, layout monotony — the model has visual proof to match'],
+    ['Age extraction', 'Chotu drawn same size as older kids; Aaji drawn too young — explicitly negated'],
+    ['Claude QC', 'Subtle drift slipping past human eye (plaster on wrong cheek, missing accessories)'],
+    ['Per-page orientation', 'Print-shop misprints when single pages and spreads share one PDF']
+  ];
+  let yPos = 230;
+  pdf.setFont('times', 'normal'); pdf.setFontSize(8.5);
+  rows.forEach((row, i) => {
+    if (i % 2 === 0) {
+      setColor(pdf, 'fill', [248, 240, 220]); pdf.rect(14, yPos - 3.5, 182, 8, 'F');
+    }
+    pdf.setFont('times', 'bold'); setColor(pdf, 'text', COL.saffron);
+    pdf.text(row[0], 17, yPos);
+    pdf.setFont('times', 'normal'); setColor(pdf, 'text', COL.ink);
+    const lines = pdf.splitTextToSize(row[1], 134);
+    pdf.text(lines, 60, yPos);
+    yPos += 8;
+  });
+
+  // Footer
+  setColor(pdf, 'draw', COL.gold); pdf.setLineWidth(0.2);
+  pdf.line(14, 282, 196, 282);
+  pdf.setFont('times', 'italic'); pdf.setFontSize(8);
+  setColor(pdf, 'text', COL.earth);
+  pdf.text('Kibookal Studio · Comic Book Production Process · For internal use', 105, 287, { align: 'center' });
+  pdf.setFont('times', 'bold'); pdf.setFontSize(9);
+  setColor(pdf, 'text', COL.saffron);
+  pdf.text('1 / 2', 196, 287, { align: 'right' });
+
+  // ========== PAGE 2 ==========
+  pdf.addPage('a4', 'portrait');
+  setColor(pdf, 'fill', COL.paper); pdf.rect(0, 0, W, H, 'F');
+
+  pdf.setFont('times', 'bold'); pdf.setFontSize(20);
+  setColor(pdf, 'text', COL.saffron);
+  pdf.text('Step-by-step in the studio', 14, 22);
+
+  pdf.setFont('times', 'italic'); pdf.setFontSize(10.5);
+  setColor(pdf, 'text', COL.teak);
+  pdf.text('From a fresh browser tab to a finished comic ZIP — 8 steps', 14, 28);
+
+  setColor(pdf, 'draw', COL.saffron); pdf.setLineWidth(0.6);
+  pdf.line(14, 30.5, 196, 30.5);
+
+  // Steps
+  const steps = [
+    { num: 1, accent: COL.gold, text: 'Open the studio — load studio/index.html in Chrome/Edge. Hit Ctrl+Shift+R on first load to ensure latest JS. In ⚙ Settings paste your fal key (image gen), Anthropic key (QC + style analysis), and optionally OpenAI key (alternate image gen).' },
+    { num: 2, accent: COL.gold, text: 'Reset and go to Comic tab — click 🗑 Reset comic if any old session data is present (this also clears the Krishna-panels-from-localStorage problem).' },
+    { num: 3, accent: COL.saffron, text: 'Load the master JSON (card 2 in left rail) — click 📋 Load master JSON and pick e.g. kibookal_butter_thief_master_style_character_lock_v2.json. Confirm character chips appear with their forbidden-counts.' },
+    { num: 4, accent: COL.saffron, text: 'Upload reference images (card 3) — drag 3-8 finished pages or curated panels. Click 🔍 Extract style + layout JSON. Claude returns a structured style JSON which auto-applies the suggested page format + layout preset.' },
+    { num: 5, accent: COL.saffron, text: 'Paste the per-page prompts (card 1) — paste the PAGE 1 / PAGE 2 text directly OR click 📎 Load from PDF/DOCX/TXT. The counter shows "✓ N pages detected" in real time. Pick the global Page format default: Single A5 or Spread.' },
+    { num: 6, accent: COL.green, text: 'Verify the Style Lock — the auto-locked card shows green pills for each loaded source: 📷 refs · 📋 master JSON · 🎭 sheets · 🎂 ages extracted. Confirm 🤖 Auto-QC each page is checked, min score 8/10, retries 3.' },
+    { num: 7, accent: COL.gold, text: 'Generate all pages — click ⚡ Generate all pages. Studio renders 2 in parallel, then Claude vision QC: passes → green badge, fails → orange badge with specific drifts and automatic regen with Claude\'s fix hint prepended. Navigate with ← → arrow keys.' },
+    { num: 8, accent: COL.gold, text: 'Export — 📚 Export full comic (PDF) → mixed-orientation A4 PDF, spreads landscape and singles portrait. 📦 Pages ZIP → all PNGs named 01.png, 02.png for singles or 01-02.png, 03-04.png for spreads, plus _manifest.json with QC scores per page.' }
+  ];
+
+  let yp = 38;
+  steps.forEach(step => {
+    // Card
+    const lines = pdf.splitTextToSize(step.text, 165);
+    const cardH = 5 + lines.length * 3.4 + 3;
+    drawCard(pdf, 14, yp, 182, cardH, { bg: step.accent === COL.saffron ? [251, 240, 232] : (step.accent === COL.green ? [240, 246, 234] : [255, 255, 255]), border: COL.gold, accent: step.accent });
+
+    // Step number circle
+    setColor(pdf, 'fill', step.accent);
+    pdf.circle(21, yp + cardH/2, 3.2, 'F');
+    pdf.setFont('helvetica', 'bold'); pdf.setFontSize(9);
+    setColor(pdf, 'text', COL.paper);
+    pdf.text(String(step.num), 21, yp + cardH/2 + 1, { align: 'center' });
+
+    // Text
+    pdf.setFont('times', 'normal'); pdf.setFontSize(8.7);
+    setColor(pdf, 'text', COL.ink);
+    pdf.text(lines, 27, yp + 5);
+
+    yp += cardH + 2;
+  });
+
+  // What the QC checks
+  pdf.setFont('times', 'bold'); pdf.setFontSize(11);
+  setColor(pdf, 'text', COL.earth); pdf.text('WHAT THE QC LAYER ACTUALLY CHECKS', 14, yp + 2);
+  drawDivider(pdf, yp + 4);
+
+  drawCard(pdf, 14, yp + 7, 182, 26, { bg: [250, 244, 230], border: COL.earth });
+  pdf.setFont('times', 'normal'); pdf.setFontSize(8.2);
+  setColor(pdf, 'text', COL.ink);
+  pdf.text('For every rendered page Claude is shown the image + the original prompt and outputs strict JSON:', 18, yp + 12);
+  pdf.setFont('courier', 'normal'); pdf.setFontSize(7);
+  setColor(pdf, 'text', COL.teak);
+  pdf.text('{ ok, score, character_check[name][ok,issues], style_check, layout_check, negative_violations, fix_hint }', 18, yp + 16);
+  pdf.setFont('times', 'normal'); pdf.setFontSize(8.2);
+  setColor(pdf, 'text', COL.ink);
+  pdf.text('Score < 8 triggers auto-retry. The retry prompt has the fix-hint banner prepended:', 18, yp + 21);
+  pdf.setFont('courier', 'bold'); pdf.setFontSize(7);
+  setColor(pdf, 'text', COL.saffron);
+  pdf.text('🚨 PREVIOUS ATTEMPT FAILED — score 5/10 — MUST FIX: <specific drifts and fix actions>', 18, yp + 25);
+  pdf.setFont('courier', 'normal'); pdf.setFontSize(7);
+  setColor(pdf, 'text', COL.teak);
+  pdf.text("e.g. Aarav: plaster on RIGHT cheek (should be LEFT) / Chutki: long hair (should be short bob)", 18, yp + 29);
+
+  // Tips section
+  pdf.setFont('times', 'bold'); pdf.setFontSize(11);
+  setColor(pdf, 'text', COL.earth); pdf.text('TIPS FOR PRODUCTION-QUALITY OUTPUT', 14, yp + 39);
+  drawDivider(pdf, yp + 41);
+
+  const tips = [
+    ['Curate reference images carefully', '5 great refs beat 20 mediocre ones — pick refs that exemplify style, palette, and panel layout.'],
+    ['Master JSON forbidden lists are gold', 'Every specific drift you write (no glasses on Aarav, no long braid on Chutki, no orange mango) gets enforced through QC.'],
+    ['Be specific about layout in prompts', 'A clearly stated panel count and arrangement beats generic instruction — model can only follow what is specified.'],
+    ['Accept 5-10% manual retries', 'Text-to-image is stochastic. Strict QC catches ~85%; remaining tricky pages get one or two ↻ Retry passes.'],
+    ['Page format matters for print', 'Spreads at 297×210mm at the printer\'s native A3 imposition size produce cleanest spine alignment.']
+  ];
+  let tipsY = yp + 44;
+  pdf.setFontSize(8.5);
+  tips.forEach(([k, v], i) => {
+    if (tipsY > 275) return;  // safety
+    setColor(pdf, 'fill', COL.saffron);
+    pdf.circle(18, tipsY - 1, 0.8, 'F');
+    pdf.setFont('times', 'bold');
+    setColor(pdf, 'text', COL.saffron);
+    pdf.text(k, 21, tipsY);
+    pdf.setFont('times', 'normal');
+    setColor(pdf, 'text', COL.ink);
+    const lines = pdf.splitTextToSize(v, 174);
+    pdf.text(lines, 21, tipsY + 3.5);
+    tipsY += 3.5 + lines.length * 3.2 + 1.5;
+  });
+
+  // Footer
+  setColor(pdf, 'draw', COL.gold); pdf.setLineWidth(0.2);
+  pdf.line(14, 282, 196, 282);
+  pdf.setFont('times', 'italic'); pdf.setFontSize(8);
+  setColor(pdf, 'text', COL.earth);
+  pdf.text('Built on the Kibookal Studio · Image gen via fal.ai · QC via Anthropic Claude vision', 105, 287, { align: 'center' });
+  pdf.setFont('times', 'bold'); pdf.setFontSize(9);
+  setColor(pdf, 'text', COL.saffron);
+  pdf.text('2 / 2', 196, 287, { align: 'right' });
+
+  return pdf;
+}
+
+document.getElementById('buildBtn').onclick = () => {
+  const btn = document.getElementById('buildBtn');
+  const status = document.getElementById('status');
+  btn.disabled = true;
+  status.textContent = '⏳ Building PDF…';
+  status.className = 'status';
+  try {
+    const pdf = buildPDF();
+    pdf.save('Kibookal_Comic_Book_Production_Process.pdf');
+    status.textContent = '✓ Downloaded — check your default downloads folder';
+    status.className = 'status ok';
+  } catch (e) {
+    console.error(e);
+    status.textContent = '✗ ' + (e.message || 'Unknown error');
+    status.className = 'status err';
+  }
+  btn.disabled = false;
+};
+
+// Auto-build on first load so the user gets the PDF immediately
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => document.getElementById('buildBtn').click(), 400);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+  "style_id": "KBS041",
+  "name": "Kibookal Painterly Storybook Adventure",
+  "zip_source": "eye.em.ai reference set (painterly cinematic storybook-fantasy)",
+  "best_for": [
+    "storybook cover and full-page illustrations",
+    "child hero + spirit-creature scenes",
+    "epic-yet-tender fantasy adventure art",
+    "dreamlike landscapes and dramatic skies",
+    "picture-book and graphic-story painting"
+  ],
+  "composition": "A painterly cinematic storybook illustration: a young hero (often in a signature warm red/saffron jacket) with fantastical spirit-creatures — white forest stags, shaggy dark beasts, dragons, glowing animal-spirits — set in atmospheric, dreamlike landscapes (deep teal/indigo nights, surreal mushroom-balloon skies, misty forests) under dramatic luminous skies. Epic in scale yet warm and tender; a single strong focal hero with creatures, deep atmospheric depth, vertical book-cover framing.",
+  "visual_traits": [
+    "painterly gouache/oil-like brushwork, soft edges (no hard ink outlines)",
+    "cinematic deep teal & indigo grounds lifted by warm accents (vermilion, saffron, gold)",
+    "luminous rim-light and glowing spirit-creatures",
+    "atmospheric haze, soft volumetric clouds and depth",
+    "young expressive hero, often a red/orange jacket; whimsical-yet-epic",
+    "richly detailed fur, feathers, antlers, scales and foliage",
+    "Studio Ghibli x Moebius x golden-age children's-book painting feel"
+  ],
+  "prompt_core": "Paint [SUBJECT] as a Kibookal painterly cinematic STORYBOOK ADVENTURE illustration: rich gouache/oil-like brushwork with soft painted edges (NO hard ink outlines), a young expressive hero (often in a warm red/saffron jacket) together with fantastical spirit-creatures (white forest stags, shaggy dark beasts, dragons, glowing animal-spirits), set in a dreamlike atmospheric landscape — deep teal/indigo night, misty forest or surreal mushroom-balloon sky — under a dramatic luminous sky with soft volumetric clouds and rim-light. Cinematic depth and mood, epic in scale yet warm and tender, like a hand-painted picture-book cover. Studio-Ghibli-meets-Moebius painterly fantasy; never flat vector, never hard-outlined cartoon, never photoreal.",
+  "negative": "no hard ink outlines, no flat vector, no cel-shaded cartoon, no photoreal photo, no 3D render, no anime screencap, no phone/app UI, no instagram chrome, no status bar, no caption text, no watermark, no harsh neon, no exact reference copy",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT fully in THIS painterly storybook style: gouache/oil brushwork, cinematic teal-indigo + warm-accent palette, glowing spirit-creatures, atmospheric dreamlike depth and a young tender-yet-heroic protagonist. Keep any named character recognizable, but the medium, brushwork, palette, lighting and finish are 100 percent this style. Any subject becomes a painterly storybook-adventure scene.",
+  "style_lock": {
+    "medium": "painterly digital gouache/oil illustration, hand-painted picture-book technique",
+    "linework": "soft painterly edges, forms defined by paint and light (no hard ink outlines)",
+    "palette": "cinematic deep teal & indigo grounds with warm accents (vermilion, saffron, gold) and luminous highlights",
+    "texture": "visible brushwork, atmospheric haze, soft volumetric clouds, detailed fur/feathers/foliage",
+    "finish": "epic-yet-tender cinematic storybook painting",
+    "character_rule": "Young expressive hero, often a signature warm red/saffron jacket; companions are glowing or shaggy spirit-creatures. Keep faces tender and characterful, painted not outlined.",
+    "consistency": [
+      "Match the built-in refs for brushwork, the teal-indigo + warm-accent palette, and luminous spirit-creatures.",
+      "Always painterly with soft edges — never hard-outlined, never flat vector, never photoreal.",
+      "Atmospheric depth and a dramatic luminous sky on every piece.",
+      "Epic scale but warm, tender, child-friendly mood."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS041/kbs041__storybook__ref001.jpg",
+    "refs/kbs_refs/KBS041/kbs041__storybook__ref002.jpg",
+    "refs/kbs_refs/KBS041/kbs041__storybook__ref003.jpg",
+    "refs/kbs_refs/KBS041/kbs041__storybook__ref004.jpg",
+    "refs/kbs_refs/KBS041/kbs041__storybook__ref005.jpg",
+    "refs/kbs_refs/KBS041/kbs041__storybook__ref006.jpg",
+    "refs/kbs_refs/KBS041/kbs041__storybook__ref007.jpg",
+    "refs/kbs_refs/KBS041/kbs041__storybook__ref008.jpg"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "style_id": "KBS038",
+  "name": "Kibookal Dhokra Bronze-Craft",
+  "zip_source": "chitrastori folk-art reference batch (16 Jun)",
+  "best_for": [
+    "totem-like figures",
+    "craft-object portraits",
+    "tribal deity forms",
+    "sculptural single subjects"
+  ],
+  "composition": "A single sculptural subject rendered as cast Dhokra bronze: warm patinated metal with the signature lost-wax thread-coil surface texture, lattice and dotted bands, on a soft dark studio ground with gentle highlights.",
+  "visual_traits": [
+    "cast bronze / brass metal",
+    "lost-wax coiled-thread surface texture",
+    "lattice and dotted ornament bands",
+    "warm patina, soft highlights",
+    "tribal craft figure forms",
+    "single sculptural subject",
+    "dark studio ground"
+  ],
+  "prompt_core": "Create a Kibookal Dhokra bronze-craft portrait of [SUBJECT] as a cast lost-wax bronze figure: warm patinated brass-bronze with the signature coiled-thread surface texture, lattice and dotted ornament bands, tribal craft styling, on a soft dark ground with gentle sculptural highlights. A single dignified sculptural subject, hand-cast metal-craft feel.",
+  "negative": "no phone UI, no status bar, no Instagram interface, no caption text; no flat 2D cartoon, no neon, no exact reference copy",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject identity, key features and intended action recognizable, but the medium, palette, linework, motifs, ornament and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "cast lost-wax bronze",
+    "linework": "coiled-thread relief texture",
+    "palette": "warm bronze, brass patina, dark ground",
+    "texture": "Dhokra coiled-thread metal",
+    "finish": "tribal bronze craft",
+    "character_rule": "Render the requested SUBJECT fully in THIS exact tradition; identity stays recognizable, medium/palette/motifs/finish are 100% this style.",
+    "consistency": [
+      "Match the built-in reference images for palette, motifs, linework and density.",
+      "Hold the palette and finish identical across every render.",
+      "Authentic Indian folk-art tradition — never Western, never anime."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS038/kbs038__dhokra__ref001.jpeg",
+    "refs/kbs_refs/KBS038/kbs038__dhokra__ref002.jpeg",
+    "refs/kbs_refs/KBS038/kbs038__dhokra__ref003.jpeg"
+  ]
+}

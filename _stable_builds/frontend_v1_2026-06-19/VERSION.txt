@@ -1,0 +1,5 @@
+Kibookal Studio — STABLE BUILD v1
+Frozen: 2026-06-19
+Styles: 41 | Layouts: 50+50 | Typography: 20
+Cache: v=20260619d
+NOTE: keep developing on frontend/, this is the team's frozen copy.

@@ -1,0 +1,189 @@
+{
+  "system_name": "Trigun Interactive Mystery Kit — Layout Templates",
+  "version": "v1",
+  "note": "STYLE-INDEPENDENT layout templates. Each structure_block describes ONLY composition/structure (no medium, palette, or finish words) so the SAME layout renders identically across ANY KBS visual style. Style comes from the chosen style_lock; layout comes from here. Every page is a FLAT printable A5 image (or a 4cm square for puzzle pieces). The renderer prepends the global printable_rule and appends the chosen style DNA + any needed character lock_lines/refs. 'layout_reference' points at the native PDF example — attach it for composition fidelity when rendering in the native Trigun style; for OTHER styles rely on the structure_block so the layout repeats while the look changes.",
+  "a5_spec": "A5 portrait, 148x210mm, 3:4-ish aspect; full-bleed flat artwork, no physical-object framing.",
+  "piece_spec": "A single 4cm x 4cm square tile, full-bleed flat artwork.",
+  "templates": [
+    {
+      "template_id": "TRG_COVER",
+      "name": "Main Cover Page",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": ["ekta"],
+      "ref_assets": ["postcard_haveli_01"],
+      "content_slots": {"title": "TRIGUN", "subtitle": "Balance of the Universe", "tagline": "An Interactive Graphic Mystery Kit", "age_badge": "Ages 11-13"},
+      "structure_block": "COVER layout. A strong central vertical composition: the TITLE in large display lettering across the upper third, a smaller subtitle line beneath it, and a thin decorative rule. In the central field, the hero figure (the girl protagonist holding an ancient book) stands before a faded Rajasthani haveli silhouette, with three faint, semi-translucent female figures arranged behind her (one warm/active, one dark/still, one pale/calm). A small age badge sits in a lower corner and a short tagline runs along the bottom edge. A decorative double border frames the whole page just inside the bleed. Balanced, mysterious, inviting."
+    },
+    {
+      "template_id": "TRG_INTRO_POEM",
+      "name": "Intro Poem / Riddle Sheet",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": [],
+      "content_slots": {"heading": "The Asura-s Song", "poem": "[the Hindi riddle poem — 6 couplets]", "footnote": "Read it the way the proud always speak — they hide things in plain sight."},
+      "structure_block": "POEM SHEET layout. A small ornamented heading at the top, then the riddle poem set as centred couplets with generous line spacing down the middle of the page, each couplet visually separated. A faint decorative motif (a small three-part emblem) sits above the poem and a single italic footnote line sits at the bottom. A decorative border frames the page. Calm, ceremonial, readable — the poem is the hero."
+    },
+    {
+      "template_id": "TRG_STORY_SPREAD",
+      "name": "Graphic-Novel Story Page",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": ["ekta", "jwalika", "mohika", "suchi"],
+      "ref_assets": [],
+      "content_slots": {"panels": "[3-6 panels of beats]", "captions": "[narration boxes]", "dialogue": "[speech]"},
+      "structure_block": "GRAPHIC-NOVEL PAGE layout. Divide the page into 3 to 6 comic panels of varying size with clear gutters between them (e.g. a wide establishing panel on top, two or three mid panels, a strong panel at the bottom). Each panel contains one story beat with the characters in scene; rectangular narration/caption boxes sit in panel corners and speech bubbles carry dialogue. Panel borders are clean and consistent. Reading order flows left-to-right, top-to-bottom. Cinematic, clear, character-driven; keep faces and costumes consistent with the attached character references."
+    },
+    {
+      "template_id": "TRG_CHARACTER_CARD",
+      "name": "Character Reference Card",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": ["<one per card>"],
+      "ref_assets": [],
+      "content_slots": {"name": "", "title": "", "at_a_glance": [], "details": [], "always_with_her": [], "strengths": [], "struggles": [], "expressions_row": [], "a_day_in_life": [], "closeups": []},
+      "structure_block": "CHARACTER CARD layout (richly annotated identity sheet). A large hero figure of the character stands down the LEFT column, full height. The character-s NAME is set large at the top-left as a masthead with a one-line title beneath it. Across the TOP-RIGHT runs a row of 3-4 small head-and-shoulders EXPRESSION studies, each labelled with one emotion word. The RIGHT and lower areas are filled with small framed annotation blocks connected by thin rules: 'At a Glance' bullet traits, a 'Details / personal items' cluster of little object sketches with captions, an 'Always With Her' pair of signature items, a 'Strengths & Struggles' two-column list, a horizontal 'A Day in the Life' strip of 4-5 tiny vignettes with numbered captions, and a bottom row of extreme CLOSE-UP detail crops (jewellery, hair, hands, feet) each captioned. A decorative border frames everything. Dense, museum-catalogue-meets-field-journal, but every block readable. The big figure must exactly match the attached character reference."
+    },
+    {
+      "template_id": "TRG_ENVELOPE_COVER",
+      "name": "Envelope Cover",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": [],
+      "content_slots": {"location_name": "", "guna_colour": "", "vignette": "[location scene]", "instruction": "Open me to begin the search."},
+      "structure_block": "ENVELOPE COVER layout. The LOCATION NAME is set large across the upper third as a hand-titled banner. A central framed vignette illustrates the location (an evocative establishing scene of the place). A wax-seal / round stamp motif and a small postmark sit over one corner as if the envelope were posted. A thin instruction line ('open me to begin') runs near the bottom, and a small coloured tab/dot in a corner signals this envelope-s guna colour. A decorative double border frames the page. Mysterious, tactile, invitational."
+    },
+    {
+      "template_id": "TRG_CLUE_LETTER",
+      "name": "Clue / Story Letter",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": ["letter_mara_mocking"],
+      "content_slots": {"body": "[letter text]", "signature": "", "from": ""},
+      "structure_block": "LETTER layout. Ornate decorative flourishes fill the four corners and a fine rule frames a central writing field. The letter BODY is set as several short paragraphs of period correspondence filling most of the page with comfortable margins, ragged-right, intimate. A salutation sits at the top and a signature line with a small dash-name sits at the bottom-right. Optionally one tiny marginal doodle. The text is the hero and must be fully readable; the page feels like a real posted letter."
+    },
+    {
+      "template_id": "TRG_MAP_SHEET",
+      "name": "Vintage Map Sheet",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": ["map_desert_jaisalmer", "map_town_jaisalmer", "map_air_currents"],
+      "content_slots": {"map_type": "desert | town | air-currents", "title_cartouche": "JAISALMER", "markers": [], "legend": []},
+      "structure_block": "MAP SHEET layout. A single aged cartographic map fills the whole page edge-to-edge. A compass rose sits in one upper corner; a fine grid with edge coordinates runs across the sheet; a titled cartouche (place name + scale) sits in a lower corner; a small legend box lists symbol meanings. Numbered/lettered markers and small pictographic symbols dot the terrain at key points, with a few hand-drawn route lines or currents. Antique survey-map feel, dense but legible, the cartography is the hero."
+    },
+    {
+      "template_id": "TRG_MAP_LEGEND",
+      "name": "Map-Symbols Legend + Hidden Clue",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": ["sheet_map_legend_symbols"],
+      "content_slots": {"symbols": ["rail", "school", "foot bridge", "fence", "church", "graves", "college", "telephone", "camping", "petrol pump", "police station", "airport", "shrubs", "monument", "signal", "water tank", "bamboo"], "hidden_clue": ""},
+      "structure_block": "LEGEND SHEET layout. A tidy grid of small hand-drawn map SYMBOLS, each paired with its label, arranged in even rows (about 3-4 columns) down the page. Below the grid sits a short hand-written clue line with one or two words deliberately struck-through/replaced so the reader must decode the real instruction. A side tab carries a small place-name. Clean reference-chart feel; the symbols double as a cipher key for the map sheets."
+    },
+    {
+      "template_id": "TRG_CIPHER_SHEET",
+      "name": "Cipher / Puzzle Sheet",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": ["sheet_pigpen_cipher", "sheet_alphabet_blanks_cipher", "sheet_word_search", "sheet_10_hints"],
+      "content_slots": {"cipher_type": "pigpen | alphabet-blanks | word-search | numbered-hints", "instruction": "", "puzzle_body": "", "hidden_answer": ""},
+      "structure_block": "PUZZLE SHEET layout. A short instruction line at the top, then the PUZZLE BODY filling the centre: for pigpen, the pigpen key-grids plus a line of encoded symbols; for alphabet-blanks, rows of symbol-clues each followed by blank underscores to fill; for word-search, a square grid of letters with a small word list; for numbered hints, a clean numbered 1-10 list of riddle lines. A tiny coloured note in a corner hides the real answer/keyword. A decorative border frames the page. Crisp and solvable, plenty of working space."
+    },
+    {
+      "template_id": "TRG_GUNA_BALANCE",
+      "name": "Guna Balance Sheet (per location)",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": ["sheet_guna_balance"],
+      "content_slots": {"location": "", "rajas_pct": 0, "tamas_pct": 0, "sattva_pct": 0, "personality": {"rajas": "", "tamas": "", "sattva": ""}, "essence": ""},
+      "structure_block": "GUNA BALANCE layout. A centred title 'THE THREE GUNAS' with the subtitle 'RAJAS - TAMAS - SATTVA' across the top, a small three-part alchemical emblem beneath it. The CENTRE-RIGHT holds a 'Guna Balance' panel with THREE vertical gauge meters side by side (one warm/Rajas, one dark/Tamas, one pale/Sattva), each filled to its percentage with the number printed below. The LEFT column holds a 'Place Personality' block: three small icon+label rows describing how dominant each guna is here. A framed 'Essence of this Place' caption runs along the bottom. A decorative border frames the page. Reads like an instrument panel for the soul of a location; the same template, only the percentages and text change per location."
+    },
+    {
+      "template_id": "TRG_HIDDEN_TEXT",
+      "name": "Hidden-Text Puzzle (natural surface)",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": ["hidden_tree_rings", "hidden_leaves", "hidden_carved_door", "postcard_jaisalmer_01"],
+      "content_slots": {"surface": "tree-rings | leaf-veins | carved-door | postcard", "hidden_message": ""},
+      "structure_block": "HIDDEN-TEXT layout. A natural textured surface fills the entire page edge-to-edge (concentric tree-rings, a web of leaf veins, a carved temple/haveli door, or an aged postcard back). Woven subtly INTO that texture - following the rings, the veins, the carved panels, or the postmark lines - are faint letters/words forming a hidden message that only reveals itself on careful looking. The surface reads first as pure texture; the message is camouflaged, never an obvious caption. Immersive and single-image."
+    },
+    {
+      "template_id": "TRG_LINE_DRAWING",
+      "name": "Line-Drawing Clue (jharokha / steps)",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": ["line_jharokha", "line_steps"],
+      "content_slots": {"subject": "jharokha | steps", "hidden_count_or_clue": ""},
+      "structure_block": "LINE-DRAWING layout. A single clean black-outline architectural drawing (an ornate Rajasthani jharokha window, or a flight of carved haveli steps) fills the page on a plain ground, colouring-book clarity. The ornament carries a countable/decodable clue (repeated motifs, numbered steps, a pattern that hides a number or letter). Precise, uncoloured, elegant; the architecture is the hero and the clue lives in its detail."
+    },
+    {
+      "template_id": "TRG_BLUEPRINT",
+      "name": "Site Plan / Blueprint",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": ["blueprint_bhangarh_fort"],
+      "content_slots": {"site": "Bhangarh Fort", "title": "", "legend": [], "site_notes": []},
+      "structure_block": "SITE-PLAN layout. A measured top-down architectural site plan fills the page: a titled header strip with technical coordinates, the plan itself (outer boundary wall, gates, marked structures, a central complex, a marketplace row) drawn as labelled footprints, a numbered LEGEND box in a lower corner, a 'Site Notes' text box opposite it, and a compass rose. Thin technical linework, antique survey aesthetic, everything labelled. The plan is the hero and one marked location hides the clue."
+    },
+    {
+      "template_id": "TRG_PUZZLE_PIECE",
+      "name": "Single Guna-Code Puzzle Piece (4x4cm)",
+      "canvas": "PIECE",
+      "page_format": "ONE 4cm x 4cm square tile, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": [],
+      "content_slots": {"code_word": "", "guna": "Rajas | Tamas | Sattva | final", "piece_index": 0, "back_fragment": "[slice of the Pancha Mahabhutas image]"},
+      "structure_block": "PUZZLE PIECE layout. A small square tile. The FRONT shows a single CODE WORD set boldly and centred, tinted in this piece-s guna colour, with a tiny corner index number. (The BACK, when generated, shows one slice of a larger picture so that all pieces together tile into a single image.) Bold, legible at thumbnail size, unmistakable colour-coding by guna."
+    },
+    {
+      "template_id": "TRG_PIECE_SHEET",
+      "name": "Cut-Out Sheet of Puzzle Pieces",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": [],
+      "content_slots": {"pieces": "[up to ~12 code words of one guna colour]", "guna": ""},
+      "structure_block": "CUT-OUT SHEET layout. An even grid of equal SQUARE tiles (with faint dashed cut-lines and tiny scissor marks between them) fills the page. Each square holds one centred code word tinted in the sheet-s guna colour with a small index number. Uniform sizing, generous cut margins, print-and-cut friendly. The grid is the hero."
+    },
+    {
+      "template_id": "TRG_FINAL_ASSEMBLY",
+      "name": "Final Assembly Solution (Pancha Mahabhutas)",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": ["puzzle_assembly_pancha_mahabhutas"],
+      "content_slots": {"arrangement": "diamond/cross of 22 squares", "reveal": "Pancha Mahabhutas (five elements) image"},
+      "structure_block": "FINAL ASSEMBLY layout. The 22 square code-tiles shown arranged into the correct solution pattern (a centred diamond/cross), their backs together forming ONE complete picture of the Pancha Mahabhutas (the five elements). A short caption names the reveal. A decorative border frames the page. Triumphant solution diagram; the assembled picture is the hero."
+    },
+    {
+      "template_id": "TRG_MASK",
+      "name": "Make-Your-Own Mask Template",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": [],
+      "content_slots": {"mask_of": "guna spirit (Jwalika / Mohika / Suchi)", "guna_colour": ""},
+      "structure_block": "MASK TEMPLATE layout. A single symmetrical face-mask shape centred on the page, sized to a child-s face, with clearly marked EYE holes and small dashed CUT lines around the outline and fold/tab marks. The mask surface carries the motifs and colour of one guna spirit. Faint dotted guide lines and a tiny 'cut here / punch here / tie string' note sit at the edges. Print-and-make friendly; the mask shape is the hero."
+    },
+    {
+      "template_id": "TRG_MAP_CARD",
+      "name": "Loose Jaisalmer Map Card",
+      "canvas": "A5",
+      "page_format": "ONE A5 loose card, full-bleed.",
+      "uses_characters": [],
+      "ref_assets": ["map_town_jaisalmer"],
+      "content_slots": {"title": "Jaisalmer", "haveli_marker": "Dadi-s haveli at centre", "locations": ["Bhangarh Fort", "Library", "Garden", "ASI", "Main Market", "Landfill", "Desert", "Dadi-s Haveli"]},
+      "structure_block": "MAP CARD layout. A keepsake map of the quest region fills the card: the haveli marked at the centre with concentric rings of meaning spreading outward, the eight quest locations marked and named around it, a compass rose, a titled cartouche, and small connecting paths. Doubles as the player-s board for tracking the search. Antique, collectible feel; the map is the hero."
+    }
+  ]
+}

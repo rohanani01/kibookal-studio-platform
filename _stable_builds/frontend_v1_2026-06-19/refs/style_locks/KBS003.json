@@ -1,0 +1,44 @@
+{
+  "style_id": "KBS003",
+  "name": "Sacred Techno-Totem Diagram Pop",
+  "zip_source": "02_inspiration__another-art-style-get-inspired-by__09Jun-1949",
+  "best_for": [
+    "creature encyclopedias",
+    "future India machines",
+    "logic maps",
+    "toy-like sacred devices"
+  ],
+  "composition": "Central totem/device/creature isolated on off-white or saturated flat field; surrounding diagram pods, UI-like strips, small icons, cutaway compartments and symbolic stabilisers.",
+  "visual_traits": [
+    "flat vector precision",
+    "thick black contour",
+    "bright cyan/saffron/coral/mint/magenta",
+    "modular panels",
+    "sacred geometry fused with toy packaging",
+    "technology as mythology"
+  ],
+  "prompt_core": "Create an original Kibookal sacred techno-totem diagram of [SUBJECT]. Make it feel like a ritual machine, toy, deity-mask and scientific poster at once. Use a huge central vertical totem with cutaway compartments, micro-panels, circular halos, wires/vines, icon strips, small decoded modules and symbolic anchors. Use flat bold colours, thick black outlines, clean internal diagram lines and controlled white space. It must feel playful, intelligent, collectible and ceremonial, not copied from any reference.",
+  "negative": "no direct artist imitation, no photorealism, no soft painterly shading, no cyberpunk neon, no messy random machinery",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS003/IMG-20260610-WA0235.jpg",
+    "refs/kbs_refs/KBS003/IMG-20260610-WA0236.jpg",
+    "refs/kbs_refs/KBS003/IMG-20260610-WA0237.jpg",
+    "refs/kbs_refs/KBS003/IMG-20260610-WA0238.jpg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "flat vector precision",
+    "linework": "thick black contour",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "technology as mythology",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

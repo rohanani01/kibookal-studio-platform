@@ -1,0 +1,47 @@
+{
+  "style_id": "KBS012",
+  "name": "Recursive Infinite-City Ink World",
+  "zip_source": "12_CRITICAL__infinite-city-ink__recursive-ink-world__10Jun-0845-1036",
+  "best_for": [
+    "worlds within worlds",
+    "vortex cities",
+    "mahabharata chakravyuha",
+    "mythic maps",
+    "cosmic architecture"
+  ],
+  "composition": "Macro geometry first: vortex, spiral, mandala, labyrinth, sinkhole, terraced funnel, conch, Om, Sri Yantra or multi-vortex; architecture/objects follow flow lines.",
+  "visual_traits": [
+    "black ink only",
+    "technical pen",
+    "recursive scale",
+    "architecture as geology",
+    "terraces",
+    "hatching density",
+    "no colour",
+    "ancient obsessive impossible world"
+  ],
+  "prompt_core": "Create a monochrome recursive ink-world for [SUBJECT]. Begin with a readable macro geometry before any details: vortex, spiral, mandala, labyrinth, sinkhole or terraced funnel. Build the entire world from repeated forms related to the subject, such as temples, bridges, trees, rivers, shrines, domes, gates, stairs, animals, weapons or symbolic forms. Every large form contains smaller forms, which contain smaller forms again. Use only black technical pen on white paper, engraving-level detail, cross-hatching and line density for depth. The image must feel ancient, obsessive, impossible, archaeological and alive.",
+  "negative": "no colour, no watercolour, no soft shading, no single cityscape, no modern glass towers, no minimalism, no CGI",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS012/IMG-20260610-WA0001.jpg",
+    "refs/kbs_refs/KBS012/IMG-20260610-WA0002.jpg",
+    "refs/kbs_refs/KBS012/IMG-20260610-WA0003.jpg",
+    "refs/kbs_refs/KBS012/IMG-20260610-WA0004.jpg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "black ink only",
+    "linework": "technical pen",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "ancient obsessive impossible world",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

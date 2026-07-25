@@ -1,0 +1,139 @@
+{
+  "lock_id": "TRIGUN_KIBOOKAL_INTERACTIVE_MYSTERY_KIT_STYLE_LOCK_V1",
+  "title": "Trigun: Balance of the Universe — Interactive Graphic Mystery Kit",
+  "format": "Story-led mythological detective puzzle kit (NOT a magazine): graphic novel + mystery envelopes + clue-solving game + Indian-mythology learning kit + hands-on activity box.",
+  "audience": "Ages 11-13",
+  "generated_from": [
+    "trigun kibookal storyline.pdf (story / source of truth)",
+    "trigun kibookal page list .pdf (materials + envelope structure)",
+    "images for trigun kibookal.pdf (visual references)"
+  ],
+  "components": {
+    "style_lock_native": "KBS040 (Trigun Mystery Archive) — refs/style_locks/KBS040.json",
+    "style_swappable": "ANY KBS style may be used; the LAYOUT stays identical because layout lives in the templates, not the style.",
+    "layout_templates": "refs/trigun/trigun_layout_templates_v1.json",
+    "character_bible": "refs/trigun/trigun_characters_v1.json",
+    "reference_images": "refs/trigun_refs/ (29 extracted source references)"
+  },
+  "design_principles": [
+    "Every output is a FLAT printable A5 image (or a 4cm square puzzle piece) — no physical-object framing.",
+    "LAYOUT is locked and style-independent: the same template renders the same composition in any visual style.",
+    "VISUAL STYLE is swappable: KBS040 is the native look; the user may try the same kit in any other KBS style.",
+    "CHARACTER CONSISTENCY is mandatory: every character render copies its locked appearance + reference card.",
+    "Premium, mysterious, tactile, Indian, kid-friendly throughout."
+  ],
+  "render_protocol": {
+    "compose_order": [
+      "1. global printable_rule (flat full-bleed A5)",
+      "2. template.structure_block (the locked LAYOUT — pure composition)",
+      "3. page content_slots filled in (titles, text, percentages, code words, hidden messages)",
+      "4. for each character on the page: inject character.lock_line + attach character.ref_images",
+      "5. chosen style DNA (medium/linework/palette/texture/finish) from the style_lock",
+      "6. negatives (style negatives + global avoid)"
+    ],
+    "reference_attachment_rule": "When rendering in the NATIVE style (KBS040), also attach the template-s layout_reference image for maximum composition fidelity. When rendering in a DIFFERENT style, do NOT attach the native layout_reference (it would drag the native look); rely on the structure_block + that style-s own refs + character refs so the LAYOUT repeats while the LOOK changes.",
+    "aspect": "A5 pages render at 3:4; puzzle pieces render at 1:1.",
+    "consistency": "Always attach character ref cards for any page featuring a character; keep face/hair/costume/colour identical across pages."
+  },
+  "world_glossary": {
+    "Ekta": "13-year-old protagonist, the Dhar Rakshak (book-protector); decodes the clues.",
+    "Bramhaanda Vichaar": "The ancient book that holds the original record of how the universe works; carries the map and the riddle.",
+    "the three gunas": "Rajas (initiating), Tamas (sustaining/dissolving), Sattva (clarity) — the three forces of all material existence.",
+    "Jwalika": "The Rajas force (fiery red/gold).",
+    "Mohika": "The Tamas force (dark/black).",
+    "Suchi": "The Sattva force (white/cream); the mediator.",
+    "the Asuras": "Disguised as sages, they tricked the three forces and stole the Codes ~400 years ago, hiding each fragment in the place most OPPOSITE to its guna.",
+    "Mara / Mahamoha": "The antagonist — the Other Voice / Dharakshak; mocks and tempts.",
+    "Dadi": "Ekta-s grandmother; kept the haveli and the book.",
+    "the Codes": "Frequency/word patterns defining each guna; the puzzle pieces the player collects.",
+    "Pancha Mahabhutas": "The five elements — the picture formed when all 22 code pieces are arranged correctly.",
+    "code_colours": {"Rajas": "red", "Tamas": "dark blue", "Sattva": "green", "final_master": "yellow"}
+  },
+  "physical_kit": {
+    "main_graphic_novel": "1 (cover -> intro poem -> story -> character cards -> map card)",
+    "envelopes_A5": ["Bhangarh Fort", "Dadi-s Haveli", "Landfill", "Main Market", "Library", "Archaeological Society of India", "Garden", "Desert"],
+    "masks": "3 (user makes) — Jwalika / Mohika / Suchi",
+    "puzzle_pieces": "22 squares of 4cm x 4cm (7 red Rajas + 7 green Sattva + 7 blue Tamas + 1 yellow final) -> assemble to Pancha Mahabhutas"
+  },
+  "page_manifest": {
+    "MAIN_BOOK": [
+      {"page": 1, "name": "Front cover", "template": "TRG_COVER", "characters": ["ekta"], "accent": "mixed", "content": "FRONT COVER. Title TRIGUN large; subtitle Balance of the Universe; Ekta center holding the ancient book before a faded Rajasthani haveli; three faint guna spirits behind her (fiery-red Jwalika, black Mohika, white Suchi); a small Ages 11-13 badge in a lower corner; tagline An Interactive Graphic Mystery Kit along the bottom.", "ref": "postcard_haveli_01", "status": "ready"},
+      {"page": 2, "name": "Intro poem sheet", "template": "TRG_INTRO_POEM", "characters": [], "accent": "ochre", "art_only": true, "editable_text": "POEM_FULL_RAJAS_FIRST", "content": "ART ONLY: a decorated aged-parchment poem sheet — engraved-serif heading area at top, a small three-guna ornament, a fine red/ochre border, and a CLEAR empty central panel for the poem (do NOT draw poem text; the full poem is added later as editable text). Order locked Rajas -> Tamas -> Sattva (see production lock).", "ref": "postcard_haveli_01", "styleAnchor": true, "status": "ready"},
+      {"page": 3, "name": "Story 1 — The Arrival", "template": "TRG_STORY_SPREAD", "characters": ["ekta"], "accent": "ochre", "content": "A 4-panel comic page. P1: Ekta in a car, chin on hand, watching Rajasthani dust blur past, sulking — caption: The summer Ekta turned thirteen, the promise of Manali became a haveli in Rajasthan. P2: an old haveli gate; caretaker Bhola Kaka opens it and pulls her parents into talk about the water tank. P3: Ekta quietly slips into the stone courtyard. P4: she wanders deep, confusing corridors — caption: Old havelis are built for wandering. Speech: father — You will like it.", "ref": null, "status": "ready"},
+      {"page": 4, "name": "Story 2 — The Book", "template": "TRG_STORY_SPREAD", "characters": ["ekta"], "accent": "ochre", "content": "A 4-panel comic page. P1: a narrow easy-to-miss door at the end of a dim corridor, caption A narrow, easy-to-miss door... P2: a small windowless room, a bundle wrapped in cloud-grey cloth on the floor. P3: the cloth has fallen away to reveal an ancient cracked dark-leather book carved with strange symbols. P4: Ekta kneels and opens the book — dense maps, force diagrams, partial Sanskrit and modern Hindi margin notes — speech This... this is everything!, caption The word book was insufficient.", "ref": null, "status": "ready"},
+      {"page": 5, "name": "Story 3 — The Three", "template": "TRG_STORY_SPREAD", "characters": ["ekta", "jwalika", "mohika", "suchi"], "accent": "mixed", "content": "A 4-panel comic page. P1: Ekta looks up startled, speech off-panel You could have been gentler with the cover. P2: three hazy semi-translucent figures against three walls — Jwalika in rippling red-gold with a clay pot, Mohika tall in black with a glass bottle, Suchi in plain white sitting still. P3: close on Suchi (warm natural skin, white sari) opening her eyes, speech Ekta. We have been waiting for you. P4: Ekta sits on the dusty floor, speech Alright. Start from the beginning., caption The book knows you. It always has.", "ref": null, "status": "ready"},
+      {"page": 6, "name": "Story 4 — The Theft", "template": "TRG_STORY_SPREAD", "characters": ["ekta", "jwalika", "mohika", "suchi"], "accent": "mixed", "content": "A 4-panel comic page. P1: a small triad diagram — the three were the grammar of the universe: Rajas initiating, Tamas sustaining and dissolving, Sattva giving clarity. P2: the Asuras arrive disguised as soft-spoken sages in ochre robes, bowing like scholars. P3: they ask careful questions; each honest answer turns a hidden lock, shown as a key turning slowly. P4: the three realise too late — caption: By the time we understood, the Codes had been separated from us. The preparation took centuries; the taking was very fast.", "ref": null, "status": "ready"},
+      {"page": 7, "name": "Story 5 — The Crack", "template": "TRG_STORY_SPREAD", "characters": ["ekta", "suchi"], "accent": "mixed", "content": "A 4-panel comic page. P1: an Asura sings a mocking song while leaving, a scrap of rhyme floating. P2: Ekta thinking hard, speech They were proud. Proud people hide things in plain sight. P3: an insight sketch — each fragment hidden in the place most OPPOSITE its guna (fire hidden where things rot). P4: Ekta kneels over the hand-drawn map from the book, the haveli at its centre with concentric rings, Suchi (white) beside her, speech So. Where do we start?", "ref": null, "status": "ready"},
+      {"page": 8, "name": "Ekta character card", "template": "TRG_CHARACTER_CARD", "characters": ["ekta"], "accent": "ochre", "content": "Ekta identity card. Masthead EKTA — Dhar Rakshak, Age 13. Hero figure left; expression row (curious & excited, impulsive, self-doubting, convinced); At a Glance; Details/personal items (ink doodles, Rajasthani printed pants, old book, Imli toffee); Always With Her; Strengths & Struggles; A Day in the Life strip; closeups.", "ref": "card_ekta", "use_asis": true, "status": "ready"},
+      {"page": 9, "name": "Jwalika (Rajas) character card", "template": "TRG_CHARACTER_CARD", "characters": ["jwalika"], "accent": "red", "content": "Jwalika identity card. Masthead JWALIKA — Rajasic Force. Fiery red-gold hero figure left; expression row; At a Glance; personal items (clay pot, gold ornaments); closeups. Warm red and gold throughout.", "ref": "card_jwalika", "use_asis": true, "status": "ready"},
+      {"page": 10, "name": "Mohika (Tamas) character card", "template": "TRG_CHARACTER_CARD", "characters": ["mohika"], "accent": "blue", "content": "Mohika identity card. Masthead MOHIKA — Tamasic Force. Tall all-black hero figure left; expression row; essence/details blocks; personal items (glass bottle, snake jewellery, large earrings); closeups. Deep black, charcoal, indigo throughout.", "ref": "card_mohika", "use_asis": true, "status": "ready"},
+      {"page": 11, "name": "Suchi (Sattva) character card", "template": "TRG_CHARACTER_CARD", "characters": ["suchi"], "accent": "green", "content": "Suchi identity card. Masthead SUCHI — Sattvic Force. Serene white-clad hero figure left with warm natural skin and a single long white braid; expression row; mediator blocks; personal items; closeups. White, cream and pale gold throughout (skin stays natural, never green).", "ref": "card_suchi", "use_asis": true, "status": "ready"},
+      {"page": 12, "name": "Mahamoha character card", "template": "TRG_CHARACTER_CARD", "characters": ["mara"], "accent": "indigo", "content": "MAHAMOHA identity card (name locked MAHAMOHA; subtitle The Other Voice / Mara). A tall faceless indigo-black smoke figure with dissolving edges as the hero figure; a few short trait lines; no clear human face anywhere.", "ref": "card_mara_mahamoha", "use_asis": true, "status": "ready"},
+      {"page": 13, "name": "Jaisalmer map (loose card)", "template": "TRG_MAP_CARD", "characters": [], "accent": "ochre", "content": "JAISALMER QUEST MAP & BOARD. Dadi-s Haveli at the centre with concentric rings. EXACTLY eight distinct named markers around it, each labelled once: Bhangarh Fort, Library, Garden, Archaeological Society of India, Main Market, Landfill, Desert, Dadi-s Haveli. Compass rose, titled JAISALMER cartouche, faint paths. No duplicate labels.", "ref": "map_town_jaisalmer", "use_asis": true, "status": "ready"},
+      {"page": 14, "name": "Back cover", "template": "TRG_COVER", "characters": [], "accent": "mixed", "art_only": true, "editable_text": "BACKCOVER_MAINBOOK", "content": "ART ONLY (MAIN BOOK back cover — NO kit inventory, NO envelopes/puzzle-pieces/masks list): a centred three-guna emblem (fiery-red, black, white symbols balanced on a beam), a fine border, a clear lower panel for an editable hook line, and a small TRIGUN logo + Ages 11-13 area. Do NOT draw body text; it is added later as editable text. No central character figure.", "ref": "postcard_haveli_01", "styleAnchor": true, "status": "ready"}
+    ],
+    "ENVELOPE_DESERT": [
+      {"name": "Envelope cover", "template": "TRG_ENVELOPE_COVER", "content": "DESERT (Jaisalmer)", "ref": null, "status": "to_generate"},
+      {"name": "Jaisalmer desert map", "template": "TRG_MAP_SHEET", "content": "map_type=desert", "ref": "map_desert_jaisalmer", "status": "ready"},
+      {"name": "10 hints sheet", "template": "TRG_CIPHER_SHEET", "content": "cipher_type=numbered-hints (the 10 riddle lines)", "ref": "sheet_10_hints", "status": "ready"},
+      {"name": "Alphabet blanks sheet", "template": "TRG_CIPHER_SHEET", "content": "cipher_type=alphabet-blanks (symbol clues + blanks)", "ref": "sheet_alphabet_blanks_cipher", "status": "ready"},
+      {"name": "Guna codes word maker", "template": "TRG_CIPHER_SHEET", "content": "cipher_type=word-maker (assemble code words from letters)", "ref": null, "status": "to_generate"},
+      {"name": "3 gunas character card", "template": "TRG_CHARACTER_CARD", "content": "reuse the three guna cards (combined)", "ref": "card_jwalika", "status": "ready"},
+      {"name": "Desert guna sheet", "template": "TRG_GUNA_BALANCE", "content": "location=Desert", "ref": "sheet_guna_balance", "status": "ready"}
+    ],
+    "ENVELOPE_LIBRARY": [
+      {"name": "Envelope cover", "template": "TRG_ENVELOPE_COVER", "content": "LIBRARY", "ref": null, "status": "to_generate"},
+      {"name": "7 green guna codes (Sattva)", "template": "TRG_PIECE_SHEET", "content": "guna=Sattva, colour=green, 7 pieces 4x4cm", "ref": null, "status": "to_generate"},
+      {"name": "M-word distorted Dadi letter", "template": "TRG_CLUE_LETTER", "characters": ["dadi"], "content": "Dadi letter with M-words distorted", "ref": null, "status": "to_generate"},
+      {"name": "Library guna sheet", "template": "TRG_GUNA_BALANCE", "content": "location=Library", "ref": "sheet_guna_balance", "status": "ready"}
+    ],
+    "ENVELOPE_GARDEN": [
+      {"name": "Envelope cover", "template": "TRG_ENVELOPE_COVER", "content": "GARDEN", "ref": null, "status": "to_generate"},
+      {"name": "7 red guna codes (Rajas)", "template": "TRG_PIECE_SHEET", "content": "guna=Rajas, colour=red, 7 pieces 4x4cm", "ref": null, "status": "to_generate"},
+      {"name": "Mahamoha mocking letter", "template": "TRG_CLUE_LETTER", "characters": ["mara"], "content": "Mara taunts the reader (the 'tiresome companions' letter)", "ref": "letter_mara_mocking", "status": "ready"},
+      {"name": "Garden guna sheet", "template": "TRG_GUNA_BALANCE", "content": "location=Garden", "ref": "sheet_guna_balance", "status": "ready"}
+    ],
+    "ENVELOPE_BHANGARH_FORT": [
+      {"name": "Envelope cover", "template": "TRG_ENVELOPE_COVER", "content": "BHANGARH FORT", "ref": null, "status": "to_generate"},
+      {"name": "Word search", "template": "TRG_CIPHER_SHEET", "content": "cipher_type=word-search", "ref": "sheet_word_search", "status": "ready"},
+      {"name": "Bhangarh fort blueprint", "template": "TRG_BLUEPRINT", "content": "site=Bhangarh Fort", "ref": "blueprint_bhangarh_fort", "status": "ready"},
+      {"name": "Text hidden in leaves", "template": "TRG_HIDDEN_TEXT", "content": "surface=leaf-veins", "ref": "hidden_leaves", "status": "to_generate"},
+      {"name": "Text hidden in door", "template": "TRG_HIDDEN_TEXT", "content": "surface=carved-door", "ref": "hidden_carved_door", "status": "to_generate"},
+      {"name": "Text hidden in tree rings (main)", "template": "TRG_HIDDEN_TEXT", "content": "surface=tree-rings", "ref": "hidden_tree_rings", "status": "ready"},
+      {"name": "Bhangarh fort guna sheet", "template": "TRG_GUNA_BALANCE", "content": "location=Bhangarh Fort", "ref": "sheet_guna_balance", "status": "ready"}
+    ],
+    "ENVELOPE_ASI": [
+      {"name": "Envelope cover", "template": "TRG_ENVELOPE_COVER", "content": "ARCHAEOLOGICAL SOCIETY OF INDIA", "ref": null, "status": "to_generate"},
+      {"name": "7 dark-blue guna codes (Tamas)", "template": "TRG_PIECE_SHEET", "content": "guna=Tamas, colour=dark blue, 7 pieces 4x4cm", "ref": null, "status": "to_generate"},
+      {"name": "Pigpen cipher sheet", "template": "TRG_CIPHER_SHEET", "content": "cipher_type=pigpen", "ref": "sheet_pigpen_cipher", "status": "ready"},
+      {"name": "ASI guna sheet", "template": "TRG_GUNA_BALANCE", "content": "location=ASI", "ref": "sheet_guna_balance", "status": "ready"}
+    ],
+    "ENVELOPE_LANDFILL": [
+      {"name": "Landfill find-the-letter puzzle", "template": "TRG_CIPHER_SHEET", "content": "cipher_type=find-the-letter over a detailed landfill scene", "ref": "art_landfill", "status": "ready"},
+      {"name": "Jaisalmer air currents map", "template": "TRG_MAP_SHEET", "content": "map_type=air-currents", "ref": "map_air_currents", "status": "ready"},
+      {"name": "Sandstorm riddle clue", "template": "TRG_CLUE_LETTER", "content": "handwritten note: a sandstorm rose; how will the current tell you?", "ref": "note_sandstorm_riddle", "status": "ready"},
+      {"name": "Landfill guna sheet", "template": "TRG_GUNA_BALANCE", "content": "location=Landfill", "ref": "sheet_guna_balance", "status": "ready"}
+    ],
+    "ENVELOPE_MAIN_MARKET": [
+      {"name": "Envelope cover", "template": "TRG_ENVELOPE_COVER", "content": "MAIN MARKET", "ref": null, "status": "to_generate"},
+      {"name": "1 yellow guna code (final)", "template": "TRG_PUZZLE_PIECE", "content": "guna=final, colour=yellow, the 22nd piece", "ref": null, "status": "to_generate"},
+      {"name": "Dadi-s final letter + epilogue", "template": "TRG_CLUE_LETTER", "characters": ["dadi"], "content": "Dadi-s closing letter and epilogue", "ref": null, "status": "to_generate"},
+      {"name": "Main market guna sheet", "template": "TRG_GUNA_BALANCE", "content": "location=Main Market", "ref": "sheet_guna_balance", "status": "ready"},
+      {"name": "Dadi-s character sheet", "template": "TRG_CHARACTER_CARD", "characters": ["dadi"], "content": "Dadi identity sheet", "ref": null, "status": "to_generate"}
+    ],
+    "ENVELOPE_DADI_HAVELI": [
+      {"name": "Envelope cover", "template": "TRG_ENVELOPE_COVER", "content": "DADI-S HAVELI", "ref": null, "status": "to_generate"},
+      {"name": "Jharokha clues line drawing", "template": "TRG_LINE_DRAWING", "content": "subject=jharokha", "ref": "line_jharokha", "status": "ready"},
+      {"name": "Steps line drawing", "template": "TRG_LINE_DRAWING", "content": "subject=steps", "ref": "line_steps", "status": "ready"},
+      {"name": "Dadi-s haveli guna sheet", "template": "TRG_GUNA_BALANCE", "content": "location=Dadi-s Haveli", "ref": "sheet_guna_balance", "status": "ready"}
+    ],
+    "EXTRAS": [
+      {"name": "Mask — Jwalika", "template": "TRG_MASK", "content": "guna=Rajas, red", "ref": null, "status": "to_generate"},
+      {"name": "Mask — Mohika", "template": "TRG_MASK", "content": "guna=Tamas, dark blue", "ref": null, "status": "to_generate"},
+      {"name": "Mask — Suchi", "template": "TRG_MASK", "content": "guna=Sattva, green", "ref": null, "status": "to_generate"},
+      {"name": "Map legend / symbols sheet", "template": "TRG_MAP_LEGEND", "content": "map symbols key + hidden clue", "ref": "sheet_map_legend_symbols", "status": "ready"},
+      {"name": "Final assembly (Pancha Mahabhutas)", "template": "TRG_FINAL_ASSEMBLY", "content": "22-piece solution diagram", "ref": "puzzle_assembly_pancha_mahabhutas", "status": "ready"}
+    ]
+  },
+  "totals": {"templates": 18, "characters": 6, "reference_images": 29, "manifest_pages": 53, "pages_ready": 32, "pages_to_generate": 21}
+}

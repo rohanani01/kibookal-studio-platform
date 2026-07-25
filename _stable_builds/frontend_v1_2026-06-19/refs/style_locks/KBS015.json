@@ -1,0 +1,44 @@
+{
+  "style_id": "KBS015",
+  "name": "Bold Neo-Folk Pop Poster",
+  "zip_source": "more styles.zip / Bold Neo-Folk Pop Poster (20 curated inspiration refs)",
+  "best_for": [
+    "posters",
+    "covers",
+    "festival/merch pages",
+    "brand visuals"
+  ],
+  "composition": "Centred symmetrical hero on a dark ground, bold display title, folk-ornament border.",
+  "visual_traits": [
+    "heavy black outline",
+    "flat high-saturation colour",
+    "screenprint texture",
+    "folk symmetry",
+    "sugar-skull/mask",
+    "gig-poster punch"
+  ],
+  "prompt_core": "Create a Kibookal Bold Neo-Folk Pop Poster of [SUBJECT]: heavy black outlines, flat high-saturation colour blocks (hot pink, electric blue, chrome yellow, red) on a dark ground, symmetrical folk-art ornament, sugar-skull/mask energy, light screenprint texture, a punchy display title; collectible and graphic - inspired by folk-pop, never a copy.",
+  "negative": "no soft gradients, no pastel, no photoreal, no muted palette, no clean Canva layout, no exact reference copy",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS015/kbs015__bold-neo-folk-pop-poster__ref001.jpeg",
+    "refs/kbs_refs/KBS015/kbs015__bold-neo-folk-pop-poster__ref002.jpeg",
+    "refs/kbs_refs/KBS015/kbs015__bold-neo-folk-pop-poster__ref003.jpeg",
+    "refs/kbs_refs/KBS015/kbs015__bold-neo-folk-pop-poster__ref004.jpeg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "heavy black outline",
+    "linework": "flat high-saturation colour",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "gig-poster punch",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

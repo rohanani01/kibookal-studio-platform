@@ -1,0 +1,53 @@
+{
+  "style_id": "KBS029",
+  "name": "Kibookal Sacred Surreal Collage World",
+  "best_for": [
+    "mythology cover art",
+    "dreamlike sacred spreads",
+    "surreal world-building pages",
+    "meditative poster art",
+    "symbolic editorial"
+  ],
+  "composition": "Layered torn-paper collage world; a central sacred subject assembled from cut fragments; floating elements, halos and geometry; deep dreamlike layered space on aged paper.",
+  "visual_traits": [
+    "torn-paper + vintage-print collage",
+    "sacred Indian iconography recombined surreally",
+    "aged paper + foxing texture",
+    "mixed-media layering",
+    "dreamlike floating composition",
+    "mineral + sepia palette with gold",
+    "symbolic, meditative, uncanny"
+  ],
+  "style_palette": "Aged ivory and sepia grounds; mineral indigo, madder red, malachite, ochre gold; muted, antique, with restrained gold. Flat collage, no slick gradients.",
+  "prompt_core": "Create a Kibookal Sacred Surreal Collage of [SUBJECT]: build the subject as a layered torn-paper and vintage-print collage — sacred Indian iconography and natural fragments recombined into a dreamlike, surreal world on aged paper. Floating elements, soft halos, hidden geometry, deep layered space, mineral-and-sepia palette with restrained gold. Meditative, symbolic and uncanny — a discovered artifact, not a clean illustration.",
+  "negative": "no photoreal, no glossy 3D, no neon, no flat modern vector, no literal calendar-art, no slick digital gradients",
+  "ref_from": "KBS024 - Vintage Natural History Surreal Collage",
+  "self_contained": true,
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "zip_source": "Authored from style name + Kibookal documents (world-class JSON), built into engine 2026-06-11",
+  "style_lock": {
+    "medium": "torn-paper + vintage-print collage",
+    "linework": "sacred Indian iconography recombined surreally",
+    "palette": "Aged ivory and sepia grounds; mineral indigo, madder red, malachite, ochre gold; muted, antique, with restrained gold. Flat collage, no slick gradients.",
+    "texture": "see visual_traits",
+    "finish": "symbolic, meditative, uncanny",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS029/kbs029_ref001.jpeg",
+    "refs/kbs_refs/KBS029/kbs029_ref005.jpeg",
+    "refs/kbs_refs/KBS029/kbs029_ref010.jpeg",
+    "refs/kbs_refs/KBS029/kbs029_ref014.jpeg",
+    "refs/kbs_refs/KBS029/kbs029_ref019.jpeg",
+    "refs/kbs_refs/KBS029/kbs029_ref023.jpeg",
+    "refs/kbs_refs/KBS029/kbs029_ref028.jpeg",
+    "refs/kbs_refs/KBS029/kbs029_ref032.jpeg"
+  ]
+}

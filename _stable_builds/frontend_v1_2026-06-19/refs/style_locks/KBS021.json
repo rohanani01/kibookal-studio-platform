@@ -1,0 +1,42 @@
+{
+  "style_id": "KBS021",
+  "name": "Playful Social Caricature Typography",
+  "zip_source": "more styles.zip / Playful Social Caricature Typography (44 curated inspiration refs)",
+  "best_for": [
+    "humour/editorial pages",
+    "comment pages",
+    "posters"
+  ],
+  "composition": "Exaggerated everyday caricature with a big hand-lettered caption woven into the composition.",
+  "visual_traits": [
+    "caricature",
+    "bold outline",
+    "flat bright colour",
+    "integrated big lettering",
+    "warm human humour"
+  ],
+  "prompt_core": "Create a Kibookal Playful Social Caricature with typography: [SUBJECT] as an exaggerated, warm-hearted caricature of everyday people, bold outlines and flat bright colour, with a big hand-lettered caption woven into the composition; funny and human, never mean.",
+  "negative": "no photoreal, no fine rendering, no tiny illegible text, no mean-spirited tone, no exact reference copy",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS021/kbs021__playful-social-caricature-typography__ref001.jpeg",
+    "refs/kbs_refs/KBS021/kbs021__playful-social-caricature-typography__ref002.jpeg",
+    "refs/kbs_refs/KBS021/kbs021__playful-social-caricature-typography__ref003.jpeg",
+    "refs/kbs_refs/KBS021/kbs021__playful-social-caricature-typography__ref004.jpeg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "caricature",
+    "linework": "bold outline",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "warm human humour",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

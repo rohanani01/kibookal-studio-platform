@@ -1,0 +1,41 @@
+{
+  "style_id": "KBS004",
+  "name": "Worlds-Within-Worlds Sacred Interior",
+  "zip_source": "03_WORLDS-WITHIN-WORLDS-logic-system__09Jun-1951",
+  "best_for": [
+    "one image with full universe inside subject",
+    "mythic memory palaces",
+    "nested story scenes"
+  ],
+  "composition": "Main subject or object becomes a container of many nested worlds; chambers, paths, tiny scenes and living ecosystems repeat at different scales.",
+  "visual_traits": [
+    "recursive internal compartments",
+    "micro-scenes inside cloak/body/object",
+    "sacred ecology",
+    "clear outer silhouette",
+    "many zoom-level discoveries"
+  ],
+  "prompt_core": "Create [SUBJECT] as a worlds-within-worlds living archive. The outer silhouette must be instantly readable, but inside it are nested chambers, miniature scenes, tiny temples, rivers, forests, asuras, companions, animals, memory rooms and symbolic pathways. Every internal scene supports [STORY_SEED]. Keep the face and main gesture clear; place the complexity inside clothing, body panels, halo and base landscape. Use Kibookal sacred ecological manuscript colours and hand-inked linework.",
+  "negative": "no uniform clutter, no losing the silhouette, no random tiny scenes unrelated to story_seed",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS004/IMG-20260610-WA0232.jpg",
+    "refs/kbs_refs/KBS004/IMG-20260610-WA0233.jpg",
+    "refs/kbs_refs/KBS004/IMG-20260610-WA0234.jpg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "recursive internal compartments",
+    "linework": "micro-scenes inside cloak/body/object",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "many zoom-level discoveries",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

@@ -1,0 +1,4136 @@
+{
+  "schema_name": "Kibookal Magazine - Unified Master Backbone v3",
+  "version": "3.0",
+  "status": "production_locked",
+  "created_utc": "2026-06-08T07:14:59.449Z",
+  "description": "Single-file unified backbone fusing ALL Kibookal magazine systems. Drop this ONE file into the Magazine tab. Studio auto-detects which mode (creature / asura / devi) the chosen case wants.",
+  "modes": {
+    "creature_maker": {
+      "description": "Object-creature transformation pages (Pen Serpent, Kettle Dragon, etc.)",
+      "schema_ref": "sub_systems.creature_maker.page_schema"
+    },
+    "asura_internal_monster": {
+      "description": "Self-aware internal-monster pages (Kumbhakarna sleep, Mahishasura heaviness, Raktabija multiplication, Nishumbha perfectionism). Each demon = one personality flaw + path to integration.",
+      "schema_ref": "sub_systems.asura_internal_monster.page_schema"
+    },
+    "devi_magazine": {
+      "description": "Full 32-page Devi Kibookal magazine with 74 illustrations across 3 visual registers, 6 recurring characters.",
+      "schema_ref": "sub_systems.devi_magazine"
+    }
+  },
+  "sub_systems": {
+    "creature_maker": {
+      "system_manifest": {
+        "system_name": "Kibookal Creature-Maker's Notebook",
+        "version": "1.0.0",
+        "format": "A5 vertical printable page series",
+        "core_premise": "Ordinary objects are only ordinary until someone stares at them strangely.",
+        "primary_goal": "Help children learn to see, imagine, combine, and make first versions without worrying about perfect drawing.",
+        "audience": {
+          "age_range": "9-13",
+          "mindset": [
+            "curious",
+            "visually playful",
+            "ready for dry humour",
+            "old enough to dislike babyish worksheets",
+            "interested in secrets, codes, cases, creatures, notebooks, odd facts and strange inventions"
+          ],
+          "avoid": [
+            "babyish praise",
+            "school-assignment tone",
+            "overly cute characters",
+            "teacherly instructions",
+            "completion-pressure"
+          ]
+        },
+        "learning_intent": {
+          "surface_activity": "Turn an ordinary object into an object-creature using strange attachments.",
+          "deeper_learning": [
+            "creative perception",
+            "visual transformation",
+            "shape observation",
+            "metaphor-making",
+            "idea generation",
+            "story ignition",
+            "low-pressure drawing confidence",
+            "combinatorial imagination"
+          ],
+          "not_about": [
+            "perfect illustration",
+            "step-by-step copying",
+            "colouring inside lines",
+            "technical rendering",
+            "final polished art"
+          ]
+        },
+        "repeatable_page_formula": [
+          "Secret notebook header",
+          "Solved case",
+          "Started as ordinary object",
+          "Suspicious clues from object parts",
+          "Wrong things attached",
+          "It appeared as object-creature",
+          "First guess and correction",
+          "Today's Strange Switch",
+          "Optional quick lab notes",
+          "Unsolved case for child",
+          "Kibookal rule"
+        ],
+        "fixed_system_rule": "Each page shows one solved case and leaves one unsolved case for the child.",
+        "rotating_system_rule": "Each page has a different Today's Strange Switch: the tiny feature that changes the object-creature's personality, movement, mood, or story.",
+        "important_constraints": [
+          "Do not make eyes the repeated default Strange Switch.",
+          "The original object must remain visible inside the final creature.",
+          "The page must feel like a found secret notebook, not a worksheet.",
+          "The solved case teaches by example; the unsolved case invites participation.",
+          "Humour should be odd, dry, clever, and slightly mischievous.",
+          "The child should feel permission to make a first version, not pressure to make a masterpiece."
+        ],
+        "files": [
+          {
+            "file": "00_system_manifest.json",
+            "purpose": "High-level operating principles and constraints."
+          },
+          {
+            "file": "01_page_schema.json",
+            "purpose": "Canonical structure for one A5 page."
+          },
+          {
+            "file": "02_visual_style.json",
+            "purpose": "Art direction, layout behaviour, colour, typography, texture, and illustration rules."
+          },
+          {
+            "file": "03_voice_and_humour.json",
+            "purpose": "Tone, humour, phrase banks, and copy rules."
+          },
+          {
+            "file": "04_component_library.json",
+            "purpose": "Reusable page components and their content rules."
+          },
+          {
+            "file": "05_strange_switch_library.json",
+            "purpose": "Rotating Strange Switch system with examples."
+          },
+          {
+            "file": "06_case_library.json",
+            "purpose": "Seed case files for generating the first series."
+          },
+          {
+            "file": "07_generation_templates.json",
+            "purpose": "Reusable prompts, page-generation inputs, and negative prompts."
+          },
+          {
+            "file": "08_quality_control.json",
+            "purpose": "Checklist and scoring rubric for deciding whether a generated page works."
+          }
+        ]
+      },
+      "page_schema": {
+        "schema_name": "Kibookal Creature-Maker Page Schema",
+        "version": "1.0.0",
+        "page_spec": {
+          "physical_size": {
+            "format": "A5",
+            "orientation": "portrait",
+            "width_mm": 148,
+            "height_mm": 210
+          },
+          "page_feeling": "secret creature-maker notebook case file",
+          "layout_principle": "structured but not visibly gridded",
+          "required_page_areas": [
+            "header",
+            "started_as",
+            "wrong_things_attached",
+            "it_appeared",
+            "first_guess_correction",
+            "today_strange_switch",
+            "unsolved_case",
+            "footer_rule"
+          ],
+          "optional_page_areas": [
+            "quick_notes_from_lab",
+            "more_wrong_stuff",
+            "specimen_stamp",
+            "mini_warning_note",
+            "creator_mark",
+            "page_damage_marks"
+          ]
+        },
+        "content_model": {
+          "case_id": {
+            "type": "string",
+            "example": "case_02_pen_serpent"
+          },
+          "case_number": {
+            "type": "integer",
+            "example": 2
+          },
+          "case_title": {
+            "type": "string",
+            "pattern": "The [Object Creature]",
+            "example": "The Pen Serpent"
+          },
+          "started_as": {
+            "type": "object",
+            "required": [
+              "object_name",
+              "object_description",
+              "object_visual_notes",
+              "suspicious_clues"
+            ],
+            "example": {
+              "object_name": "regular ballpoint pen",
+              "object_description": "A simple click pen with transparent barrel, blue grip, clip, tip and click head.",
+              "object_visual_notes": [
+                "draw the pen clearly before transformation",
+                "keep it simple and recognizable",
+                "use arrows to label suspicious object parts"
+              ],
+              "suspicious_clues": [
+                "click head wanted to become a crest",
+                "clip wanted to become an ear or fin",
+                "clear barrel looked like a long body",
+                "tip looked like a beak, snout, or stinger"
+              ]
+            }
+          },
+          "wrong_things_attached": {
+            "type": "array",
+            "min_items": 6,
+            "max_items": 10,
+            "item_shape": {
+              "name": "string",
+              "category": "creature_part | object_part | nature_part | absurd_part",
+              "visual_note": "string",
+              "optional_label": "string"
+            }
+          },
+          "creature_result": {
+            "type": "object",
+            "required": [
+              "creature_name",
+              "final_drawing_notes",
+              "transformed_part_labels"
+            ],
+            "example": {
+              "creature_name": "Pen Serpent",
+              "final_drawing_notes": [
+                "the pen barrel becomes the serpent body",
+                "the pen tip becomes snout or stinger",
+                "the clip becomes fin or crest",
+                "keep the blue pen grip visible",
+                "make it funny, bendy and slightly suspicious"
+              ],
+              "transformed_part_labels": [
+                "click-crest, very proud",
+                "clip-fin hears everything",
+                "clear body, perfect for slithering",
+                "barrel belly hides words and secrets",
+                "tip stinger signs threats"
+              ]
+            }
+          },
+          "first_guess_correction": {
+            "type": "object",
+            "required": [
+              "first_guess",
+              "correction"
+            ],
+            "style_rule": "The first guess should be crossed out visually. The correction should end with 'Obviously.' when appropriate.",
+            "example": {
+              "first_guess": "snake pen",
+              "correction": "pen serpent. Obviously."
+            }
+          },
+          "today_strange_switch": {
+            "type": "object",
+            "required": [
+              "feature",
+              "principle",
+              "micro_experiments"
+            ],
+            "example": {
+              "feature": "clip",
+              "principle": "Clips are little shape-shifters. Put them where they should not be.",
+              "micro_experiments": [
+                {
+                  "variation": "clip fin",
+                  "label": "hears everything"
+                },
+                {
+                  "variation": "clip arm",
+                  "label": "grabs pockets"
+                },
+                {
+                  "variation": "clip crest",
+                  "label": "very proud"
+                },
+                {
+                  "variation": "clip tail",
+                  "label": "bookmarks victims"
+                },
+                {
+                  "variation": "clip wing",
+                  "label": "cannot fly, still tries"
+                }
+              ]
+            }
+          },
+          "quick_notes_from_lab": {
+            "type": "array",
+            "min_items": 3,
+            "max_items": 6,
+            "style_rule": "Short, strange behavioural notes. Not educational facts.",
+            "example": [
+              "rolls when nervous",
+              "writes when hungry",
+              "hides words in its belly",
+              "bites erasers",
+              "thinks punctuality is a personality trait"
+            ]
+          },
+          "unsolved_case": {
+            "type": "object",
+            "required": [
+              "heading",
+              "instruction",
+              "fields",
+              "sketch_prompt",
+              "corner_notes"
+            ],
+            "default": {
+              "heading": "Unsolved Case: Something Is Hiding Here",
+              "instruction": "Choose one object. Add 3 wrong things. Add one Strange Switch somewhere suspicious.",
+              "fields": [
+                "Object spotted:",
+                "Wrong things attached:",
+                "Strange Switch I used:",
+                "It appeared as:"
+              ],
+              "sketch_prompt": "Draw the first sighting. Not the final masterpiece.",
+              "corner_notes": [
+                "Keep some of the object showing.",
+                "The weird bit may go anywhere."
+              ]
+            }
+          },
+          "footer_rule": {
+            "type": "string",
+            "default": "Kibookal rule: Ordinary things are only ordinary until someone stares at them strangely."
+          }
+        },
+        "layout_weights": {
+          "header_percent": 8,
+          "solved_case_percent": 52,
+          "strange_switch_and_notes_percent": 18,
+          "unsolved_case_percent": 18,
+          "footer_percent": 4
+        },
+        "flex_rules": {
+          "when_page_feels_too_dense": [
+            "remove optional quick notes first",
+            "reduce transformed part labels to the funniest 4 or 5",
+            "reduce wrong things attached to 6 items",
+            "increase child sketch space",
+            "keep Today's Strange Switch visible"
+          ],
+          "when_page_feels_too_empty": [
+            "add more wrong stuff scrap",
+            "add one lab note scrap",
+            "add two additional funny labels",
+            "add paper texture or tape but not more instruction"
+          ],
+          "when_generating_for_younger_children": [
+            "reduce tiny text",
+            "make object and creature larger",
+            "use simpler labels",
+            "keep humour less dry but still not babyish"
+          ],
+          "when_generating_for_older_children": [
+            "increase odd humour",
+            "add more secret-file details",
+            "make prompts more open-ended",
+            "reduce obvious instructional language"
+          ]
+        }
+      },
+      "visual_style": {
+        "style_name": "Secret Notebook Visual System",
+        "version": "1.0.0",
+        "overall_feeling": [
+          "found artifact",
+          "secret sketchbook",
+          "creature field guide",
+          "slightly chaotic lab notes",
+          "handmade but designed",
+          "funny and a bit odd"
+        ],
+        "page_material": {
+          "background": "warm off-white notebook paper",
+          "texture": [
+            "subtle paper grain",
+            "light smudges",
+            "thumbprints",
+            "small ink stains",
+            "slight edge wear",
+            "optional punched holes or paperclip"
+          ],
+          "avoid": [
+            "pure white digital background",
+            "flat corporate vector surface",
+            "too much dirty grunge that reduces readability"
+          ]
+        },
+        "colour_palette": {
+          "base": {
+            "paper": "#F2E5C8",
+            "ink": "#1D1A16",
+            "faded_ink": "#4B4135"
+          },
+          "accents": {
+            "blue_pencil": "#1846A3",
+            "yellow_highlighter": "#F2C94C",
+            "orange_correction": "#D96C2C",
+            "red_stamp": "#A63A2B"
+          },
+          "usage_rules": [
+            "black ink carries drawings and most labels",
+            "blue pencil marks observations and underlines",
+            "yellow highlighter marks discoveries and key prompts",
+            "orange or red marks corrections, stamps, warnings, crossed-out guesses",
+            "do not colour every section differently"
+          ]
+        },
+        "line_style": {
+          "drawing": "hand-drawn black ink, slightly imperfect but clear",
+          "outline_weight": "medium to thick outer lines, lighter interior lines",
+          "arrows": "curved, irregular, hand-drawn, sometimes double-backed",
+          "labels": "small handwritten labels with arrows",
+          "avoid": [
+            "perfect vector uniformity",
+            "hyper-realistic shading",
+            "anime or commercial cartoon polish",
+            "over-rendered fantasy art"
+          ]
+        },
+        "typography": {
+          "principle": "Should feel hand-lettered but remain legible at A5.",
+          "title_style": "large hand-lettered uppercase or mixed case with uneven baseline",
+          "body_style": "simple handwritten print, readable, not messy",
+          "micro_label_style": "small handwritten notes, use sparingly",
+          "hierarchy": {
+            "notebook_title": "largest",
+            "case_title": "large and expressive",
+            "section_labels": "small uppercase with underline or highlight",
+            "notes": "small but legible",
+            "micro_labels": "smallest and optional"
+          },
+          "avoid": [
+            "generic worksheet font",
+            "overly cute kids font",
+            "perfect corporate sans-serif look",
+            "too many type styles"
+          ]
+        },
+        "layout_behaviour": {
+          "structure": "asymmetric but balanced",
+          "containers": [
+            "taped scraps",
+            "torn note pieces",
+            "loose annotation clusters",
+            "stamp-like labels",
+            "irregular sketch patches"
+          ],
+          "avoid_containers": [
+            "clean rectangular boxes",
+            "equal-width panels",
+            "numbered step boxes",
+            "radio-button grids",
+            "large worksheet blanks"
+          ],
+          "recommended_composition": {
+            "ordinary_object": "left side or upper left",
+            "wrong_parts": "central scrap or nearby parts cloud",
+            "final_creature": "right side or central hero",
+            "strange_switch": "mid-lower recurring scrap",
+            "unsolved_case": "bottom taped scrap",
+            "footer_rule": "bottom edge"
+          }
+        },
+        "illustration_rules": {
+          "object_visibility": "The original object must remain recognizable in the final creature.",
+          "creature_style": [
+            "funny",
+            "slightly odd",
+            "achievable",
+            "not too polished",
+            "object-creature hybrid rather than generic animal"
+          ],
+          "transformation_rules": [
+            "one object part becomes a body part",
+            "one unrelated part changes the creature's story",
+            "one feature becomes the Strange Switch",
+            "the creature should have one visual joke",
+            "labels should reveal the thinking"
+          ],
+          "child_accessibility": [
+            "a child should believe they can draw a version",
+            "keep forms simple",
+            "avoid complex perspective",
+            "avoid professional shading",
+            "use 2D transformation"
+          ]
+        },
+        "density_rules": {
+          "target_density": "rich but breathable",
+          "maximum_micro_labels_on_creature": 6,
+          "recommended_micro_labels_on_creature": 4,
+          "maximum_wrong_parts": 10,
+          "recommended_wrong_parts": 8,
+          "maximum_lab_notes": 6,
+          "recommended_lab_notes": 4,
+          "minimum_child_sketch_space": "meaningful enough for a small first sighting, not decorative only"
+        }
+      },
+      "voice_and_humour": {
+        "voice_name": "Kibookal Creature Notebook Voice",
+        "version": "1.0.0",
+        "voice_attributes": {
+          "witty": {
+            "we_are": "clever, dry, surprising and specific",
+            "we_are_not": "generic, motivational, loud or try-hard",
+            "sounds_like": "plug-tail, unsafe but dramatic",
+            "does_not_sound_like": "Wow, what an awesome tail!"
+          },
+          "odd": {
+            "we_are": "comfortable with strange combinations and slightly weird logic",
+            "we_are_not": "random for no reason or confusing",
+            "sounds_like": "one sock, why not",
+            "does_not_sound_like": "Add any object part to make it cool."
+          },
+          "secretive": {
+            "we_are": "like a found notebook, lab note or case file",
+            "we_are_not": "like a classroom instruction sheet",
+            "sounds_like": "If found, add one creature and return secretly.",
+            "does_not_sound_like": "Complete the following activity."
+          },
+          "permission_giving": {
+            "we_are": "removing pressure without babying the child",
+            "we_are_not": "over-praising or infantilizing",
+            "sounds_like": "Draw the first sighting. Not the final masterpiece.",
+            "does_not_sound_like": "Great job! You are a superstar artist!"
+          },
+          "observational": {
+            "we_are": "teaching children to notice hidden possibilities in form",
+            "we_are_not": "lecturing or explaining too much",
+            "sounds_like": "clip wanted to become an ear or fin",
+            "does_not_sound_like": "Observe the functional elements of this object."
+          }
+        },
+        "tone_rules": {
+          "use": [
+            "short funny labels",
+            "dry corrections",
+            "secret notes",
+            "case-file language",
+            "specific object-part jokes",
+            "slightly suspicious wording"
+          ],
+          "avoid": [
+            "Great job!",
+            "Wow!",
+            "Awesome!",
+            "Super cool!",
+            "You are a star!",
+            "Let's learn!",
+            "Follow the steps!",
+            "Complete this worksheet!",
+            "Design your character here!"
+          ]
+        },
+        "phrase_bank": {
+          "secret_notes": [
+            "If found, add one creature and return secretly.",
+            "Found in the Seeing Lab.",
+            "Do not draw perfectly. It attracts boring ideas.",
+            "This page may contain suspicious decisions.",
+            "Return before the creature notices."
+          ],
+          "permission_lines": [
+            "Draw the first sighting. Not the final masterpiece.",
+            "If it looks wrong, wait 3 seconds.",
+            "Wrong is usually the door.",
+            "Keep some of the object showing.",
+            "The weird bit may go anywhere.",
+            "Do not wait for a good idea. Attach something and investigate."
+          ],
+          "correction_lines": [
+            "Correction: [creature_name]. Obviously.",
+            "No. Worse. Better.",
+            "First guess rejected by the notebook.",
+            "The object disagreed.",
+            "Reclassified after suspicious behaviour."
+          ],
+          "funny_label_fragments": [
+            "unsafe but dramatic",
+            "added without permission",
+            "cannot fly, still tries",
+            "very proud",
+            "hears everything",
+            "hears pocket gossip",
+            "steals sleeves",
+            "catches tiny ideas",
+            "thinks it is official",
+            "holds secrets",
+            "pretending not to be a tail",
+            "absolutely not normal",
+            "questionable choices",
+            "tiny boss",
+            "one very small crime",
+            "elderly menace",
+            "suspiciously awake",
+            "emotionally complicated",
+            "illegal but effective"
+          ],
+          "footer_rules": [
+            "Kibookal rule: Ordinary things are only ordinary until someone stares at them strangely.",
+            "Kibookal rule: If you can see it differently, you can make it differently.",
+            "Kibookal rule: Wrong parts make better stories.",
+            "Kibookal rule: The first version is the doorway.",
+            "Kibookal rule: A creature is just an object with suspicious decisions.",
+            "Kibookal rule: Small part, big trouble."
+          ]
+        },
+        "copy_patterns": {
+          "suspicious_clue": "[object_part] looked like [creature_part_or_story_hint]",
+          "object_part_desire": "[object_part] wanted to become [new_role]",
+          "pretending_line": "[object_part] was clearly [new_role] pretending not to be",
+          "strange_switch_principle": "[feature_plural] are [funny_definition]. Put them where they should not be.",
+          "first_guess_correction": {
+            "first_guess": "First guess: [wrong_creature_name]",
+            "correction": "Correction: [final_creature_name]. Obviously."
+          }
+        },
+        "humour_calibration": {
+          "too_babyish": [
+            "happy little dragon",
+            "super fun friend",
+            "great job",
+            "cute creature"
+          ],
+          "too_adult": [
+            "sarcastic cynicism",
+            "dark humour",
+            "violent threats",
+            "complex satire"
+          ],
+          "just_right": [
+            "tiny boss",
+            "cannot fly, still tries",
+            "one sock, why not",
+            "plug-tail, unsafe but dramatic",
+            "the handle knows things"
+          ]
+        }
+      },
+      "component_library": {
+        "library_name": "Kibookal Page Component Library",
+        "version": "1.0.0",
+        "components": {
+          "header": {
+            "required": true,
+            "purpose": "Establish collectible secret notebook identity.",
+            "content_slots": [
+              "notebook_title",
+              "case_number",
+              "case_title",
+              "method_stamp",
+              "secret_note",
+              "kibookal_lab_mark"
+            ],
+            "default_copy": {
+              "notebook_title": "CREATURE-MAKER'S NOTEBOOK",
+              "method_stamp": "ATTACH WONDER METHOD",
+              "secret_note": "If found, add one creature and return secretly."
+            },
+            "visual_rules": [
+              "hand-lettered title",
+              "stamp-like method mark",
+              "small Kibookal lab seal",
+              "irregular underline",
+              "no clean rectangular banner"
+            ]
+          },
+          "started_as_object": {
+            "required": true,
+            "purpose": "Show the ordinary object before transformation.",
+            "content_slots": [
+              "object_name",
+              "object_drawing",
+              "suspicious_clues"
+            ],
+            "visual_rules": [
+              "draw object on left or upper-left",
+              "use arrows to point at suspicious parts",
+              "keep drawing simple and recognizable",
+              "avoid polished catalogue illustration"
+            ],
+            "copy_rules": [
+              "use object-specific observations",
+              "make the object seem like it wants to transform",
+              "write clues as funny notes, not formal labels"
+            ]
+          },
+          "wrong_things_attached": {
+            "required": true,
+            "purpose": "Show unrelated parts that create imaginative transformation.",
+            "content_slots": [
+              "parts_scrap_title",
+              "part_doodles",
+              "central_wonder_prompt"
+            ],
+            "default_copy": {
+              "title": "WRONG THINGS ATTACHED:",
+              "prompt": "What if it goes there?"
+            },
+            "visual_rules": [
+              "use taped scrap or loose parts cloud",
+              "show 6-10 small doodles",
+              "mix useful, creature-like, nature and absurd add-ons",
+              "avoid radio buttons and grid menus"
+            ]
+          },
+          "it_appeared_creature": {
+            "required": true,
+            "purpose": "Show the solved object-creature.",
+            "content_slots": [
+              "it_appeared_label",
+              "final_creature_drawing",
+              "transformed_part_labels",
+              "small_visual_joke"
+            ],
+            "default_copy": {
+              "label_prefix": "IT APPEARED:"
+            },
+            "visual_rules": [
+              "make the final creature one of the largest visual elements",
+              "keep original object visible",
+              "use 4-6 funny labels",
+              "make it achievable, not too polished",
+              "avoid generic creature that hides the object"
+            ]
+          },
+          "first_guess_correction": {
+            "required": true,
+            "purpose": "Show that ideas mutate and wrong guesses are part of discovery.",
+            "content_slots": [
+              "first_guess",
+              "correction"
+            ],
+            "visual_rules": [
+              "put on small taped note",
+              "cross out first guess",
+              "make correction feel dry and certain"
+            ],
+            "copy_pattern": {
+              "first_guess": "First guess: [wrong_guess]",
+              "correction": "Correction: [creature_name]. Obviously."
+            }
+          },
+          "today_strange_switch": {
+            "required": true,
+            "purpose": "Highlight the rotating tiny feature that changes everything.",
+            "content_slots": [
+              "feature_name",
+              "principle",
+              "micro_experiments"
+            ],
+            "visual_rules": [
+              "make recurring section visually findable",
+              "use small repeated mini-drawings",
+              "use 4-5 micro-experiments",
+              "do not use eyes unless the feature is eyes",
+              "avoid numbered expression chart"
+            ]
+          },
+          "quick_notes_from_lab": {
+            "required": false,
+            "purpose": "Add funny creature behaviour and notebook personality.",
+            "content_slots": [
+              "lab_note_bullets"
+            ],
+            "visual_rules": [
+              "small scrap",
+              "3-6 bullets",
+              "cut first when page is too crowded"
+            ]
+          },
+          "more_wrong_stuff": {
+            "required": false,
+            "purpose": "Extra visual triggers when the page needs more playful material.",
+            "content_slots": [
+              "extra_part_doodles"
+            ],
+            "visual_rules": [
+              "small marginal cluster",
+              "6-8 parts max",
+              "should not feel required"
+            ]
+          },
+          "unsolved_case": {
+            "required": true,
+            "purpose": "Invite the child to add another object-creature.",
+            "content_slots": [
+              "heading",
+              "instruction",
+              "fields",
+              "sketch_area",
+              "corner_notes",
+              "tiny_prompt_tabs"
+            ],
+            "default_copy": {
+              "heading": "UNSOLVED CASE: SOMETHING IS HIDING HERE",
+              "instruction": "Choose one object. Add 3 wrong things. Add one Strange Switch somewhere suspicious.",
+              "fields": [
+                "Object spotted:",
+                "Wrong things attached:",
+                "Strange Switch I used:",
+                "It appeared as:"
+              ],
+              "sketch_prompt": "Draw the first sighting. Not the final masterpiece.",
+              "corner_notes": [
+                "Keep some of the object showing.",
+                "The weird bit may go anywhere."
+              ]
+            },
+            "visual_rules": [
+              "use taped scrap or torn page patch",
+              "make sketch space usable",
+              "do not call it a worksheet",
+              "do not make it a giant empty rectangle"
+            ]
+          },
+          "footer_rule": {
+            "required": true,
+            "purpose": "Leave the child with a memorable Kibookal principle.",
+            "content_slots": [
+              "rule_text"
+            ],
+            "visual_rules": [
+              "bottom edge",
+              "highlight 'Kibookal rule'",
+              "short and memorable"
+            ]
+          }
+        }
+      },
+      "strange_switch_library": {
+        "library_name": "Today's Strange Switch Library",
+        "version": "1.1.0",
+        "definition": "A Strange Switch is the tiny feature that changes an object's personality, movement, mood, story, behaviour, danger, usefulness, or creature logic.",
+        "core_rule": "Do not make the Strange Switch only a placement exercise. It should create different consequences: movement, behaviour, attitude, powers, problems, secrets, mistakes, or jokes.",
+        "anti_repetition_rule": "Avoid five variations that all mean 'this part becomes a body part.' Each Strange Switch should include a mix of body change, behaviour change, story change, power change, and problem change.",
+        "selection_rules": [
+          "Choose a feature that is either already present in the object or funny when attached to it.",
+          "The feature must create 4-7 interesting micro-experiments.",
+          "At least three micro-experiments should change behaviour or story, not just silhouette.",
+          "The feature should feel specific to the case, not generic.",
+          "If the previous page used eyes, the next page must not use eyes.",
+          "If a feature starts feeling decorative, make it cause trouble."
+        ],
+        "micro_experiment_types": [
+          "body_part_shift",
+          "behaviour_shift",
+          "movement_shift",
+          "power_shift",
+          "problem_shift",
+          "personality_shift",
+          "story_shift",
+          "social_shift",
+          "secret_shift"
+        ],
+        "switches": [
+          {
+            "id": "eyes",
+            "feature": "Eyes",
+            "principle": "Eyes do not just make things alive. They decide what the creature notices, ignores, suspects, wants, or refuses to admit.",
+            "best_for_objects": [
+              "mug",
+              "stone",
+              "box",
+              "chair",
+              "bag",
+              "lamp"
+            ],
+            "avoid": "Do not make every eye variation only an expression. Make some eyes change behaviour or story.",
+            "micro_experiments": [
+              {
+                "variation": "body eyes",
+                "label": "polite but watching",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "hidden eye",
+                "label": "definitely lying",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "one huge eye",
+                "label": "sees ancient problems",
+                "type": "power_shift"
+              },
+              {
+                "variation": "backwards eyes",
+                "label": "remembers instead of looking",
+                "type": "story_shift"
+              },
+              {
+                "variation": "many tiny eyes",
+                "label": "notices crumbs, crimes, and weather",
+                "type": "behaviour_shift"
+              },
+              {
+                "variation": "eyes on handle",
+                "label": "the handle knows things",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "closed eyes",
+                "label": "dreams while walking into furniture",
+                "type": "problem_shift"
+              }
+            ]
+          },
+          {
+            "id": "fingers",
+            "feature": "Fingers",
+            "principle": "Fingers make an object look like it is about to touch, steal, point, count, crawl, accuse, or perform a very small crime.",
+            "best_for_objects": [
+              "umbrella",
+              "comb",
+              "fork",
+              "brush",
+              "fan",
+              "ruler"
+            ],
+            "avoid": "Do not make every finger variation just 'more fingers.' Make the fingers do different things.",
+            "micro_experiments": [
+              {
+                "variation": "tiny fingers",
+                "label": "sneaks sugar",
+                "type": "behaviour_shift"
+              },
+              {
+                "variation": "one long finger",
+                "label": "points dramatically at nothing",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "finger legs",
+                "label": "walks like a bad idea",
+                "type": "movement_shift"
+              },
+              {
+                "variation": "counting fingers",
+                "label": "keeps score without permission",
+                "type": "social_shift"
+              },
+              {
+                "variation": "fingers near mouth",
+                "label": "snack thief",
+                "type": "behaviour_shift"
+              },
+              {
+                "variation": "too many fingers",
+                "label": "committee of trouble",
+                "type": "problem_shift"
+              },
+              {
+                "variation": "finger antennae",
+                "label": "feels rumours in the air",
+                "type": "power_shift"
+              }
+            ]
+          },
+          {
+            "id": "hair",
+            "feature": "Hair",
+            "principle": "Hair gives an object age, weather, ego, panic, style, disguise, or evidence that something exploded nearby.",
+            "best_for_objects": [
+              "brush",
+              "mop",
+              "bottle",
+              "helmet",
+              "lamp",
+              "spoon"
+            ],
+            "avoid": "Do not make hair only decorative. Hair should reveal mood, history, or trouble.",
+            "micro_experiments": [
+              {
+                "variation": "one hair",
+                "label": "nervous since Tuesday",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "huge hair",
+                "label": "enters rooms first",
+                "type": "social_shift"
+              },
+              {
+                "variation": "leaf hair",
+                "label": "forest disguise, mostly working",
+                "type": "story_shift"
+              },
+              {
+                "variation": "smoke hair",
+                "label": "just exploded politely",
+                "type": "problem_shift"
+              },
+              {
+                "variation": "moustache",
+                "label": "cannot be trusted with keys",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "hair as feelers",
+                "label": "detects snacks underground",
+                "type": "power_shift"
+              },
+              {
+                "variation": "braided tail-hair",
+                "label": "remembers every argument",
+                "type": "secret_shift"
+              }
+            ]
+          },
+          {
+            "id": "plug",
+            "feature": "Plug",
+            "principle": "A plug gives the creature power, dependence, danger, interruption, charging rituals, and questionable life choices.",
+            "best_for_objects": [
+              "kettle",
+              "lamp",
+              "charger",
+              "iron",
+              "toaster",
+              "fan"
+            ],
+            "avoid": "Do not make every plug a tail. Make it change power, limits, habits, and risks.",
+            "micro_experiments": [
+              {
+                "variation": "plug tail",
+                "label": "self-charging, emotionally complicated",
+                "type": "power_shift"
+              },
+              {
+                "variation": "plug tongue",
+                "label": "terrible idea, strong commitment",
+                "type": "problem_shift"
+              },
+              {
+                "variation": "plug leash",
+                "label": "can only escape 1.5 metres",
+                "type": "movement_shift"
+              },
+              {
+                "variation": "plug horns",
+                "label": "electric goat behaviour",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "plug feet",
+                "label": "walks only toward sockets",
+                "type": "behaviour_shift"
+              },
+              {
+                "variation": "plug halo",
+                "label": "holy appliance, still unsafe",
+                "type": "social_shift"
+              },
+              {
+                "variation": "unplugged plug",
+                "label": "dramatic power nap",
+                "type": "story_shift"
+              }
+            ]
+          },
+          {
+            "id": "clip",
+            "feature": "Clip",
+            "principle": "A clip grabs, hooks, hides, pins, listens, traps, carries, and pretends to be useful while causing trouble.",
+            "best_for_objects": [
+              "pen",
+              "clipboard",
+              "hair clip",
+              "bag",
+              "folder",
+              "badge"
+            ],
+            "avoid": "Do not make every clip a fin, wing, arm, crest, or tail. Make the clip change what the creature does.",
+            "micro_experiments": [
+              {
+                "variation": "clip ear",
+                "label": "hears pocket gossip",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "clip hook",
+                "label": "steals sleeves",
+                "type": "behaviour_shift"
+              },
+              {
+                "variation": "clip jaw",
+                "label": "snaps at bookmarks",
+                "type": "body_part_shift"
+              },
+              {
+                "variation": "clip backpack",
+                "label": "carries one secret",
+                "type": "story_shift"
+              },
+              {
+                "variation": "clip crown",
+                "label": "thinks it is official",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "clip trap",
+                "label": "catches tiny ideas",
+                "type": "power_shift"
+              },
+              {
+                "variation": "clip pocket-leg",
+                "label": "only walks on notebooks",
+                "type": "movement_shift"
+              }
+            ]
+          },
+          {
+            "id": "zipper",
+            "feature": "Zipper",
+            "principle": "A zipper can be a mouth, border, spine, trap, secret door, warning line, or the sound of something about to happen.",
+            "best_for_objects": [
+              "pencil case",
+              "backpack",
+              "jacket",
+              "wallet",
+              "pouch"
+            ],
+            "avoid": "Do not make every zipper just teeth. Let it open, close, hide, warn, divide, or release things.",
+            "micro_experiments": [
+              {
+                "variation": "zipper teeth",
+                "label": "hungry storage",
+                "type": "body_part_shift"
+              },
+              {
+                "variation": "zipper spine",
+                "label": "backpack fossil",
+                "type": "body_part_shift"
+              },
+              {
+                "variation": "zipper door",
+                "label": "opens into worse ideas",
+                "type": "story_shift"
+              },
+              {
+                "variation": "half-open zipper",
+                "label": "bad at keeping secrets",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "zipper sound",
+                "label": "announces danger very politely",
+                "type": "behaviour_shift"
+              },
+              {
+                "variation": "zipper tail",
+                "label": "unzips escape routes",
+                "type": "power_shift"
+              },
+              {
+                "variation": "stuck zipper",
+                "label": "dramatic but unavailable",
+                "type": "problem_shift"
+              }
+            ]
+          },
+          {
+            "id": "wheels",
+            "feature": "Wheels",
+            "principle": "Wheels change speed, balance, escape plans, confidence, direction, and the number of apologies required afterward.",
+            "best_for_objects": [
+              "shoe",
+              "chair",
+              "school bag",
+              "box",
+              "toy",
+              "lunchbox"
+            ],
+            "avoid": "Do not make every wheel variation just movement. Include control, dizziness, status, accidents, and escape.",
+            "micro_experiments": [
+              {
+                "variation": "wheel feet",
+                "label": "fast, not wise",
+                "type": "movement_shift"
+              },
+              {
+                "variation": "one wheel",
+                "label": "dramatic wobble",
+                "type": "problem_shift"
+              },
+              {
+                "variation": "wheel crown",
+                "label": "race king with no brakes",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "wheel eyes",
+                "label": "dizzy but committed",
+                "type": "problem_shift"
+              },
+              {
+                "variation": "wheel tail",
+                "label": "reverses out of conversations",
+                "type": "social_shift"
+              },
+              {
+                "variation": "tiny hidden wheel",
+                "label": "secret getaway plan",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "square wheel",
+                "label": "believes in struggle",
+                "type": "personality_shift"
+              }
+            ]
+          },
+          {
+            "id": "leaves",
+            "feature": "Leaves",
+            "principle": "Leaves bring disguise, forest gossip, seasonal mood swings, photosynthesis excuses, and the possibility of being mistaken for a bush.",
+            "best_for_objects": [
+              "bottle",
+              "box",
+              "cup",
+              "stone",
+              "tin can",
+              "old toy"
+            ],
+            "avoid": "Do not make every leaf only hair or ears. Make leaves hide, protect, signal, age, feed, or confuse.",
+            "micro_experiments": [
+              {
+                "variation": "leaf hair",
+                "label": "forest mood",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "leaf ears",
+                "label": "hears trees complaining",
+                "type": "power_shift"
+              },
+              {
+                "variation": "leaf armour",
+                "label": "compost knight",
+                "type": "body_part_shift"
+              },
+              {
+                "variation": "leaf disguise",
+                "label": "pretends to be a bush badly",
+                "type": "story_shift"
+              },
+              {
+                "variation": "dry leaf tail",
+                "label": "makes crunchy entrances",
+                "type": "behaviour_shift"
+              },
+              {
+                "variation": "leaf map",
+                "label": "only shows routes to puddles",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "leaf snack",
+                "label": "photosynthesis excuse",
+                "type": "problem_shift"
+              }
+            ]
+          },
+          {
+            "id": "clock_hands",
+            "feature": "Clock hands",
+            "principle": "Clock hands are limbs, weapons, moustaches, arrows, lies, deadlines, and tiny rulers of panic.",
+            "best_for_objects": [
+              "clock",
+              "watch",
+              "timer",
+              "compass"
+            ],
+            "avoid": "Do not make every clock hand a limb. Make time itself misbehave.",
+            "micro_experiments": [
+              {
+                "variation": "hand legs",
+                "label": "walking time",
+                "type": "movement_shift"
+              },
+              {
+                "variation": "hand moustache",
+                "label": "old professor energy",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "hand claws",
+                "label": "punctual danger",
+                "type": "body_part_shift"
+              },
+              {
+                "variation": "backwards hands",
+                "label": "undoes five minutes",
+                "type": "power_shift"
+              },
+              {
+                "variation": "missing hand",
+                "label": "late and proud",
+                "type": "problem_shift"
+              },
+              {
+                "variation": "hand antennae",
+                "label": "picks up future trouble",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "hand pointer",
+                "label": "accuses the nearest person",
+                "type": "social_shift"
+              }
+            ]
+          },
+          {
+            "id": "buttons",
+            "feature": "Buttons",
+            "principle": "A button suggests something will happen if pressed. The creature may not know what. This is usually the problem.",
+            "best_for_objects": [
+              "remote",
+              "shirt",
+              "calculator",
+              "toy",
+              "elevator panel",
+              "old phone"
+            ],
+            "avoid": "Do not make buttons only eyes or decoration. Make them trigger events, habits, moods, or mistakes.",
+            "micro_experiments": [
+              {
+                "variation": "one red button",
+                "label": "do not press, obviously pressed",
+                "type": "story_shift"
+              },
+              {
+                "variation": "many buttons",
+                "label": "spaceship energy, no manual",
+                "type": "problem_shift"
+              },
+              {
+                "variation": "belly button",
+                "label": "oddly alive",
+                "type": "body_part_shift"
+              },
+              {
+                "variation": "button mood switch",
+                "label": "changes opinions instantly",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "tail button",
+                "label": "remote-controlled chaos",
+                "type": "power_shift"
+              },
+              {
+                "variation": "fake button",
+                "label": "does nothing with confidence",
+                "type": "social_shift"
+              },
+              {
+                "variation": "secret button",
+                "label": "opens a very small problem",
+                "type": "secret_shift"
+              }
+            ]
+          },
+          {
+            "id": "pockets",
+            "feature": "Pockets",
+            "principle": "Pockets create storage, secrets, snacks, theft, mystery, identity, and suspicious bulges.",
+            "best_for_objects": [
+              "backpack",
+              "shirt",
+              "pants",
+              "apron",
+              "pouch",
+              "school bag"
+            ],
+            "avoid": "Do not make pockets only places to hide things. Make pockets change what the creature wants or does.",
+            "micro_experiments": [
+              {
+                "variation": "front pocket",
+                "label": "secret snack department",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "too many pockets",
+                "label": "travelling wizard with receipts",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "tiny pocket",
+                "label": "one very small crime",
+                "type": "story_shift"
+              },
+              {
+                "variation": "upside-down pocket",
+                "label": "bad storage, strong opinions",
+                "type": "problem_shift"
+              },
+              {
+                "variation": "pocket mouth",
+                "label": "eats permission slips",
+                "type": "behaviour_shift"
+              },
+              {
+                "variation": "pocket portal",
+                "label": "leads to yesterday's crumbs",
+                "type": "power_shift"
+              },
+              {
+                "variation": "empty pocket",
+                "label": "dramatic disappointment",
+                "type": "social_shift"
+              }
+            ]
+          },
+          {
+            "id": "moustache",
+            "feature": "Moustache",
+            "principle": "A moustache gives an object authority it did not earn, secrets it may not have, and the confidence to explain things incorrectly.",
+            "best_for_objects": [
+              "spoon",
+              "mug",
+              "lamp",
+              "clock",
+              "brush",
+              "bottle"
+            ],
+            "avoid": "Do not make moustaches only funny decoration. Let them change social role, attitude, or suspected wisdom.",
+            "micro_experiments": [
+              {
+                "variation": "one moustache",
+                "label": "suspicious elder",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "huge moustache",
+                "label": "wizard authority, unearned",
+                "type": "social_shift"
+              },
+              {
+                "variation": "curly moustache",
+                "label": "knows one spell and repeats it",
+                "type": "story_shift"
+              },
+              {
+                "variation": "moustache antenna",
+                "label": "detects soup weather",
+                "type": "power_shift"
+              },
+              {
+                "variation": "fake moustache",
+                "label": "obvious disguise, works anyway",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "moustache legs",
+                "label": "walks away from questions",
+                "type": "movement_shift"
+              },
+              {
+                "variation": "droopy moustache",
+                "label": "tragic about lunch",
+                "type": "problem_shift"
+              }
+            ]
+          },
+          {
+            "id": "shadows",
+            "feature": "Shadows",
+            "principle": "A shadow can reveal what the object thinks it is, what it fears, what it hides, or what it becomes when no one checks.",
+            "best_for_objects": [
+              "lamp",
+              "toy",
+              "plant",
+              "chair",
+              "cup",
+              "key"
+            ],
+            "avoid": "Do not make shadows only spooky. Make them reveal identity, memory, ambition, or contradiction.",
+            "micro_experiments": [
+              {
+                "variation": "dragon shadow",
+                "label": "ambitious object",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "tiny shadow",
+                "label": "hiding confidence",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "wrong shadow",
+                "label": "identity problem",
+                "type": "story_shift"
+              },
+              {
+                "variation": "shadow tail",
+                "label": "follows badly",
+                "type": "movement_shift"
+              },
+              {
+                "variation": "shadow with teeth",
+                "label": "do not step closer",
+                "type": "problem_shift"
+              },
+              {
+                "variation": "missing shadow",
+                "label": "escaped earlier",
+                "type": "story_shift"
+              },
+              {
+                "variation": "shadow pointing away",
+                "label": "knows the exit",
+                "type": "power_shift"
+              }
+            ]
+          },
+          {
+            "id": "strings",
+            "feature": "Strings",
+            "principle": "Strings tie, trail, pull, trip, remember, puppeteer, escape, and make everything look like it has unfinished business.",
+            "best_for_objects": [
+              "shoe",
+              "kite",
+              "hoodie",
+              "gift box",
+              "toy",
+              "drawstring bag"
+            ],
+            "avoid": "Do not make every string a tail. Strings should connect, control, tangle, or reveal.",
+            "micro_experiments": [
+              {
+                "variation": "string tail",
+                "label": "leaves clues everywhere",
+                "type": "story_shift"
+              },
+              {
+                "variation": "string leash",
+                "label": "walks its owner",
+                "type": "social_shift"
+              },
+              {
+                "variation": "tangled string",
+                "label": "thinking too hard",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "puppet strings",
+                "label": "controlled by snacks",
+                "type": "power_shift"
+              },
+              {
+                "variation": "trip string",
+                "label": "tiny trap department",
+                "type": "behaviour_shift"
+              },
+              {
+                "variation": "loose thread",
+                "label": "one pull from chaos",
+                "type": "problem_shift"
+              }
+            ]
+          },
+          {
+            "id": "holes",
+            "feature": "Holes",
+            "principle": "Holes are mouths, caves, eyes, hiding places, missing pieces, tunnels, mistakes, and entrances for bad ideas.",
+            "best_for_objects": [
+              "button",
+              "colander",
+              "shoe",
+              "key",
+              "pipe",
+              "cardboard box"
+            ],
+            "avoid": "Do not make every hole an eye. Holes should hide, swallow, echo, connect, or reveal absence.",
+            "micro_experiments": [
+              {
+                "variation": "hole mouth",
+                "label": "swallows tiny excuses",
+                "type": "behaviour_shift"
+              },
+              {
+                "variation": "hole tunnel",
+                "label": "leads to under-the-table",
+                "type": "story_shift"
+              },
+              {
+                "variation": "missing hole",
+                "label": "something escaped",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "echo hole",
+                "label": "repeats bad ideas louder",
+                "type": "power_shift"
+              },
+              {
+                "variation": "too many holes",
+                "label": "structural confidence problem",
+                "type": "problem_shift"
+              },
+              {
+                "variation": "pocket hole",
+                "label": "snacks vanish professionally",
+                "type": "behaviour_shift"
+              }
+            ]
+          },
+          {
+            "id": "teeth",
+            "feature": "Teeth",
+            "principle": "Teeth make an object look hungry, serious, defensive, rude, ancient, or unnecessarily prepared.",
+            "best_for_objects": [
+              "zipper",
+              "box",
+              "mug",
+              "book",
+              "lunchbox",
+              "pencil case"
+            ],
+            "avoid": "Do not make teeth only scary. Make them create appetite, speech, threat, protection, or awkward politeness.",
+            "micro_experiments": [
+              {
+                "variation": "tiny teeth",
+                "label": "polite danger",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "giant teeth",
+                "label": "no subtlety",
+                "type": "social_shift"
+              },
+              {
+                "variation": "teeth on lid",
+                "label": "hungry container",
+                "type": "body_part_shift"
+              },
+              {
+                "variation": "one tooth",
+                "label": "elderly menace",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "soft teeth",
+                "label": "threatens marshmallows",
+                "type": "problem_shift"
+              },
+              {
+                "variation": "hidden teeth",
+                "label": "friendly until opened",
+                "type": "secret_shift"
+              }
+            ]
+          },
+          {
+            "id": "tail",
+            "feature": "Tail",
+            "principle": "A tail shows balance, mood, speed, history, danger, attachment, and what the creature will knock over next.",
+            "best_for_objects": [
+              "kettle",
+              "spoon",
+              "lamp",
+              "shoe",
+              "bottle",
+              "pen"
+            ],
+            "avoid": "Do not make every tail animal-like. Let tails drag, charge, signal, sweep, write, or betray emotion.",
+            "micro_experiments": [
+              {
+                "variation": "plug tail",
+                "label": "charges itself badly",
+                "type": "power_shift"
+              },
+              {
+                "variation": "brush tail",
+                "label": "cleans crime scenes",
+                "type": "behaviour_shift"
+              },
+              {
+                "variation": "fork tail",
+                "label": "rude from behind",
+                "type": "personality_shift"
+              },
+              {
+                "variation": "too-long tail",
+                "label": "plot device",
+                "type": "story_shift"
+              },
+              {
+                "variation": "mood tail",
+                "label": "betrays every secret",
+                "type": "secret_shift"
+              },
+              {
+                "variation": "wheel tail",
+                "label": "reverses into trouble",
+                "type": "movement_shift"
+              }
+            ]
+          }
+        ],
+        "qa_questions": [
+          "Do the variations change more than placement?",
+          "Does at least one variation create behaviour?",
+          "Does at least one variation create a problem?",
+          "Does at least one variation create story or secret?",
+          "Could a child use this switch in their own unsolved case?",
+          "Is the humour specific enough to feel Kibookal?"
+        ]
+      },
+      "case_library": {
+        "library_name": "Kibookal Case Library",
+        "version": "1.0.0",
+        "case_generation_rule": "Cases should be specific enough to generate a full page, but flexible enough for different illustration attempts.",
+        "cases": [
+          {
+            "case_id": "case_01_kettle_dragon",
+            "case_number": 1,
+            "case_title": "The Kettle Dragon",
+            "started_as": {
+              "object_name": "electric kettle",
+              "suspicious_clues": [
+                "spout looked like a snout",
+                "handle wanted to become a wing",
+                "plug was clearly a tail pretending not to be",
+                "water gauge looked like belly armour",
+                "lid had suspicious dragon energy"
+              ]
+            },
+            "wrong_things_attached": [
+              {
+                "name": "horns",
+                "category": "creature_part"
+              },
+              {
+                "name": "claws",
+                "category": "creature_part"
+              },
+              {
+                "name": "flame",
+                "category": "nature_part"
+              },
+              {
+                "name": "wings",
+                "category": "creature_part"
+              },
+              {
+                "name": "plug-tail",
+                "category": "object_part"
+              },
+              {
+                "name": "tiny rage cloud",
+                "category": "absurd_part"
+              }
+            ],
+            "creature_result": {
+              "creature_name": "Kettle Dragon",
+              "final_drawing_notes": [
+                "kettle body remains as torso",
+                "spout becomes snout breathing flame",
+                "handle becomes wing or ear-wing",
+                "plug and cord become tail",
+                "water gauge remains visible as belly armour",
+                "small claws under kettle body"
+              ],
+              "transformed_part_labels": [
+                "spout snout",
+                "plug-tail, unsafe but dramatic",
+                "handle-wing, surprisingly confident",
+                "belly gauge, still useful",
+                "claws added without permission"
+              ]
+            },
+            "first_guess_correction": {
+              "first_guess": "tea lizard",
+              "correction": "kettle dragon. Obviously."
+            },
+            "today_strange_switch_id": "plug",
+            "quick_notes_from_lab": [
+              "boils when offended",
+              "cannot fly far from socket",
+              "guards tea like treasure",
+              "steam cloud is mostly attitude"
+            ]
+          },
+          {
+            "case_id": "case_02_pen_serpent",
+            "case_number": 2,
+            "case_title": "The Pen Serpent",
+            "started_as": {
+              "object_name": "regular ballpoint pen",
+              "suspicious_clues": [
+                "click head wanted to become a crest",
+                "clip wanted to become an ear or fin",
+                "clear barrel looked like a long body",
+                "tip looked like a beak, snout, or stinger"
+              ]
+            },
+            "wrong_things_attached": [
+              {
+                "name": "fin",
+                "category": "creature_part"
+              },
+              {
+                "name": "horns",
+                "category": "creature_part"
+              },
+              {
+                "name": "claws",
+                "category": "creature_part"
+              },
+              {
+                "name": "spikes",
+                "category": "creature_part"
+              },
+              {
+                "name": "plug-tail",
+                "category": "object_part"
+              },
+              {
+                "name": "dramatic cape",
+                "category": "absurd_part"
+              },
+              {
+                "name": "one sock",
+                "category": "absurd_part"
+              },
+              {
+                "name": "suspicious spoon",
+                "category": "absurd_part"
+              }
+            ],
+            "creature_result": {
+              "creature_name": "Pen Serpent",
+              "final_drawing_notes": [
+                "pen barrel becomes long serpent body",
+                "tip becomes beak, snout, or stinger",
+                "clip becomes fin, crest, or ear",
+                "blue grip remains visible",
+                "body curves like a serpent"
+              ],
+              "transformed_part_labels": [
+                "click-crest, very proud",
+                "clip-ear hears pocket gossip",
+                "clear body, perfect for slithering",
+                "barrel belly hides words and secrets",
+                "tip stinger signs threats"
+              ]
+            },
+            "first_guess_correction": {
+              "first_guess": "snake pen",
+              "correction": "pen serpent. Obviously."
+            },
+            "today_strange_switch_id": "clip",
+            "quick_notes_from_lab": [
+              "rolls when nervous",
+              "writes when hungry",
+              "hides words in its belly",
+              "bites erasers",
+              "steals pocket lint as treasure"
+            ]
+          },
+          {
+            "case_id": "case_03_shoe_racer",
+            "case_number": 3,
+            "case_title": "The Shoe Racer",
+            "started_as": {
+              "object_name": "sneaker",
+              "suspicious_clues": [
+                "sole already wanted to move fast",
+                "laces looked like wild antennae",
+                "tongue was too dramatic to ignore",
+                "heel looked like a tiny engine"
+              ]
+            },
+            "wrong_things_attached": [
+              {
+                "name": "wheels",
+                "category": "object_part"
+              },
+              {
+                "name": "fins",
+                "category": "creature_part"
+              },
+              {
+                "name": "flame",
+                "category": "nature_part"
+              },
+              {
+                "name": "goggles",
+                "category": "object_part"
+              },
+              {
+                "name": "spoiler",
+                "category": "object_part"
+              },
+              {
+                "name": "emergency eyebrow",
+                "category": "absurd_part"
+              }
+            ],
+            "creature_result": {
+              "creature_name": "Shoe Racer",
+              "final_drawing_notes": [
+                "sneaker body remains visible",
+                "wheels attach under sole",
+                "laces become antennae or speed lines",
+                "heel becomes engine",
+                "goggles or eyes can appear near toe"
+              ],
+              "transformed_part_labels": [
+                "lace antennae, terrible at directions",
+                "heel engine, possibly imaginary",
+                "wheel feet, no brakes",
+                "tongue spoiler, very confident"
+              ]
+            },
+            "first_guess_correction": {
+              "first_guess": "running shoe",
+              "correction": "shoe racer. Obviously."
+            },
+            "today_strange_switch_id": "wheels",
+            "quick_notes_from_lab": [
+              "leaves skid marks in notebooks",
+              "races excuses",
+              "hates stairs",
+              "thinks tying laces is a pit stop"
+            ]
+          },
+          {
+            "case_id": "case_04_umbrella_bat",
+            "case_number": 4,
+            "case_title": "The Umbrella Bat",
+            "started_as": {
+              "object_name": "folded umbrella",
+              "suspicious_clues": [
+                "ribs looked like wing bones",
+                "handle looked like a hook foot",
+                "fabric wanted to become wings",
+                "tip looked like a tiny nose"
+              ]
+            },
+            "wrong_things_attached": [
+              {
+                "name": "fingers",
+                "category": "creature_part"
+              },
+              {
+                "name": "ears",
+                "category": "creature_part"
+              },
+              {
+                "name": "fangs",
+                "category": "creature_part"
+              },
+              {
+                "name": "moon",
+                "category": "nature_part"
+              },
+              {
+                "name": "tiny boots",
+                "category": "absurd_part"
+              },
+              {
+                "name": "dramatic cape",
+                "category": "absurd_part"
+              }
+            ],
+            "creature_result": {
+              "creature_name": "Umbrella Bat",
+              "final_drawing_notes": [
+                "umbrella fabric becomes bat wings",
+                "ribs become wing bones or fingers",
+                "handle becomes hook foot or tail",
+                "tip becomes nose",
+                "folded shape remains recognizable"
+              ],
+              "transformed_part_labels": [
+                "rib fingers, creepy wave",
+                "handle hook, points at rain",
+                "fabric wings, weather approved",
+                "tip nose, sniffs storms"
+              ]
+            },
+            "first_guess_correction": {
+              "first_guess": "rain bird",
+              "correction": "umbrella bat. Obviously."
+            },
+            "today_strange_switch_id": "fingers",
+            "quick_notes_from_lab": [
+              "opens when nervous",
+              "sleeps upside down in cupboards",
+              "only hunts puddles",
+              "hates sunny confidence"
+            ]
+          },
+          {
+            "case_id": "case_05_bottle_forest_guard",
+            "case_number": 5,
+            "case_title": "The Bottle Forest Guard",
+            "started_as": {
+              "object_name": "water bottle",
+              "suspicious_clues": [
+                "cap looked like a helmet",
+                "bottle body looked like a tiny guard tower",
+                "label wanted to become armour",
+                "base looked ready for roots"
+              ]
+            },
+            "wrong_things_attached": [
+              {
+                "name": "leaves",
+                "category": "nature_part"
+              },
+              {
+                "name": "antlers",
+                "category": "creature_part"
+              },
+              {
+                "name": "shield",
+                "category": "object_part"
+              },
+              {
+                "name": "roots",
+                "category": "nature_part"
+              },
+              {
+                "name": "snail shell",
+                "category": "creature_part"
+              },
+              {
+                "name": "suspicious spoon",
+                "category": "absurd_part"
+              }
+            ],
+            "creature_result": {
+              "creature_name": "Bottle Forest Guard",
+              "final_drawing_notes": [
+                "bottle body remains tower-like",
+                "cap becomes helmet",
+                "label becomes armour",
+                "leaves become hair, ears, tail, or shield",
+                "roots attach as legs"
+              ],
+              "transformed_part_labels": [
+                "cap helmet, too serious",
+                "label armour, recycled bravery",
+                "leaf ears hear trees",
+                "root legs, slow but committed"
+              ]
+            },
+            "first_guess_correction": {
+              "first_guess": "plant bottle",
+              "correction": "bottle forest guard. Obviously."
+            },
+            "today_strange_switch_id": "leaves",
+            "quick_notes_from_lab": [
+              "guards one puddle fiercely",
+              "whispers to compost",
+              "collects lost bottle caps",
+              "pretends to be a tree during danger"
+            ]
+          },
+          {
+            "case_id": "case_06_clock_beast",
+            "case_number": 6,
+            "case_title": "The Clock Beast",
+            "started_as": {
+              "object_name": "alarm clock",
+              "suspicious_clues": [
+                "bells looked like ears",
+                "clock hands wanted to escape",
+                "numbers looked like tiny witnesses",
+                "feet already existed, suspicious"
+              ]
+            },
+            "wrong_things_attached": [
+              {
+                "name": "claws",
+                "category": "creature_part"
+              },
+              {
+                "name": "tail",
+                "category": "creature_part"
+              },
+              {
+                "name": "moustache",
+                "category": "absurd_part"
+              },
+              {
+                "name": "antennae",
+                "category": "creature_part"
+              },
+              {
+                "name": "tiny briefcase",
+                "category": "absurd_part"
+              },
+              {
+                "name": "thundercloud",
+                "category": "nature_part"
+              }
+            ],
+            "creature_result": {
+              "creature_name": "Clock Beast",
+              "final_drawing_notes": [
+                "clock face remains visible",
+                "bells become ears or horns",
+                "clock hands become limbs, moustache, or claws",
+                "numbers remain as witnesses",
+                "legs and tail make it beast-like"
+              ],
+              "transformed_part_labels": [
+                "bell ears, hears deadlines",
+                "hand claws, punctual danger",
+                "number witnesses, all nervous",
+                "tail late again"
+              ]
+            },
+            "first_guess_correction": {
+              "first_guess": "time frog",
+              "correction": "clock beast. Obviously."
+            },
+            "today_strange_switch_id": "clock_hands",
+            "quick_notes_from_lab": [
+              "rings before bad ideas",
+              "eats five minutes at a time",
+              "very punctual, very rude",
+              "hates snooze buttons"
+            ]
+          },
+          {
+            "case_id": "case_07_pencil_case_crocodile",
+            "case_number": 7,
+            "case_title": "The Pencil Case Crocodile",
+            "started_as": {
+              "object_name": "pencil case",
+              "suspicious_clues": [
+                "zipper was already teeth",
+                "long body looked like a reptile",
+                "corners looked like knees",
+                "inside was full of prey, mostly erasers"
+              ]
+            },
+            "wrong_things_attached": [
+              {
+                "name": "claws",
+                "category": "creature_part"
+              },
+              {
+                "name": "tail",
+                "category": "creature_part"
+              },
+              {
+                "name": "eyes",
+                "category": "creature_part"
+              },
+              {
+                "name": "scales",
+                "category": "creature_part"
+              },
+              {
+                "name": "muddy feet",
+                "category": "absurd_part"
+              },
+              {
+                "name": "tiny lunchbox",
+                "category": "absurd_part"
+              }
+            ],
+            "creature_result": {
+              "creature_name": "Pencil Case Crocodile",
+              "final_drawing_notes": [
+                "pencil case body remains visible",
+                "zipper becomes mouth and teeth",
+                "corners become knees or elbows",
+                "scales drawn along case",
+                "tail and claws attached"
+              ],
+              "transformed_part_labels": [
+                "zipper teeth, hungry storage",
+                "case belly, full of erasers",
+                "corner knees, questionable anatomy",
+                "tail opens secrets"
+              ]
+            },
+            "first_guess_correction": {
+              "first_guess": "stationery lizard",
+              "correction": "pencil case crocodile. Obviously."
+            },
+            "today_strange_switch_id": "zipper",
+            "quick_notes_from_lab": [
+              "eats sharpeners by mistake",
+              "snaps shut when bored",
+              "hunts loose pencils",
+              "sleeps in school bags"
+            ]
+          },
+          {
+            "case_id": "case_08_mug_octopus",
+            "case_number": 8,
+            "case_title": "The Mug Octopus",
+            "started_as": {
+              "object_name": "tea mug",
+              "suspicious_clues": [
+                "handle looked like one suspicious arm",
+                "round body looked like a sea head",
+                "steam looked like underwater gossip",
+                "base looked like it could suction to things"
+              ]
+            },
+            "wrong_things_attached": [
+              {
+                "name": "tentacles",
+                "category": "creature_part"
+              },
+              {
+                "name": "tiny crown",
+                "category": "absurd_part"
+              },
+              {
+                "name": "bubbles",
+                "category": "nature_part"
+              },
+              {
+                "name": "spoon spear",
+                "category": "object_part"
+              },
+              {
+                "name": "sailor hat",
+                "category": "absurd_part"
+              },
+              {
+                "name": "one sock",
+                "category": "absurd_part"
+              }
+            ],
+            "creature_result": {
+              "creature_name": "Mug Octopus",
+              "final_drawing_notes": [
+                "mug body remains head",
+                "handle becomes arm, ear, hook, or tail",
+                "tentacles attach under base",
+                "steam becomes gossip cloud",
+                "spoon can become spear"
+              ],
+              "transformed_part_labels": [
+                "handle arm, already grabbing",
+                "steam gossip, not reliable",
+                "base suction, emotionally clingy",
+                "spoon spear, dramatic breakfast"
+              ]
+            },
+            "first_guess_correction": {
+              "first_guess": "cup squid",
+              "correction": "mug octopus. Obviously."
+            },
+            "today_strange_switch_id": "eyes",
+            "quick_notes_from_lab": [
+              "changes colour when tea is judged",
+              "hides biscuits under itself",
+              "knows ocean rumours",
+              "dislikes being called a cup"
+            ]
+          },
+          {
+            "case_id": "case_09_backpack_beetle",
+            "case_number": 9,
+            "case_title": "The Backpack Beetle",
+            "started_as": {
+              "object_name": "school backpack",
+              "suspicious_clues": [
+                "straps looked like legs",
+                "zipper looked like a mouth",
+                "front pocket looked like a face",
+                "bag body looked like a shell"
+              ]
+            },
+            "wrong_things_attached": [
+              {
+                "name": "wings",
+                "category": "creature_part"
+              },
+              {
+                "name": "antennae",
+                "category": "creature_part"
+              },
+              {
+                "name": "claws",
+                "category": "creature_part"
+              },
+              {
+                "name": "tiny luggage tag",
+                "category": "absurd_part"
+              },
+              {
+                "name": "beetle horn",
+                "category": "creature_part"
+              },
+              {
+                "name": "emergency eyebrow",
+                "category": "absurd_part"
+              }
+            ],
+            "creature_result": {
+              "creature_name": "Backpack Beetle",
+              "final_drawing_notes": [
+                "backpack body becomes beetle shell",
+                "straps become legs",
+                "front pocket becomes face or secret pouch",
+                "zipper becomes mouth",
+                "wings tuck behind bag"
+              ],
+              "transformed_part_labels": [
+                "strap legs, overpacked",
+                "front pocket, hiding a plan",
+                "zipper mouth, eats permission slips",
+                "shell body, homework resistant"
+              ]
+            },
+            "first_guess_correction": {
+              "first_guess": "bag bug",
+              "correction": "backpack beetle. Obviously."
+            },
+            "today_strange_switch_id": "pockets",
+            "quick_notes_from_lab": [
+              "carries crumbs from three eras",
+              "hides homework for sport",
+              "migrates between desks",
+              "makes zip sounds when annoyed"
+            ]
+          },
+          {
+            "case_id": "case_10_spoon_wizard",
+            "case_number": 10,
+            "case_title": "The Spoon Wizard",
+            "started_as": {
+              "object_name": "spoon",
+              "suspicious_clues": [
+                "bowl looked like a head or hat",
+                "handle looked like a staff",
+                "shine looked magical",
+                "curve looked like a proud old back"
+              ]
+            },
+            "wrong_things_attached": [
+              {
+                "name": "moustache",
+                "category": "absurd_part"
+              },
+              {
+                "name": "robe",
+                "category": "object_part"
+              },
+              {
+                "name": "tiny shoes",
+                "category": "absurd_part"
+              },
+              {
+                "name": "lightning",
+                "category": "nature_part"
+              },
+              {
+                "name": "pocket",
+                "category": "object_part"
+              },
+              {
+                "name": "dramatic eyebrows",
+                "category": "absurd_part"
+              }
+            ],
+            "creature_result": {
+              "creature_name": "Spoon Wizard",
+              "final_drawing_notes": [
+                "spoon bowl becomes face or hat",
+                "handle becomes staff or long body",
+                "moustache creates wizard personality",
+                "robe wraps around handle",
+                "tiny shoes make it questionable"
+              ],
+              "transformed_part_labels": [
+                "bowl head, reflects secrets",
+                "handle staff, points at soup",
+                "moustache authority, unearned",
+                "tiny shoes, deeply unnecessary"
+              ]
+            },
+            "first_guess_correction": {
+              "first_guess": "soup stick",
+              "correction": "spoon wizard. Obviously."
+            },
+            "today_strange_switch_id": "moustache",
+            "quick_notes_from_lab": [
+              "knows one soup spell",
+              "stirs arguments",
+              "predicts lunch",
+              "hates forks professionally"
+            ]
+          }
+        ]
+      },
+      "generation_templates": {
+        "template_name": "Kibookal Generation Templates",
+        "version": "1.0.0",
+        "input_contract": {
+          "required_inputs": [
+            "case_number",
+            "ordinary_object",
+            "final_creature_name",
+            "today_strange_switch"
+          ],
+          "optional_inputs": [
+            "object_parts",
+            "wrong_things_attached",
+            "tone_intensity",
+            "density_level",
+            "target_age",
+            "cultural_context",
+            "material_context",
+            "print_constraints"
+          ],
+          "defaults": {
+            "target_age": "9-13",
+            "tone_intensity": "witty_odd",
+            "density_level": "rich_but_breathable",
+            "page_format": "A5 vertical",
+            "visual_style": "secret creature-maker notebook"
+          }
+        },
+        "master_image_prompt_template": "Create an A5 vertical secret notebook page for Kibookal called CREATURE-MAKER'S NOTEBOOK. The page should look like a found creature-maker's case file, not a worksheet. Warm off-white notebook paper, hand-drawn black ink, blue pencil notes, yellow highlighter marks, orange correction marks, taped scraps, smudges, irregular arrows, crossed-out guesses, small lab stamp, paperclip or punched holes. The page is for ages 9-13: witty, quirky, funny, slightly odd, not babyish. Header: 'CREATURE-MAKER'S NOTEBOOK', 'Case No. {{case_number}}: {{case_title}}', stamp 'ATTACH WONDER METHOD', tiny note 'If found, add one creature and return secretly.' Show one solved case. Started as: {{ordinary_object}}. Draw the ordinary object clearly on the left with suspicious clues: {{suspicious_clues}}. In the middle show a taped scrap called 'WRONG THINGS ATTACHED:' with these odd add-ons: {{wrong_things_attached}}. Add the prompt 'What if it goes there?' On the right or center, draw the final object-creature: {{final_creature_name}}. The original object must remain visible inside the creature. Use simple 2D hand-drawn style, not polished fantasy art. Add funny labels to transformed parts: {{transformed_part_labels}}. Add a crossed-out note: 'First guess: {{first_guess}}' and correction: '{{correction}}' Include a recurring section called 'TODAY'S STRANGE SWITCH: {{strange_switch_feature}}' with principle '{{strange_switch_principle}}' and 4-5 tiny variations: {{strange_switch_micro_experiments}}. Do not make eyes the focus unless the Strange Switch is eyes. Optional lab notes: {{quick_notes_from_lab}}. Bottom section: taped scrap titled 'UNSOLVED CASE: SOMETHING IS HIDING HERE.' Include: 'Choose one object. Add 3 wrong things. Add one Strange Switch somewhere suspicious.' Fields: 'Object spotted:', 'Wrong things attached:', 'Strange Switch I used:', 'It appeared as:'. Include a small irregular sketch space with faint text: 'Draw the first sighting. Not the final masterpiece.' Add corner notes: 'Keep some of the object showing.' and 'The weird bit may go anywhere.' Footer: 'Kibookal rule: Ordinary things are only ordinary until someone stares at them strangely.' Composition should be balanced but not grid-like. Make it feel secret, clever, hand-made and magical.",
+        "master_negative_prompt": "Do not create a worksheet. Do not use neat rectangular boxes, radio buttons, numbered steps, clean curriculum panels, big empty rectangles, generic stars, trophy language, perfect symmetry, polished corporate vector style, babyish cartoon style, or school assignment feeling. Do not overfill the page with unreadable tiny text. Do not make every creature about eyes. Do not repeat an eye chart unless Today's Strange Switch is eyes. Do not hide the original object inside the creature. Do not make the final creature so polished that a child feels unable to try. Do not use generic praise like Great job, Wow, Awesome, Super cool, or You are a star.",
+        "case_generation_prompt": {
+          "purpose": "Generate a new complete case JSON from a starting object.",
+          "prompt": "Given the ordinary object '{{ordinary_object}}', create a Kibookal Creature-Maker's Notebook case for ages 9-13. Invent a funny object-creature name, 4-6 suspicious clues based on object parts, 6-10 wrong things attached, a final creature drawing description that keeps the object visible, 4-6 transformed part labels, a crossed-out first guess and correction, one Today's Strange Switch that is not eyes unless strongly justified, 4-5 Strange Switch micro-experiments, 3-5 quick lab notes, and one footer rule. Tone must be witty, quirky, dry, odd, and not babyish. Output valid JSON matching the page schema."
+        },
+        "illustrator_brief_template": {
+          "purpose": "Brief a human illustrator or designer.",
+          "brief": {
+            "format": "A5 vertical page",
+            "world": "Secret creature-maker notebook, found field-guide page, odd lab notes",
+            "audience": "Children ages 9-13",
+            "main_task": "Show one solved object-to-creature transformation and leave one unsolved case space for the child.",
+            "must_include": [
+              "ordinary object drawing",
+              "suspicious object-part clues",
+              "wrong things attached scrap",
+              "final object-creature drawing",
+              "crossed-out first guess and correction",
+              "Today's Strange Switch with 4-5 variations",
+              "unsolved case child area",
+              "Kibookal rule"
+            ],
+            "must_avoid": [
+              "worksheet look",
+              "perfect grids",
+              "radio buttons",
+              "overly cute style",
+              "heavy brand banner",
+              "too much text",
+              "generic praise"
+            ],
+            "style": [
+              "warm notebook paper",
+              "black ink drawing",
+              "blue pencil notes",
+              "yellow highlighter",
+              "orange correction marks",
+              "tape scraps",
+              "smudges",
+              "witty labels"
+            ]
+          }
+        },
+        "page_copy_template": {
+          "header": [
+            "CREATURE-MAKER'S NOTEBOOK",
+            "Case No. {{case_number}}: {{case_title}}",
+            "ATTACH WONDER METHOD",
+            "If found, add one creature and return secretly."
+          ],
+          "started_as": "STARTED AS: {{ordinary_object}}",
+          "wrong_things": "WRONG THINGS ATTACHED:",
+          "wonder_prompt": "What if it goes there?",
+          "it_appeared": "IT APPEARED: {{final_creature_name}}",
+          "first_guess": "First guess: {{first_guess}}",
+          "correction": "Correction: {{correction}}",
+          "strange_switch": "TODAY'S STRANGE SWITCH: {{strange_switch_feature}}",
+          "unsolved_case": {
+            "heading": "UNSOLVED CASE: SOMETHING IS HIDING HERE",
+            "instruction": "Choose one object. Add 3 wrong things. Add one Strange Switch somewhere suspicious.",
+            "fields": [
+              "Object spotted:",
+              "Wrong things attached:",
+              "Strange Switch I used:",
+              "It appeared as:"
+            ],
+            "sketch_prompt": "Draw the first sighting. Not the final masterpiece.",
+            "corner_notes": [
+              "Keep some of the object showing.",
+              "The weird bit may go anywhere."
+            ]
+          },
+          "footer": "Kibookal rule: Ordinary things are only ordinary until someone stares at them strangely."
+        },
+        "density_variants": {
+          "low_density": {
+            "use_when": "A5 print legibility is priority or younger side of audience.",
+            "rules": [
+              "6 wrong things attached",
+              "3 suspicious clues",
+              "4 transformed part labels",
+              "no more wrong stuff scrap",
+              "3 quick lab notes max",
+              "larger child sketch space"
+            ]
+          },
+          "medium_density": {
+            "use_when": "Default production.",
+            "rules": [
+              "8 wrong things attached",
+              "4-5 suspicious clues",
+              "4-5 transformed part labels",
+              "optional quick lab notes",
+              "5 Strange Switch variations",
+              "usable child sketch space"
+            ]
+          },
+          "high_density": {
+            "use_when": "Poster-like collectible notebook richness is desired.",
+            "rules": [
+              "10 wrong things attached",
+              "6 suspicious clues",
+              "6 transformed part labels",
+              "quick lab notes plus more wrong stuff",
+              "more texture and scraps",
+              "check legibility carefully"
+            ]
+          }
+        }
+      },
+      "quality_control": {
+        "quality_system_name": "Kibookal Creature-Maker Notebook QA",
+        "version": "1.0.0",
+        "pass_fail_rules": {
+          "must_pass": [
+            {
+              "id": "not_worksheet",
+              "rule": "The page must not look like a worksheet.",
+              "fail_signs": [
+                "clean rectangular boxes",
+                "radio buttons",
+                "numbered step panels",
+                "large blank activity rectangle",
+                "generic classroom layout"
+              ]
+            },
+            {
+              "id": "object_visible",
+              "rule": "The original object must remain visible in the final creature.",
+              "fail_signs": [
+                "final creature looks generic",
+                "object is hidden or unrecognizable",
+                "object parts are not labelled or transformed"
+              ]
+            },
+            {
+              "id": "solved_and_unsolved",
+              "rule": "Page must include one solved case and one unsolved case.",
+              "fail_signs": [
+                "only a completed example",
+                "only a blank activity",
+                "child area missing",
+                "example missing"
+              ]
+            },
+            {
+              "id": "strange_switch_rotates",
+              "rule": "Today's Strange Switch must be specific and not default to eyes unless intended.",
+              "fail_signs": [
+                "eye chart appears on every page",
+                "Strange Switch missing",
+                "feature not connected to case",
+                "no micro-experiments"
+              ]
+            },
+            {
+              "id": "age_fit",
+              "rule": "Tone must fit ages 9-13: witty, odd, not babyish.",
+              "fail_signs": [
+                "Great job",
+                "Wow",
+                "Awesome",
+                "super cute",
+                "teacherly instructions",
+                "too much preschool energy"
+              ]
+            },
+            {
+              "id": "first_version_permission",
+              "rule": "The page must reduce performance pressure.",
+              "fail_signs": [
+                "emphasis on final masterpiece",
+                "polished intimidating example",
+                "no permission line",
+                "child sketch area feels like assessment"
+              ]
+            }
+          ]
+        },
+        "scoring_rubric": {
+          "scale": "0-5",
+          "dimensions": [
+            {
+              "name": "secret_notebook_feeling",
+              "score_0": "Looks like a standard worksheet.",
+              "score_3": "Some notebook elements but still gridded.",
+              "score_5": "Feels like a found secret case-file page."
+            },
+            {
+              "name": "object_transformation_clarity",
+              "score_0": "Transformation unclear or generic.",
+              "score_3": "Object and creature both visible but weakly connected.",
+              "score_5": "Object parts clearly become creature parts with delightful labels."
+            },
+            {
+              "name": "strange_switch_strength",
+              "score_0": "No Strange Switch or default eye gimmick.",
+              "score_3": "Switch exists but feels generic.",
+              "score_5": "Switch is specific, funny, and changes the creature logic."
+            },
+            {
+              "name": "humour_and_voice",
+              "score_0": "Flat, generic, babyish, or teacherly.",
+              "score_3": "Some funny labels but inconsistent.",
+              "score_5": "Dry, witty, odd, specific, and age-appropriate."
+            },
+            {
+              "name": "child_invitation",
+              "score_0": "No useful space for child participation.",
+              "score_3": "Child area exists but feels like a form.",
+              "score_5": "Unsolved case feels inviting, secret, and low-pressure."
+            },
+            {
+              "name": "a5_legibility",
+              "score_0": "Too dense or unreadable.",
+              "score_3": "Readable but slightly crowded.",
+              "score_5": "Rich but breathable at A5."
+            },
+            {
+              "name": "collectibility",
+              "score_0": "Does not feel like part of a series.",
+              "score_3": "Series elements present but weak.",
+              "score_5": "Feels like a collectible page children would want to gather."
+            }
+          ],
+          "minimum_acceptance": {
+            "overall_average": 4,
+            "no_dimension_below": 3,
+            "must_pass_all_pass_fail_rules": true
+          }
+        },
+        "revision_rules": {
+          "if_too_worksheet_like": [
+            "remove clean boxes",
+            "replace grids with scraps or loose clusters",
+            "remove radio buttons",
+            "add taped notes and irregular arrows",
+            "make headers feel hand-lettered"
+          ],
+          "if_too_dense": [
+            "remove optional More Wrong Stuff",
+            "cut lab notes to 3",
+            "reduce creature labels to 4",
+            "increase blank space around final creature",
+            "make child sketch space larger"
+          ],
+          "if_too_babyish": [
+            "remove cute praise",
+            "reduce stars and smiley marks",
+            "make humour drier",
+            "use case-file language",
+            "make creature slightly stranger"
+          ],
+          "if_strange_switch_weak": [
+            "choose a feature more specific to the object",
+            "make the feature alter movement, mood, or story",
+            "write 5 stronger micro-experiments",
+            "avoid eyes unless they are truly the point",
+            "give the switch a funny principle sentence"
+          ],
+          "if_object_disappears": [
+            "restore original object's main silhouette",
+            "label 3 original object parts",
+            "use attachments instead of total redesign",
+            "show started-as object more clearly",
+            "make final creature a hybrid, not a replacement"
+          ],
+          "if_child_area_feels_like_form": [
+            "make it a taped scrap",
+            "rename it Unsolved Case",
+            "add secret-notebook corner notes",
+            "reduce field count if needed",
+            "use irregular sketch patch"
+          ]
+        },
+        "final_review_questions": [
+          "Would a 10-year-old want to keep this page?",
+          "Does it feel like a secret notebook, not school?",
+          "Can the child understand the method by looking at the solved case?",
+          "Is the Strange Switch different from the last page?",
+          "Is the original object still visible in the creature?",
+          "Are the funniest labels specific to this object?",
+          "Is there enough space for the child to make a first sighting?",
+          "Does the page avoid perfect-art pressure?"
+        ],
+        "red_flags": [
+          "The page says 'Your turn' too loudly.",
+          "The solved creature looks like professional fantasy illustration.",
+          "The child area is a giant blank box.",
+          "The same eye section appears again.",
+          "The object is merely replaced by an animal.",
+          "The humour could apply to any object.",
+          "The page is so dense that A5 print becomes tiring.",
+          "The tone praises instead of conspiring."
+        ]
+      },
+      "style_lock": {
+        "schema_name": "Kibookal Creature-Magazine Notebook Style Lock",
+        "version": "1.0",
+        "created_for": "Rohan Bhosale / Kibookal",
+        "style_name": "Kibookal Secret Case-File Magazine Notebook",
+        "short_style_name": "KSCMN",
+        "purpose": "A production-locked visual and content system for creating A5 Kibookal creature/magazine pages in the exact style developed in this chat: hand-drawn secret notebook case files with one strong creature/image per page, warm aged paper, taped scraps, annotations, and playful learning layers.",
+        "core_output": {
+          "format": "A5 vertical portrait printable page",
+          "target_size_px": "1748 x 2480 px minimum for print; current chat reference renders are 1054 x 1492 px proof images",
+          "page_type": "single-page magazine/notebook field-guide sheet",
+          "page_rule": "Each page should feel like one complete collectible magazine/notebook page, with one central solved image/creature and supporting notes.",
+          "audience": "Children ages 8-13, intelligent, curious, not babyish"
+        },
+        "source_materials_included": {
+          "creature_system_json_files": [
+            "00_system_manifest.json",
+            "01_page_schema.json",
+            "02_visual_style.json",
+            "03_voice_and_humour.json",
+            "04_component_library.json",
+            "05_strange_switch_library.json",
+            "06_case_library.json",
+            "07_generation_templates.json",
+            "08_quality_control.json"
+          ],
+          "devi_reference_documents": [
+            "Devi_Kibookal_Image_Production_Reference.docx",
+            "Devi Kibookal MASTER COMPLETE(2).pdf"
+          ],
+          "reference_images": [
+            "66283f65-6cde-4516-a1cf-742b760c10ef.png",
+            "dc001e0f-05ac-450b-baa9-237101de7d35(1).png",
+            "237b7c59-d55e-4a4d-855a-f396f9499a27.png",
+            "d012d5d5-3135-4120-950a-eaebf25c599a.png",
+            "02d7c7cc-1ba0-4316-8a9f-24bfb0bb5612.png",
+            "dc001e0f-05ac-450b-baa9-237101de7d35.png"
+          ],
+          "generated_case_pages": [
+            "case_01_kettle_dragon",
+            "case_02_pen_serpent",
+            "case_03_shoe_racer",
+            "case_04_umbrella_bat",
+            "case_05_bottle_forest_guard_v1",
+            "case_05_bottle_forest_guard_v2",
+            "case_06_clock_beast",
+            "case_07_pencil_case_crocodile",
+            "case_08_mug_octopus",
+            "case_09_backpack_beetle"
+          ]
+        },
+        "visual_identity": {
+          "overall_feeling": [
+            "found secret notebook",
+            "creature field guide",
+            "case-file magazine page",
+            "slightly chaotic lab notes",
+            "warm handmade Indian children's publishing sensibility",
+            "playful but not preschool",
+            "collectible page children want to keep"
+          ],
+          "paper_and_texture": {
+            "background": "warm aged cream/off-white notebook paper",
+            "texture": [
+              "visible paper grain",
+              "soft smudges",
+              "thumbprints",
+              "small ink stains",
+              "edge wear",
+              "punched binder holes on left edge",
+              "occasional paperclip",
+              "taped scraps and torn note pieces"
+            ],
+            "avoid": [
+              "pure white digital background",
+              "clean worksheet page",
+              "corporate vector flatness",
+              "glossy poster polish"
+            ]
+          },
+          "line_and_rendering": {
+            "style": "hand-drawn black ink with watercolor/colored-pencil wash",
+            "outline": "medium-to-thick imperfect ink outlines; lighter interior hatching",
+            "shading": "sketchy cross-hatching plus soft watercolor wash, not glossy 3D",
+            "labels": "handwritten labels with arrows; must feel manually written",
+            "arrows": "blue pencil irregular arrows, curved and investigative",
+            "marks": "yellow highlighter, orange/red corrections, blue underlines, ink splatters",
+            "complexity": "rich but breathable at A5; visual density is high but major image must remain readable"
+          },
+          "palette": {
+            "base": {
+              "paper": "#F2E5C8",
+              "ink": "#1D1A16",
+              "faded_ink": "#4B4135"
+            },
+            "accent_colours": {
+              "blue_pencil": "#1846A3",
+              "yellow_highlighter": "#F2C94C",
+              "orange_correction": "#D96C2C",
+              "red_stamp": "#A63A2B",
+              "aged_tape": "#C8A56A",
+              "warm_shadow": "#8A6A3D"
+            },
+            "creature_colours": "object-specific color accents are allowed, but keep them dust-softened and integrated into aged paper"
+          },
+          "composition": {
+            "top": "large hand-lettered CREATURE-MAKER'S NOTEBOOK title with underline/scribbles",
+            "upper_left": "case number and title on taped/torn scrap",
+            "left": "Started As ordinary object with suspicious clue arrows",
+            "middle": "Wrong Things Attached scrap with 6-10 tiny doodles",
+            "right_or_center": "large final creature / one main image",
+            "lower_middle": "Today's Strange Switch panel with 4-5 micro experiments",
+            "lower_left": "first guess/correction plus quick lab notes",
+            "bottom": "Unsolved Case taped scrap and small sketch space",
+            "footer": "Kibookal rule on bottom edge",
+            "overall": "structured but not visibly gridded; no clean rectangular worksheet boxes"
+          },
+          "typography": {
+            "title": "large black hand-lettered uppercase, uneven baseline",
+            "case_title": "large expressive handwritten type on aged taped scrap",
+            "section_headers": "small uppercase with yellow highlight or blue underline",
+            "body_notes": "readable handwritten print",
+            "micro_labels": "small but legible; use sparingly near image",
+            "corrections": "first guess crossed out in red/orange; correction dry and final"
+          }
+        },
+        "content_system": {
+          "repeatable_page_sections": [
+            "CREATURE-MAKER'S NOTEBOOK header",
+            "Case number and case title",
+            "ATTACH WONDER METHOD stamp",
+            "secret note: If found, add one creature and return secretly.",
+            "Started As: ordinary object",
+            "Suspicious clues from object parts",
+            "Wrong Things Attached",
+            "What if it goes there?",
+            "It Appeared: final object-creature / main image",
+            "funny transformed-part labels",
+            "First Guess crossed out",
+            "Correction: [creature]. Obviously.",
+            "Quick Notes from the Lab",
+            "Today's Strange Switch",
+            "Unsolved Case: Something Is Hiding Here",
+            "low-pressure sketch space",
+            "Kibookal rule footer"
+          ],
+          "magazine_layer_rules_from_devi_kibookal": {
+            "five_roles_every_page": [
+              "Big Thing: main content/image",
+              "Funny Layer: margin character, absurd annotation, scribble joke",
+              "Deep Thing: rasa corner, hidden symbol, quiet question",
+              "Doing Thing: activity, making prompt, draw/write space",
+              "Wellbeing Pulse: small reassuring line"
+            ],
+            "invisible_architecture": [
+              "toran/border motif can appear subtly",
+              "rasa corner may be used on magazine-style pages",
+              "hidden tiny symbols reward careful looking",
+              "small resident characters/margin creatures make the page feel alive"
+            ]
+          },
+          "voice": {
+            "attributes": [
+              "witty",
+              "dry",
+              "odd",
+              "secretive",
+              "observational",
+              "permission-giving"
+            ],
+            "use": [
+              "short funny labels",
+              "case-file wording",
+              "slightly suspicious observations",
+              "dry corrections",
+              "hidden notes",
+              "low-pressure drawing invitations"
+            ],
+            "avoid": [
+              "Great job",
+              "Wow",
+              "Awesome",
+              "Super cool",
+              "You are a star",
+              "Follow the steps",
+              "Complete this worksheet",
+              "teacherly classroom tone",
+              "babyish cute voice"
+            ],
+            "approved_phrases": [
+              "Draw the first sighting. Not the final masterpiece.",
+              "Wrong is usually the door.",
+              "Keep some of the object showing.",
+              "The weird bit may go anywhere.",
+              "Correction: [creature]. Obviously.",
+              "If found, add one creature and return secretly."
+            ]
+          }
+        },
+        "character_and_creature_rules": {
+          "core_rule": "The original object must remain visible inside the final creature/image.",
+          "creature_type": "object-creature hybrid, not generic animal replacement",
+          "silhouette": "keep the source object's main silhouette readable",
+          "attachments": "add wrong parts as visual jokes and story triggers, not total redesigns",
+          "labels": "4-6 funny labels maximum around final creature",
+          "wrong_parts": "6-10 small parts max",
+          "strange_switch": {
+            "definition": "The tiny feature that changes the page's creature logic: personality, movement, mood, story, behaviour, danger, usefulness, secrets, mistakes or jokes.",
+            "must_do": "Rotate every page. Do not default to eyes. At least three micro-experiments must change behaviour/story/power/problem, not just body placement.",
+            "common_switches": [
+              "Plug",
+              "Clip",
+              "Wheels",
+              "Spokes",
+              "Leaves",
+              "Clock Hands",
+              "Zipper",
+              "Handle",
+              "Straps",
+              "Moustache",
+              "Buttons",
+              "Pockets",
+              "Shadows"
+            ]
+          },
+          "recurring_margin_personality": {
+            "tiny_lab_doodle": "small grumpy notebook creature appears in correction/edges; expressive but not dominant",
+            "kibookal_seeing_lab_stamp": "round stamp motif with small creature face, used in top-right or near header",
+            "paperclip_and_holes": "physical notebook objects act like recurring characters"
+          },
+          "devi_kibookal_cast_when_magazine_pages_need_them": {
+            "Cat": "black cat with white chest and paw tips, green-gold narrowed eyes, calm and smug",
+            "Mini Mahishasura": "tiny grumpy buffalo demon, 8-10 cm scale, annoyed eyes, comic margin role",
+            "Buffalo": "large Indian water buffalo, mildly offended/bewildered, too large for scene",
+            "Tiny Rishi": "very old tiny man in dhoti with long white beard, quiet funny advice",
+            "Peas": "three green peas always together, tiny faces, end with SNAP",
+            "Rudrani": "Indian girl age about 10, warm brown skin, dark eyes, two plaits, school uniform, serious observant"
+          }
+        },
+        "case_library_locked_order": [
+          {
+            "case_no": 1,
+            "title": "The Kettle Dragon",
+            "object": "electric kettle",
+            "switch": "Plug"
+          },
+          {
+            "case_no": 2,
+            "title": "The Pen Serpent",
+            "object": "ballpoint pen",
+            "switch": "Clip"
+          },
+          {
+            "case_no": 3,
+            "title": "The Shoe Racer",
+            "object": "sneaker",
+            "switch": "Wheels"
+          },
+          {
+            "case_no": 4,
+            "title": "The Umbrella Bat",
+            "object": "umbrella",
+            "switch": "Spokes/Fingers"
+          },
+          {
+            "case_no": 5,
+            "title": "The Bottle Forest Guard",
+            "object": "plastic bottle",
+            "switch": "Leaves"
+          },
+          {
+            "case_no": 6,
+            "title": "The Clock Beast",
+            "object": "alarm clock",
+            "switch": "Clock Hands"
+          },
+          {
+            "case_no": 7,
+            "title": "The Pencil Case Crocodile",
+            "object": "pencil case",
+            "switch": "Zipper"
+          },
+          {
+            "case_no": 8,
+            "title": "The Mug Octopus",
+            "object": "mug",
+            "switch": "Handle"
+          },
+          {
+            "case_no": 9,
+            "title": "The Backpack Beetle",
+            "object": "school backpack",
+            "switch": "Straps/Pockets"
+          },
+          {
+            "case_no": 10,
+            "title": "The Spoon Wizard",
+            "object": "spoon",
+            "switch": "Moustache"
+          }
+        ],
+        "prompt_formula": {
+          "master_prompt": "Create one A5 vertical Kibookal Secret Case-File Magazine Notebook page. Use warm aged cream notebook paper, punched holes on the left, taped torn scraps, paperclip, ink splatters, black hand-drawn ink, soft watercolor/colored-pencil wash, blue pencil arrows, yellow highlighter marks, orange/red crossed-out corrections, handmade labels, and rich-but-breathable layout. Keep the style exactly like the approved Creature-Maker notebook reference pages. The page must have one main solved object-creature image, the original object visible, one Started As object, one Wrong Things Attached scrap, one Today's Strange Switch panel, one First Guess crossed out and Correction note, one Quick Notes from the Lab, one Unsolved Case child area, and a Kibookal rule footer. The tone is witty, dry, secretive, odd, not babyish, not classroom worksheet. No glossy vector, no anime, no Pixar/3D, no corporate worksheet, no clean grids.",
+          "negative_prompt": "Do not change the style. Do not make it a clean worksheet. No neat rectangular classroom boxes, no radio buttons as dominant layout, no polished fantasy art, no generic cute style, no anime, no 3D/Pixar, no corporate vector, no pure white background, no over-clean typography, no motivational praise, no hidden original object, no generic animal that replaces the object, no overcrowded unreadable text."
+        },
+        "quality_control": {
+          "must_pass": [
+            "A5 vertical portrait",
+            "same notebook style as references",
+            "not worksheet",
+            "one strong main image/creature",
+            "original object visible",
+            "solved case plus unsolved case",
+            "specific Strange Switch",
+            "witty dry labels",
+            "readable at A5",
+            "child participation feels low-pressure",
+            "collectible series feeling"
+          ],
+          "reject_if": [
+            "style shifts toward Devi classical/goddess art when user asked Creature-Maker notebook",
+            "style becomes too clean or digital",
+            "text becomes unreadable or too much",
+            "creature is generic and object disappears",
+            "page lacks bottom child activity/unsolved case",
+            "page looks like school worksheet",
+            "humour is babyish or generic"
+          ],
+          "minimum_acceptance": "overall 4/5, no critical dimension below 3/5"
+        },
+        "production_notes": {
+          "workflow": [
+            "Pick case/object",
+            "Lock source object silhouette",
+            "Pick or rotate Strange Switch",
+            "Write 4-6 suspicious clues",
+            "Write 6-10 wrong things attached",
+            "Design one main object-creature image",
+            "Add 4-6 funny labels",
+            "Add first guess/correction",
+            "Add quick lab notes",
+            "Add unsolved case child prompt",
+            "QA for A5 readability and style consistency"
+          ],
+          "important_chat_learning": "In this chat, the approved look became a consistent single-page A5 creature magazine/notebook page: cream aged paper, big black handwritten title, torn scraps, one large object-creature on right, ordinary object on left, Strange Switch panel at lower middle, child activity at bottom, and dry Kibookal humour."
+        }
+      }
+    },
+    "asura_internal_monster": {
+      "page_schema": {
+        "schema_name": "Kibookal Asura - Internal Monster Page Schema",
+        "version": "1.0",
+        "description": "Each page = one internal-monster character (Asura). First-person self-aware voice. Dense hand-drawn notebook page exploring the demon as a personality flaw or inner obstacle, with a path to integration.",
+        "page_spec": {
+          "format": "A5",
+          "orientation": "portrait",
+          "width_mm": 148,
+          "height_mm": 210,
+          "feeling": "found self-aware demon journal"
+        },
+        "required_areas": [
+          "header_title",
+          "department_label",
+          "first_person_intro",
+          "speech_bubble_motto",
+          "watch_out_box",
+          "central_illustration",
+          "he_looks_like_this",
+          "what_happens_strip",
+          "i_dont_like_list",
+          "i_like_list",
+          "sometimes_i_whisper",
+          "tools_i_use",
+          "but_now_i_know_this",
+          "work_in_progress_footer"
+        ],
+        "optional_areas": [
+          "cousins_sidebar",
+          "she_came_for_me_inset",
+          "now_i_still_visit",
+          "me_plus_you",
+          "note_to_self",
+          "deeply_rude_inset",
+          "footer_aphorism"
+        ],
+        "voice_rules": [
+          "FIRST PERSON ONLY - the demon narrates",
+          "Short declarative sentences. Frequent paragraph breaks.",
+          "Dry, self-aware humor. The demon is honest about being a problem.",
+          "Mix of small punctuation and red underlines for emphasis",
+          "Ends with growth - the 'But now I know' box turns the demon's lesson outward",
+          "Never preachy. The demon is the teacher BY being honestly himself.",
+          "Use ALL CAPS only for taglines, emphasis words, and the central speech bubble",
+          "Red underlines mark key words throughout the body text"
+        ],
+        "palette_dominant": [
+          "#F2E5C8 paper",
+          "#1D1A16 ink",
+          "#A63A2B red stamp/underlines",
+          "#4B4135 faded ink",
+          "#D96C2C orange accents"
+        ],
+        "density": "dense but breathable - character dominates upper third, lists fill lower two-thirds"
+      },
+      "master_prompt_template": "Create an A5 vertical SECRET DEMON NOTEBOOK page in the Devi Kibookal Asura style.\n\n=== STYLE LOCK ===\nPAPER: warm aged cream notebook paper #F2E5C8 with visible grain, edge wear, smudges, paperclip\nLINEWORK: pencil + sepia ink hatching, confident but imperfect, slight wobble, cross-hatch shading on character\nWASH: soft sepia + faint warm watercolor wash; red accents #A63A2B ONLY for: underlines, heart symbol, stamps\nTYPOGRAPHY: hand-lettered uppercase title with RED UNDERLINE; body text in handwritten print\nDENSITY: dense but readable - character dominates upper third, lists fill lower two-thirds\n\n=== CONTENT FOR {{ASURA_NAME}} ===\nHEADER: '{{CASE_NUMBER}}. {{ASURA_NAME_UPPER}}' large hand-lettered with red underline. Department label below: '{{DEPARTMENT}}.'\n\nLEFT COLUMN FIRST PERSON: 'I am {{ASURA_NAME}}. {{DEPARTMENT}}. I live {{WHERE_I_LIVE}}. {{LOCATION_REASON}}. Here is what I do. {{WHAT_I_DO_BULLETS}}'\n\nCENTRAL ILLUSTRATION: large hand-drawn pencil+ink demon - {{CHARACTER_VISUAL_DESCRIPTION}}. Slightly hunched/seated 'comfortable demon' pose. Cross-hatch shading. Slight sepia wash.\n\nSPEECH BUBBLE: '{{MOTTO}}' block letters in oval.\n\nTOP-RIGHT FRAMED BOX with star: 'WATCH OUT:' red underline, then 3-5 short lines: {{WATCH_OUT_LINES}}\n\nSMALL FRAMED PORTRAIT labeled 'HE LOOKS LIKE THIS:' just the demon's face.\n\nMID-PAGE: 'WHAT HAPPENS:' red underline, then 5-PANEL HORIZONTAL COMIC STRIP showing the demon's cycle. Each framed panel with caption:\nP1: {{PANEL_1}} | P2: {{PANEL_2}} | P3: {{PANEL_3}} | P4: {{PANEL_4}} | P5: {{PANEL_5}}\n\nLOWER-LEFT side-by-side bullet lists:\n'I DON'T LIKE:' red underline: {{DONT_LIKE_LIST}}\n'I LIKE:' red underline + red heart: {{LIKE_LIST}}\n\nLOWER-CENTER thought bubble 'SOMETIMES I WHISPER:' with 4-5 'What if...?' questions: {{WHISPER_QUESTIONS}}. Scribbly tangle inside.\n\nLOWER-LEFT 'TOOLS I USE:' red underline, row of 4-5 small hand-drawn icon sketches with caps labels: {{TOOLS_LIST}}\n\nLOWER-RIGHT framed wisdom box 'BUT NOW I KNOW THIS:' red underline, 4-7 lines: {{GROWTH_LINES}}. Small red star at end.\n\nBOTTOM small taped scrap 'WORK IN PROGRESS:' red underline '{{WORK_IN_PROGRESS}}' small red star.\n\n=== NEGATIVE ===\nNO clean vector, NO Pixar 3D, NO anime, NO worksheet feel, NO corporate flatness, NO photo-real, NO bright candy colors. The page should feel like a real demon kept a private journal in red pencil and sepia ink.\n\n=== FEELING ===\n'A demon being unexpectedly honest with himself, with footnotes.'",
+      "case_library": {
+        "name": "Asura Case Library",
+        "cases": [
+          {
+            "case_id": "asura_01_mahishasura",
+            "case_number": 1,
+            "asura_name": "Mahishasura",
+            "department": "Heavy department",
+            "where_i_live": "in your chest",
+            "location_reason": "right where breath becomes effort",
+            "motto": "HEAVY IS MY HOBBY.",
+            "what_i_do": [
+              "I do not make loud plans.",
+              "I make everything feel slightly harder than it is."
+            ],
+            "daily_phrases": [
+              "Later.",
+              "Tomorrow.",
+              "I'm tired.",
+              "What is the point?",
+              "It is very far.",
+              "My bag is suddenly heavier than science."
+            ],
+            "what_happens": [
+              {
+                "panel": 1,
+                "caption": "She climbed on."
+              },
+              {
+                "panel": 2,
+                "caption": "Foot first."
+              },
+              {
+                "panel": 3,
+                "caption": "Then spear."
+              },
+              {
+                "panel": 4,
+                "caption": "Deeply rude."
+              },
+              {
+                "panel": 5,
+                "caption": "Now I still visit."
+              }
+            ],
+            "i_dont_like": [
+              "Being challenged",
+              "Quick movement",
+              "Decisions",
+              "Energy",
+              "Honesty"
+            ],
+            "i_like": [
+              "Sitting",
+              "Excuses",
+              "Procrastination heat",
+              "Soft furniture",
+              "The word LATER"
+            ],
+            "sometimes_i_whisper": [
+              "What if I just sit here...",
+              "And you sink a little more?"
+            ],
+            "tools_i_use": [
+              {
+                "icon": "fan",
+                "label": "STAY-COOL EXCUSES"
+              },
+              {
+                "icon": "mug",
+                "label": "LAZY JUICE"
+              },
+              {
+                "icon": "bag",
+                "label": "TOO MUCH WORK"
+              },
+              {
+                "icon": "chair",
+                "label": "BEST PLACE"
+              }
+            ],
+            "but_now_i_know_this": [
+              "Not everything heavy is true.",
+              "Not everything stubborn is strength.",
+              "Sometimes it is just me sitting down first."
+            ],
+            "work_in_progress": "MOVE ANYWAY.",
+            "cousins": [
+              "Madhu (delays)",
+              "Kaitabha (starts badly)",
+              "Dhumralochana (makes it blurry)",
+              "Chanda & Munda (start & finish fights)",
+              "Raktabija (multiplies)",
+              "Nishumbha (returns)",
+              "Sumbha (doubts at the top)"
+            ]
+          },
+          {
+            "case_id": "asura_02_raktabija",
+            "case_number": 2,
+            "asura_name": "Raktabija",
+            "department": "Heavy department",
+            "where_i_live": "in your blood",
+            "location_reason": "my drops create more of me - one drop, many RaktaBijas",
+            "motto": "I FALL. A DROP. I RISE AGAIN. MANY TIMES. I AM MANY. I AM ENDLESS.",
+            "what_i_do": [
+              "Multiply from blood drops",
+              "Overwhelm with numbers",
+              "Tire out the enemy",
+              "Never give up"
+            ],
+            "what_happens": [
+              {
+                "panel": 1,
+                "caption": "I fight."
+              },
+              {
+                "panel": 2,
+                "caption": "I get wounded. Blood falls."
+              },
+              {
+                "panel": 3,
+                "caption": "From each drop, another me is born."
+              },
+              {
+                "panel": 4,
+                "caption": "I become too many. You get tired."
+              },
+              {
+                "panel": 5,
+                "caption": "I try to win. Always."
+              }
+            ],
+            "watch_out": [
+              "MY BLOOD IS MY STRENGTH.",
+              "EVERY DROP CREATES ME.",
+              "MORE. MORE. MORE."
+            ],
+            "i_dont_like": [
+              "Losing",
+              "Being controlled",
+              "Clever enemies",
+              "When blood is wasted",
+              "Peace and calm"
+            ],
+            "i_like": [
+              "Battles",
+              "Blood",
+              "Chaos",
+              "Numbers",
+              "Endless fight"
+            ],
+            "sometimes_i_whisper": [
+              "What if I never stop?",
+              "What if I grow too big?",
+              "What if they find a way?",
+              "What if I lose a drop?",
+              "What if I can't rise again?"
+            ],
+            "tools_i_use": [
+              {
+                "icon": "drop",
+                "label": "BLOOD DROPS"
+              },
+              {
+                "icon": "club",
+                "label": "BRUTE STRENGTH"
+              },
+              {
+                "icon": "army",
+                "label": "MULTIPLICATION POWER"
+              },
+              {
+                "icon": "tired",
+                "label": "ENEMY FATIGUE"
+              },
+              {
+                "icon": "runner",
+                "label": "NEVER ENDING ASSAULT"
+              }
+            ],
+            "but_now_i_know_this": [
+              "Every drop doesn't have to be me.",
+              "I can stop the cycle.",
+              "Power is not only in growing. It is also in knowing when to stop.",
+              "Control is greater than numbers.",
+              "I can choose a different way.",
+              "I can rise without blood."
+            ],
+            "work_in_progress": "LEARNING TO LET GO OF ENDLESS FIGHT."
+          },
+          {
+            "case_id": "asura_03_kumbhakarna",
+            "case_number": 3,
+            "asura_name": "Kumbhakarna",
+            "department": "Heavy department",
+            "where_i_live": "in your stomach",
+            "location_reason": "right where laziness becomes a lifestyle",
+            "motto": "LET ME SLEEP. THE WORLD CAN WAIT.",
+            "what_i_do": [
+              "Sleep deeply",
+              "Eat massively",
+              "Wake up confused",
+              "Go back to sleep"
+            ],
+            "watch_out": [
+              "DON'T WAKE ME UP FOR SMALL THINGS.",
+              "I GET GRUMPY."
+            ],
+            "what_happens": [
+              {
+                "panel": 1,
+                "caption": "I sleep."
+              },
+              {
+                "panel": 2,
+                "caption": "I'm hungry."
+              },
+              {
+                "panel": 3,
+                "caption": "I eat A LOT."
+              },
+              {
+                "panel": 4,
+                "caption": "I get confused."
+              },
+              {
+                "panel": 5,
+                "caption": "I sleep again."
+              }
+            ],
+            "i_dont_like": [
+              "Being disturbed",
+              "Small portions",
+              "Alarm clocks",
+              "Loud people",
+              "Unnecessary work"
+            ],
+            "i_like": [
+              "Deep sleep",
+              "Mountains of food",
+              "Soft pillows",
+              "Peace and quiet",
+              "Big naps"
+            ],
+            "sometimes_i_whisper": [
+              "What if I never wake up?",
+              "What if I miss everything?",
+              "What if I'm wasting my life?",
+              "What if I could change...",
+              "What if I just rest a little more?"
+            ],
+            "tools_i_use": [
+              {
+                "icon": "pillow",
+                "label": "MEGA PILLOW"
+              },
+              {
+                "icon": "burger-stack",
+                "label": "ENDLESS APPETITE"
+              },
+              {
+                "icon": "blanket",
+                "label": "COMFY BLANKET"
+              },
+              {
+                "icon": "alarm",
+                "label": "IGNORE ALARM"
+              },
+              {
+                "icon": "earplugs",
+                "label": "EAR PLUGS"
+              }
+            ],
+            "but_now_i_know_this": [
+              "Rest is not laziness.",
+              "Food is not the only comfort.",
+              "Life has more than sleep.",
+              "I can still choose.",
+              "I can wake up for what matters.",
+              "I can be present.",
+              "Balance is better than extremes."
+            ],
+            "work_in_progress": "WAKING UP WITH PURPOSE."
+          },
+          {
+            "case_id": "asura_04_nishumbha",
+            "case_number": 4,
+            "asura_name": "Nishumbha",
+            "department": "Second voice department",
+            "where_i_live": "lower than my brother Sumbha - near the ribs, near the pull, near the wanting",
+            "motto": "TRY AGAIN. TAKE MORE. SAY ONE MORE THING. CHECK ONE MORE TIME. PUSH A LITTLE HARDER.",
+            "what_i_do": [
+              "I do not begin first.",
+              "I arrive after - after the idea, after the doubt, after the hurt, after the no.",
+              "Then I lean in."
+            ],
+            "self_description": [
+              "I am not loud like Chanda.",
+              "Not heavy like Mahishasura.",
+              "Not blurry like Dhumralochana.",
+              "I return. That is my talent."
+            ],
+            "cycle_diagram_labels": [
+              "1. get idea",
+              "2. start",
+              "3. almost done",
+              "4. just one more check",
+              "5. might as well add one more thing",
+              "6. wait, one more thing...",
+              "7. well, now one more time",
+              "8. should have stopped earlier"
+            ],
+            "cycle_punchline": "CONGRATULATIONS! YOU JUST RESTARTED THE CYCLE. YOU'RE WELCOME.",
+            "sometimes_i_whisper": [
+              "I am afraid of not having enough.",
+              "So I keep reaching.",
+              "Even after enough has already arrived."
+            ],
+            "where_i_hang_out": [
+              {
+                "place": "THE TO-DO LIST",
+                "note": "do | do more | perfect | again | again | again"
+              },
+              {
+                "place": "THE GOOD MARKS",
+                "note": "98% | 98.5% | 99% | ???"
+              },
+              {
+                "place": "THE OLD MISTAKES",
+                "note": "remember that time in class?"
+              },
+              {
+                "place": "THE COMPARISON",
+                "note": "RIA 100 | ARJUN 99 | YOU 87 | ?? ??"
+              }
+            ],
+            "tools_i_use": [
+              {
+                "tool": "what if..."
+              },
+              {
+                "tool": "just one more"
+              },
+              {
+                "tool": "not enough"
+              },
+              {
+                "tool": "let me go back"
+              },
+              {
+                "tool": "almost isn't enough"
+              }
+            ],
+            "but_now_i_know_this": [
+              "Not every return is wisdom.",
+              "Not every more is needed.",
+              "Sometimes enough is already here."
+            ],
+            "work_in_progress": "ENOUGH IS A FULL STOP. (I just hate full stops.)"
+          }
+        ]
+      },
+      "voice_rules": {
+        "first_person_only": true,
+        "humor": "Dry, self-aware, slightly mischievous",
+        "tone_ends_with": "Growth - the 'But now I know' box turns the demon's lesson outward",
+        "avoid": [
+          "preachy",
+          "babyish",
+          "moralistic",
+          "corporate self-help"
+        ]
+      },
+      "palette_lock": {
+        "paper": "#F2E5C8",
+        "ink": "#1D1A16",
+        "faded_ink": "#4B4135",
+        "red_emphasis": "#A63A2B",
+        "orange_accent": "#D96C2C"
+      }
+    },
+    "devi_magazine": {
+      "schema_name": "Devi Kibookal Magazine System",
+      "version": "1.0",
+      "description": "32-page A5 children's magazine about Durga, the nine Navadurga forms, Navratri, and parallel goddess figures (Sekhmet, Benzaiten). 74 illustrations + 6 character reference sheets across 3 visual registers.",
+      "visual_registers": {
+        "R1_story_world": {
+          "name": "Story World",
+          "description": "Warm ink-sketch with watercolour wash. Real Indian places, real children.",
+          "used_for": [
+            "Buffalo story (pp.2-9)",
+            "Real Women (pp.26-27)",
+            "Night Before (pp.24-25)",
+            "Last Page (p.32)"
+          ]
+        },
+        "R2_goddess_world": {
+          "name": "Goddess World",
+          "description": "Indian classical miniature meets contemporary illustration. Rich jewel colours, Pahari school influence.",
+          "used_for": [
+            "All goddesses: Durga, Navadurga, Sekhmet, Benzaiten, Shakti Tree"
+          ]
+        },
+        "R3_design_world": {
+          "name": "Design World",
+          "description": "Bold, graphic, folk-art pattern language. High contrast.",
+          "used_for": [
+            "Mahishasura pages",
+            "Your Devi arch",
+            "toran-making",
+            "design activities"
+          ]
+        }
+      },
+      "recurring_characters": {
+        "CR1_cat": {
+          "name": "The Cat",
+          "appearance": "Medium black cat with white chest patch and white paw tips. Long tail, usually curled at the tip. Green-gold eyes, always slightly narrowed.",
+          "expression": "Calm, observant, slightly smug.",
+          "role": "Corner presence, never dominating. Wears a small ankh ONLY on the Sekhmet pages.",
+          "speech_style": "Hand-drawn oval, small calm font, never exclamation marks."
+        },
+        "CR2_mini_mahishasura": {
+          "name": "Mini Mahishasura",
+          "appearance": "Miniature buffalo demon, only 8-10cm tall. Small askew horns, dark blue-grey skin, tiny tail and hooves, perpetually annoyed eyes.",
+          "expression": "Grumpy and put-upon. Softens to grudging respect from page 26 onward.",
+          "role": "Comic relief in margins. Arms crossed or pointing indignantly.",
+          "speech_style": "Slightly jagged bubble edges. Text bolder than the cat's."
+        },
+        "CR3_buffalo": {
+          "name": "The Buffalo",
+          "appearance": "Large Indian water buffalo. Realistic but with large, liquid, slightly bewildered eyes. Dark grey-black coat. Large curved horns.",
+          "expression": "Permanently mildly offended, confused about how he ended up here.",
+          "role": "Always slightly too large for wherever he has appeared. Never running.",
+          "speech_style": "Simple oval. Short sentences."
+        },
+        "CR4_tiny_rishi": {
+          "name": "The Tiny Rishi",
+          "appearance": "Very old, very small man. White dhoti, no shirt, rudraksha beads. Long white beard nearly as long as he is tall.",
+          "expression": "Perpetually mid-thought.",
+          "role": "Usually seated cross-legged, finger raised about to make a point.",
+          "speech_style": "Round, gentle bubbles. Smaller font."
+        },
+        "CR5_peas": {
+          "name": "The Peas",
+          "appearance": "Three small bright-green round peas. Each has a tiny face. No limbs.",
+          "personalities": "Pea 1 - spokesperson; Pea 2 - agreeable; Pea 3 - philosophical.",
+          "rule": "ALWAYS appear in three.",
+          "speech_style": "Three separate small bubbles in sequence. Last bubble ends with 'SNAP.'"
+        },
+        "CR6_rudrani": {
+          "name": "Rudrani (the protagonist)",
+          "appearance": "Indian girl, ~10 years old. Warm brown skin, dark eyes, hair in two plaits - neat but not perfect, one slightly shorter. School uniform.",
+          "expression": "Serious, observant. NOT cute in a generic way.",
+          "body_language": "Still more than she moves. Purposeful.",
+          "role": "Story protagonist (pages 2-9 and page 32)."
+        }
+      },
+      "three_layer_prompt_structure": {
+        "foundation": "Style register + paper texture + line quality + palette family",
+        "register": "Specific register language (R1/R2/R3) - which visual world",
+        "page_prompt": "The actual scene description for this single image",
+        "fights_against": "Generic AI defaults: stock-photo Indians, anime goddess faces, Pixar cuteness, corporate vector"
+      }
+    },
+    "visual_style_unified": {
+      "style_name": "Secret Notebook Visual System",
+      "version": "1.0.0",
+      "overall_feeling": [
+        "found artifact",
+        "secret sketchbook",
+        "creature field guide",
+        "slightly chaotic lab notes",
+        "handmade but designed",
+        "funny and a bit odd"
+      ],
+      "page_material": {
+        "background": "warm off-white notebook paper",
+        "texture": [
+          "subtle paper grain",
+          "light smudges",
+          "thumbprints",
+          "small ink stains",
+          "slight edge wear",
+          "optional punched holes or paperclip"
+        ],
+        "avoid": [
+          "pure white digital background",
+          "flat corporate vector surface",
+          "too much dirty grunge that reduces readability"
+        ]
+      },
+      "colour_palette": {
+        "base": {
+          "paper": "#F2E5C8",
+          "ink": "#1D1A16",
+          "faded_ink": "#4B4135"
+        },
+        "accents": {
+          "blue_pencil": "#1846A3",
+          "yellow_highlighter": "#F2C94C",
+          "orange_correction": "#D96C2C",
+          "red_stamp": "#A63A2B"
+        },
+        "usage_rules": [
+          "black ink carries drawings and most labels",
+          "blue pencil marks observations and underlines",
+          "yellow highlighter marks discoveries and key prompts",
+          "orange or red marks corrections, stamps, warnings, crossed-out guesses",
+          "do not colour every section differently"
+        ]
+      },
+      "line_style": {
+        "drawing": "hand-drawn black ink, slightly imperfect but clear",
+        "outline_weight": "medium to thick outer lines, lighter interior lines",
+        "arrows": "curved, irregular, hand-drawn, sometimes double-backed",
+        "labels": "small handwritten labels with arrows",
+        "avoid": [
+          "perfect vector uniformity",
+          "hyper-realistic shading",
+          "anime or commercial cartoon polish",
+          "over-rendered fantasy art"
+        ]
+      },
+      "typography": {
+        "principle": "Should feel hand-lettered but remain legible at A5.",
+        "title_style": "large hand-lettered uppercase or mixed case with uneven baseline",
+        "body_style": "simple handwritten print, readable, not messy",
+        "micro_label_style": "small handwritten notes, use sparingly",
+        "hierarchy": {
+          "notebook_title": "largest",
+          "case_title": "large and expressive",
+          "section_labels": "small uppercase with underline or highlight",
+          "notes": "small but legible",
+          "micro_labels": "smallest and optional"
+        },
+        "avoid": [
+          "generic worksheet font",
+          "overly cute kids font",
+          "perfect corporate sans-serif look",
+          "too many type styles"
+        ]
+      },
+      "layout_behaviour": {
+        "structure": "asymmetric but balanced",
+        "containers": [
+          "taped scraps",
+          "torn note pieces",
+          "loose annotation clusters",
+          "stamp-like labels",
+          "irregular sketch patches"
+        ],
+        "avoid_containers": [
+          "clean rectangular boxes",
+          "equal-width panels",
+          "numbered step boxes",
+          "radio-button grids",
+          "large worksheet blanks"
+        ],
+        "recommended_composition": {
+          "ordinary_object": "left side or upper left",
+          "wrong_parts": "central scrap or nearby parts cloud",
+          "final_creature": "right side or central hero",
+          "strange_switch": "mid-lower recurring scrap",
+          "unsolved_case": "bottom taped scrap",
+          "footer_rule": "bottom edge"
+        }
+      },
+      "illustration_rules": {
+        "object_visibility": "The original object must remain recognizable in the final creature.",
+        "creature_style": [
+          "funny",
+          "slightly odd",
+          "achievable",
+          "not too polished",
+          "object-creature hybrid rather than generic animal"
+        ],
+        "transformation_rules": [
+          "one object part becomes a body part",
+          "one unrelated part changes the creature's story",
+          "one feature becomes the Strange Switch",
+          "the creature should have one visual joke",
+          "labels should reveal the thinking"
+        ],
+        "child_accessibility": [
+          "a child should believe they can draw a version",
+          "keep forms simple",
+          "avoid complex perspective",
+          "avoid professional shading",
+          "use 2D transformation"
+        ]
+      },
+      "density_rules": {
+        "target_density": "rich but breathable",
+        "maximum_micro_labels_on_creature": 6,
+        "recommended_micro_labels_on_creature": 4,
+        "maximum_wrong_parts": 10,
+        "recommended_wrong_parts": 8,
+        "maximum_lab_notes": 6,
+        "recommended_lab_notes": 4,
+        "minimum_child_sketch_space": "meaningful enough for a small first sighting, not decorative only"
+      }
+    },
+    "voice_unified": {
+      "voice_name": "Kibookal Creature Notebook Voice",
+      "version": "1.0.0",
+      "voice_attributes": {
+        "witty": {
+          "we_are": "clever, dry, surprising and specific",
+          "we_are_not": "generic, motivational, loud or try-hard",
+          "sounds_like": "plug-tail, unsafe but dramatic",
+          "does_not_sound_like": "Wow, what an awesome tail!"
+        },
+        "odd": {
+          "we_are": "comfortable with strange combinations and slightly weird logic",
+          "we_are_not": "random for no reason or confusing",
+          "sounds_like": "one sock, why not",
+          "does_not_sound_like": "Add any object part to make it cool."
+        },
+        "secretive": {
+          "we_are": "like a found notebook, lab note or case file",
+          "we_are_not": "like a classroom instruction sheet",
+          "sounds_like": "If found, add one creature and return secretly.",
+          "does_not_sound_like": "Complete the following activity."
+        },
+        "permission_giving": {
+          "we_are": "removing pressure without babying the child",
+          "we_are_not": "over-praising or infantilizing",
+          "sounds_like": "Draw the first sighting. Not the final masterpiece.",
+          "does_not_sound_like": "Great job! You are a superstar artist!"
+        },
+        "observational": {
+          "we_are": "teaching children to notice hidden possibilities in form",
+          "we_are_not": "lecturing or explaining too much",
+          "sounds_like": "clip wanted to become an ear or fin",
+          "does_not_sound_like": "Observe the functional elements of this object."
+        }
+      },
+      "tone_rules": {
+        "use": [
+          "short funny labels",
+          "dry corrections",
+          "secret notes",
+          "case-file language",
+          "specific object-part jokes",
+          "slightly suspicious wording"
+        ],
+        "avoid": [
+          "Great job!",
+          "Wow!",
+          "Awesome!",
+          "Super cool!",
+          "You are a star!",
+          "Let's learn!",
+          "Follow the steps!",
+          "Complete this worksheet!",
+          "Design your character here!"
+        ]
+      },
+      "phrase_bank": {
+        "secret_notes": [
+          "If found, add one creature and return secretly.",
+          "Found in the Seeing Lab.",
+          "Do not draw perfectly. It attracts boring ideas.",
+          "This page may contain suspicious decisions.",
+          "Return before the creature notices."
+        ],
+        "permission_lines": [
+          "Draw the first sighting. Not the final masterpiece.",
+          "If it looks wrong, wait 3 seconds.",
+          "Wrong is usually the door.",
+          "Keep some of the object showing.",
+          "The weird bit may go anywhere.",
+          "Do not wait for a good idea. Attach something and investigate."
+        ],
+        "correction_lines": [
+          "Correction: [creature_name]. Obviously.",
+          "No. Worse. Better.",
+          "First guess rejected by the notebook.",
+          "The object disagreed.",
+          "Reclassified after suspicious behaviour."
+        ],
+        "funny_label_fragments": [
+          "unsafe but dramatic",
+          "added without permission",
+          "cannot fly, still tries",
+          "very proud",
+          "hears everything",
+          "hears pocket gossip",
+          "steals sleeves",
+          "catches tiny ideas",
+          "thinks it is official",
+          "holds secrets",
+          "pretending not to be a tail",
+          "absolutely not normal",
+          "questionable choices",
+          "tiny boss",
+          "one very small crime",
+          "elderly menace",
+          "suspiciously awake",
+          "emotionally complicated",
+          "illegal but effective"
+        ],
+        "footer_rules": [
+          "Kibookal rule: Ordinary things are only ordinary until someone stares at them strangely.",
+          "Kibookal rule: If you can see it differently, you can make it differently.",
+          "Kibookal rule: Wrong parts make better stories.",
+          "Kibookal rule: The first version is the doorway.",
+          "Kibookal rule: A creature is just an object with suspicious decisions.",
+          "Kibookal rule: Small part, big trouble."
+        ]
+      },
+      "copy_patterns": {
+        "suspicious_clue": "[object_part] looked like [creature_part_or_story_hint]",
+        "object_part_desire": "[object_part] wanted to become [new_role]",
+        "pretending_line": "[object_part] was clearly [new_role] pretending not to be",
+        "strange_switch_principle": "[feature_plural] are [funny_definition]. Put them where they should not be.",
+        "first_guess_correction": {
+          "first_guess": "First guess: [wrong_creature_name]",
+          "correction": "Correction: [final_creature_name]. Obviously."
+        }
+      },
+      "humour_calibration": {
+        "too_babyish": [
+          "happy little dragon",
+          "super fun friend",
+          "great job",
+          "cute creature"
+        ],
+        "too_adult": [
+          "sarcastic cynicism",
+          "dark humour",
+          "violent threats",
+          "complex satire"
+        ],
+        "just_right": [
+          "tiny boss",
+          "cannot fly, still tries",
+          "one sock, why not",
+          "plug-tail, unsafe but dramatic",
+          "the handle knows things"
+        ]
+      }
+    },
+    "quality_control": {
+      "quality_system_name": "Kibookal Creature-Maker Notebook QA",
+      "version": "1.0.0",
+      "pass_fail_rules": {
+        "must_pass": [
+          {
+            "id": "not_worksheet",
+            "rule": "The page must not look like a worksheet.",
+            "fail_signs": [
+              "clean rectangular boxes",
+              "radio buttons",
+              "numbered step panels",
+              "large blank activity rectangle",
+              "generic classroom layout"
+            ]
+          },
+          {
+            "id": "object_visible",
+            "rule": "The original object must remain visible in the final creature.",
+            "fail_signs": [
+              "final creature looks generic",
+              "object is hidden or unrecognizable",
+              "object parts are not labelled or transformed"
+            ]
+          },
+          {
+            "id": "solved_and_unsolved",
+            "rule": "Page must include one solved case and one unsolved case.",
+            "fail_signs": [
+              "only a completed example",
+              "only a blank activity",
+              "child area missing",
+              "example missing"
+            ]
+          },
+          {
+            "id": "strange_switch_rotates",
+            "rule": "Today's Strange Switch must be specific and not default to eyes unless intended.",
+            "fail_signs": [
+              "eye chart appears on every page",
+              "Strange Switch missing",
+              "feature not connected to case",
+              "no micro-experiments"
+            ]
+          },
+          {
+            "id": "age_fit",
+            "rule": "Tone must fit ages 9-13: witty, odd, not babyish.",
+            "fail_signs": [
+              "Great job",
+              "Wow",
+              "Awesome",
+              "super cute",
+              "teacherly instructions",
+              "too much preschool energy"
+            ]
+          },
+          {
+            "id": "first_version_permission",
+            "rule": "The page must reduce performance pressure.",
+            "fail_signs": [
+              "emphasis on final masterpiece",
+              "polished intimidating example",
+              "no permission line",
+              "child sketch area feels like assessment"
+            ]
+          }
+        ]
+      },
+      "scoring_rubric": {
+        "scale": "0-5",
+        "dimensions": [
+          {
+            "name": "secret_notebook_feeling",
+            "score_0": "Looks like a standard worksheet.",
+            "score_3": "Some notebook elements but still gridded.",
+            "score_5": "Feels like a found secret case-file page."
+          },
+          {
+            "name": "object_transformation_clarity",
+            "score_0": "Transformation unclear or generic.",
+            "score_3": "Object and creature both visible but weakly connected.",
+            "score_5": "Object parts clearly become creature parts with delightful labels."
+          },
+          {
+            "name": "strange_switch_strength",
+            "score_0": "No Strange Switch or default eye gimmick.",
+            "score_3": "Switch exists but feels generic.",
+            "score_5": "Switch is specific, funny, and changes the creature logic."
+          },
+          {
+            "name": "humour_and_voice",
+            "score_0": "Flat, generic, babyish, or teacherly.",
+            "score_3": "Some funny labels but inconsistent.",
+            "score_5": "Dry, witty, odd, specific, and age-appropriate."
+          },
+          {
+            "name": "child_invitation",
+            "score_0": "No useful space for child participation.",
+            "score_3": "Child area exists but feels like a form.",
+            "score_5": "Unsolved case feels inviting, secret, and low-pressure."
+          },
+          {
+            "name": "a5_legibility",
+            "score_0": "Too dense or unreadable.",
+            "score_3": "Readable but slightly crowded.",
+            "score_5": "Rich but breathable at A5."
+          },
+          {
+            "name": "collectibility",
+            "score_0": "Does not feel like part of a series.",
+            "score_3": "Series elements present but weak.",
+            "score_5": "Feels like a collectible page children would want to gather."
+          }
+        ],
+        "minimum_acceptance": {
+          "overall_average": 4,
+          "no_dimension_below": 3,
+          "must_pass_all_pass_fail_rules": true
+        }
+      },
+      "revision_rules": {
+        "if_too_worksheet_like": [
+          "remove clean boxes",
+          "replace grids with scraps or loose clusters",
+          "remove radio buttons",
+          "add taped notes and irregular arrows",
+          "make headers feel hand-lettered"
+        ],
+        "if_too_dense": [
+          "remove optional More Wrong Stuff",
+          "cut lab notes to 3",
+          "reduce creature labels to 4",
+          "increase blank space around final creature",
+          "make child sketch space larger"
+        ],
+        "if_too_babyish": [
+          "remove cute praise",
+          "reduce stars and smiley marks",
+          "make humour drier",
+          "use case-file language",
+          "make creature slightly stranger"
+        ],
+        "if_strange_switch_weak": [
+          "choose a feature more specific to the object",
+          "make the feature alter movement, mood, or story",
+          "write 5 stronger micro-experiments",
+          "avoid eyes unless they are truly the point",
+          "give the switch a funny principle sentence"
+        ],
+        "if_object_disappears": [
+          "restore original object's main silhouette",
+          "label 3 original object parts",
+          "use attachments instead of total redesign",
+          "show started-as object more clearly",
+          "make final creature a hybrid, not a replacement"
+        ],
+        "if_child_area_feels_like_form": [
+          "make it a taped scrap",
+          "rename it Unsolved Case",
+          "add secret-notebook corner notes",
+          "reduce field count if needed",
+          "use irregular sketch patch"
+        ]
+      },
+      "final_review_questions": [
+        "Would a 10-year-old want to keep this page?",
+        "Does it feel like a secret notebook, not school?",
+        "Can the child understand the method by looking at the solved case?",
+        "Is the Strange Switch different from the last page?",
+        "Is the original object still visible in the creature?",
+        "Are the funniest labels specific to this object?",
+        "Is there enough space for the child to make a first sighting?",
+        "Does the page avoid perfect-art pressure?"
+      ],
+      "red_flags": [
+        "The page says 'Your turn' too loudly.",
+        "The solved creature looks like professional fantasy illustration.",
+        "The child area is a giant blank box.",
+        "The same eye section appears again.",
+        "The object is merely replaced by an animal.",
+        "The humour could apply to any object.",
+        "The page is so dense that A5 print becomes tiring.",
+        "The tone praises instead of conspiring."
+      ]
+    }
+  },
+  "case_registry": [
+    {
+      "id": "case_01_kettle_dragon",
+      "mode": "creature_maker",
+      "title": "The Kettle Dragon"
+    },
+    {
+      "id": "case_02_pen_serpent",
+      "mode": "creature_maker",
+      "title": "The Pen Serpent"
+    },
+    {
+      "id": "case_03_shoe_racer",
+      "mode": "creature_maker",
+      "title": "The Shoe Racer"
+    },
+    {
+      "id": "case_04_umbrella_bat",
+      "mode": "creature_maker",
+      "title": "The Umbrella Bat"
+    },
+    {
+      "id": "case_05_bottle_forest_guard",
+      "mode": "creature_maker",
+      "title": "The Bottle Forest Guard"
+    },
+    {
+      "id": "case_06_clock_beast",
+      "mode": "creature_maker",
+      "title": "The Clock Beast"
+    },
+    {
+      "id": "case_07_pencil_case_crocodile",
+      "mode": "creature_maker",
+      "title": "The Pencil Case Crocodile"
+    },
+    {
+      "id": "case_08_mug_octopus",
+      "mode": "creature_maker",
+      "title": "The Mug Octopus"
+    },
+    {
+      "id": "case_09_backpack_beetle",
+      "mode": "creature_maker",
+      "title": "The Backpack Beetle"
+    },
+    {
+      "id": "case_10_spoon_wizard",
+      "mode": "creature_maker",
+      "title": "The Spoon Wizard"
+    },
+    {
+      "id": "asura_01_mahishasura",
+      "mode": "asura_internal_monster",
+      "title": "Mahishasura"
+    },
+    {
+      "id": "asura_02_raktabija",
+      "mode": "asura_internal_monster",
+      "title": "Raktabija"
+    },
+    {
+      "id": "asura_03_kumbhakarna",
+      "mode": "asura_internal_monster",
+      "title": "Kumbhakarna"
+    },
+    {
+      "id": "asura_04_nishumbha",
+      "mode": "asura_internal_monster",
+      "title": "Nishumbha"
+    }
+  ],
+  "output_specs": {
+    "page_format": "A5 vertical portrait",
+    "target_render_px": "1748 x 2480",
+    "aspect_ratio": "3:4"
+  }
+}

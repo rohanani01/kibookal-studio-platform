@@ -1,0 +1,46 @@
+{
+  "style_id": "KBS023",
+  "name": "Sacred Ecological Living Archive Dossier",
+  "zip_source": "more styles.zip / Sacred Ecological Living Archive Dossier (4 curated inspiration refs)",
+  "best_for": [
+    "deity dossiers",
+    "asura psychology",
+    "creature field pages",
+    "learning pages"
+  ],
+  "composition": "Vertical parchment/orange page; top archive header; central living totem 45-60%; side note cards; bottom taxonomy strip; vines, birds, stamps in margins.",
+  "visual_traits": [
+    "warm cream/orange paper",
+    "archival boxes",
+    "field notes",
+    "botanical frames",
+    "central living totem",
+    "child-investigator mystery",
+    "flat spot colours",
+    "handmade manuscript line"
+  ],
+  "prompt_core": "Create a vertical Kibookal Living Archive Dossier page on warm cream (or vivid orange) paper. At the centre place [SUBJECT] as a dignified living totem being decoded - emotionally intelligent, hand-inked, surrounded by an alive archive of blank field cards, specimen boxes, ritual tools, ecological tokens, vines, birds, insects, red-thread paths and a sacred stabilising halo. Use dark brown-black contours, dense controlled internal hatching, flat spot colours in kumkum red, saffron, turmeric, neem green, peacock teal, lotus pink and ochre gold. Keep face, eyes, hands and silhouette very clear. The page should feel discovered by a child-investigator inside an ancient-future Indian civilisation.",
+  "negative": "no glossy fantasy, no corporate infographic, no photoreal skin, no modern UI, no exact reference copy, no clutter over face, no generated body text unless text_mode demands it",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS023/kbs023__corrected__ref001.png",
+    "refs/kbs_refs/KBS023/kbs023__corrected__ref002.png",
+    "refs/kbs_refs/KBS023/kbs023__corrected__ref003.png"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "warm cream/orange paper",
+    "linework": "archival boxes",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "handmade manuscript line",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  },
+  "_ref_note": "Refs corrected 2026-06-15: replaced mismatched cartoon-buffalo refs with verified on-style dossier renders."
+}

@@ -1,0 +1,48 @@
+{
+  "style_id": "KBS039",
+  "name": "Kibookal Illustrated Diary",
+  "zip_source": "devi kibookal mockup (hand-drawn journal pages)",
+  "best_for": [
+    "personal diary pages",
+    "travel-journal entries",
+    "kids illustrated journal",
+    "doodle + sketch pages",
+    "first-person story pages"
+  ],
+  "composition": "A warm kraft/cream hand-drawn personal-diary page: a big hand-lettered title, a flowing handwritten first-person entry, a central or corner pencil-and-light-watercolour sketch with callout annotations, scattered marginal doodles with tiny captions, and a what-if musing cluster. Intimate, imperfect, hand-made.",
+  "visual_traits": [
+    "warm kraft / cream journal paper",
+    "kid hand-lettering and handwriting",
+    "pencil + light watercolour doodles",
+    "callout arrows and handwritten annotations",
+    "scattered marginal sketches of small objects and creatures",
+    "big hand-lettered titles",
+    "intimate, loose, imperfect, personal"
+  ],
+  "prompt_core": "Create a Kibookal illustrated DIARY page about [SUBJECT] on warm kraft/cream paper as an 11-year-old child-s hand-drawn personal journal: a flowing first-person HANDWRITTEN entry, a central or corner pencil-and-light-watercolour SKETCH that illustrates the entry with small callout annotations and curved arrows, scattered MARGINAL DOODLES of little objects and creatures with tiny handwritten captions, a big hand-lettered title or date, and a few what-if musings. Intimate, warm, loose and imperfect; readable child handwriting; an authentic personal diary - NEVER a clean printed magazine, NEVER polished vector, NEVER an activity worksheet.",
+  "negative": "no printed magazine layout, no clean vector, no polished activity spread, no glossy 3D, no photoreal, no phone UI, no instagram, no page-label, no white office-paper border, no corporate infographic, no exact reference copy",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / ENTRY fully as a hand-drawn personal diary page in THIS exact style. Keep the entry-s meaning and any named people/creatures recognizable, but the medium, kraft paper, handwriting, doodle sketches, annotations and finish are 100 percent this style. Any subject becomes a child-s diary page - adapt it INTO the diary, never bend the diary toward a polished look.",
+  "style_lock": {
+    "medium": "pencil + light watercolour + ink on kraft paper",
+    "linework": "loose hand-drawn doodle and handwriting",
+    "palette": "warm kraft/cream, pencil grey, muted watercolour accents",
+    "texture": "kraft journal paper",
+    "finish": "personal hand-drawn diary",
+    "character_rule": "Render the entry as a child-s hand-drawn diary page; people/creatures recognizable, medium and handwriting 100 percent this style.",
+    "consistency": [
+      "Match the built-in refs for kraft paper, handwriting, doodle linework and warmth.",
+      "Same hand and paper on every diary page.",
+      "Intimate and imperfect - never a clean printed magazine."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS039/kbs039__diary__ref001.jpeg",
+    "refs/kbs_refs/KBS039/kbs039__diary__ref002.jpeg",
+    "refs/kbs_refs/KBS039/kbs039__diary__ref003.jpeg",
+    "refs/kbs_refs/KBS039/kbs039__diary__ref004.jpeg",
+    "refs/kbs_refs/KBS039/kbs039__diary__ref005.jpeg",
+    "refs/kbs_refs/KBS039/kbs039__diary__ref006.jpeg",
+    "refs/kbs_refs/KBS039/kbs039__diary__ref007.jpeg"
+  ]
+}

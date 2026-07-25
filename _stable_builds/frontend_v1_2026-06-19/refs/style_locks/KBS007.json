@@ -1,0 +1,42 @@
+{
+  "style_id": "KBS007",
+  "name": "Naive Bold Children's Book Cutout",
+  "zip_source": "07_inspiration__only-three-images__10Jun-0805",
+  "best_for": [
+    "younger activities",
+    "simple covers",
+    "funny character pages",
+    "emotional lessons"
+  ],
+  "composition": "Flat poster or spread with large simple forms, cheerful asymmetry, bold shape language, playful decorative text areas optional.",
+  "visual_traits": [
+    "naive flat shapes",
+    "bright simple colours",
+    "rough hand lettering areas",
+    "childlike geometry",
+    "low detail but high personality"
+  ],
+  "prompt_core": "Create an original Kibookal naive bold children's-book illustration of [SUBJECT]. Use simple flat cutout-like shapes, playful proportions, chunky hand-drawn outlines, bright limited colours, big readable gestures and lots of charm. Keep details minimal and expressive. Add simple flowers, birds or pattern blocks as accents. Make it feel handmade, funny and emotionally clear.",
+  "negative": "no polished animation look, no photorealism, no complex rendering, no scary mood",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS007/IMG-20260610-WA0114.jpg",
+    "refs/kbs_refs/KBS007/IMG-20260610-WA0162.jpg",
+    "refs/kbs_refs/KBS007/IMG-20260610-WA0175.jpg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "naive flat shapes",
+    "linework": "bright simple colours",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "low detail but high personality",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

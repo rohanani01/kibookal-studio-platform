@@ -1,0 +1,54 @@
+{
+  "style_id": "KBS026",
+  "name": "Kibookal Creepy-Cute Handmade Object Monster Style",
+  "best_for": [
+    "object-monster character sheets",
+    "spooky-cute creature pages",
+    "Halloween-friendly activity art",
+    "handmade monster worlds",
+    "kids' creature collectibles"
+  ],
+  "composition": "Single hero object-monster centred on warm paper, caught mid-pose like a specimen; a few small annotations or arrows; loose margins; the original object always readable inside the monster.",
+  "visual_traits": [
+    "handmade gouache + ink texture",
+    "ordinary object turned into a cute-creepy monster",
+    "oversized expressive eyes",
+    "slightly wonky charming construction",
+    "visible brush/paper grain",
+    "muted palette with one pop accent",
+    "friendly-spooky never gory",
+    "child-drawable wobble"
+  ],
+  "style_palette": "Warm cream/kraft paper grounds; muted slate, moss, dusty plum, ink black; ONE bright pop accent (candy red, acid green or tangerine). Flat-ish gouache, soft shadow only.",
+  "prompt_core": "Create a handmade Kibookal creepy-cute object-monster of [SUBJECT]: take the object/subject and turn it INTO a lovable cute-creepy little monster — you can still read the original object in every part. Painted in gouache and ink on warm paper with visible brush texture and paper grain; oversized expressive eyes, a slightly wonky hand-made construction, friendly-spooky personality (Halloween-cute, never gory). Muted palette with one bright pop accent. It should feel handmade, collectible and child-drawable — discovered, not slickly designed.",
+  "negative": "no photoreal, no glossy 3D, no horror gore, no sharp corporate vector, no neon overload, no realistic faces, no clean digital perfection",
+  "ref_from": "KBS005 - Creature-Maker's Field-Journal Notebook",
+  "self_contained": true,
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "zip_source": "Authored from style name + Kibookal documents (world-class JSON), built into engine 2026-06-11",
+  "style_lock": {
+    "medium": "handmade gouache + ink texture",
+    "linework": "ordinary object turned into a cute-creepy monster",
+    "palette": "Warm cream/kraft paper grounds; muted slate, moss, dusty plum, ink black; ONE bright pop accent (candy red, acid green or tangerine). Flat-ish gouache, soft shadow only.",
+    "texture": "see visual_traits",
+    "finish": "child-drawable wobble",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS026/kbs026_ref001.jpeg",
+    "refs/kbs_refs/KBS026/kbs026_ref008.jpeg",
+    "refs/kbs_refs/KBS026/kbs026_ref015.jpeg",
+    "refs/kbs_refs/KBS026/kbs026_ref022.jpeg",
+    "refs/kbs_refs/KBS026/kbs026_ref029.jpeg",
+    "refs/kbs_refs/KBS026/kbs026_ref036.jpeg",
+    "refs/kbs_refs/KBS026/kbs026_ref043.jpeg",
+    "refs/kbs_refs/KBS026/kbs026_ref050.jpeg"
+  ]
+}

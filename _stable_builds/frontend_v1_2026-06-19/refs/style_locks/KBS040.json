@@ -1,0 +1,53 @@
+{
+  "style_id": "KBS040",
+  "name": "Trigun Mystery Archive",
+  "zip_source": "Trigun: Balance of the Universe (interactive mystery kit reference PDFs)",
+  "best_for": [
+    "interactive story-puzzle kits",
+    "clue letters, ciphers and puzzle sheets",
+    "vintage maps, blueprints and postcards",
+    "graphic-novel mystery pages",
+    "richly annotated character cards",
+    "Indian mythological detective kits"
+  ],
+  "composition": "An ancient Indian mystery-archive page: warm aged parchment, fine ink line drawing, vintage postcard and survey-map textures, ornate Rajasthani haveli detail, typewriter and handwritten clue notes, stamped postmarks and wax seals, blueprint and cipher sheets, all framed by fine red/ochre rule borders. Premium, mysterious, tactile, Indian, printable and kid-friendly.",
+  "visual_traits": [
+    "warm aged parchment / cream archival paper",
+    "fine sepia-and-ink line drawing",
+    "vintage postcard + antique survey-map textures",
+    "ornate Rajasthani haveli, jharokha and carved-door detail",
+    "typewriter and handwritten clue notes",
+    "postmarks, vintage stamps, wax seals",
+    "fine red / ochre double-rule borders and corner flourishes",
+    "muted antique palette with one guna accent colour per piece",
+    "premium, mysterious, tactile, kid-friendly"
+  ],
+  "prompt_core": "Render [SUBJECT] as a page from an ancient Indian mystery archive: warm aged parchment or cream archival paper FILLING THE WHOLE PAGE edge to edge (never a plain white or blank ground), fine sepia ink line drawing, vintage postcard and antique survey-map textures, ornate Rajasthani haveli and carved detail where relevant, typewriter or neat handwritten notes, stamped postmarks, vintage stamps and wax seals, framed by a fine red/ochre double-rule border with small corner flourishes; a muted antique palette lifted by a single guna accent colour (warm red for Rajas, deep blue for Tamas, green for Sattva). Typography: titles and names in an engraved high-contrast serif small-caps (Trajan / Cinzel style), body and captions in a classic old-style book serif (Garamond / Caslon style), typed clue documents in typewriter monospace (Courier style), handwritten notes in neat ink handwriting. Premium, mysterious, tactile and Indian, yet clear and kid-friendly for ages 11-13 - a real collectible clue-kit page, NEVER a glossy modern infographic, NEVER flat vector clipart, NEVER a phone UI, NEVER a plain white background.",
+  "negative": "no glossy modern infographic, no flat vector clipart, no neon, no phone/app UI, no 3D render, no photoreal stock photo, no anime, no clean corporate brochure, no white office-paper border, no plain white or blank background, no modern sans-serif font, no page-label, no exact reference copy",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT fully in THIS ancient-mystery-archive look: parchment, ink line, vintage map/postcard textures, ornate Indian detail, clue-kit framing and a single guna accent. Keep any named character recognizable to the attached character references (same face, hair, costume, colour), but the medium, paper, textures, borders and finish are 100 percent this style. Any page type - cover, letter, map, cipher, guna sheet, character card, puzzle piece - becomes a piece of this mystery archive.",
+  "style_lock": {
+    "medium": "sepia ink line + light wash on aged parchment, with vintage print and map textures",
+    "linework": "fine antiquarian ink line drawing, etched/engraved feel",
+    "palette": "warm parchment, sepia, ochre and ink, muted antique tones, with one guna accent (red Rajas / blue Tamas / green Sattva / yellow final)",
+    "texture": "aged parchment FILLING the page edge-to-edge (foxing, fibre, postcard grain), survey-map grid, wax-seal and postmark stamps — never a plain white or blank ground",
+    "finish": "premium collectible clue-kit page, flat and printable",
+    "typography": "Titles, names & cartouches: engraved high-contrast serif SMALL-CAPS (Trajan / Cinzel style) in warm sepia ink. Body, captions & annotations: classic old-style book serif (Garamond / Caslon style). Typed clue documents (letters, hint lists, ciphers): typewriter MONOSPACE (Courier / American Typewriter) on aged paper. Handwritten clue notes: neat ink handwriting. NEVER a modern sans-serif.",
+    "character_rule": "Characters match their attached reference cards exactly (face, hair, costume, signature colour); only the medium becomes this archive style.",
+    "consistency": [
+      "Same warm parchment, sepia ink and red/ochre rule border across every page of the kit.",
+      "One guna accent colour per piece signals its guna (red/blue/green/yellow).",
+      "Postmarks, stamps, wax seals and corner flourishes recur as the kit-s signature furniture.",
+      "Premium, mysterious, tactile, Indian - never glossy-modern, never vector clipart."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/trigun_refs/postcard_haveli_01.png",
+    "refs/trigun_refs/map_desert_jaisalmer.png",
+    "refs/trigun_refs/sheet_guna_balance.png",
+    "refs/trigun_refs/letter_mara_mocking.png",
+    "refs/trigun_refs/blueprint_bhangarh_fort.png",
+    "refs/trigun_refs/sheet_pigpen_cipher.png",
+    "refs/trigun_refs/card_ekta.png"
+  ]
+}

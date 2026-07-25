@@ -1,0 +1,2832 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kibookal Studio · v7 — Devkathas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@500;600;700&family=Caveat:wght@500;700&family=JetBrains+Mono:wght@300;400&family=Cormorant+Garamond:wght@400;600;700&family=Patrick+Hand&family=Bangers&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.7.1/mammoth.browser.min.js"></script>
+<script type="module">
+  import * as pdfjs from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
+  pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
+  window.__pdfjs = pdfjs;
+</script>
+<script type="module" src="https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<style>
+  body.exporting .comic-chrome { display: none !important; }
+  body.exporting .mag-chrome { display: none !important; }
+</style>
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">Kibookal <span>Studio</span><sup>v7</sup></div>
+  <nav class="tabs">
+    <button class="tab active" data-view="studio">Studio</button>
+    <button class="tab" data-view="characters">Characters</button>
+    <button class="tab" data-view="story">Story</button>
+    <button class="tab" data-view="comic">Comic</button>
+    <button class="tab" data-view="magazine">Magazine</button>
+    <button class="tab" data-view="stylelock">🎨 Style Lock</button>
+    <button class="tab" data-view="trigun">🧩 Trigun Kit</button>
+    <button class="tab" data-view="pageforge">📐 PageForge</button>
+    <button class="tab" data-view="typeset">🔤 Typeset</button>
+    <button class="tab" data-view="library">Library</button>
+    <button class="tab" data-view="batch">Batch</button>
+    <button class="tab" data-view="compose">Compose</button>
+    <button class="tab" data-view="upscale">Upscale</button>
+    <button class="tab" data-view="lab3d">3D Lab</button>
+    <button class="tab" data-view="animate">Animate</button>
+    <button class="tab" data-view="lookdev">Look Dev</button>
+    <button class="tab" data-view="n8n">n8n</button>
+    <button class="tab" data-view="memory">Memory</button>
+  </nav>
+  <div class="mode-switch" id="modeSwitch" style="display:flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;height:30px;margin-right:6px;">
+    <button class="ms-btn active" data-mode="2d" style="border:none;padding:6px 14px;font-size:11px;font-weight:600;letter-spacing:0.1em;background:var(--saffron);color:white;cursor:pointer;">2D</button>
+    <button class="ms-btn" data-mode="3d" style="border:none;padding:6px 14px;font-size:11px;font-weight:600;letter-spacing:0.1em;background:transparent;color:var(--ash);cursor:pointer;">3D</button>
+  </div>
+  <div class="topbar-actions">
+    <span class="provider-pill" id="providerPill">— provider —</span>
+    <button class="icon-btn" id="balancePill" title="fal.ai credits — click for breakdown" style="display:flex;align-items:center;gap:4px;padding:0 10px;font-family:'Cinzel',serif;font-size:12px;font-weight:600;letter-spacing:.05em;color:var(--green,#5a7a44);border:1px solid var(--green,#5a7a44);background:rgba(90,122,68,.06);min-width:64px;justify-content:center;">
+      <span style="font-size:11px;">💰</span><span id="balancePillAmount">$—</span>
+    </button>
+    <button class="icon-btn" id="themeToggle" title="Toggle day / night" aria-label="Toggle theme">🌙</button>
+    <button class="icon-btn" id="settingsToggle" title="Settings">⚙</button>
+  </div>
+</header>
+
+<main class="app">
+
+  <!-- ============== STUDIO ============== -->
+  <section class="view active" id="viewStudio">
+    <div class="studio">
+      <!-- LEFT RAIL -->
+      <div class="studio-rail">
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">Character <em id="charNameLabel">—</em></div>
+            <button class="btn sm ghost" id="goAddChar" title="Add a new character">+ new</button>
+          </div>
+          <div class="card-body">
+            <div class="char-strip" id="charStrip"></div>
+            <details class="det" id="charLockBlock">
+              <summary>Locked features</summary>
+              <div class="dbody" id="charLockBody"></div>
+            </details>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">Pose &amp; mood</div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Pose <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— pick a preset or type your own</em></label>
+              <select id="poseSelect"></select>
+              <input type="text" id="poseCustom" placeholder="Or type a custom pose (overrides the preset)…" style="margin-top:6px;">
+            </div>
+            <div class="field">
+              <label class="field-label">Scenario preset <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— pick or type below</em></label>
+              <select id="scenarioSelect"></select>
+              <input type="text" id="scenarioCustom" placeholder="Or type a custom scenario title…" style="margin-top:6px;">
+            </div>
+            <div class="field">
+              <label class="field-label">Scene description</label>
+              <textarea id="sceneField" placeholder="Where is the character? What's happening?"></textarea>
+            </div>
+            <div class="field">
+              <label class="field-label">Action override</label>
+              <textarea id="actionField" placeholder="Optional specific action — body language, gesture, mid-stride detail…"></textarea>
+            </div>
+            <div class="field">
+              <label class="field-label">Description / detailed notes <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— free text</em></label>
+              <textarea id="descField" placeholder="Anything extra: props in hand, time of day, weather, side-character cameo, exact dressing detail…"></textarea>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label class="field-label">Expression <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— or type below</em></label>
+                <select id="expressionSelect"></select>
+                <input type="text" id="expressionCustom" placeholder="custom expression…" style="margin-top:6px;">
+              </div>
+              <div class="field">
+                <label class="field-label">Facing <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— or type below</em></label>
+                <select id="facingSelect">
+                  <option value="">— inherit pose —</option>
+                  <option value="left">left</option>
+                  <option value="three_quarter_left">3/4 left</option>
+                  <option value="front">front</option>
+                  <option value="three_quarter_right">3/4 right</option>
+                  <option value="right">right</option>
+                  <option value="back">back</option>
+                  <option value="three_quarter_back">3/4 back</option>
+                  <option value="top_down">top-down</option>
+                  <option value="low_angle">low angle</option>
+                  <option value="high_angle">high angle</option>
+                </select>
+                <input type="text" id="facingCustom" placeholder="custom facing…" style="margin-top:6px;">
+              </div>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle" id="switchToggle"></div>
+              <label id="switchLabel">strange switch</label>
+            </div>
+            <div class="field" id="switchEffectWrap" style="display:none;margin-top:6px;">
+              <label class="field-label">Switch effect</label>
+              <textarea id="switchEffectField" placeholder="tiny flame, sparks, dust trail…"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">Placement</div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Canvas</label>
+              <div class="pills" id="canvasPills">
+                <div class="pill active" data-canvas="3:4">3:4</div>
+                <div class="pill" data-canvas="1:1">1:1</div>
+                <div class="pill" data-canvas="4:5">4:5</div>
+                <div class="pill" data-canvas="A5">A5</div>
+                <div class="pill" data-canvas="16:9">16:9</div>
+                <div class="pill" data-canvas="9:16">9:16</div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">Background</label>
+              <div class="pills" id="bgPills">
+                <div class="pill active" data-bg="white">white</div>
+                <div class="pill" data-bg="warm">warm paper</div>
+                <div class="pill" data-bg="reference_sheet">reference sheet</div>
+                <div class="pill" data-bg="custom">custom</div>
+              </div>
+              <input type="text" id="bgCustom" placeholder="custom background description…" style="margin-top:6px;display:none;">
+            </div>
+            <div class="field-row" style="grid-template-columns:auto 1fr;align-items:start;">
+              <div>
+                <label class="field-label">Position</label>
+                <div class="pos-grid" id="posGrid"></div>
+              </div>
+              <div>
+                <label class="field-label">Scale</label>
+                <div class="pills" id="scalePills" style="flex-direction:column;align-items:flex-start;">
+                  <div class="pill" data-scale="tiny">tiny</div>
+                  <div class="pill" data-scale="small">small</div>
+                  <div class="pill" data-scale="medium">medium</div>
+                  <div class="pill" data-scale="large">large</div>
+                  <div class="pill active" data-scale="hero">hero</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head">
+            <div class="card-title">References <em id="refsLabel">— 0 pinned —</em></div>
+          </div>
+          <div class="card-body">
+            <div style="display:flex;gap:2px;margin-bottom:8px;border-bottom:1px solid var(--line);">
+              <button class="ref-tab active" data-ref="character" style="background:transparent;border:none;padding:6px 10px;font-size:11px;font-weight:600;letter-spacing:0.1em;color:var(--saffron);border-bottom:2px solid var(--saffron);margin-bottom:-1px;cursor:pointer;">Character</button>
+              <button class="ref-tab" data-ref="style" style="background:transparent;border:none;padding:6px 10px;font-size:11px;font-weight:600;letter-spacing:0.1em;color:var(--ash);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;">Style</button>
+              <button class="ref-tab" data-ref="pose" style="background:transparent;border:none;padding:6px 10px;font-size:11px;font-weight:600;letter-spacing:0.1em;color:var(--ash);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;">Pose</button>
+            </div>
+            <div class="refs-grid" id="refsGrid"></div>
+            <div class="field" style="margin-top:10px;">
+              <label class="field-label" id="refStrengthLabel">Character strength · <span id="refStrengthValue">0.95</span></label>
+              <input type="range" id="refStrengthSlider" min="0.1" max="1" step="0.05" value="0.95" style="width:100%;">
+            </div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:12px;margin-top:4px;line-height:1.3;">Character refs lock identity. Style refs control aesthetics. Pose refs control body structure.</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">Consistency lock <em>— AICF</em></div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Static identity <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">never changes</em></label>
+              <textarea id="staticPromptField" rows="3" placeholder="Pulled from character lock. Add extra invariants here…"></textarea>
+            </div>
+            <div class="field">
+              <label class="field-label">Dynamic scene <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--gold);">can vary per render</em></label>
+              <textarea id="dynamicPromptField" rows="2" placeholder="The current scene + action only…"></textarea>
+            </div>
+            <div class="field-row three">
+              <div>
+                <label class="field-label">Seed</label>
+                <input type="number" id="seedField" placeholder="random" min="0" max="2147483647">
+              </div>
+              <div>
+                <label class="field-label">Mode</label>
+                <select id="seedMode">
+                  <option value="random">Random each render</option>
+                  <option value="locked">Locked seed</option>
+                  <option value="family">Seed family (±10)</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">CFG</label>
+                <input type="number" id="cfgField" value="4.5" min="1" max="20" step="0.5">
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">Custom negative prompt <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--ash);">— optional, appended</em></label>
+              <textarea id="customNegField" rows="2" placeholder="extra fingers, distorted face…"></textarea>
+            </div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:12px;line-height:1.3;">Reuse the same seed + cfg + refs to get the same composition across renders.</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">Cinematic <em>— VFX</em></div></div>
+          <div class="card-body">
+            <div class="field-row">
+              <div>
+                <label class="field-label">Lighting</label>
+                <select id="cinLighting">
+                  <option value="">— neutral —</option>
+                  <option value="cinematic soft rim light, three-point lighting, gentle volumetric haze">Cinematic soft rim</option>
+                  <option value="golden hour warm sunlight, soft rim glow, dust particles in air">Golden hour</option>
+                  <option value="blue hour cool twilight, low key, soft moonlight rim">Blue hour</option>
+                  <option value="dramatic chiaroscuro, hard key light, deep shadows">Dramatic chiaroscuro</option>
+                  <option value="studio softbox lighting, even fill, clean shadows">Studio softbox</option>
+                  <option value="volumetric god rays, atmospheric scatter, dust in light shafts">Volumetric god rays</option>
+                  <option value="neon rim lighting, magenta-cyan reflections, wet ground">Neon rim</option>
+                  <option value="overcast diffuse, soft global illumination, no harsh shadows">Overcast diffuse</option>
+                  <option value="candlelight warm flicker, intimate close light, soft falloff">Candlelight</option>
+                  <option value="campfire glow, orange uplight, dark surround">Campfire glow</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Color grade</label>
+                <select id="cinGrade">
+                  <option value="">— neutral —</option>
+                  <option value="cinematic teal-and-orange grade, premium colour science">Teal & orange</option>
+                  <option value="Kodak Portra film grade, warm skin tones, faded shadows">Kodak Portra</option>
+                  <option value="Fuji Velvia grade, saturated colours, punchy contrast">Fuji Velvia</option>
+                  <option value="bleach bypass desaturated grade, crushed blacks">Bleach bypass</option>
+                  <option value="pastel grade, soft palette, lifted blacks">Soft pastel</option>
+                  <option value="moody dark cinema grade, rich greens, deep blacks">Moody cinema</option>
+                  <option value="bollywood vibrant grade, warm saffron and gold tones">Bollywood vibrant</option>
+                  <option value="vintage 70s grade, warm tones, slight grain">Vintage 70s</option>
+                  <option value="comic flat colour grade, clean palette, bold edges">Comic flat</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-row">
+              <div>
+                <label class="field-label">Lens</label>
+                <select id="cinLens">
+                  <option value="">— inherit —</option>
+                  <option value="35mm wide lens, slight environmental context">35mm wide</option>
+                  <option value="50mm natural perspective, neutral compression">50mm natural</option>
+                  <option value="85mm portrait lens, shallow depth of field, creamy bokeh">85mm portrait</option>
+                  <option value="24mm wide, strong depth, environmental">24mm wide</option>
+                  <option value="anamorphic 2.39:1 cinematic, oval bokeh, blue flares">Anamorphic</option>
+                  <option value="macro lens, extreme close-up, fine detail">Macro</option>
+                  <option value="100mm tele, compressed background">100mm tele</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Camera angle</label>
+                <select id="cinAngle">
+                  <option value="">— inherit pose —</option>
+                  <option value="eye-level medium shot">Eye-level medium</option>
+                  <option value="low angle hero shot, looking up">Low / hero</option>
+                  <option value="high angle, looking down">High</option>
+                  <option value="Dutch angle, dynamic tilt">Dutch tilt</option>
+                  <option value="over-the-shoulder framing">Over shoulder</option>
+                  <option value="extreme close-up of face">Extreme close-up</option>
+                  <option value="wide establishing shot">Wide establishing</option>
+                  <option value="top-down flat lay">Top-down flat</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-row">
+              <div>
+                <label class="field-label">Mood</label>
+                <select id="cinMood">
+                  <option value="">— inherit —</option>
+                  <option value="warm, inviting, storybook feel">Storybook warm</option>
+                  <option value="mysterious, hushed, dust in the air">Mysterious</option>
+                  <option value="energetic, kinetic, action-packed">Energetic</option>
+                  <option value="quiet, intimate, contemplative">Quiet intimate</option>
+                  <option value="epic, heroic, mythic">Epic mythic</option>
+                  <option value="playful, mischievous, comic">Playful comic</option>
+                  <option value="festive, celebratory, vibrant">Festive</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Finish</label>
+                <select id="cinFinish">
+                  <option value="">— neutral —</option>
+                  <option value="ultra-detailed, premium texture fidelity, 8K source">8K premium</option>
+                  <option value="ultra-sharp, microcontrast emphasized">Ultra-sharp</option>
+                  <option value="painterly oil texture, visible brushwork">Painterly oil</option>
+                  <option value="hand-drawn ink and watercolour finish">Ink & watercolour</option>
+                  <option value="clean vector illustration, flat fills">Clean vector</option>
+                  <option value="3D rendered look, soft global illumination">3D-rendered look</option>
+                  <option value="film grain finish, organic emulsion">Film grain</option>
+                </select>
+              </div>
+            </div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:12px;line-height:1.3;margin-top:4px;">VFX terms appended to the prompt — gives every render a controllable cinematic baseline.</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">Quality &amp; resolution</div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Quality tier</label>
+              <div class="pills" id="qualityPills">
+                <div class="pill" data-q="draft">Draft (fast)</div>
+                <div class="pill active" data-q="standard">Standard</div>
+                <div class="pill" data-q="master">Master (best)</div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">Output resolution</label>
+              <div class="pills" id="resPills">
+                <div class="pill active" data-res="1k">1K start</div>
+                <div class="pill" data-res="2k">2K (auto-upscale)</div>
+                <div class="pill" data-res="4k">4K (double upscale)</div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">Upscaler</label>
+              <select id="upscaleEngine">
+                <option value="fal-ai/clarity-upscaler" selected>Clarity Upscaler (general)</option>
+                <option value="fal-ai/creative-upscaler">Creative Upscaler (adds detail)</option>
+                <option value="fal-ai/aura-sr">Aura SR (super-resolution)</option>
+                <option value="fal-ai/recraft-clarity-upscale">Recraft Clarity</option>
+                <option value="fal-ai/topaz/upscale/image">Topaz (premium)</option>
+                <option value="fal-ai/esrgan">ESRGAN (classic)</option>
+              </select>
+            </div>
+            <div class="toggle-row"><div class="toggle" id="autoUpscaleToggle"></div><label>Auto-upscale after every render</label></div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:12px;line-height:1.3;margin-top:4px;">Generate fast at 1K, then upscale only the keepers to 2K/4K. VFX studios do this to save GPU cycles.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CENTER CANVAS -->
+      <div class="studio-main">
+        <div class="studio-meta" id="studioMeta"></div>
+        <div class="canvas-frame empty" id="canvasFrame" data-aspect="3:4">
+          <div class="ce-h">no render yet</div>
+          <div class="ce-d">click ⚡ Render to generate this scene</div>
+        </div>
+        <div class="loader" id="loader"></div>
+        <div class="studio-actions">
+          <button class="btn primary lg" id="renderBtn">⚡ Render</button>
+          <select id="modeSelect" style="width:auto;">
+            <option value="single">Single character</option>
+            <option value="model_sheet">Model sheet (4 poses + expressions)</option>
+            <option value="expressions_strip">Expressions strip</option>
+          </select>
+          <button class="btn" id="copyPromptBtn">Copy prompt</button>
+          <button class="btn" id="copyJsonBtn">Copy JSON</button>
+          <button class="btn ghost" id="downloadBtn" disabled>Download</button>
+          <button class="btn ghost" id="favoriteBtn">☆ Favorite</button>
+          <button class="btn ghost" id="to3dBtn" disabled>⤴ Convert to 3D</button>
+          <button class="btn ghost" id="saveRecipeBtn">💾 Save recipe</button>
+        </div>
+      </div>
+
+      <!-- RIGHT PROMPT -->
+      <div class="card studio-prompt">
+        <div class="card-head">
+          <div class="card-title">Assembled prompt</div>
+          <div style="display:flex;gap:4px;">
+            <button class="btn sm ghost" id="togglePromptBtn">▾</button>
+          </div>
+        </div>
+        <div class="prompt-box" id="promptBox"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CHARACTERS ============== -->
+  <section class="view" id="viewCharacters">
+    <div class="ch-toolbar">
+      <input type="text" class="ch-search" id="chSearch" placeholder="Search characters…">
+      <button class="btn primary" id="newCharBtn">+ Add character</button>
+      <button class="btn" id="importCharBtn">Import JSON</button>
+      <button class="btn ghost" id="exportAllCharsBtn">Export all</button>
+    </div>
+    <div class="ch-grid" id="chGrid"></div>
+  </section>
+
+  <!-- ============== LIBRARY ============== -->
+  <section class="view" id="viewLibrary">
+    <div class="lib-toolbar">
+      <button class="btn" id="libSelectAllBtn">Select all</button>
+      <button class="btn" id="libClearSelBtn">Clear selection</button>
+      <select id="libFilter">
+        <option value="">All characters</option>
+      </select>
+      <select id="libFilterMode">
+        <option value="">All modes</option>
+        <option value="single">Single</option>
+        <option value="lineup">Lineup</option>
+        <option value="compose">Compose</option>
+        <option value="model_sheet">Model sheet</option>
+        <option value="expressions_strip">Expressions</option>
+      </select>
+      <span class="spacer"></span>
+      <span id="libCount" style="font-size:12px;color:var(--ash);">0 selected</span>
+      <button class="btn primary" id="libDownloadBtn">Download selected as ZIP</button>
+      <button class="btn danger" id="libDeleteBtn">Delete selected</button>
+    </div>
+    <div class="lib-grid" id="libGrid"></div>
+    <div class="empty-state" id="libEmpty" style="display:none;">
+      <div class="es-h">Library is empty</div>
+      Renders you create will appear here
+    </div>
+  </section>
+
+  <!-- ============== BATCH ============== -->
+  <section class="view" id="viewBatch">
+    <div class="batch-shell">
+      <div class="card">
+        <div class="card-head" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div class="card-title">Batch generator</div>
+          <div class="pills" id="batchModePills" style="margin-left:auto;">
+            <div class="pill active" data-mode="paste">📝 Paste prompts</div>
+            <div class="pill" data-mode="library">📚 Library scenarios</div>
+            <div class="pill" data-mode="styleconvert">🎨 Style Convert</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- PASTE MODE: any prompts, any character, any style -->
+          <div id="batchPasteMode">
+            <div class="field">
+              <label class="field-label">
+                📄 Upload prompts document
+                <em style="font-family:'Caveat',cursive;color:var(--saffron);font-style:normal;">— PDF, DOCX, TXT, MD, JSON</em>
+              </label>
+              <input type="file" id="batchDocFile" accept=".pdf,.docx,.txt,.md,.json" style="display:none;">
+              <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+                <button class="btn" id="batchDocUploadBtn" type="button">📎 Choose file…</button>
+                <button class="btn" id="batchDocClearBtn" type="button" style="opacity:.7;">Clear</button>
+                <div id="batchDocStatus" style="font-size:11.5px;color:var(--ash);font-family:'Caveat',cursive;">No file loaded — or just paste below</div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">
+                ✍ Or paste prompts
+                <em style="font-family:'Caveat',cursive;color:var(--saffron);font-style:normal;">— auto-detects format</em>
+              </label>
+              <textarea id="batchPasteText" rows="10" placeholder="Paste prompts in any format:
+
+• One per line:
+A young goddess with golden trident standing on a mountain
+The buffalo demon emerging from shadows
+Five gods watching from the clouds
+
+• Or with P1/P2 markers (PDF style):
+P1: scene description
+P2: another scene
+
+• Or --- separator between prompts:
+prompt one
+---
+prompt two
+
+• Or JSON array:
+[&quot;prompt 1&quot;, &quot;prompt 2&quot;]"
+                style="width:100%;font-family:'Space Grotesk',monospace;font-size:12.5px;line-height:1.5;padding:10px;border-radius:8px;background:var(--paper);border:1px solid var(--line);color:var(--ink);resize:vertical;"></textarea>
+              <div id="batchPasteCount" style="font-size:11px;color:var(--ash);margin-top:6px;font-family:'Caveat',cursive;">0 prompts detected — paste something</div>
+            </div>
+            <div class="field">
+              <label class="field-label">Format hint <em style="font-family:'Caveat',cursive;color:var(--saffron);font-style:normal;">— or leave on auto</em></label>
+              <div class="pills" id="batchPasteFormat">
+                <div class="pill active" data-fmt="auto">Auto-detect</div>
+                <div class="pill" data-fmt="pdfpage">📄 PDF page (1 per page)</div>
+                <div class="pill" data-fmt="lines">One per line</div>
+                <div class="pill" data-fmt="page">P1/P2 markers</div>
+                <div class="pill" data-fmt="dashes">--- separator</div>
+                <div class="pill" data-fmt="blank">Blank-line split</div>
+                <div class="pill" data-fmt="json">JSON array</div>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap;">
+                <button class="btn" id="batchConvertWithClaudeBtn" type="button">🪄 Convert narrative → image prompts with Claude</button>
+                <div style="font-size:10.5px;color:var(--ash);font-family:'Caveat',cursive;">For prose / story-book PDFs — Claude rewrites each page into a clean image prompt</div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">Character reference <em style="font-family:'Caveat',cursive;color:var(--saffron);font-style:normal;">— optional, locks character across all prompts</em></label>
+              <select id="batchPasteChar"><option value="">— no character lock (any style) —</option></select>
+            </div>
+            <div class="field">
+              <label class="field-label">Global style prefix <em style="font-family:'Caveat',cursive;color:var(--saffron);font-style:normal;">— prepended to every prompt</em></label>
+              <input type="text" id="batchPasteStyle" placeholder="e.g. classical Indian miniature painting, warm earth tones, gold accents" style="width:100%;">
+            </div>
+            <div class="field">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;">
+                <input type="checkbox" id="batchPasteAppendStyle" checked style="width:auto;margin:0;">
+                Append studio STYLE + identity blocks to each prompt
+              </label>
+              <div style="font-size:10.5px;color:var(--ash);margin-top:4px;">If on, each prompt becomes <span style="font-family:monospace;">style prefix + your prompt + STYLE summary + NEGATIVE + (character identity if locked)</span>. Turn off for raw paste (verbatim only).</div>
+            </div>
+            <div class="field" style="border-top:1px dashed var(--line);padding-top:12px;">
+              <label class="field-label">
+                🎨 Style reference images <em style="font-family:'Caveat',cursive;color:var(--saffron);font-style:normal;">— upload N images, Claude extracts a style JSON for the whole batch</em>
+              </label>
+              <input type="file" id="batchStyleRefFile" accept="image/*" multiple style="display:none;">
+              <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+                <button class="btn" id="batchStyleRefUploadBtn" type="button">📷 Add reference images</button>
+                <button class="btn" id="batchStyleRefClearBtn" type="button" style="opacity:.7;">Clear all</button>
+                <button class="btn primary" id="batchStyleExtractBtn" type="button">🔍 Extract style JSON with Claude</button>
+                <div id="batchStyleStatus" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;">No references uploaded</div>
+              </div>
+              <div id="batchStyleRefGrid" class="ref-grid" style="margin-top:10px;"></div>
+              <div style="margin-top:10px;">
+                <label style="font-size:11px;color:var(--ash);display:flex;justify-content:space-between;align-items:center;">
+                  <span>Extracted style JSON <em style="font-family:'Caveat',cursive;color:var(--saffron);font-style:normal;">— editable</em></span>
+                  <span id="batchStyleJsonInfo" style="font-family:'Caveat',cursive;color:var(--saffron);"></span>
+                </label>
+                <textarea id="batchStyleJson" rows="6" placeholder='Click "Extract style JSON with Claude" after uploading references. Output:
+{
+  "art_style": "...",
+  "palette": ["#..", "#.."],
+  "linework": "...",
+  "lighting": "...",
+  "distinctive_features": ["..", ".."],
+  "render_directive": "one-paragraph instruction prepended to every prompt"
+}' style="width:100%;font-family:monospace;font-size:11.5px;padding:8px;border-radius:6px;background:var(--paper);border:1px solid var(--line);color:var(--ink);resize:vertical;"></textarea>
+              </div>
+              <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:14px;">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;">
+                  <input type="checkbox" id="batchStyleUseJson" checked style="width:auto;margin:0;">
+                  Inject <span style="font-family:monospace;">render_directive</span> into every prompt
+                </label>
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;">
+                  <input type="checkbox" id="batchStyleAttachImages" checked style="width:auto;margin:0;">
+                  Also send images as <span style="font-family:monospace;">image_urls</span> to fal (visual lock)
+                </label>
+              </div>
+              <div style="margin-top:10px;padding:8px 10px;background:rgba(200,98,26,.08);border:1px solid var(--saffron);border-radius:6px;">
+                <div style="font-size:11px;color:var(--saffron);font-weight:600;margin-bottom:6px;">🌐 Studio-wide Smart Mode</div>
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;">
+                  <input type="checkbox" id="smartModeToggle" checked style="width:auto;margin:0;">
+                  Auto-detect library characters in any prompt → attach refs + identity (every category, every model)
+                </label>
+                <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+                  <button class="btn" id="promoteStyleGlobalBtn" type="button" style="font-size:11.5px;padding:4px 10px;">⬆ Use this style JSON globally (all categories)</button>
+                  <button class="btn" id="clearGlobalStyleBtn" type="button" style="font-size:11.5px;padding:4px 10px;opacity:.7;">Clear global style</button>
+                  <div id="globalStyleStatus" style="font-size:10.5px;color:var(--ash);font-family:'Caveat',cursive;">No global style set — only this batch uses it</div>
+                </div>
+              </div>
+            </div>
+            <div class="field" style="border-top:1px dashed var(--line);padding-top:12px;">
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;">
+                <input type="checkbox" id="batchAutoQC" style="width:auto;margin:0;">
+                🤖 Auto-QC with Claude vision (after each render)
+              </label>
+              <div style="font-size:10.5px;color:var(--ash);margin-top:4px;">After every N renders, Claude inspects them against their prompt and flags issues (wrong count, wrong character, photographed-paper look, etc.). Auto-regenerates failed images.</div>
+              <div class="field-row" style="margin-top:8px;">
+                <div>
+                  <label style="font-size:10px;color:var(--ash);">QC every N renders</label>
+                  <input type="number" id="batchQCEvery" value="3" min="1" max="20" style="width:80px;">
+                </div>
+                <div>
+                  <label style="font-size:10px;color:var(--ash);">Auto-fix attempts</label>
+                  <input type="number" id="batchQCRetries" value="2" min="0" max="5" style="width:80px;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- LIBRARY MODE: original character/scenario flow -->
+          <div id="batchLibraryMode" style="display:none;">
+            <div class="field">
+              <label class="field-label">Character</label>
+              <select id="batchChar"></select>
+            </div>
+            <div class="field">
+              <label class="field-label">Scenarios <em style="font-family:'Caveat',cursive;color:var(--saffron);font-style:normal;">— select multiple</em></label>
+              <div class="batch-checkbox-list" id="batchScenarios"></div>
+            </div>
+          </div>
+
+          <!-- STYLE CONVERT MODE: add many images -> redraw each in a chosen locked style -->
+          <div id="batchStyleConvertMode" style="display:none;">
+            <div class="field">
+              <label class="field-label">🎨 Target style <em style="font-family:'Caveat',cursive;color:var(--saffron);font-style:normal;">— every image is fully redrawn in this style (characters too)</em></label>
+              <select id="scvStyle" style="width:100%;padding:8px;font-size:13px;"></select>
+              <div id="scvStyleHint" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-top:6px;min-height:30px;"></div>
+            </div>
+            <div class="field">
+              <label class="field-label">🖼 Images to convert <em style="font-family:'Caveat',cursive;color:var(--saffron);font-style:normal;">— add as many as you like</em></label>
+              <input type="file" id="scvFile" accept="image/*" multiple style="display:none;">
+              <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+                <button class="btn" id="scvAddBtn" type="button">📷 Add images</button>
+                <button class="btn" id="scvClearBtn" type="button" style="opacity:.7;">Clear all</button>
+                <div id="scvCount" style="font-size:11.5px;color:var(--ash);font-family:'Caveat',cursive;">No images added</div>
+              </div>
+              <div id="scvGrid" class="ref-grid" style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;"></div>
+            </div>
+            <div class="field">
+              <div class="field-row">
+                <div>
+                  <label style="font-size:10px;color:var(--ash);">Provider</label>
+                  <select id="scvProvider" style="width:100%;padding:7px;font-size:13px;">
+                    <option value="fal_nano_banana_pro" selected>Nano Banana Pro</option>
+                    <option value="fal_seedream_45">Seedream 4.5</option>
+                    <option value="fal_nano_banana_2">Nano Banana 2</option>
+                  </select>
+                </div>
+                <div>
+                  <label style="font-size:10px;color:var(--ash);">Output shape</label>
+                  <select id="scvAspect" style="width:100%;padding:7px;font-size:13px;">
+                    <option value="match" selected>Match each image</option>
+                    <option value="3:4">A5 portrait (3:4)</option>
+                    <option value="2:3">Magazine portrait (2:3)</option>
+                    <option value="1:1">Square (1:1)</option>
+                    <option value="4:3">Landscape (4:3)</option>
+                    <option value="16:9">Widescreen (16:9)</option>
+                  </select>
+                </div>
+              </div>
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12.5px;margin-top:10px;">
+                <input type="checkbox" id="scvKeepText" checked style="width:auto;margin:0;"> Keep the original text &amp; its placement (re-lettered to suit the style)
+              </label>
+            </div>
+            <div class="studio-actions" style="margin-top:8px;">
+              <button class="btn primary" id="scvConvertBtn">🎨 Convert all → style</button>
+              <span id="scvCost" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-left:8px;"></span>
+            </div>
+            <div class="batch-progress"><div class="bar" id="scvBar" style="width:0;"></div></div>
+            <div id="scvStage" style="background:var(--paper-2);border:1px dashed var(--line);border-radius:6px;min-height:220px;display:flex;align-items:center;justify-content:center;padding:12px;margin-top:8px;">
+              <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:14px;text-align:center;">Add images, pick a style, then Convert. Each image is fully redrawn in that style — layout, characters and text kept.</div>
+            </div>
+            <div id="scvThumbs" style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;"></div>
+            <div style="margin-top:8px;"><button class="btn ghost sm" id="scvDownloadBtn" disabled>⬇ Download all as ZIP</button></div>
+          </div>
+
+          <div id="batchSharedRun">
+          <!-- SHARED: canvas / variations / run -->
+          <div class="field">
+            <label class="field-label">Canvas variants <em style="font-family:'Caveat',cursive;color:var(--saffron);font-style:normal;">— pick one or many; one render per ratio</em></label>
+            <div class="pills" id="batchCanvases" style="flex-wrap:wrap;gap:6px;">
+              <div class="pill active" data-c="3:4">3:4 · A5 portrait</div>
+              <div class="pill" data-c="2:3">2:3 · magazine portrait</div>
+              <div class="pill" data-c="4:5">4:5 · IG portrait</div>
+              <div class="pill" data-c="9:16">9:16 · vertical / reel</div>
+              <div class="pill" data-c="1:1">1:1 · square</div>
+              <div class="pill" data-c="4:3">4:3 · landscape</div>
+              <div class="pill" data-c="3:2">3:2 · landscape mag</div>
+              <div class="pill" data-c="16:9">16:9 · widescreen</div>
+              <div class="pill" data-c="21:9">21:9 · cinematic spread</div>
+              <div class="pill" data-c="A4">A4 · book page (≈3:4)</div>
+              <div class="pill" data-c="A4-L">A4 landscape (≈4:3)</div>
+              <div class="pill" data-c="SPREAD">Double-page spread (≈3:2)</div>
+              <div class="pill" data-c="A3-SPREAD">A3 spread (≈16:9)</div>
+              <div class="pill" data-c="A5">A5 (alias 3:4)</div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label">Per prompt</label>
+            <div class="field-row">
+              <div>
+                <label style="font-size:10px;color:var(--ash);">Variations</label>
+                <input type="number" id="batchVariations" value="1" min="1" max="6">
+              </div>
+              <div>
+                <label style="font-size:10px;color:var(--ash);">Delay between renders (s)</label>
+                <input type="number" id="batchDelay" value="2" min="0" max="20">
+              </div>
+            </div>
+          </div>
+          <div class="studio-actions" style="margin-top:8px;">
+            <button class="btn primary" id="batchRunBtn">▶ Run batch</button>
+            <button class="btn danger" id="batchStopBtn" disabled>Stop</button>
+          </div>
+          <div class="batch-progress"><div class="bar" id="batchBar"></div></div>
+          <div class="batch-log" id="batchLog">batch idle.</div>
+          </div><!-- /batchSharedRun -->
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="card-head" style="display:flex;align-items:center;gap:8px;">
+            <div class="card-title">🔴 Live batch <em id="batchLiveCount" style="font-style:normal;color:var(--saffron);">idle</em></div>
+            <button class="btn" id="batchLiveClearBtn" type="button" style="margin-left:auto;font-size:11px;padding:4px 8px;">Clear</button>
+          </div>
+          <div class="card-body">
+            <div id="batchLiveSummary" style="font-size:11.5px;color:var(--ash);margin-bottom:8px;font-family:'Caveat',cursive;">No batch running — paste prompts and hit Run</div>
+            <div class="lib-grid" id="batchLiveGrid" style="grid-template-columns:repeat(2,1fr);gap:8px;"></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">Recently rendered <em id="batchRecentCount">0</em></div></div>
+          <div class="card-body">
+            <div class="lib-grid" id="batchRecent" style="grid-template-columns:repeat(2,1fr);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== COMPOSE ============== -->
+  <section class="view" id="viewCompose">
+    <div class="compose-shell">
+      <div>
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">Cast</div>
+            <button class="btn sm primary" id="composeAddBtn">+ Add character</button>
+          </div>
+          <div class="card-body">
+            <div class="compose-actor-list" id="composeActors">
+              <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;text-align:center;padding:10px;">click "Add character" to start, then drag markers on the stage</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">Selected actor</div></div>
+          <div class="card-body" id="composeActorPanel">
+            <div style="color:var(--ash);font-size:13px;font-family:'Caveat',cursive;">no actor selected</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">Stage</div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Canvas</label>
+              <div class="pills" id="composeCanvasPills">
+                <div class="pill" data-c="3:4">3:4</div>
+                <div class="pill active" data-c="16:9">16:9</div>
+                <div class="pill" data-c="1:1">1:1</div>
+                <div class="pill" data-c="A5">A5</div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">Background scene</label>
+              <textarea id="composeBg" placeholder="describe the background — kitchen counter, library, garden…"></textarea>
+            </div>
+            <div class="field">
+              <label class="field-label">Background image (optional)</label>
+              <input type="file" id="composeBgFile" accept="image/*">
+              <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:12px;margin-top:4px;">Upload a base scene to place characters into.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="compose-stage-wrap">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--deep);font-weight:600;">Compose stage</div>
+          <div style="display:flex;gap:6px;">
+            <button class="btn primary" id="composeRenderBtn">⚡ Render composition</button>
+            <button class="btn ghost" id="composeClearBtn">Clear stage</button>
+          </div>
+        </div>
+        <div class="compose-stage" id="composeStage" data-aspect="16:9"></div>
+        <div class="loader" id="composeLoader"></div>
+        <div style="margin-top:10px;font-family:'Caveat',cursive;color:var(--ash);font-size:13px;">Click any character on the stage and drag to position it. Resize via the Selected actor panel.</div>
+        <div class="canvas-frame empty" id="composeOutFrame" data-aspect="16:9" style="margin-top:14px;">
+          <div class="ce-h">composition output appears here</div>
+        </div>
+        <div class="studio-actions" style="margin-top:8px;">
+          <button class="btn ghost" id="composeDownloadBtn" disabled>Download</button>
+          <button class="btn ghost" id="composeFavoriteBtn">☆ Favorite</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== 3D LAB ============== -->
+  <section class="view" id="viewLab3d">
+    <div class="studio">
+      <div class="studio-rail">
+        <div class="card">
+          <div class="card-head"><div class="card-title">3D Source</div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Use from library</label>
+              <select id="lab3dSourceSel"><option value="">— select rendered image —</option></select>
+            </div>
+            <div class="field">
+              <label class="field-label">Or upload an image</label>
+              <input type="file" id="lab3dUpload" accept="image/*">
+            </div>
+            <div id="lab3dSourcePreview" style="margin-top:8px;display:none;">
+              <img id="lab3dSourceImg" style="width:100%;border:1px solid var(--line);border-radius:var(--r-sm);max-height:240px;object-fit:contain;background:var(--paper-2);">
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">3D Engine</div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Model</label>
+              <select id="lab3dModel">
+                <optgroup label="★ Quality first">
+                  <option value="fal-ai/hyper3d/rodin" selected>Hyper3D Rodin — best PBR</option>
+                  <option value="fal-ai/hunyuan3d/v21">Hunyuan3D v2.1 — high detail textured</option>
+                  <option value="fal-ai/tripo3d/v2.5">Tripo 3D v2.5 — high quality mesh</option>
+                </optgroup>
+                <optgroup label="Balanced">
+                  <option value="fal-ai/hunyuan3d/v2">Hunyuan3D v2 (mesh + texture)</option>
+                  <option value="fal-ai/trellis">Trellis</option>
+                </optgroup>
+                <optgroup label="Fast / draft">
+                  <option value="fal-ai/triposr">TripoSR — fast, rough</option>
+                </optgroup>
+              </select>
+              <div class="field" style="margin-top:8px;">
+                <label class="field-label">Quality preset</label>
+                <select id="lab3dQuality">
+                  <option value="high">High (slower, best mesh)</option>
+                  <option value="medium" selected>Medium (balanced)</option>
+                  <option value="fast">Fast (draft)</option>
+                </select>
+              </div>
+            </div>
+            <div class="toggle-row"><div class="toggle on" id="lab3dTextureToggle"></div><label>Generate textured mesh</label></div>
+            <div class="toggle-row"><div class="toggle on" id="lab3dRemoveBgToggle"></div><label>Remove background first</label></div>
+            <div class="field">
+              <label class="field-label">Output format</label>
+              <select id="lab3dFormat">
+                <option value="glb">GLB</option>
+                <option value="usdz">USDZ (iOS)</option>
+              </select>
+            </div>
+            <div class="studio-actions" style="margin-top:6px;">
+              <button class="btn primary lg" id="lab3dRunBtn">⚡ Generate 3D model</button>
+            </div>
+            <div class="loader" id="lab3dLoader"></div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;margin-top:6px;">3D generation typically takes 30–90 seconds.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="studio-main">
+        <div class="studio-meta" id="lab3dMeta">no 3D model loaded</div>
+        <div class="canvas-frame empty" id="lab3dViewer" data-aspect="1:1" style="background:#1a1a1a;">
+          <div class="ce-h" style="color:#888;">no 3D model yet</div>
+          <div class="ce-d" style="color:#666;">pick or upload a 2D image, then click ⚡ Generate</div>
+        </div>
+        <div class="studio-actions">
+          <button class="btn ghost" id="lab3dDownloadBtn" disabled>Download .glb</button>
+          <button class="btn ghost" id="lab3dSaveBtn" disabled>Save to library</button>
+          <button class="btn ghost" id="lab3dResetCamBtn" disabled>Reset camera</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-title">3D library</div></div>
+        <div class="card-body" id="lab3dLibrary" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="grid-column:1 / -1;font-family:'Caveat',cursive;color:var(--ash);font-size:13px;text-align:center;padding:14px;">3D models you save will appear here</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== STORY ENGINE (Devkathas — minimal, auto-filled) ============== -->
+  <section class="view" id="viewStory">
+    <div class="studio">
+      <div class="studio-rail">
+
+        <!-- Top: only 2 fields the user MUST fill -->
+        <div class="card" style="border:2px solid var(--saffron);">
+          <div class="card-head"><div class="card-title">Story essentials <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— just these two</em></div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Deity / Character Name</label>
+              <input type="text" id="stName" placeholder="Indra · Saraswati · Tippan · or anyone" style="font-size:15px;font-weight:600;">
+            </div>
+            <div class="field">
+              <label class="field-label">The Crisis <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— one sentence is enough</em></label>
+              <textarea id="stCrisis" rows="2" placeholder="The demon Vritra has swallowed all the rivers — leave blank and the system will pick a traditional crisis for this character"></textarea>
+            </div>
+            <div class="studio-actions">
+              <button class="btn primary lg" id="stAutoScaffoldBtn" style="font-size:14px;">🪄 Auto-fill scaffold</button>
+            </div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;line-height:1.3;margin-top:6px;">Claude looks up the deity, picks the right Devkathas archetype + witness + philosophy object, fills every advanced field. ~20 seconds.</div>
+            <div class="loader" id="stScaffoldLoader"></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">Quick fill <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--ash);">— or pick a preset</em></div></div>
+          <div class="card-body" id="storyPresets" style="display:grid;grid-template-columns:repeat(2,1fr);gap:4px;"></div>
+        </div>
+
+        <details class="card" style="margin-top:14px;">
+          <summary style="padding:10px 14px;background:var(--paper-2);border-bottom:1px solid var(--line);cursor:pointer;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;">Advanced scaffold <em style="font-family:'Caveat',cursive;font-style:normal;text-transform:none;letter-spacing:normal;color:var(--ash);font-weight:normal;font-size:13px;">— auto-filled, edit only if needed</em></summary>
+          <div class="card-body">
+            <div class="field"><label class="field-label">Domain / Power</label><input type="text" id="stDomain"></div>
+            <div class="field"><label class="field-label">Signature Strength</label><input type="text" id="stStrength"></div>
+            <div class="field"><label class="field-label">Blind Spot</label><input type="text" id="stBlindspot"></div>
+            <div class="field"><label class="field-label">Emotional Register</label><input type="text" id="stEmotional" placeholder="Hot and proud · Cool and watchful · Quiet and unbreakable"></div>
+            <div class="field"><label class="field-label">Physical Signature</label><input type="text" id="stPhysical"></div>
+            <div class="field"><label class="field-label">Recurring Object / Animal / Place</label><input type="text" id="stRecurring"></div>
+            <div class="field"><label class="field-label">Lesson Direction</label><input type="text" id="stLesson"></div>
+            <div class="field"><label class="field-label">Source Text</label><input type="text" id="stSource"></div>
+            <div class="field"><label class="field-label">Antagonist Archetype</label>
+              <select id="stAntagonistArchetype">
+                <option value="">&mdash; auto &mdash;</option>
+                <option value="The Immovable: has no surface for force to grip">The Immovable</option>
+                <option value="The Placeless: is never where you aim">The Placeless</option>
+                <option value="The Boundless: has no edge to absorb">The Boundless</option>
+                <option value="The Patient: waits longer than any urgency">The Patient</option>
+                <option value="The Selfless: has nothing to prove">The Selfless</option>
+                <option value="The Indifferent: does not notice being loved or fought">The Indifferent</option>
+                <option value="The Already-Whole: complete before the deity arrives">The Already-Whole</option>
+              </select>
+            </div>
+            <div class="field"><label class="field-label">Antagonist Name</label><input type="text" id="stAntagonist"></div>
+            <div class="field"><label class="field-label">Witness Name</label><input type="text" id="stWitness"></div>
+            <div class="field"><label class="field-label">Witness Behaviour</label><input type="text" id="stWitnessBehaviour"></div>
+            <div class="field"><label class="field-label">Failure Texture</label><textarea id="stFailureTexture" rows="2"></textarea></div>
+            <div class="field"><label class="field-label">Environmental Fall</label><textarea id="stEnvFall" rows="2"></textarea></div>
+            <div class="field"><label class="field-label">Philosophy Object</label><input type="text" id="stPhilObj"></div>
+            <div class="field"><label class="field-label">Philosophy Object Arc</label><textarea id="stPhilArc" rows="3"></textarea></div>
+            <div class="field"><label class="field-label">Antagonist's Absurd Behaviour</label><input type="text" id="stAntAbsurd"></div>
+            <div class="field"><label class="field-label">Witness's Wrong Thing</label><input type="text" id="stWitWrong"></div>
+            <div class="field"><label class="field-label">Child-Real Line</label><input type="text" id="stChildLine"></div>
+            <div class="field"><label class="field-label">Mirror Character (Page 8)</label><input type="text" id="stMirror"></div>
+            <div class="field"><label class="field-label">Recall Object Action</label><textarea id="stRecallObj" rows="2"></textarea></div>
+            <div class="field"><label class="field-label">Recall Contradiction</label><textarea id="stRecallContra" rows="2"></textarea></div>
+            <div class="field"><label class="field-label">Recall Line (under 10 words)</label><input type="text" id="stRecallLine"></div>
+            <div class="field"><label class="field-label">Tone Notes</label><textarea id="stTone" rows="2"></textarea></div>
+          </div>
+        </details>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">Story output</div></div>
+          <div class="card-body">
+            <div class="field-row">
+              <div>
+                <label class="field-label">Audience</label>
+                <select id="stAge">
+                  <option>Children 3&ndash;5</option>
+                  <option selected>Children 6&ndash;8</option>
+                  <option>Children 8&ndash;12</option>
+                  <option>Young adults 13+</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Length</label>
+                <select id="stLength">
+                  <option value="5">5 pages</option>
+                  <option value="8" selected>8 pages (Devkathas standard)</option>
+                  <option value="12">12 pages</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">Voice / Engine</label>
+              <select id="stProvider">
+                <option value="claude" selected>Claude (best literary prose)</option>
+                <option value="openai">OpenAI GPT-4o</option>
+                <option value="both">Both &mdash; run in parallel, pick the longer/richer</option>
+              </select>
+            </div>
+            <div class="studio-actions">
+              <button class="btn primary lg" id="stGenBtn" style="font-size:14px;">&#10022; Generate full story &#10022;</button>
+              <button class="btn ghost" id="stClearBtn">Clear</button>
+            </div>
+            <div class="loader" id="stLoader"></div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;margin-top:6px;line-height:1.3;">Outputs flowing prose in 8 pages following the Devkathas arc: Ignition &rarr; Attempt Loop &rarr; The Fall &rarr; Wrong Model &rarr; Hard Stop &rarr; Demonstration &rarr; Mirror. No beats, just story.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="studio-main">
+        <div class="studio-meta" id="stMeta">no story yet</div>
+        <div id="stOutput" style="background:#faf6ec;border:1px solid var(--gold);border-radius:var(--r);padding:36px 44px;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;line-height:1.8;color:var(--ink);min-height:70vh;max-height:80vh;overflow-y:auto;box-shadow:var(--shadow-sm);">
+          <div class="empty-state" style="padding:80px 20px;">
+            <div class="es-h">DEVKATHAS &middot; Sacred Story Engine</div>
+            Type a deity / character name + a one-line crisis. Click &#127769; Auto-fill scaffold. Click &#10022; Generate full story. Done.<br><br>The story arrives as 8 pages of print-ready prose &mdash; same structure as the Indra &amp; Vritra story.
+          </div>
+        </div>
+        <div class="studio-actions" style="margin-top:10px;flex-wrap:wrap;">
+          <button class="btn" id="stCopyText" disabled>Copy plain text</button>
+          <button class="btn" id="stCopyMd" disabled>Copy markdown</button>
+          <button class="btn primary" id="stDownloadMd" disabled>Download .md</button>
+          <button class="btn" id="stDownloadTxt" disabled>Download .txt</button>
+          <button class="btn" id="stDownloadHtml" disabled>Download .html (print-ready)</button>
+          <span style="flex:1;"></span>
+          <button class="btn ghost" id="stToComicBtn" disabled>Send to Comic</button>
+          <button class="btn ghost" id="stToMagazineBtn" disabled>Send to Magazine</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+      <!-- ============== COMIC STUDIO ============== -->
+  <section class="view" id="viewComic">
+    <!-- STEP INDICATOR -->
+    <div id="comicStepper" style="display:flex;align-items:center;gap:5px;margin-bottom:14px;padding:10px 14px;background:var(--paper-2);border:1px solid var(--line);border-radius:8px;flex-wrap:wrap;font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;overflow-x:auto;">
+      <div class="cstep" data-step="1"><span class="cstep-num">1</span> Model</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="2"><span class="cstep-num">2</span> Prompts</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="3"><span class="cstep-num">3</span> Master JSON</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="4"><span class="cstep-num">4</span> Refs</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="5"><span class="cstep-num">5</span> Presets</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="6"><span class="cstep-num">6</span> Style</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="7"><span class="cstep-num">7</span> Cast</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="8"><span class="cstep-num">8</span> Generate</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="9"><span class="cstep-num">9</span> Export</div>
+      <div style="flex:1;"></div>
+      <button id="comicWizardToggle" type="button" title="Toggle Wizard mode — step-by-step focused flow">🪄 Wizard</button>
+      <button class="btn sm danger" id="comicResetAllBtn" type="button" title="Delete all comic pages, sheets, refs — fresh start" style="margin-left:6px;">🗑 Reset</button>
+    </div>
+    <div class="shell-3col">
+      <!-- LEFT RAIL -->
+      <div>
+        <!-- ═══ STEP 1 · IMAGE MODEL ═══ -->
+        <div class="card" data-flow="1">
+          <div class="card-head">
+            <div class="card-title">1 · 💰 Image model <span class="step-pill required">required</span><span class="step-check" id="check-step-1"></span></div>
+          </div>
+          <div class="card-body">
+            <select id="comicQuickProvider" style="width:100%;font-size:12.5px;padding:7px;">
+              <optgroup label="💵 Cheap (drafts / testing)">
+                <option value="fal_flux_schnell">FLUX Schnell — $0.003 / image · sub-second</option>
+                <option value="fal_z_image_turbo">Z-Image Turbo — $0.005 / image · ~1s</option>
+                <option value="fal_seedream_5lite">Seedream 5 Lite — $0.015 / image</option>
+                <option value="fal_nano_banana_2">Nano Banana 2 — $0.020 / image</option>
+              </optgroup>
+              <optgroup label="⚖ Balanced (recommended sweet-spot)">
+                <option value="fal_seedream_45">Seedream 4.5 — $0.030 / image</option>
+                <option value="fal_nano_banana_pro" selected>Nano Banana Pro — $0.039 / image · default</option>
+                <option value="fal_flux2_flex">FLUX.2 Flex — $0.040 / image</option>
+                <option value="fal_gpt_image2">GPT Image 2 (medium) — $0.042 / image · ChatGPT-equivalent</option>
+              </optgroup>
+              <optgroup label="✨ Premium (final production)">
+                <option value="fal_flux2_pro">FLUX.2 Pro — $0.060 / image</option>
+                <option value="fal_imagen4_ultra">Imagen 4 Ultra — $0.060 / image</option>
+                <option value="fal_ideogram_v3">Ideogram v3 — $0.080 / image · best typography</option>
+              </optgroup>
+            </select>
+            <div id="comicProviderCostEstimate" style="font-size:10.5px;color:var(--ash);margin-top:6px;font-family:'Caveat',cursive;">Pick a model — cost estimate appears here.</div>
+            <div id="comicGptQualityRow" style="margin-top:6px;display:none;align-items:center;gap:6px;font-size:11px;color:var(--ash);">
+              <label>GPT Image 2 quality:</label>
+              <select id="comicGptQuality" style="font-size:11px;padding:2px 4px;">
+                <option value="low">low ($0.011)</option>
+                <option value="medium" selected>medium ($0.042)</option>
+                <option value="high">high ($0.167)</option>
+              </select>
+            </div>
+            <div id="comicActiveModelBadge" style="margin-top:6px;font-size:11px;color:var(--green);font-family:'Caveat',cursive;">Active: <b id="comicActiveModelName">—</b></div>
+          </div>
+        </div>
+
+        <!-- ═══ KIBOOKAL STYLE (per-section) ═══ -->
+        <div class="card" data-flow="1b">
+          <div class="card-head">
+            <div class="card-title">🎨 Kibookal Style + 📐 Layout <span class="step-pill" style="opacity:.7;">optional</span></div>
+          </div>
+          <div class="card-body">
+            <label style="font-size:11px;font-weight:600;display:block;margin-bottom:3px;">🎨 Style — how it looks</label>
+            <select id="comicKbsStyleSelect" style="width:100%;font-size:12.5px;padding:7px;">
+              <option value="">— No locked style (use your page prompts as-is) —</option>
+            </select>
+            <div id="comicKbsStyleHint" style="font-size:10.5px;color:var(--ash);margin:4px 0 10px;font-family:'Caveat',cursive;min-height:24px;">Pick a locked Kibookal style — every comic page renders in it; your characters adapt INTO the style.</div>
+            <label style="font-size:11px;font-weight:600;display:block;margin-bottom:3px;">📐 Layout — page structure</label>
+            <select id="comicKbsLayoutSelect" style="width:100%;font-size:12.5px;padding:7px;">
+              <option value="">— No layout (free composition) —</option>
+            </select>
+            <div id="comicKbsLayoutHint" style="font-size:10.5px;color:var(--ash);margin:4px 0 8px;font-family:'Caveat',cursive;min-height:22px;">Pick a page layout (spread, notebook, object study…).</div>
+            <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:11.5px;font-weight:600;padding:6px 8px;background:rgba(60,122,78,.08);border:1px solid #4a7c3e;border-radius:6px;">
+              <input type="checkbox" id="comicKbsPrintable" checked /> 🖨️ Printable — page only, no background
+            </label>
+          </div>
+        </div>
+
+        <div class="card" data-step="1" data-flow="2">
+          <div class="card-head"><div class="card-title">2 · Page prompts → comic <span class="step-pill required">required</span><span class="step-check" id="check-step-2"></span></div></div>
+          <div class="card-body">
+            <div style="padding:8px 10px;background:rgba(200,98,26,.08);border:1px solid var(--saffron);border-radius:6px;margin-bottom:10px;font-size:11.5px;color:var(--deep);line-height:1.45;">
+              📄 <b>Paste your per-page prompts</b> — one block per page in the format:
+              <pre style="background:var(--paper);padding:6px;border-radius:4px;font-family:monospace;font-size:10.5px;margin:6px 0 0;overflow-x:auto;line-height:1.4;">PAGE 1
+&lt;full prompt for page 1, including style notes,
+character bible, panel description, narration&gt;
+================================================
+PAGE 2
+&lt;full prompt for page 2…&gt;</pre>
+              The system auto-detects how many pages and renders each as ONE single image (no panel decomposition).
+            </div>
+            <div class="field">
+              <label class="field-label">Per-page prompts</label>
+              <textarea id="comicStory" rows="10" placeholder="PAGE 1&#10;A children's graphic novel page. Style: Tintin clean line + warm Indian watercolor on cream paper. A5 portrait, single splash panel...&#10;&#10;================================================&#10;&#10;PAGE 2&#10;A children's graphic novel page. Style: ...&#10;..." style="font-family:'JetBrains Mono',monospace;font-size:11.5px;"></textarea>
+              <div id="comicPromptsDetected" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-top:4px;">0 pages detected</div>
+            </div>
+            <div class="field-row">
+              <div>
+                <label class="field-label">Max pages <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--ash);font-size:10px;">— blank = all detected</em></label>
+                <input type="number" id="comicPageCount" placeholder="auto" min="1" max="200" style="width:120px;">
+              </div>
+            </div>
+            <div style="margin-top:10px;padding:10px 12px;background:rgba(200,98,26,.08);border:1px solid var(--saffron);border-radius:6px;">
+              <div style="font-size:11px;color:var(--saffron);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;font-weight:600;">Page format for ALL pages</div>
+              <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+                <div class="pills" id="comicGlobalFormatPills" style="display:flex;gap:4px;">
+                  <div class="pill active" data-fmt="single">📄 Single A5 · 1 image per source page</div>
+                  <div class="pill" data-fmt="spread">📖 Spread · 2 source pages → 1 image (1+2, 3+4…)</div>
+                </div>
+              </div>
+              <div style="font-size:10.5px;color:var(--ash);margin-top:6px;font-family:'Caveat',cursive;line-height:1.3;">
+                In Spread mode: 36 source pages → 18 spread renders. Each spread merges 2 consecutive prompts into one image.
+              </div>
+            </div>
+            <div class="studio-actions" style="margin-top:10px;display:none;">
+              <!-- Legacy generate button — kept hidden so old JS bindings work; Step 8 card has the visible button -->
+              <button class="btn primary lg" id="comicAutoBtn">⚡ Generate all pages</button>
+            </div>
+            <div class="loader" id="comicLoader"></div>
+            <input type="file" id="comicPromptsFile" accept=".pdf,.docx,.txt,.md" style="display:none;">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;">
+              <button class="btn sm" id="comicPromptsFileBtn" type="button">📎 Load from PDF / DOCX / TXT</button>
+              <div id="comicPromptsFileStatus" style="font-size:10.5px;color:var(--ash);font-family:'Caveat',cursive;align-self:center;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-step="2" data-flow="3" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">3 · 📋 Master JSON <span class="step-pill optional">recommended</span><span class="step-check" id="check-step-3"></span></div></div>
+          <div class="card-body">
+            <input type="file" id="comicMasterJsonFile" accept=".json" style="display:none;">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+              <button class="btn primary" id="comicMasterJsonLoadBtn" type="button">📋 Load master JSON</button>
+              <button class="btn" id="comicMasterJsonClearBtn" type="button" style="opacity:.7;">Clear</button>
+              <div id="comicMasterJsonStatus" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;">No master JSON loaded — using cast textarea below</div>
+            </div>
+            <div id="comicMasterJsonCharsBox" style="margin-top:8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:6px;"></div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:11.5px;margin-top:8px;line-height:1.35;">
+              Load a single JSON like <span style="font-family:monospace;font-size:10.5px;">kibookal_butter_thief_master_style_character_lock_v2.json</span> — defines every character (identity · forbidden list · expressions · poses), global style DNA, palette, prompt template, and negative_master. Every panel render uses these locks automatically.
+            </div>
+            <div style="margin-top:10px;padding:8px 10px;background:rgba(200,98,26,.08);border:1px solid var(--saffron);border-radius:6px;">
+              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:13px;font-weight:600;color:var(--saffron);">
+                <input type="checkbox" id="comicSpreadMode" style="width:auto;margin:0;">
+                📖 Spread mode — each "page" = one double-page spread image
+              </label>
+              <div style="font-size:10.5px;color:var(--ash);margin-top:4px;font-family:'Caveat',cursive;">
+                Output files become 01-02, 03-04, 05-06 etc. Default aspect = 2.828:1 (A3 spread). Renders the spread as ONE image instead of multi-panel page.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" data-step="4" data-flow="7" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">7 · Cast &amp; sheets <span class="step-pill required">required</span><span class="step-check" id="check-step-7"></span></div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Cast (free text, one per line)</label>
+              <textarea id="comicCast" rows="3" placeholder="Tippan — chibi asura toddler, brown skin, two tall curly black hair-tufts, gold hoop earrings, red leaf-wrap waist cloth, beaded chest cord, tail with tuft&#10;&#10;Smriti-Sarpa — emerald serpent with gold mandala on the hood, ruby eyes, gentle bookish demeanour"></textarea>
+            </div>
+            <div style="padding:8px 10px;background:rgba(46,74,107,.08);border-left:3px solid var(--indigo,#2e4a6b);border-radius:4px;margin-bottom:8px;font-size:11.5px;color:var(--ink);line-height:1.45;">
+              <b>One-click magic:</b> <button class="btn sm primary" id="comicExtractBtn" style="font-size:11px;padding:4px 10px;margin:0 4px;">🪄 Auto-extract everything</button>
+              <span style="font-family:'Caveat',cursive;color:var(--ash);">→ extracts cast · locks ages · builds 150-field vault for each character. ~2 min for 8 chars.</span>
+            </div>
+            <div class="studio-actions" style="flex-wrap:wrap;gap:4px;margin-top:6px;">
+              <button class="btn" id="comicGenSheets">🎭 Generate character sheets</button>
+              <button class="btn ghost sm" id="comicExtractAgesBtn" style="font-size:11px;opacity:.7;" title="Re-extract ages only (auto-extract above already does this)">🎂 Ages only</button>
+            </div>
+            <div id="comicAgesLockBox" style="display:none;margin-top:6px;padding:8px;background:rgba(46,74,107,.06);border:1px solid var(--indigo,#2e4a6b);border-radius:4px;font-size:11.5px;color:var(--ink);line-height:1.5;"></div>
+            <div id="comicSheetsBox" style="margin-top:8px;display:grid;gap:6px;"></div>
+            <div id="comicSheetsExportRow" style="display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);flex-wrap:wrap;gap:6px;align-items:center;">
+              <span style="font-family:'Caveat',cursive;font-size:12px;color:var(--ash);">Download all sheets:</span>
+              <button class="btn sm" id="comicSheetsDownloadZip">📦 ZIP</button>
+              <button class="btn sm" id="comicSheetsDownloadPdf">📄 PDF</button>
+              <span id="comicSheetsExportStatus" style="font-family:'Caveat',cursive;font-size:11px;color:var(--ash);"></span>
+            </div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:12px;margin-top:6px;line-height:1.3;">Each cast member gets ONE locked reference sheet (front · 3/4 · side · expressions). Once approved, every panel uses these sheets for identity lock.</div>
+          </div>
+        </div>
+
+        <div class="card" data-step="3" data-flow="4" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">4 · 📷 Reference images <span class="step-pill required">required</span><span class="step-check" id="check-step-4"></span></div></div>
+          <div class="card-body">
+            <input type="file" id="comicExtraRefFile" accept="image/*" multiple style="display:none;">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+              <button class="btn" id="comicExtraRefUploadBtn" type="button">📷 Upload references</button>
+              <button class="btn" id="comicExtraRefClearBtn" type="button" style="opacity:.7;">Clear</button>
+              <button class="btn primary" id="comicExtraRefExtractBtn" type="button">🔍 Extract style + layout JSON</button>
+            </div>
+            <div id="comicAutoLayoutSummary" style="display:none;margin-top:8px;padding:8px 10px;background:rgba(200,98,26,.08);border:1px solid var(--saffron);border-radius:5px;font-size:11.5px;color:var(--deep);line-height:1.45;"></div>
+            <div id="comicExtraRefStatus" style="font-size:10.5px;color:var(--ash);font-family:'Caveat',cursive;margin-top:6px;">No references uploaded</div>
+            <div id="comicExtraRefGrid" class="ref-grid" style="margin-top:8px;"></div>
+            <div style="margin-top:8px;">
+              <label style="font-size:11px;color:var(--ash);">Style JSON (editable, used for every panel)</label>
+              <textarea id="comicExtraStyleJson" rows="4" placeholder='Click "Extract style JSON" after uploading references' style="width:100%;font-family:monospace;font-size:11px;padding:6px;border-radius:5px;background:var(--paper);border:1px solid var(--line);"></textarea>
+            </div>
+            <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:10px;">
+              <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11.5px;">
+                <input type="checkbox" id="comicExtraUseStyleJson" checked style="width:auto;margin:0;"> Use JSON in every panel
+              </label>
+              <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11.5px;">
+                <input type="checkbox" id="comicExtraAttachImages" checked style="width:auto;margin:0;"> Attach images as visual refs
+              </label>
+            </div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:11.5px;margin-top:6px;line-height:1.3;">Upload your own reference panels, mood boards, or character pose sheets. Claude extracts a style JSON and the images go to every panel render as visual references.</div>
+          </div>
+        </div>
+
+        <div class="card" data-flow="5" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">5 · Page presets <span class="step-pill optional">optional</span></div></div>
+          <div class="card-body" id="comicPresets" style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <div class="card-head">
+            <div class="card-title">Pages</div>
+            <button class="btn sm ghost" id="comicAddPage">+ new</button>
+          </div>
+          <div class="card-body" id="comicPageList" style="display:grid;gap:4px;max-height:240px;overflow-y:auto;"></div>
+        </div>
+
+        <div class="card" data-flow="6" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">6 · 🔒 Style lock <span class="step-pill optional">auto status</span></div></div>
+          <div class="card-body">
+            <div id="comicStyleLockStatus" style="font-size:12px;color:var(--ash);line-height:1.5;">
+              Style is locked from whichever of these is loaded:
+            </div>
+            <div style="margin-top:8px;display:grid;gap:6px;font-size:11.5px;">
+              <div id="comicStyleSrcRefs" style="padding:6px 10px;border-radius:6px;background:var(--paper-2);border-left:3px solid var(--ash);">
+                📷 Reference images: <span id="comicStyleSrcRefsCount" style="font-weight:600;">none</span>
+              </div>
+              <div id="comicStyleSrcJson" style="padding:6px 10px;border-radius:6px;background:var(--paper-2);border-left:3px solid var(--ash);">
+                📋 Master JSON: <span id="comicStyleSrcJsonName" style="font-weight:600;">none</span>
+              </div>
+              <div id="comicStyleSrcSheets" style="padding:6px 10px;border-radius:6px;background:var(--paper-2);border-left:3px solid var(--ash);">
+                🎭 Character sheets: <span id="comicStyleSrcSheetsCount" style="font-weight:600;">0 locked</span>
+              </div>
+              <div id="comicStyleSrcAges" style="padding:6px 10px;border-radius:6px;background:var(--paper-2);border-left:3px solid var(--ash);">
+                🎂 Character ages: <span id="comicStyleSrcAgesText" style="font-weight:600;font-size:10.5px;color:var(--deep);">extracted from prompts</span>
+              </div>
+            </div>
+            <!-- Hidden legacy controls so existing JS doesn't break -->
+            <select id="comicStyle" style="display:none;"><option value="durga_comic" selected>durga_comic</option></select>
+            <div id="comicLockStyleToggle" class="toggle on" style="display:none;"></div>
+            <div id="comicMangaRtlToggle" class="toggle" style="display:none;"></div>
+          </div>
+        </div>
+
+        <!-- ═══ STEP 8 · GENERATE (with QC + Cascade settings) ═══ -->
+        <div class="card" data-flow="8">
+          <div class="card-head"><div class="card-title">8 · ⚡ Generate <span class="step-pill required">final step</span></div></div>
+          <div class="card-body">
+            <details style="margin-bottom:10px;">
+              <summary style="cursor:pointer;font-size:11px;color:var(--ash);letter-spacing:.04em;text-transform:uppercase;font-weight:600;padding:4px 0;">⚙ Quality controls (QC · cascade · enhance)</summary>
+              <div style="padding:8px;background:var(--paper-2);border-radius:6px;margin-top:6px;">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;margin-bottom:6px;">
+                  <input type="checkbox" id="comicUseClaudeEnhance" style="width:auto;margin:0;">
+                  ✨ Claude prompt enhancement (adds art-direction header)
+                </label>
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;margin-bottom:6px;">
+                  <input type="checkbox" id="comicAutoQC" style="width:auto;margin:0;" checked>
+                  🤖 Auto-QC each page (Claude vision · auto-retry failures)
+                </label>
+                <div style="display:flex;gap:8px;margin-bottom:6px;">
+                  <div style="flex:1;"><label style="font-size:10px;color:var(--ash);">Min QC score</label><input type="number" id="comicQCMinScore" value="8" min="1" max="10" style="width:100%;font-size:11px;padding:3px;"></div>
+                  <div style="flex:1;"><label style="font-size:10px;color:var(--ash);">Auto-retries</label><input type="number" id="comicQCRetries" value="3" min="0" max="5" style="width:100%;font-size:11px;padding:3px;"></div>
+                </div>
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:11.5px;padding:5px 8px;background:rgba(184,92,60,.08);border:1px solid var(--saffron,#b85c3c);border-radius:4px;margin-bottom:4px;">
+                  <input type="checkbox" id="comicQCUntilPass" style="width:auto;margin:0;">
+                  🔁 <b>Until QC passes</b> (up to 8× per page, best-of-N saved)
+                </label>
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:11.5px;padding:5px 8px;background:rgba(46,74,107,.08);border:1px solid var(--indigo,#2e4a6b);border-radius:4px;">
+                  <input type="checkbox" id="comicCascadeMode" style="width:auto;margin:0;" checked>
+                  🔗 <b>Progressive cascade</b> — feed previous QC-passed page as ref
+                </label>
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:11.5px;padding:5px 8px;background:rgba(143,180,200,.08);border:1px solid var(--indigo,#2e4a6b);border-radius:4px;margin-top:6px;">
+                  <input type="checkbox" id="comicBlankBubbles" style="width:auto;margin:0;">
+                  💭 <b>Blank bubbles</b> — render speech bubbles + caption boxes as placeholders (text added in design stage). ~95% bubble reliability.
+                </label>
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:11.5px;padding:5px 8px;background:rgba(184,154,74,.08);border:1px solid var(--gold,#b89a4a);border-radius:4px;margin-top:6px;">
+                  <input type="checkbox" id="comicStoryDNALock" style="width:auto;margin:0;" checked>
+                  📜 <b>Story DNA lock</b> — verbatim scene/dialogue/action preservation. Prevents paraphrasing.
+                </label>
+              </div>
+            </details>
+            <button class="btn primary lg" id="comicGenerateMainBtn" style="width:100%;font-size:15px;padding:14px;font-weight:600;letter-spacing:.04em;">⚡ Generate all pages</button>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:10.5px;color:var(--ash);font-family:'Caveat',cursive;">
+              <span id="comicGenerateReadyStatus">Checking readiness…</span>
+              <span id="comicGenerateCostStatus"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ STEP 9 · EXPORT ═══ -->
+        <div class="card" data-flow="9">
+          <div class="card-head"><div class="card-title">9 · 📚 Export</div></div>
+          <div class="card-body">
+            <div style="display:grid;grid-template-columns:1fr;gap:6px;">
+              <button class="btn primary" id="comicExportFullPDFAlt" type="button">📚 Export full comic (PDF)</button>
+              <button class="btn" id="comicExportZIPAlt" type="button">📦 Export pages as ZIP</button>
+              <button class="btn ghost" id="comicExportShotJSONAlt" type="button" style="font-size:11px;">📋 Export shot list JSON (for animation)</button>
+            </div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:11px;margin-top:6px;line-height:1.3;">PDF respects per-page orientation: spreads as A4 landscape, singles as A5 portrait.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CENTER STAGE -->
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px;flex-wrap:wrap;">
+          <div style="display:flex;gap:4px;align-items:center;">
+            <button class="btn sm ghost" id="comicPrevPage" title="Previous page (←)">←</button>
+            <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--deep);font-weight:600;" id="comicPageTitle">Page 1</div>
+            <input type="number" id="comicPageNum" min="1" value="1" style="width:50px;font-size:11px;text-align:center;padding:3px;">
+            <span id="comicPageIndicator" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ash);">/ 1</span>
+            <button class="btn sm ghost" id="comicNextPage" title="Next page (→)">→</button>
+          </div>
+          <div style="display:flex;gap:4px;align-items:center;flex-wrap:wrap;">
+            <label style="font-size:10px;color:var(--ash);letter-spacing:.05em;">Page format</label>
+            <select id="comicPageAspect" style="font-size:11px;padding:3px 6px;">
+              <optgroup label="SINGLE PAGE">
+                <option value="1/1.414" selected>A4 portrait (1:1.414) · 210×297mm</option>
+                <option value="0.707/1">A5 portrait (1:1.414) · 148×210mm</option>
+                <option value="3/4">3:4 portrait</option>
+                <option value="2/3">2:3 tall portrait</option>
+                <option value="6.625/10.25">US comic book (6.625×10.25 in)</option>
+                <option value="1/1">Square (1:1)</option>
+              </optgroup>
+              <optgroup label="DOUBLE-PAGE SPREAD (2 pages joined side-by-side)">
+                <option value="1.414/1" selected>A4 spread = 2× A5 (1.414:1) · 297×210mm</option>
+                <option value="1.414/1">A3 spread = 2× A4 (1.414:1) · 420×297mm</option>
+                <option value="3/2">3:2 magazine spread</option>
+                <option value="16/9">16:9 cinematic spread</option>
+              </optgroup>
+              <optgroup label="LANDSCAPE">
+                <option value="1.414/1">A4 landscape (1.414:1)</option>
+                <option value="4/3">4:3 landscape</option>
+              </optgroup>
+              <optgroup label="SOCIAL / WEBTOON">
+                <option value="9/16">9:16 vertical / reel</option>
+                <option value="4/5">4:5 IG portrait</option>
+              </optgroup>
+            </select>
+            <button class="btn sm" id="comicRenderEmpty">⚡ Empty</button>
+            <button class="btn sm" id="comicRenderSelected">⚡ Selected</button>
+            <button class="btn sm" id="comicRetryFailed">↻ Retry failed</button>
+            <button class="btn sm primary" id="comicComposePage" title="After all panels render, compose them into one final page image">🧩 Compose page</button>
+          </div>
+        </div>
+        <div id="comicPageStage" style="background:white;border:2px solid var(--deep);border-radius:var(--r-sm);aspect-ratio:1/1.414;width:100%;position:relative;overflow:hidden;box-shadow:var(--shadow);"></div>
+        <div class="studio-actions" style="margin-top:10px;flex-wrap:wrap;">
+          <button class="btn" id="comicDownloadPNG">📥 Download page (PNG)</button>
+          <button class="btn" id="comicDownloadPDF">📄 Add page to PDF</button>
+          <button class="btn primary" id="comicExportFullPDF">📚 Export full comic (PDF)</button>
+          <button class="btn ghost" id="comicExportZIP">📦 Export panels as ZIP</button>
+        </div>
+      </div>
+
+      <!-- RIGHT INSPECTOR -->
+      <div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">🧬 Character Vault</div></div>
+          <div class="card-body" id="comicVaultPanel">
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;text-align:center;padding:8px;">No characters in vault yet · load master JSON or apply a preset below</div>
+            <div style="margin-top:8px;border-top:1px dashed var(--line);padding-top:8px;">
+              <div style="font-size:10.5px;color:var(--ash);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;">Quick apply preset</div>
+              <div style="display:flex;gap:4px;margin-bottom:4px;">
+                <select id="vaultPresetSelect" style="flex:1;font-size:11px;padding:4px;">
+                  <option value="">— pick a preset template —</option>
+                </select>
+              </div>
+              <div style="display:flex;gap:4px;">
+                <input id="vaultPresetCharName" type="text" placeholder="character name (e.g. Aarav)" style="flex:1;font-size:11px;padding:4px;">
+                <button class="btn sm primary" id="vaultPresetApplyBtn" style="font-size:11px;">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">💰 Cost tracker</div></div>
+          <div class="card-body" id="comicCostPanel">
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;text-align:center;padding:8px;">No renders yet · cost will appear here</div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">Panel inspector</div></div>
+          <div class="card-body" id="comicPanelInspector">
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:14px;text-align:center;padding:14px;">click a panel on the page to edit it</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== MAGAZINE LAYOUT STUDIO ============== -->
+  <section class="view" id="viewMagazine">
+
+    <!-- ══════════ MAGAZINE STYLE + LAYOUT PICKER (per-section) ══════════ -->
+    <div style="margin-bottom:10px;padding:8px 12px;background:linear-gradient(135deg, rgba(184,92,60,.10), rgba(228,165,30,.05));border:1px solid var(--saffron);border-radius:8px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+      <span style="font-size:12.5px;font-weight:600;white-space:nowrap;">🎨 Style</span>
+      <select id="magKbsStyleSelect" style="flex:1;min-width:180px;padding:7px;font-size:12px;">
+        <option value="">— No style —</option>
+      </select>
+      <span style="font-size:12.5px;font-weight:600;white-space:nowrap;">📐 Layout</span>
+      <select id="magKbsLayoutSelect" style="flex:1;min-width:180px;padding:7px;font-size:12px;">
+        <option value="">— No layout —</option>
+      </select>
+      <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11.5px;font-weight:600;white-space:nowrap;">
+        <input type="checkbox" id="magKbsPrintable" checked /> 🖨️ Printable
+      </label>
+      <span id="magKbsStyleHint" style="flex-basis:100%;font-size:10.5px;color:var(--ash);font-family:'Caveat',cursive;">Pick a style + layout → magazine pages render in it. With a style, reference images are optional.</span>
+    </div>
+
+    <!-- ══════════ MAGAZINE MODE TABS — Creature-Maker vs Generic ══════════ -->
+    <div style="display:flex;gap:6px;margin-bottom:12px;padding:6px;background:var(--paper-2);border-radius:8px;border:1px solid var(--line);">
+      <button class="pill active" data-magmode="creature" id="magModeCreature" style="flex:1;padding:10px;font-weight:600;">🪲 Creature-Maker Notebook <span style="font-family:'Caveat',cursive;font-weight:400;opacity:.7;font-size:11px;">— A5 secret-notebook case files per object-creature</span></button>
+      <button class="pill" data-magmode="generic" id="magModeGeneric" style="flex:1;padding:10px;">📰 Generic Magazine <span style="font-family:'Caveat',cursive;font-weight:400;opacity:.7;font-size:11px;">— story-based multi-page magazine</span></button>
+      <button class="pill" data-magmode="diary" id="magModeDiary" style="flex:1;padding:10px;">📔 The Diary <span style="font-family:'Caveat',cursive;font-weight:400;opacity:.7;font-size:11px;">— hand-drawn diary pages from journal entries</span></button>
+    </div>
+
+    <!-- ══════════ THE DIARY ══════════ -->
+    <div id="magViewDiary" style="display:none;">
+      <div class="card" style="padding:18px 20px;">
+        <div style="font-weight:600;margin-bottom:4px;">📔 The Diary — hand-drawn journal pages</div>
+        <div style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-bottom:14px;">
+          One diary entry → one hand-drawn diary page (KBS039 style · LAY13 layout · kraft paper, handwriting, doodles). Paste entries below, one per blank line, then generate.
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;">
+          <div>
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Diary title / book</label>
+            <input id="diaryBookTitle" type="text" value="Devi Kibookal — My Diary" style="width:100%;padding:7px;font-size:13px;">
+          </div>
+          <div>
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Provider</label>
+            <select id="diaryProvider" style="width:100%;padding:7px;font-size:13px;">
+              <option value="fal_nano_banana_pro" selected>Nano Banana Pro</option>
+              <option value="fal_seedream_45">Seedream 4.5</option>
+              <option value="fal_nano_banana_2">Nano Banana 2</option>
+            </select>
+          </div>
+        </div>
+        <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Diary entries <span style="color:var(--red);">*</span> <span style="font-weight:400;color:var(--ash);">— one entry per blank-line block</span></label>
+        <textarea id="diaryEntries" rows="12" placeholder="Diary entry 1…&#10;&#10;Diary entry 2…" style="width:100%;font-size:12px;font-family:'JetBrains Mono',monospace;"></textarea>
+        <div id="diaryDetected" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-top:4px;">0 entries detected</div>
+        <div style="display:flex;gap:8px;margin-top:12px;align-items:center;">
+          <button class="btn primary" id="diaryGenerateBtn">⚡ Generate diary pages</button>
+          <button class="btn ghost sm" id="diaryLoadSampleBtn">📥 Load Vaishnodevi sample (9 entries)</button>
+          <span id="diaryCost" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-left:auto;"></span>
+        </div>
+      </div>
+      <div class="card" style="margin-top:12px;">
+        <div style="font-weight:600;margin-bottom:8px;">Diary pages</div>
+        <div id="diaryStage" style="background:var(--paper-2);border:1px dashed var(--line);border-radius:6px;min-height:300px;display:flex;align-items:center;justify-content:center;padding:14px;">
+          <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:14px;text-align:center;">Paste entries (or load the sample), then generate.</div>
+        </div>
+        <div id="diaryThumbs" style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;"></div>
+        <div style="margin-top:8px;display:flex;gap:6px;">
+          <button class="btn ghost sm" id="diaryDownloadAllBtn" disabled>⬇ Download all as ZIP</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Style Lock moved to its own top-level nav tab (viewStylelock). -->
+    <div id="magViewKBS" style="display:none;">
+      <div class="card" style="padding:18px 20px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px 18px;">
+          <div>
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Style ID <span style="color:var(--red);">*</span></label>
+            <div style="display:flex;gap:4px;">
+              <select id="kbsStyleSelect" style="flex:1;padding:8px;font-size:13px;">
+                <option value="">— pick a style —</option>
+              </select>
+              <button id="kbsAddStyleBtn" class="btn ghost sm" title="Add a new style from reference images" style="white-space:nowrap;">➕ Add</button>
+            </div>
+            <div id="kbsStyleHint" style="font-size:11px;color:var(--ash);margin-top:6px;font-family:'Caveat',cursive;min-height:32px;"></div>
+          </div>
+
+          <div>
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">📐 Layout <span style="font-weight:400;color:var(--ash);">— page structure</span></label>
+            <select id="kbsLayoutSelect" style="width:100%;padding:8px;font-size:13px;">
+              <option value="">— No layout (free composition) —</option>
+            </select>
+            <div id="kbsLayoutHint" style="font-size:11px;color:var(--ash);margin-top:6px;font-family:'Caveat',cursive;min-height:32px;">Pick a layout to control the page structure. Style = how it looks · Layout = how the page is arranged.</div>
+            <input type="hidden" id="kbsFormat" value="">
+          </div>
+
+          <div style="grid-column:1/3;display:flex;align-items:center;gap:10px;padding:8px 12px;background:rgba(60,122,78,.08);border:1px solid #4a7c3e;border-radius:8px;">
+            <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:12.5px;font-weight:600;">
+              <input type="checkbox" id="kbsPrintable" checked />
+              🖨️ Printable — page only, no background
+            </label>
+            <span style="font-size:10.5px;color:var(--ash);font-family:'Caveat',cursive;">Renders just the page(s) edge-to-edge — no desk, props, palette or 3D mockup. Ready to print.</span>
+          </div>
+
+          <div style="grid-column:1/3;">
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Subject <span style="color:var(--red);">*</span></label>
+            <input id="kbsSubject" type="text" placeholder="e.g. Devi as Chandika / Durga, front-facing" style="width:100%;padding:8px;font-size:13px;" />
+          </div>
+
+          <div style="grid-column:1/3;">
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Story seed <span style="color:var(--red);">*</span></label>
+            <textarea id="kbsStory" rows="3" placeholder="One-image story. e.g. 'Her body and robe contain the full Devi Mahatmya universe: cosmos, devas, asuras, Mahishasura, Shumbha-Nishumbha, Chanda-Munda, Raktabija, Navadurga, Matrikas, lion, weapons, sacred realms and liberation.'" style="width:100%;padding:8px;font-size:13px;resize:vertical;"></textarea>
+          </div>
+
+          <div>
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Text mode</label>
+            <select id="kbsTextMode" style="width:100%;padding:8px;font-size:13px;">
+              <option value="none">none (no text at all)</option>
+              <option value="minimal_headings">minimal headings</option>
+              <option value="pseudo_labels">pseudo labels</option>
+              <option value="final_readable_text">final readable text</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Mood</label>
+            <select id="kbsMood" style="width:100%;padding:8px;font-size:13px;">
+              <option value="sacred">sacred</option>
+              <option value="playful">playful</option>
+              <option value="eerie">eerie</option>
+              <option value="heroic">heroic</option>
+              <option value="investigative">investigative</option>
+              <option value="comic">comic</option>
+              <option value="quiet">quiet</option>
+              <option value="epic">epic</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Density</label>
+            <select id="kbsDensity" style="width:100%;padding:8px;font-size:13px;">
+              <option value="medium">medium</option>
+              <option value="low">low</option>
+              <option value="high" selected>high</option>
+              <option value="extreme">extreme</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Camera</label>
+            <select id="kbsCamera" style="width:100%;padding:8px;font-size:13px;">
+              <option value="front_facing">front_facing</option>
+              <option value="three_quarter">three_quarter</option>
+              <option value="aerial_oblique">aerial_oblique</option>
+              <option value="eye_level">eye_level</option>
+              <option value="flat_diagram">flat_diagram</option>
+            </select>
+          </div>
+
+          <div style="grid-column:1/3;">
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Provider</label>
+            <select id="kbsProvider" style="width:100%;padding:8px;font-size:13px;">
+              <option value="fal_nano_banana_pro">Nano Banana Pro (recommended — best style transfer)</option>
+              <option value="fal_gpt_image2">GPT Image 2</option>
+              <option value="fal_nano_banana_2">Nano Banana 2</option>
+              <option value="fal_seedream_45">Seedream 4.5</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Optional extra refs — NOT required (the style is already prompt-locked + has built-in refs) -->
+        <div style="margin-top:14px;padding:10px 12px;background:var(--paper-2);border-radius:8px;border:1px dashed var(--line);">
+          <div style="font-size:12px;font-weight:600;margin-bottom:4px;">📎 Extra reference images <span style="font-weight:400;color:var(--ash);">— optional</span></div>
+          <div style="font-size:10.5px;color:var(--ash);font-family:'Caveat',cursive;margin-bottom:8px;">The chosen style already carries its own locked refs, so this is optional. Add your own only if you want to nudge the look further.</div>
+          <button class="btn ghost sm" id="kbsAddOptRefBtn" type="button">+ Add reference image</button>
+          <input type="file" id="kbsOptRefFile" accept="image/*" multiple style="display:none;">
+          <div id="kbsOptRefGrid" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;"></div>
+        </div>
+
+        <div style="margin-top:12px;padding:8px 10px;background:var(--paper-2);border-radius:6px;border:1px solid var(--line);display:flex;align-items:center;gap:10px;font-size:12px;">
+          <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+            <input type="checkbox" id="kbsStrongMode" checked />
+            <b>🛡️ Strong mode</b>
+          </label>
+          <span style="color:var(--ash);font-family:'Caveat',cursive;">— Claude vision QC after render · auto-fixes if &lt;80%</span>
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap;">
+          <button class="btn primary" id="kbsRenderBtn">⚡ Render this style</button>
+          <button class="btn ghost sm" id="kbsViewPromptBtn">📋 Preview prompt</button>
+          <button class="btn ghost sm" id="kbsRenderAll13Btn">🎯 Render ALL styles (same subject)</button>
+          <span id="kbsCost" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-left:auto;"></span>
+        </div>
+      </div>
+
+      <div class="card" id="kbsStageCard">
+        <div style="font-weight:600;margin-bottom:8px;">Stage</div>
+        <div id="kbsStage" style="background:var(--paper-2);border:1px dashed var(--line);border-radius:6px;min-height:380px;display:flex;align-items:center;justify-content:center;padding:14px;">
+          <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:14px;text-align:center;">Pick a style, fill subject + story, then render.</div>
+        </div>
+        <div id="kbsThumbs" style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;"></div>
+        <div style="margin-top:8px;display:flex;gap:6px;">
+          <button class="btn ghost sm" id="kbsDownloadBtn" disabled>⬇ Download PNG</button>
+          <button class="btn ghost sm" id="kbsDownloadAllBtn" disabled>⬇ Download all as ZIP</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ CREATURE-MAKER NOTEBOOK MODE (new) ══════════ -->
+    <div id="magViewCreature">
+      <div id="magCreatureStepper" style="display:flex;align-items:center;gap:6px;margin-bottom:14px;padding:10px 14px;background:var(--paper-2);border:1px solid var(--line);border-radius:8px;flex-wrap:wrap;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;overflow-x:auto;">
+        <div class="cstep" data-step="1"><span class="cstep-num">1</span> Backbone JSON</div>
+        <div style="color:var(--ash);">›</div>
+        <div class="cstep" data-step="2"><span class="cstep-num">2</span> Style refs</div>
+        <div style="color:var(--ash);">›</div>
+        <div class="cstep" data-step="3"><span class="cstep-num">3</span> Model</div>
+        <div style="color:var(--ash);">›</div>
+        <div class="cstep" data-step="4"><span class="cstep-num">4</span> Cases</div>
+        <div style="color:var(--ash);">›</div>
+        <div class="cstep" data-step="5"><span class="cstep-num">5</span> Generate</div>
+        <div style="color:var(--ash);">›</div>
+        <div class="cstep" data-step="6"><span class="cstep-num">6</span> Export</div>
+        <div style="flex:1;"></div>
+        <button class="btn sm danger" id="magCreatureResetBtn" type="button" title="Clear all creature cases + renders">🗑 Reset</button>
+      </div>
+
+      <div class="shell-3col">
+        <!-- LEFT RAIL — setup -->
+        <div>
+
+          <!-- STEP 1 — Backbone JSON (now OPTIONAL — auto-extracted from refs in Step 2) -->
+          <div class="card" data-mflow="1">
+            <div class="card-head"><div class="card-title">1 · 📋 Backbone JSON <span class="step-pill optional">optional · auto-derived from refs</span><span class="step-check" id="magcheck-step-1"></span></div></div>
+            <div class="card-body">
+              <div style="font-family:'Caveat',cursive;font-size:12px;color:var(--ash);line-height:1.5;margin-bottom:8px;">
+                <b>New flow:</b> just upload reference images in Step 2 → click 🪄 Auto-extract. The studio reads your refs and builds the backbone JSON automatically — capturing exact style, palette, layout regions, voice cues. No need to load a pre-built file.<br><br>
+                <b>Or</b> if you have a backbone file you want to load anyway:
+              </div>
+              <input type="file" id="magCreatureBackboneFile" accept=".json" style="display:none;">
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                <button class="btn sm" id="magCreatureBackboneLoadBtn" type="button">📋 Load backbone file</button>
+                <button class="btn ghost sm" id="magCreatureBackboneSampleBtn" type="button" title="Use the built-in v3 backbone">⚡ Use built-in v3</button>
+              </div>
+              <div id="magCreatureBackboneStatus" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-top:8px;line-height:1.4;">No backbone loaded yet. Either upload refs (Step 2) and click 🪄 auto-extract, or load a file manually.</div>
+              <div id="magCreatureBackboneStats" style="display:none;margin-top:8px;font-size:11px;color:var(--ink);padding:8px;background:var(--paper-2);border-radius:5px;line-height:1.5;"></div>
+            </div>
+          </div>
+
+          <!-- STEP 2 — Style references -->
+          <div class="card" data-mflow="2" style="margin-top:12px;">
+            <div class="card-head"><div class="card-title">2 · 📷 Style references <span class="step-pill required">required</span><span class="step-check" id="magcheck-step-2"></span></div></div>
+            <div class="card-body">
+              <input type="file" id="magCreatureRefFile" accept="image/*" multiple style="display:none;">
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                <button class="btn" id="magCreatureRefUploadBtn" type="button">📷 Upload reference notebook pages</button>
+                <button class="btn primary sm" id="magCreatureAutoExtractBtn" type="button" disabled title="Read the uploaded references and auto-generate the style + schema JSON">🪄 Auto-extract style JSON from refs</button>
+                <button class="btn ghost sm" id="magCreatureRefClearBtn" type="button" style="opacity:.7;">Clear</button>
+              </div>
+              <div id="magCreatureRefStatus" style="font-size:10.5px;color:var(--ash);font-family:'Caveat',cursive;margin-top:6px;">No references uploaded · upload 3-6 example notebook pages → click 🪄 to auto-extract style JSON.</div>
+              <div id="magCreatureRefGrid" class="ref-grid" style="margin-top:8px;"></div>
+              <div id="magCreatureExtractedBox" style="display:none;margin-top:8px;padding:8px;background:rgba(46,74,107,.06);border:1px solid var(--indigo,#2e4a6b);border-radius:5px;">
+                <div style="font-size:10.5px;color:var(--indigo,#2e4a6b);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:4px;">✓ Auto-extracted style JSON · used for every render</div>
+                <div id="magCreatureExtractedSummary" style="font-size:11px;color:var(--ink);line-height:1.5;"></div>
+                <details style="margin-top:6px;">
+                  <summary style="cursor:pointer;font-size:10.5px;color:var(--ash);">View / edit raw JSON</summary>
+                  <textarea id="magCreatureExtractedJsonText" rows="10" style="width:100%;font-size:10.5px;font-family:monospace;padding:6px;margin-top:4px;border-radius:4px;border:1px solid var(--line);"></textarea>
+                  <button class="btn sm" id="magCreatureExtractedSaveBtn" style="margin-top:4px;font-size:10.5px;">💾 Save edits</button>
+                </details>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3 — Image model -->
+          <div class="card" data-mflow="3" style="margin-top:12px;">
+            <div class="card-head"><div class="card-title">3 · 💰 Image model <span class="step-pill required">required</span></div></div>
+            <div class="card-body">
+              <select id="magCreatureProvider" style="width:100%;font-size:12.5px;padding:7px;">
+                <optgroup label="✨ Premium (best for dense notebook pages)">
+                  <option value="fal_nano_banana_pro" selected>Nano Banana Pro — Best for hand-drawn notebook density</option>
+                  <option value="fal_imagen4_ultra">Imagen 4 Ultra</option>
+                  <option value="fal_ideogram_v3">Ideogram v3 (best for text rendering)</option>
+                </optgroup>
+                <optgroup label="⚖ Balanced">
+                  <option value="fal_seedream_45">Seedream 4.5</option>
+                  <option value="fal_flux2_flex">FLUX.2 Flex</option>
+                  <option value="fal_gpt_image2">GPT Image 2 (high quality)</option>
+                </optgroup>
+                <optgroup label="💵 Cheap (drafts)">
+                  <option value="fal_nano_banana_2">Nano Banana 2</option>
+                  <option value="fal_flux_schnell">FLUX Schnell</option>
+                </optgroup>
+              </select>
+              <div id="magCreatureProviderCost" style="font-size:10.5px;color:var(--ash);margin-top:6px;font-family:'Caveat',cursive;"></div>
+              <div id="magCreatureProviderHint" style="font-size:11px;margin-top:6px;padding:7px 9px;border-radius:5px;display:none;"></div>
+            </div>
+          </div>
+
+          <!-- STEP 4 — Cases -->
+          <div class="card" data-mflow="4" style="margin-top:12px;">
+            <div class="card-head"><div class="card-title">4 · 🗂 Cases <span class="step-pill required">required</span><span class="step-check" id="magcheck-step-4"></span></div></div>
+            <div class="card-body">
+              <div style="display:flex;gap:6px;margin-bottom:8px;">
+                <button class="btn sm" id="magCreatureUseLibraryBtn" type="button">📚 Use library cases</button>
+                <button class="btn sm" id="magCreatureGenerateCasesBtn" type="button">✨ Generate new cases from objects</button>
+                <button class="btn sm ghost" id="magCreatureAddCaseBtn" type="button">+ Manual</button>
+              </div>
+              <div id="magCreatureGenerateBox" style="display:none;margin-bottom:8px;padding:8px;background:rgba(184,154,74,.08);border:1px solid var(--gold,#b89a4a);border-radius:5px;">
+                <label style="font-size:10.5px;color:var(--ash);text-transform:uppercase;letter-spacing:.06em;font-weight:600;">Enter ordinary objects (one per line)</label>
+                <textarea id="magCreatureObjectsInput" rows="4" placeholder="kettle&#10;ballpoint pen&#10;old shoe&#10;umbrella&#10;water bottle" style="width:100%;font-size:12px;padding:6px;margin-top:4px;"></textarea>
+                <div style="display:flex;gap:4px;margin-top:6px;">
+                  <button class="btn sm primary" id="magCreatureGenCasesGoBtn" type="button">🪄 Generate cases with Claude</button>
+                  <button class="btn sm ghost" id="magCreatureGenCasesCancelBtn" type="button">Cancel</button>
+                </div>
+                <div style="font-family:'Caveat',cursive;font-size:11px;color:var(--ash);margin-top:4px;line-height:1.3;">Claude reads each object + the backbone voice/humour rules and generates a complete case (suspicious clues, wrong things, transformed labels, strange switch, lab notes, unsolved prompt).</div>
+              </div>
+              <div id="magCreatureCasesList" style="margin-top:6px;display:grid;gap:6px;"></div>
+              <div id="magCreatureCasesStatus" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-top:6px;">No cases loaded yet · click "Use library cases" to load the 10 built-in cases.</div>
+            </div>
+          </div>
+
+          <!-- STEP 5 — Generate (BIG CTA) -->
+          <div class="card" data-mflow="5" style="margin-top:12px;background:linear-gradient(135deg,rgba(184,92,60,.08),rgba(90,122,68,.08));border:2px solid var(--saffron,#b85c3c);">
+            <div class="card-head"><div class="card-title" style="color:var(--saffron,#b85c3c);font-size:14px;">5 · ⚡ Generate <span class="step-pill required">final step</span></div></div>
+            <div class="card-body">
+              <details style="margin-bottom:10px;">
+                <summary style="cursor:pointer;font-size:11px;color:var(--ash);letter-spacing:.04em;text-transform:uppercase;font-weight:600;padding:4px 0;">⚙ Render options</summary>
+                <div style="padding:8px;background:var(--paper-2);border-radius:6px;margin-top:6px;">
+                  <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;margin-bottom:6px;">
+                    <input type="checkbox" id="magCreatureAutoQC" checked style="width:auto;margin:0;">
+                    🤖 Auto-QC each page (Claude vision)
+                  </label>
+                  <div style="display:flex;gap:8px;">
+                    <div style="flex:1;"><label style="font-size:10px;color:var(--ash);">Min QC score</label><input type="number" id="magCreatureQCMinScore" value="7" min="1" max="10" style="width:100%;font-size:11px;padding:3px;"></div>
+                    <div style="flex:1;"><label style="font-size:10px;color:var(--ash);">Retries</label><input type="number" id="magCreatureQCRetries" value="2" min="0" max="5" style="width:100%;font-size:11px;padding:3px;"></div>
+                  </div>
+                </div>
+              </details>
+              <button class="btn primary lg" id="magCreatureRenderAllBtn" style="width:100%;font-size:15px;padding:14px;font-weight:600;letter-spacing:.04em;" disabled>⚡ Generate all cases</button>
+              <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:10.5px;color:var(--ash);font-family:'Caveat',cursive;">
+                <span id="magCreatureReadyStatus">Checking readiness…</span>
+                <span id="magCreatureCostEstimate"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 6 — Export -->
+          <div class="card" data-mflow="6" style="margin-top:12px;">
+            <div class="card-head"><div class="card-title">6 · 📚 Export</div></div>
+            <div class="card-body">
+              <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                <button class="btn" id="magCreatureExportPdfBtn" disabled>📄 Export PDF</button>
+                <button class="btn" id="magCreatureExportZipBtn" disabled>📦 Export ZIP</button>
+                <button class="btn ghost sm" id="magCreatureExportJsonBtn" disabled>📋 Export case JSON</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CENTER STAGE — page viewer -->
+        <div>
+          <div style="margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--ash);font-family:'Caveat',cursive;">
+            <span id="magCreatureStageMeta">No case selected · click a case in the left rail</span>
+            <span id="magCreatureProgress"></span>
+          </div>
+          <div id="magCreatureStage" style="width:100%;aspect-ratio:148/210;max-height:80vh;background:#F2E5C8;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;">
+            <div id="magCreatureStageEmpty" style="font-family:'Caveat',cursive;color:var(--ash);font-size:14px;text-align:center;padding:20px;">
+              The current case page will render here.<br><br>
+              Load the backbone → pick a model → render.
+            </div>
+          </div>
+          <div style="margin-top:8px;display:flex;gap:6px;justify-content:center;">
+            <button class="btn ghost sm" id="magCreatureRenderOneBtn" disabled>⚡ Render this case</button>
+            <button class="btn ghost sm" id="magCreatureDownloadOneBtn" disabled>⬇ Download PNG</button>
+            <button class="btn ghost sm" id="magCreatureViewPromptBtn" disabled>📋 View prompt</button>
+            <button class="btn ghost sm" id="magCreatureIconographyBtn">🔍 Iconography</button>
+          </div>
+        </div>
+
+        <!-- RIGHT RAIL — cost tracker -->
+        <div>
+          <div class="card">
+            <div class="card-head"><div class="card-title">💰 Cost tracker</div></div>
+            <div class="card-body" id="magCreatureCostPanel">
+              <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;text-align:center;padding:8px;">No renders yet</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ GENERIC MAGAZINE MODE (original — wrapped) ══════════ -->
+    <div id="magViewGeneric" style="display:none;">
+    <div id="magStepper" style="display:flex;align-items:center;gap:6px;margin-bottom:14px;padding:10px 14px;background:var(--paper-2);border:1px solid var(--line);border-radius:8px;flex-wrap:wrap;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;overflow-x:auto;">
+      <div class="cstep" data-step="1"><span class="cstep-num">1</span> Story</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="2"><span class="cstep-num">2</span> Master JSON</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="3"><span class="cstep-num">3</span> References</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="4"><span class="cstep-num">4</span> Sheets</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="5"><span class="cstep-num">5</span> Pages</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="6"><span class="cstep-num">6</span> Render</div>
+      <div style="color:var(--ash);">›</div>
+      <div class="cstep" data-step="7"><span class="cstep-num">7</span> Export</div>
+      <div style="flex:1;"></div>
+      <button class="btn sm danger" id="magResetAllBtn" type="button" title="Delete all magazine pages, sheets, refs">🗑 Reset magazine</button>
+    </div>
+    <div class="shell-3col">
+      <div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Story → magazine</div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Use a generated story</label>
+              <select id="magStorySel"><option value="">— pick from Story tab —</option></select>
+            </div>
+            <div class="field">
+              <label class="field-label">Or paste a story</label>
+              <textarea id="magStoryText" rows="4" placeholder="Paste the story here. Characters and theme are auto-detected."></textarea>
+            </div>
+            <div class="studio-actions">
+              <button class="btn primary" id="magDetectBtn">🔍 Auto-extract characters from story</button>
+            </div>
+            <div class="field" style="margin-top:8px;">
+              <label class="field-label">Detected characters <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--ash);">— auto, editable</em></label>
+              <input type="text" id="magDetectedChars" placeholder="auto-detected from story…">
+            </div>
+            <div class="field">
+              <label class="field-label">Detected theme <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--ash);">— auto, editable</em></label>
+              <input type="text" id="magDetectedTheme" placeholder="auto-detected from story…">
+            </div>
+            <div class="field-row">
+              <div><label class="field-label">Total pages</label>
+                <select id="magPages"><option>16</option><option selected>24</option><option>32</option></select>
+              </div>
+              <div><label class="field-label">Audience age</label>
+                <select id="magAge"><option>3–5</option><option selected>6–8</option><option>9–12</option><option>13+</option></select>
+              </div>
+            </div>
+            <div class="studio-actions">
+              <button class="btn primary lg" id="magAutoBtn">⚡ Auto-generate magazine</button>
+            </div>
+            <div class="loader" id="magLoader"></div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:12px;line-height:1.3;margin-top:6px;">Character sheets are generated FIRST so every page locks the same look.</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">📋 Master character/style JSON <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— production lock</em></div></div>
+          <div class="card-body">
+            <input type="file" id="magMasterJsonFile" accept=".json" style="display:none;">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+              <button class="btn primary" id="magMasterJsonLoadBtn" type="button">📋 Load master JSON</button>
+              <button class="btn" id="magMasterJsonClearBtn" type="button" style="opacity:.7;">Clear</button>
+              <div id="magMasterJsonStatus" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;">No master JSON loaded</div>
+            </div>
+            <div id="magMasterJsonCharsBox" style="margin-top:8px;display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:6px;"></div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:11.5px;margin-top:8px;line-height:1.35;">
+              Same JSON shape as the comic master lock. Defines every character (identity, forbidden, expressions, poses), global style DNA, palette, and negative_master. Every magazine page render uses these locks automatically.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">📷 Reference images <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— magazine style lock</em></div></div>
+          <div class="card-body">
+            <input type="file" id="magExtraRefFile" accept="image/*" multiple style="display:none;">
+            <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+              <button class="btn" id="magExtraRefUploadBtn" type="button">📷 Upload references</button>
+              <button class="btn" id="magExtraRefClearBtn" type="button" style="opacity:.7;">Clear</button>
+              <button class="btn primary" id="magExtraRefExtractBtn" type="button">🔍 Extract style JSON</button>
+            </div>
+            <div id="magExtraRefStatus" style="font-size:10.5px;color:var(--ash);font-family:'Caveat',cursive;margin-top:6px;">No references uploaded</div>
+            <div id="magExtraRefGrid" class="ref-grid" style="margin-top:8px;"></div>
+            <div style="margin-top:8px;">
+              <label style="font-size:11px;color:var(--ash);">Style JSON (editable, used for every page)</label>
+              <textarea id="magExtraStyleJson" rows="4" placeholder='Click "Extract style JSON" after uploading references' style="width:100%;font-family:monospace;font-size:11px;padding:6px;border-radius:5px;background:var(--paper);border:1px solid var(--line);"></textarea>
+            </div>
+            <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:10px;">
+              <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11.5px;">
+                <input type="checkbox" id="magExtraUseStyleJson" checked style="width:auto;margin:0;"> Use JSON in every page
+              </label>
+              <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11.5px;">
+                <input type="checkbox" id="magExtraAttachImages" checked style="width:auto;margin:0;"> Attach images as visual refs
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">Page type / cover <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— for the active page</em></div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Cover / page type</label>
+              <select id="magPageType">
+                <option value="page" selected>Regular page</option>
+                <option value="outside_front">Outside Front Cover</option>
+                <option value="inside_front">Inside Front Cover</option>
+                <option value="inside_back">Inside Back Cover</option>
+                <option value="outside_back">Outside Back Cover</option>
+                <option value="character_sheet">Character sheet</option>
+                <option value="spread">Centerfold / Double-page spread</option>
+                <option value="contents">Contents / TOC</option>
+                <option value="poem">Poem / verse page</option>
+              </select>
+              <div style="font-size:10.5px;color:var(--ash);margin-top:4px;font-family:'Caveat',cursive;">Cover types render with title-friendly composition (empty masthead area, no faces under fold, bleed-safe).</div>
+            </div>
+            <div class="field-row">
+              <div>
+                <label class="field-label">Page aspect</label>
+                <select id="magPageAspectSel">
+                  <option value="3:4" selected>3:4 magazine portrait</option>
+                  <option value="2:3">2:3 tall portrait</option>
+                  <option value="4:5">4:5 portrait</option>
+                  <option value="A4">A4 (≈3:4)</option>
+                  <option value="1:1">1:1 square</option>
+                  <option value="4:3">4:3 landscape</option>
+                  <option value="3:2">3:2 landscape</option>
+                  <option value="SPREAD">Double-page spread (~3:2)</option>
+                  <option value="A3-SPREAD">A3 spread (16:9)</option>
+                  <option value="21:9">21:9 ultrawide spread</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Bleed</label>
+                <select id="magBleedSel">
+                  <option value="0" selected>No bleed</option>
+                  <option value="3">3 mm bleed</option>
+                  <option value="5">5 mm bleed</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">Character sheets</div></div>
+          <div class="card-body">
+            <div class="studio-actions">
+              <button class="btn primary" id="magGenSheets">🎭 Generate character sheets</button>
+            </div>
+            <div id="magSheetsBox" style="margin-top:8px;display:grid;gap:6px;"></div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:12px;margin-top:6px;line-height:1.3;">One locked reference per character. Approve all before generating pages.</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <div class="card-head"><div class="card-title">Templates</div></div>
+          <div class="card-body" id="magTemplates" style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;max-height:280px;overflow-y:auto;"></div>
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px;flex-wrap:wrap;">
+          <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--deep);font-weight:600;" id="magPageTitle">Page 1 — Cover</div>
+          <div style="display:flex;gap:4px;">
+            <button class="btn sm ghost" id="magPrev">← Prev</button>
+            <label style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.15em;color:var(--ash);text-transform:uppercase;align-self:center;">Page #</label>
+            <input type="number" id="magPageNum" min="1" value="1" style="width:60px;font-size:11px;text-align:center;">
+            <span id="magPageIndicator" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ash);align-self:center;">/ 1</span>
+            <button class="btn sm ghost" id="magNext">Next →</button>
+            <button class="btn sm" id="magAddPageBtn">+ add</button>
+            <button class="btn sm danger" id="magDelPageBtn">− del</button>
+          </div>
+        </div>
+        <div id="magPageStage" style="background:white;border:2px solid var(--deep);border-radius:var(--r-sm);aspect-ratio:1/1.414;width:100%;position:relative;overflow:hidden;box-shadow:var(--shadow);"></div>
+        <div class="studio-actions" style="margin-top:10px;flex-wrap:wrap;">
+          <button class="btn" id="magDownloadPagePNG">📥 Download page (PNG)</button>
+          <button class="btn" id="magDownloadSpreadPNG">🖼 Spread (PNG)</button>
+          <button class="btn primary" id="magExportPDF">📚 Export magazine (PDF)</button>
+          <button class="btn ghost" id="magExportZIP">📦 Pages ZIP</button>
+          <div class="toggle-row" style="margin-left:8px;"><div class="toggle" id="magPrintReadyToggle"></div><label>Print-ready (bleed)</label></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Zone inspector</div></div>
+          <div class="card-body" id="magZoneInspector">
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:14px;text-align:center;padding:14px;">click a zone on the page to edit it</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div><!-- ↑ closes magViewGeneric -->
+  </section>
+
+  <!-- ============== 🎨 STYLE LOCK (top-level) ============== -->
+  <section class="view" id="viewStylelock">
+    <div style="max-width:1100px;margin:0 auto;">
+      <!-- Hero header -->
+      <div style="background:linear-gradient(135deg, rgba(184,92,60,.14), rgba(228,165,30,.08));border:1px solid var(--saffron);border-radius:14px;padding:20px 24px;margin-bottom:18px;">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div style="font-size:30px;">🎨</div>
+          <div style="flex:1;min-width:220px;">
+            <div style="font-family:'Cinzel',serif;font-size:20px;font-weight:700;letter-spacing:.03em;">Style Lock</div>
+            <div style="font-size:12.5px;color:var(--ash);font-family:'Caveat',cursive;">Pick one of <b id="kbsStyleCountLabel">31</b> locked Kibookal styles → type a subject → render. Reference images are optional — each style is fully prompt-locked.</div>
+          </div>
+          <div style="text-align:right;font-size:11px;color:var(--ash);">
+            <div>Engine v2 · <span id="kbsEngineStyleCount">—</span> styles</div>
+            <div style="font-family:'Caveat',cursive;">renders auto-save to Gallery</div>
+          </div>
+        </div>
+      </div>
+      <!-- The engine UI (#magViewKBS) is relocated here by JS on first open. -->
+      <div id="stylelockMount"></div>
+    </div>
+  </section>
+
+  <!-- ============== TRIGUN INTERACTIVE MYSTERY KIT ============== -->
+  <section class="view" id="viewTrigun">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="background:linear-gradient(135deg, rgba(120,40,40,.16), rgba(228,165,30,.08));border:1px solid var(--saffron);border-radius:14px;padding:20px 24px;margin-bottom:18px;">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div style="font-size:30px;">🧩</div>
+          <div style="flex:1;min-width:220px;">
+            <div style="font-family:'Cinzel',serif;font-size:20px;font-weight:700;letter-spacing:.03em;">Trigun — Balance of the Universe</div>
+            <div style="font-size:12.5px;color:var(--ash);font-family:'Caveat',cursive;">Interactive Graphic Mystery Kit · ages 11–13. <b>Locked layout</b> per page (exact from the PDFs) + <b>consistent characters</b>. Pick any style — the layout stays identical.</div>
+          </div>
+          <div style="text-align:right;font-size:11px;color:var(--ash);">
+            <div><span id="trgPageCount">—</span> pages · <span id="trgTplCount">—</span> templates</div>
+            <div style="font-family:'Caveat',cursive;">→ Gallery / TrigunKit / style / version</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:18px 20px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;">
+          <div>
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">🎨 Visual style <span style="font-weight:400;color:var(--ash);">— layout stays the same</span></label>
+            <select id="trgStyleSelect" style="width:100%;padding:8px;font-size:13px;"></select>
+          </div>
+          <div>
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Provider</label>
+            <select id="trgProvider" style="width:100%;padding:8px;font-size:13px;">
+              <option value="fal_nano_banana_pro" selected>Nano Banana Pro</option>
+              <option value="fal_seedream_45">Seedream 4.5</option>
+              <option value="fal_nano_banana_2">Nano Banana 2</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Version tag <span style="font-weight:400;color:var(--ash);">— gallery folder</span></label>
+            <input id="trgVersion" type="text" value="v1" style="width:100%;padding:8px;font-size:13px;">
+          </div>
+        </div>
+
+        <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">📄 Page / material <span style="font-weight:400;color:var(--ash);">— locked template per page</span></label>
+        <select id="trgPageSelect" style="width:100%;padding:8px;font-size:13px;"></select>
+        <div id="trgPageInfo" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-top:6px;min-height:34px;"></div>
+
+        <div style="display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap;">
+          <button class="btn primary" id="trgRenderOneBtn">⚡ Render this page</button>
+          <button class="btn ghost sm" id="trgRenderSectionBtn">📚 Render whole section</button>
+          <button class="btn ghost sm" id="trgRenderKitBtn">🧩 Render entire kit</button>
+          <label style="font-size:11px;color:var(--ash);display:flex;align-items:center;gap:4px;margin-left:6px;"><input type="checkbox" id="trgReadyOnly" checked> only “ready” pages</label>
+          <span id="trgCost" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-left:auto;"></span>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px;">
+        <div style="font-weight:600;margin-bottom:8px;">Kit pages</div>
+        <div id="trgStage" style="background:var(--paper-2);border:1px dashed var(--line);border-radius:6px;min-height:320px;display:flex;align-items:center;justify-content:center;padding:14px;">
+          <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:14px;text-align:center;">Pick a page and render. Each render uses its locked layout + consistent characters, in your chosen style.</div>
+        </div>
+        <div id="trgThumbs" style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;"></div>
+        <div style="margin-top:8px;display:flex;gap:6px;">
+          <button class="btn ghost sm" id="trgDownloadAllBtn" disabled>⬇ Download all as ZIP</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PAGEFORGE — Layout + Typography Vault ============== -->
+  <section class="view" id="viewPageforge">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="background:linear-gradient(135deg, rgba(46,90,136,.16), rgba(228,165,30,.08));border:1px solid var(--saffron);border-radius:14px;padding:18px 22px;margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div style="font-size:28px;">📐</div>
+          <div style="flex:1;min-width:220px;">
+            <div style="font-family:'Cinzel',serif;font-size:19px;font-weight:700;">PageForge — Layout &amp; Typography</div>
+            <div style="font-size:12px;color:var(--ash);font-family:'Caveat',cursive;">Pick a locked layout (50 comic + 50 magazine). Each carries <b>its own matched typography</b> — swap to any other if you like. Generate flat art with blank text zones (final text stays editable).</div>
+          </div>
+          <div style="text-align:right;font-size:11px;color:var(--ash);"><span id="pfCount">—</span> layouts</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="card" style="padding:16px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+            <div>
+              <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">Kind</label>
+              <select id="pfKind" style="width:100%;padding:7px;font-size:13px;"><option value="comic">📖 Comic layouts</option><option value="magazine">📰 Magazine layouts</option></select>
+            </div>
+            <div>
+              <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">🎨 Style</label>
+              <select id="pfStyle" style="width:100%;padding:7px;font-size:13px;"></select>
+            </div>
+          </div>
+          <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">📐 Layout</label>
+          <select id="pfLayout" style="width:100%;padding:7px;font-size:13px;"></select>
+          <div id="pfArch" style="font-size:11px;color:var(--ash);font-family:'Caveat',cursive;margin-top:6px;min-height:46px;"></div>
+          <label style="font-size:12px;font-weight:600;display:block;margin:8px 0 4px;">🔤 Typography <span id="pfTypoOwn" style="font-weight:400;color:var(--saffron);font-family:'Caveat',cursive;"></span></label>
+          <select id="pfTypo" style="width:100%;padding:7px;font-size:13px;"></select>
+          <div id="pfTypoDesc" style="font-size:11px;color:var(--ash);margin-top:6px;min-height:40px;"></div>
+          <label style="font-size:12px;font-weight:600;display:block;margin:8px 0 4px;">Page subject</label>
+          <input id="pfSubject" type="text" placeholder="e.g. Durga and the buffalo demon; a Jaisalmer market scene…" style="width:100%;padding:7px;font-size:13px;">
+          <div style="display:flex;gap:8px;margin-top:10px;align-items:center;">
+            <button class="btn primary" id="pfGenBtn">⚡ Generate page (blank text zones)</button>
+            <select id="pfProvider" style="padding:6px;font-size:12px;"><option value="fal_nano_banana_pro" selected>Nano Banana Pro</option><option value="fal_seedream_45">Seedream 4.5</option></select>
+          </div>
+        </div>
+        <div class="card" style="padding:16px;">
+          <div style="font-weight:600;margin-bottom:6px;font-size:13px;">Blueprint preview <span style="font-weight:400;color:var(--ash);font-size:11px;">— panels (blue) · type zones (amber)</span></div>
+          <canvas id="pfWire" width="320" height="452" style="width:100%;max-width:320px;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;display:block;margin:0 auto;"></canvas>
+          <div id="pfStage" style="margin-top:10px;background:var(--paper-2);border:1px dashed var(--line);border-radius:6px;min-height:160px;display:flex;align-items:center;justify-content:center;padding:10px;">
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;text-align:center;">Pick a layout &amp; style, then generate. Result appears here + in the gallery.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TYPESET — editable typography overlay ============== -->
+  <section class="view" id="viewTypeset">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="background:linear-gradient(135deg, rgba(60,122,78,.16), rgba(228,165,30,.08));border:1px solid var(--saffron);border-radius:14px;padding:18px 22px;margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div style="font-size:28px;">🔤</div>
+          <div style="flex:1;min-width:220px;">
+            <div style="font-family:'Cinzel',serif;font-size:19px;font-weight:700;">Typeset — Editable Typography Overlay</div>
+            <div style="font-size:12px;color:var(--ash);font-family:'Caveat',cursive;">Add a generated page, drop in <b>real editable text</b> over the layout's blank type-zones, then export a crisp flattened page. The pro finish: AI art + clean vector-style text.</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:300px 1fr;gap:14px;">
+        <div class="card" style="padding:14px;">
+          <label style="font-size:12px;font-weight:600;display:block;margin-bottom:4px;">1 · Page image</label>
+          <input type="file" id="tsFile" accept="image/*" style="display:none;">
+          <button class="btn ghost sm" id="tsAddBtn" style="width:100%;">📷 Load page image</button>
+          <label style="font-size:12px;font-weight:600;display:block;margin:10px 0 4px;">2 · Layout (type-zones)</label>
+          <select id="tsKind" style="width:100%;padding:6px;font-size:12px;margin-bottom:4px;"><option value="comic">Comic</option><option value="magazine">Magazine</option></select>
+          <select id="tsLayout" style="width:100%;padding:6px;font-size:12px;"></select>
+          <label style="font-size:12px;font-weight:600;display:block;margin:10px 0 4px;">3 · Typography</label>
+          <select id="tsTypo" style="width:100%;padding:6px;font-size:12px;"></select>
+          <div style="display:flex;gap:6px;margin-top:10px;">
+            <button class="btn ghost sm" id="tsAddBox">＋ Text box</button>
+            <button class="btn ghost sm" id="tsClearBoxes">Clear</button>
+          </div>
+          <div style="font-size:10.5px;color:var(--ash);margin-top:8px;font-family:'Caveat',cursive;">Click a box to edit · drag to move · use the size field. Amber outlines = the layout's reserved type-zones.</div>
+          <button class="btn primary" id="tsExport" style="width:100%;margin-top:12px;">⬇ Export flattened PNG</button>
+        </div>
+        <div class="card" style="padding:14px;">
+          <div style="font-weight:600;margin-bottom:8px;font-size:13px;">Page preview <span id="tsHint" style="font-weight:400;color:var(--ash);font-size:11px;"></span></div>
+          <div id="tsStage" style="position:relative;width:100%;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;min-height:420px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:14px;text-align:center;padding:20px;">Load a page image, pick its layout, then type into the reserved zones.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== UPSCALE LAB ============== -->
+  <section class="view" id="viewUpscale">
+    <div class="studio">
+      <div class="studio-rail">
+        <div class="card">
+          <div class="card-head"><div class="card-title">Source image</div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Pick from library</label>
+              <select id="upSourceSel"><option value="">— select —</option></select>
+            </div>
+            <div class="field">
+              <label class="field-label">Or upload</label>
+              <input type="file" id="upUpload" accept="image/*">
+            </div>
+            <div id="upPreviewWrap" style="margin-top:8px;display:none;">
+              <img id="upPreviewImg" style="width:100%;border:1px solid var(--line);border-radius:var(--r-sm);max-height:260px;object-fit:contain;background:var(--paper-2);">
+              <div id="upDimensions" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ash);margin-top:4px;text-align:center;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">Upscale settings</div></div>
+          <div class="card-body">
+            <div class="field">
+              <label class="field-label">Engine</label>
+              <select id="upEngine">
+                <option value="fal-ai/clarity-upscaler" selected>Clarity Upscaler — sharp, general</option>
+                <option value="fal-ai/creative-upscaler">Creative Upscaler — adds detail</option>
+                <option value="fal-ai/aura-sr">Aura SR — pure super-res</option>
+                <option value="fal-ai/recraft-clarity-upscale">Recraft Clarity</option>
+                <option value="fal-ai/topaz/upscale/image">Topaz Gigapixel-class</option>
+                <option value="fal-ai/esrgan">ESRGAN — fastest</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label">Target scale</label>
+              <div class="pills" id="upScalePills">
+                <div class="pill" data-s="2">2× (≈2K)</div>
+                <div class="pill active" data-s="4">4× (≈4K)</div>
+                <div class="pill" data-s="6">6×</div>
+                <div class="pill" data-s="8">8×</div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">Creative prompt <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— Creative Upscaler only</em></label>
+              <textarea id="upPrompt" rows="2" placeholder="Re-describe the image to inject more detail at upscale time…"></textarea>
+            </div>
+            <div class="studio-actions">
+              <button class="btn primary lg" id="upRunBtn">⚡ Upscale</button>
+            </div>
+            <div class="loader" id="upLoader"></div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;margin-top:6px;">Upscale a 1K render to magazine / poster / film resolution.</div>
+          </div>
+        </div>
+      </div>
+      <div class="studio-main">
+        <div class="studio-meta" id="upMeta">no upscale yet</div>
+        <div class="canvas-frame empty" id="upViewer" data-aspect="1:1">
+          <div class="ce-h">upscale output appears here</div>
+          <div class="ce-d">pick or upload an image, then click ⚡ Upscale</div>
+        </div>
+        <div class="studio-actions">
+          <button class="btn ghost" id="upDownloadBtn" disabled>Download</button>
+          <button class="btn ghost" id="upSaveBtn" disabled>Save to library</button>
+          <button class="btn ghost" id="upCompareBtn" disabled>Compare with source</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== ANIMATE LAB ============== -->
+  <section class="view" id="viewAnimate">
+
+    <!-- ╔══════════════ ANIMATE MODE TABS ══════════════╗ -->
+    <div style="display:flex;gap:6px;margin-bottom:12px;padding:6px;background:var(--paper-2);border-radius:8px;border:1px solid var(--line);">
+      <button class="pill active" data-anmode="project" id="anModeProject" style="flex:1;padding:10px;font-weight:600;">🎬 Film Project Mode <span style="font-family:'Caveat',cursive;font-weight:400;opacity:.7;font-size:11px;">— comic → full film with audio</span></button>
+      <button class="pill" data-anmode="single" id="anModeSingle" style="flex:1;padding:10px;">⚡ Quick Single-Clip <span style="font-family:'Caveat',cursive;font-weight:400;opacity:.7;font-size:11px;">— one image → one short clip</span></button>
+      <button class="pill" data-anmode="batch" id="anModeBatch" style="flex:1;padding:10px;">📦 Batch Images <span style="font-family:'Caveat',cursive;font-weight:400;opacity:.7;font-size:11px;">— folder/ZIP → auto-narrated film</span></button>
+    </div>
+
+    <!-- ╔══════════════ FILM PROJECT MODE ══════════════╗ -->
+    <div id="anViewProject">
+      <div class="studio">
+        <div class="studio-rail">
+
+          <!-- ╭─ 1. Project Source ─╮ -->
+          <div class="card">
+            <div class="card-head"><div class="card-title">1 · Project source</div></div>
+            <div class="card-body">
+              <div class="field">
+                <label class="field-label">Pick the comic to animate</label>
+                <select id="anProjectSource">
+                  <option value="comic_state">From Comic tab (current pages)</option>
+                  <option value="upload_pdf">Upload comic PDF</option>
+                  <option value="upload_zip">Upload page ZIP / folder</option>
+                  <option value="upload_images">Upload images directly</option>
+                </select>
+              </div>
+              <input type="file" id="anProjectUpload" accept=".pdf,.zip,image/*" multiple style="margin-top:6px;display:none;">
+              <button class="btn" id="anProjectIngestBtn" style="margin-top:8px;width:100%;">📥 Load pages</button>
+              <div id="anProjectStatus" style="font-family:'Caveat',cursive;font-size:12.5px;color:var(--ash);margin-top:8px;line-height:1.4;">No project loaded yet.</div>
+              <div id="anProjectThumbs" style="margin-top:8px;display:none;grid-template-columns:repeat(4,1fr);gap:4px;max-height:160px;overflow-y:auto;border:1px dashed var(--line);padding:6px;border-radius:4px;"></div>
+            </div>
+          </div>
+
+          <!-- ╭─ 2. Story Bible (Claude) ─╮ -->
+          <div class="card" style="margin-top:14px;">
+            <div class="card-head"><div class="card-title">2 · Story bible · auto</div></div>
+            <div class="card-body">
+              <div style="font-family:'Caveat',cursive;font-size:12.5px;color:var(--ash);line-height:1.4;margin-bottom:8px;">
+                Claude reads the whole comic and produces a single source of truth: genre, tone, pacing, character voices, music style, edit style. Everything downstream uses this.
+              </div>
+              <button class="btn primary" id="anBuildBibleBtn" style="width:100%;">🧠 Generate story bible</button>
+              <div id="anBibleStatus" style="font-family:'Caveat',cursive;font-size:12px;color:var(--ash);margin-top:8px;"></div>
+              <details id="anBibleDetails" style="margin-top:8px;display:none;">
+                <summary style="cursor:pointer;font-size:12px;color:var(--ink);">View bible JSON</summary>
+                <textarea id="anBibleJson" rows="10" style="width:100%;font-size:10px;font-family:monospace;margin-top:4px;"></textarea>
+              </details>
+            </div>
+          </div>
+
+          <!-- ╭─ 3. Shot List (Claude) ─╮ -->
+          <div class="card" style="margin-top:14px;">
+            <div class="card-head"><div class="card-title">3 · Shot list · auto</div></div>
+            <div class="card-body">
+              <div style="font-family:'Caveat',cursive;font-size:12.5px;color:var(--ash);line-height:1.4;margin-bottom:8px;">
+                Per page, Claude designs the camera motion, beat, dialogue/narration, sfx cues, and transition. This is the editor's brain.
+              </div>
+              <div class="field-row" style="margin-bottom:6px;">
+                <div>
+                  <label class="field-label" style="font-size:10px;">Default shot length (s)</label>
+                  <select id="anShotLen">
+                    <option value="4">4 (snappy)</option>
+                    <option value="5" selected>5 (balanced)</option>
+                    <option value="6">6 (patient)</option>
+                    <option value="8">8 (cinematic)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field-label" style="font-size:10px;">Aspect</label>
+                  <select id="anProjectAspect">
+                    <option value="16:9" selected>16:9 widescreen</option>
+                    <option value="9:16">9:16 vertical / reels</option>
+                    <option value="1:1">1:1 square</option>
+                  </select>
+                </div>
+              </div>
+              <button class="btn primary" id="anBuildShotsBtn" style="width:100%;">📋 Generate shot list</button>
+              <div id="anShotsStatus" style="font-family:'Caveat',cursive;font-size:12px;color:var(--ash);margin-top:8px;"></div>
+            </div>
+          </div>
+
+          <!-- ╭─ 4. Render Engine ─╮ -->
+          <div class="card" style="margin-top:14px;">
+            <div class="card-head"><div class="card-title">4 · Render engine</div></div>
+            <div class="card-body">
+              <div class="field">
+                <label class="field-label">Video model</label>
+                <select id="anProjectEngine">
+                  <optgroup label="★ Premium">
+                    <option value="fal-ai/veo3/image-to-video">Veo 3 — $0.50/s · Google flagship</option>
+                    <option value="fal-ai/kling-video/v2.1/master/image-to-video" selected>Kling 2.1 Master — $0.35/s</option>
+                    <option value="fal-ai/runway-gen3/turbo/image-to-video">Runway Gen-3 Turbo — $0.25/s</option>
+                  </optgroup>
+                  <optgroup label="Balanced">
+                    <option value="fal-ai/kling-video/v2.1/standard/image-to-video">Kling 2.1 Standard — $0.15/s</option>
+                    <option value="fal-ai/luma-dream-machine/ray-2/image-to-video">Luma Ray 2 — $0.18/s</option>
+                    <option value="fal-ai/minimax/video-01-live/image-to-video">Minimax Hailuo — $0.10/s</option>
+                  </optgroup>
+                  <optgroup label="Fast / cheap">
+                    <option value="fal-ai/wan-i2v">Wan I2V — $0.05/s</option>
+                    <option value="fal-ai/pika/v2.2/image-to-video">Pika 2.2 — $0.08/s</option>
+                  </optgroup>
+                </select>
+              </div>
+              <label style="display:flex;align-items:center;gap:6px;cursor:pointer;font-size:12px;margin-top:8px;">
+                <input type="checkbox" id="anProjectQC" checked style="width:auto;margin:0;">
+                🤖 Auto-QC each clip (first/last frame check vs source still)
+              </label>
+              <div id="anProjectCostEstimate" style="font-family:'Caveat',cursive;font-size:11px;color:var(--ash);margin-top:8px;line-height:1.3;">Cost estimate appears after shot list is built.</div>
+              <button class="btn primary lg" id="anRenderAllBtn" style="width:100%;margin-top:10px;" disabled>🎬 Render all shots</button>
+              <div id="anRenderProgress" style="margin-top:8px;display:none;">
+                <div style="font-size:11px;color:var(--ash);margin-bottom:4px;"><span id="anRenderDone">0</span>/<span id="anRenderTotal">0</span> shots · <span id="anRenderEta">—</span></div>
+                <div style="width:100%;height:8px;background:var(--paper-2);border-radius:4px;overflow:hidden;border:1px solid var(--line);">
+                  <div id="anRenderBar" style="width:0%;height:100%;background:linear-gradient(90deg,var(--saffron,#b85c3c),var(--green,#5a7a44));transition:width .4s;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ╭─ 5. Audio + Edit (Phase 2 — coming next) ─╮ -->
+          <div class="card" style="margin-top:14px;opacity:.55;">
+            <div class="card-head"><div class="card-title">5 · Audio + final mix · phase 2</div></div>
+            <div class="card-body">
+              <div style="font-family:'Caveat',cursive;font-size:12.5px;color:var(--ash);line-height:1.4;">
+                Next ship: narration (ElevenLabs / OpenAI), per-character dialogue voices, genre-aware music (Suno / stable-audio), SFX library, auto-edit with ducking + LUFS, FFmpeg.wasm final mix → one .mp4.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="studio-main">
+          <div class="studio-meta" id="anProjectMeta">No project loaded · pick a comic source above to begin.</div>
+
+          <!-- Project dashboard / shot timeline -->
+          <div id="anProjectDashboard" style="display:none;">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
+              <div style="text-align:center;padding:10px;background:rgba(184,92,60,.08);border-radius:6px;border:1px solid var(--saffron,#b85c3c);">
+                <div style="font-size:22px;font-weight:700;color:var(--saffron,#b85c3c);font-family:'Cinzel',serif;" id="anStatPages">0</div>
+                <div style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ash);">Pages</div>
+              </div>
+              <div style="text-align:center;padding:10px;background:rgba(90,122,68,.08);border-radius:6px;border:1px solid var(--green,#5a7a44);">
+                <div style="font-size:22px;font-weight:700;color:var(--green,#5a7a44);font-family:'Cinzel',serif;" id="anStatShots">0</div>
+                <div style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ash);">Shots</div>
+              </div>
+              <div style="text-align:center;padding:10px;background:rgba(46,74,107,.08);border-radius:6px;border:1px solid var(--indigo,#2e4a6b);">
+                <div style="font-size:22px;font-weight:700;color:var(--indigo,#2e4a6b);font-family:'Cinzel',serif;" id="anStatDuration">0s</div>
+                <div style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ash);">Runtime</div>
+              </div>
+            </div>
+
+            <div id="anBibleSummary" style="display:none;margin-bottom:12px;padding:12px;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;font-size:13px;line-height:1.5;"></div>
+
+            <div id="anShotGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;"></div>
+
+            <div class="studio-actions" style="margin-top:14px;flex-wrap:wrap;">
+              <button class="btn" id="anDownloadAllClipsBtn" disabled>📦 Download all clips (ZIP)</button>
+              <button class="btn" id="anExportShotsJsonBtn" disabled>📋 Export shot list (JSON)</button>
+              <button class="btn ghost" id="anProjectResetBtn">🗑 Reset project</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ╔══════════════ QUICK SINGLE-CLIP MODE (legacy) ══════════════╗ -->
+    <div id="anViewSingle" style="display:none;">
+      <div class="studio">
+        <div class="studio-rail">
+          <div class="card">
+            <div class="card-head"><div class="card-title">Animate source</div></div>
+            <div class="card-body">
+              <div class="field">
+                <label class="field-label">Pick from library</label>
+                <select id="anSourceSel"><option value="">— select —</option></select>
+              </div>
+              <div class="field">
+                <label class="field-label">Or upload</label>
+                <input type="file" id="anUpload" accept="image/*">
+              </div>
+              <div id="anPreviewWrap" style="margin-top:8px;display:none;">
+                <img id="anPreviewImg" style="width:100%;border:1px solid var(--line);border-radius:var(--r-sm);max-height:260px;object-fit:contain;background:var(--paper-2);">
+              </div>
+            </div>
+          </div>
+          <div class="card" style="margin-top:14px;">
+            <div class="card-head"><div class="card-title">Animation engine</div></div>
+            <div class="card-body">
+              <div class="field">
+                <label class="field-label">Model</label>
+                <select id="anEngine">
+                  <optgroup label="★ Premium">
+                    <option value="fal-ai/veo3/image-to-video">Veo 3 — Google flagship</option>
+                    <option value="fal-ai/kling-video/v2.1/master/image-to-video" selected>Kling 2.1 Master</option>
+                    <option value="fal-ai/runway-gen3/turbo/image-to-video">Runway Gen-3 Turbo</option>
+                  </optgroup>
+                  <optgroup label="Balanced">
+                    <option value="fal-ai/kling-video/v2.1/standard/image-to-video">Kling 2.1 Standard</option>
+                    <option value="fal-ai/luma-dream-machine/ray-2/image-to-video">Luma Ray 2</option>
+                    <option value="fal-ai/minimax/video-01-live/image-to-video">Minimax Hailuo</option>
+                  </optgroup>
+                  <optgroup label="Fast">
+                    <option value="fal-ai/wan-i2v">Wan I2V — fast</option>
+                    <option value="fal-ai/pika/v2.2/image-to-video">Pika 2.2</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="field-row">
+                <div>
+                  <label class="field-label">Duration (s)</label>
+                  <select id="anDuration">
+                    <option value="3">3</option>
+                    <option value="5" selected>5</option>
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field-label">Aspect</label>
+                  <select id="anAspect">
+                    <option value="16:9">16:9</option>
+                    <option value="9:16">9:16</option>
+                    <option value="1:1">1:1</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label">Motion prompt</label>
+                <textarea id="anPrompt" rows="3" placeholder="Describe the camera and character motion — gentle push-in, character blinks, dust drifts…"></textarea>
+              </div>
+              <div class="studio-actions">
+                <button class="btn primary lg" id="anRunBtn">⚡ Animate</button>
+              </div>
+              <div class="loader" id="anLoader"></div>
+              <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;margin-top:6px;">Video typically takes 1–4 minutes depending on engine.</div>
+            </div>
+          </div>
+        </div>
+        <div class="studio-main">
+          <div class="studio-meta" id="anMeta">no animation yet</div>
+          <div class="canvas-frame empty" id="anViewer" data-aspect="16:9" style="background:#000;">
+            <div class="ce-h" style="color:#888;">video output appears here</div>
+            <div class="ce-d" style="color:#666;">pick an image, write motion prompt, click ⚡ Animate</div>
+          </div>
+          <div class="studio-actions">
+            <button class="btn ghost" id="anDownloadBtn" disabled>Download .mp4</button>
+            <button class="btn ghost" id="anSaveBtn" disabled>Save to library</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ╔══════════════ BATCH IMAGES MODE ══════════════╗ -->
+    <div id="anViewBatch" style="display:none;padding:20px;background:var(--paper-2);border:1px dashed var(--line);border-radius:8px;text-align:center;">
+      <div style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:var(--ash);margin-bottom:8px;">Batch images mode</div>
+      <div style="font-family:'Caveat',cursive;font-size:14px;color:var(--ink);max-width:560px;margin:0 auto;line-height:1.5;">
+        Shipping with Phase 2. Will accept a folder/ZIP of unrelated images, let Claude propose a narrative order + theme, then generate a fully-narrated short film in the same pipeline as Film Project mode. Use Film Project mode in the meantime — it accepts arbitrary image uploads already.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============== LOOK DEV ============== -->
+  <section class="view" id="viewLookdev">
+    <div style="display:grid;grid-template-columns:320px 1fr;gap:18px;align-items:start;">
+      <div>
+        <div class="card">
+          <div class="card-head"><div class="card-title">Look development</div></div>
+          <div class="card-body">
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;line-height:1.4;">Pick a curated look — applies cinematic + grade + lens + mood + finish in one click. Click any tile to push it into the Studio Cinematic card and jump back.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="ch-grid" id="lookdevGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== n8n WORKFLOWS ============== -->
+  <section class="view" id="viewN8n">
+    <div style="display:flex;gap:8px;margin-bottom:14px;border-bottom:1px solid var(--line);">
+      <button class="n8n-wf-tab active" data-wf="kit_maker" style="background:transparent;border:none;padding:10px 18px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--saffron);border-bottom:2px solid var(--saffron);margin-bottom:-1px;cursor:pointer;font-weight:600;">Kit Maker</button>
+      <button class="n8n-wf-tab" data-wf="deep_research" style="background:transparent;border:none;padding:10px 18px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ash);border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;font-weight:600;">Deep Research</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:18px;align-items:start;">
+
+      <div>
+        <!-- KIT MAKER FORM -->
+        <div class="card n8n-wf-form" data-wf="kit_maker">
+          <div class="card-head"><div class="card-title">Kit Maker workflow</div></div>
+          <div class="card-body">
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;line-height:1.4;margin-bottom:10px;">Builds an IKS-grounded kit description doc by running GPT-4o + Claude Opus in parallel then synthesising.</div>
+            <div class="field">
+              <label class="field-label">Webhook URL <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— from your n8n</em></label>
+              <input type="text" id="kmWebhook" placeholder="https://your.n8n.cloud/webhook/kit-maker">
+            </div>
+            <div class="field">
+              <label class="field-label">Kit name <em>(required)</em></label>
+              <input type="text" id="kmKitName" placeholder="Kibookal Navadurga · Saraswati's Library">
+            </div>
+            <div class="field">
+              <label class="field-label">Age group</label>
+              <select id="kmAgeGroup">
+                <option>3–5</option><option selected>6–8</option><option>9–12</option><option>13+</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label">Kit brief <em>(optional)</em></label>
+              <textarea id="kmKitBrief" rows="3" placeholder="What is this kit about? Direction, angle, intent…"></textarea>
+            </div>
+            <div class="field">
+              <label class="field-label">Link references <em>(optional URLs, one per line)</em></label>
+              <textarea id="kmLinks" rows="2" placeholder="https://example.com/article1&#10;https://example.com/article2"></textarea>
+            </div>
+            <div class="toggle-row"><div class="toggle" id="kmHasImages"></div><label>Has reference images</label></div>
+            <div class="studio-actions" style="margin-top:8px;">
+              <button class="btn primary lg" id="kmRunBtn">⚡ Run Kit Maker</button>
+              <button class="btn ghost" id="kmClearBtn">Clear</button>
+            </div>
+            <div class="loader" id="kmLoader"></div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:12px;line-height:1.3;margin-top:6px;">Typical runtime: 60–180s (two LLMs + synthesiser).</div>
+          </div>
+        </div>
+
+        <!-- DEEP RESEARCH FORM -->
+        <div class="card n8n-wf-form" data-wf="deep_research" style="display:none;">
+          <div class="card-head"><div class="card-title">Deep Research workflow</div></div>
+          <div class="card-body">
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;line-height:1.4;margin-bottom:10px;">Generates a dense, rasa-rich research dossier — the upstream concept-ore for kit ideation. Same dual-agent topology as Kit Maker.</div>
+            <div class="field">
+              <label class="field-label">Webhook URL <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— from your n8n</em></label>
+              <input type="text" id="drWebhook" placeholder="https://your.n8n.cloud/webhook/deep-research">
+            </div>
+            <div class="field">
+              <label class="field-label">Research topic <em>(required)</em></label>
+              <input type="text" id="drTopic" placeholder="The water clock in ancient Indian astronomy">
+            </div>
+            <div class="field">
+              <label class="field-label">Research depth</label>
+              <select id="drDepth">
+                <option value="Quick">Quick</option>
+                <option value="Standard" selected>Standard</option>
+                <option value="Deep">Deep</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label">Research brief / angle <em>(optional)</em></label>
+              <textarea id="drBrief" rows="3" placeholder="What lens? What audience? What pivot?"></textarea>
+            </div>
+            <div class="field">
+              <label class="field-label">Link references <em>(optional URLs, one per line)</em></label>
+              <textarea id="drLinks" rows="2" placeholder="https://example.com/article1"></textarea>
+            </div>
+            <div class="studio-actions" style="margin-top:8px;">
+              <button class="btn primary lg" id="drRunBtn">⚡ Run Deep Research</button>
+              <button class="btn ghost" id="drClearBtn">Clear</button>
+            </div>
+            <div class="loader" id="drLoader"></div>
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:12px;line-height:1.3;margin-top:6px;">Typical runtime: 90–240s for Deep mode.</div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;">
+          <div class="card-head"><div class="card-title">Run history</div></div>
+          <div class="card-body" id="n8nHistory" style="display:grid;gap:4px;max-height:240px;overflow-y:auto;">
+            <div style="font-family:'Caveat',cursive;color:var(--ash);font-size:13px;text-align:center;padding:10px;">no runs yet</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">Document preview <em id="n8nDocMeta">— no output yet —</em></div>
+            <div style="display:flex;gap:4px;">
+              <button class="btn sm ghost" id="n8nViewRendered" style="background:var(--saffron);color:white;">Rendered</button>
+              <button class="btn sm ghost" id="n8nViewRaw">Raw</button>
+            </div>
+          </div>
+          <div class="card-body" style="padding:0;">
+            <div id="n8nPreview" style="min-height:60vh;max-height:80vh;overflow-y:auto;padding:24px 30px;font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;line-height:1.65;color:var(--ink);background:white;">
+              <div class="empty-state" style="padding:80px 20px;">
+                <div class="es-h">Workflow output</div>
+                Fill the form on the left and click ⚡ Run. The synthesised document appears here. Copy or download as Markdown / plain text.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="studio-actions" style="margin-top:10px;flex-wrap:wrap;">
+          <button class="btn" id="n8nCopyMarkdown" disabled>📋 Copy markdown</button>
+          <button class="btn" id="n8nCopyText" disabled>📋 Copy plain text</button>
+          <button class="btn" id="n8nCopyHtml" disabled>📋 Copy rendered HTML</button>
+          <button class="btn primary" id="n8nDownloadMd" disabled>📥 Download .md</button>
+          <button class="btn" id="n8nDownloadTxt" disabled>📥 Download .txt</button>
+          <button class="btn ghost" id="n8nDownloadHtml" disabled>📥 Download .html</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============== MEMORY (Workflow recipes) ============== -->
+  <section class="view" id="viewMemory">
+    <div class="ch-toolbar">
+      <input type="text" class="ch-search" id="memSearch" placeholder="Search recipes…">
+      <button class="btn primary" id="memSaveCurrentBtn">Save current Studio settings as recipe</button>
+      <button class="btn" id="memExportBtn">Export all recipes</button>
+      <button class="btn" id="memImportBtn">Import recipes</button>
+    </div>
+    <div class="ch-grid" id="memGrid"></div>
+    <div class="empty-state" id="memEmpty" style="display:none;">
+      <div class="es-h">No recipes saved yet</div>
+      Save a render that came out perfectly, then re-apply it later with one click.
+    </div>
+  </section>
+
+</main>
+
+<!-- ============== SETTINGS DRAWER ============== -->
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+    <div style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:0.1em;color:var(--deep);font-weight:600;">Settings</div>
+    <button class="modal-close" id="drawerClose">×</button>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Provider</label>
+    <select id="providerSelect">
+      <optgroup label="★ Flagship (best quality)">
+        <option value="fal_nano_banana_pro" selected>Nano Banana Pro · Gemini 3 Pro Image</option>
+        <option value="fal_imagen4_ultra">Imagen 4 Ultra · Google (photoreal)</option>
+        <option value="fal_flux2_pro">FLUX.2 Pro · text-in-image</option>
+        <option value="fal_gpt_image2">GPT Image 2 · OpenAI (pixel text)</option>
+        <option value="fal_seedream_45">Seedream 4.5 · ByteDance (up to 4K)</option>
+      </optgroup>
+      <optgroup label="Balanced workhorse">
+        <option value="fal_seedream_5lite">Seedream 5 Lite (web-grounded)</option>
+        <option value="fal_nano_banana_2">Nano Banana 2 · Gemini 3.1 Flash Image</option>
+        <option value="fal_flux2_flex">FLUX.2 Flex</option>
+        <option value="fal_ideogram_v3">Ideogram v3 (typography)</option>
+        <option value="fal_recraft_v4">Recraft v4 (vector + raster)</option>
+      </optgroup>
+      <optgroup label="Editing / multi-reference">
+        <option value="fal_nano_pro_edit">Nano Banana Pro · edit (14 refs)</option>
+        <option value="fal_kontext_pro">FLUX Kontext Pro (ref-guided)</option>
+        <option value="fal_seedream_45_edit">Seedream 4.5 · edit (10 refs)</option>
+        <option value="fal_seedream_5lite_edit">Seedream 5 Lite · edit</option>
+        <option value="fal_flux2_pro_edit">FLUX.2 Pro · edit</option>
+      </optgroup>
+      <optgroup label="Speed (drafting)">
+        <option value="fal_flux_schnell">FLUX Schnell (sub-second)</option>
+        <option value="fal_z_image_turbo">Z-Image Turbo (~1s)</option>
+        <option value="fal_hidream_o1">HiDream o1 (open-source)</option>
+      </optgroup>
+      <optgroup label="Direct (advanced)">
+        <option value="openai_gpt_image1">OpenAI gpt-image-1 (legacy)</option>
+        <option value="gemini_direct">Google Gemini direct API</option>
+        <option value="none">Prompt only (no rendering)</option>
+      </optgroup>
+    </select>
+  </div>
+
+
+  <div class="field">
+    <label class="field-label">API key (optional override)</label>
+    <input type="password" id="apiKeyField" placeholder="leave blank — embedded key in use" autocomplete="off">
+    <div style="font-size:12px;margin-top:4px;line-height:1.4;" id="keyHint">✓ Embedded key in use.</div>
+  </div>
+
+  <!-- ╔══════ fal.ai CREDITS & SPEND PANEL ══════╗ -->
+  <div class="field" style="border:1px solid var(--green,#5a7a44);border-radius:6px;padding:12px;background:rgba(90,122,68,.05);margin-top:10px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+      <div style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--green,#5a7a44);font-weight:600;">💰 fal.ai credits & spend</div>
+      <button class="btn sm ghost" id="balanceRefreshBtn" style="font-size:11px;padding:3px 8px;">↻ refresh</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+      <div style="text-align:center;padding:10px;background:var(--paper);border-radius:6px;border:1px solid var(--line);">
+        <div id="balanceLiveAmount" style="font-family:'Cinzel',serif;font-size:24px;font-weight:700;color:var(--green,#5a7a44);">$—</div>
+        <div style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ash);">Live balance</div>
+        <div id="balanceLiveStatus" style="font-size:10px;color:var(--ash);font-family:'Caveat',cursive;margin-top:2px;">tap refresh</div>
+      </div>
+      <div style="text-align:center;padding:10px;background:var(--paper);border-radius:6px;border:1px solid var(--line);">
+        <div id="balanceLocalToday" style="font-family:'Cinzel',serif;font-size:24px;font-weight:700;color:var(--saffron,#b85c3c);">$0.00</div>
+        <div style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ash);">Today</div>
+        <div id="balanceLocalCountToday" style="font-size:10px;color:var(--ash);font-family:'Caveat',cursive;margin-top:2px;">0 renders</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px;font-size:11px;">
+      <div style="text-align:center;padding:6px;background:var(--paper-2);border-radius:4px;">
+        <div style="font-weight:600;color:var(--ink);" id="balanceLocal7d">$0.00</div>
+        <div style="font-size:9px;color:var(--ash);text-transform:uppercase;letter-spacing:.06em;">7d</div>
+      </div>
+      <div style="text-align:center;padding:6px;background:var(--paper-2);border-radius:4px;">
+        <div style="font-weight:600;color:var(--ink);" id="balanceLocal30d">$0.00</div>
+        <div style="font-size:9px;color:var(--ash);text-transform:uppercase;letter-spacing:.06em;">30d</div>
+      </div>
+      <div style="text-align:center;padding:6px;background:var(--paper-2);border-radius:4px;">
+        <div style="font-weight:600;color:var(--ink);" id="balanceLocalAll">$0.00</div>
+        <div style="font-size:9px;color:var(--ash);text-transform:uppercase;letter-spacing:.06em;">All-time</div>
+      </div>
+    </div>
+    <div style="font-size:10.5px;color:var(--ash);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;padding-top:6px;border-top:1px dashed var(--line);">Spend by model · 30 days</div>
+    <div id="balanceByModel" style="font-size:11.5px;color:var(--ink);max-height:160px;overflow-y:auto;">
+      <div style="color:var(--ash);font-family:'Caveat',cursive;padding:6px;text-align:center;">no renders yet</div>
+    </div>
+    <div style="display:flex;gap:4px;margin-top:8px;flex-wrap:wrap;">
+      <a href="https://fal.ai/dashboard/billing" target="_blank" rel="noopener" style="flex:1;min-width:140px;text-align:center;padding:6px;background:var(--paper);border:1px solid var(--green,#5a7a44);border-radius:4px;text-decoration:none;font-size:11px;color:var(--green,#5a7a44);font-weight:600;">+ Add credits on fal.ai</a>
+      <button class="btn sm ghost" id="balanceManualBtn" style="font-size:11px;flex:1;min-width:120px;">✎ Set manually</button>
+      <button class="btn sm ghost" id="balanceResetLogBtn" style="font-size:11px;">Reset log</button>
+    </div>
+    <div style="font-size:10px;color:var(--ash);margin-top:6px;line-height:1.4;font-family:'Caveat',cursive;">
+      Auto-fetch: tries fal.ai every 5 min. If browser CORS blocks the call (common from file:// origin), click <b>✎ Set manually</b> — copy your balance from <a href="https://fal.ai/dashboard/billing" target="_blank" style="color:var(--saffron);">fal.ai dashboard</a> and paste the number. Local spend tracker works either way.
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Anthropic Claude key <em style="font-family:'Caveat',cursive;font-style:normal;color:var(--saffron);">— for Story Engine</em></label>
+    <input type="password" id="anthropicKeyField" placeholder="sk-ant-…" autocomplete="off">
+    <div style="font-size:12px;margin-top:4px;line-height:1.4;color:var(--ash);">Stored locally only. Sent to api.anthropic.com directly from your browser.</div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Model name (advanced)</label>
+    <input type="text" id="modelField" placeholder="auto">
+  </div>
+  <div class="field">
+    <label class="field-label">Endpoint override</label>
+    <input type="text" id="endpointField" placeholder="auto">
+  </div>
+
+  <div class="field">
+    <label class="field-label">Render style</label>
+    <div class="toggle-row"><div class="toggle on" id="negToggle"></div><label>Include negative prompt</label></div>
+    <div class="toggle-row"><div class="toggle on" id="lockToggle"></div><label>Inject locked features</label></div>
+    <div class="toggle-row"><div class="toggle on" id="noTextToggle"></div><label>Hard "no text" suffix</label></div>
+    <div class="toggle-row"><div class="toggle on" id="useFavRefsToggle"></div><label>Auto-include favorited renders as refs</label></div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">Output size</label>
+    <select id="sizeField">
+      <option value="auto">auto (match canvas)</option>
+      <option value="1024x1024">1024×1024</option>
+      <option value="1024x1536">1024×1536 (3:4)</option>
+      <option value="1536x1024">1536×1024 (16:9)</option>
+    </select>
+  </div>
+
+  <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--line);">
+    <button class="btn" style="width:100%;" id="exportConfigBtn">Export config JSON</button>
+    <button class="btn ghost" style="width:100%;margin-top:6px;" id="resetSettingsBtn">Reset settings</button>
+    <button class="btn danger" style="width:100%;margin-top:6px;" id="resetAllBtn">Reset everything (chars + library)</button>
+  </div>
+</aside>
+
+<!-- ============== MODAL HOST ============== -->
+<div class="modal-host" id="modalHost"></div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/app.js?v=20260619d"></script>
+<script src="js/gallery-bridge.js?v=20260619d"></script>
+</body>
+</html>
+
+

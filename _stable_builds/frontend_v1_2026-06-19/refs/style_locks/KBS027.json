@@ -1,0 +1,54 @@
+{
+  "style_id": "KBS027",
+  "name": "Kibookal Urban Graffiti Comic Style",
+  "best_for": [
+    "street-energy comic pages",
+    "bold character posters",
+    "cover art",
+    "action splash panels",
+    "youth/teen visuals"
+  ],
+  "composition": "Dynamic comic framing with strong diagonals; brick/concrete or shutter backdrop; bold subject pushed to the foreground; spray drips, tags and halftone in the gutters.",
+  "visual_traits": [
+    "spray-paint + marker texture",
+    "bold black outlines with drips",
+    "vivid spray-can colour",
+    "halftone shading",
+    "tag-style hand lettering",
+    "brick/concrete/shutter backdrops",
+    "high-energy street motion",
+    "comic panel logic"
+  ],
+  "style_palette": "High-saturation spray colours (electric blue, hot magenta, acid yellow, red) over concrete grey and black outline; halftone dots; one wall-texture neutral.",
+  "prompt_core": "Create a Kibookal urban-graffiti comic image of [SUBJECT]: render the subject as a bold street-art comic hero — thick black outlines with spray drips, vivid spray-can colour, halftone shading, tag-style lettering and a brick/concrete/shutter backdrop. Strong diagonals and motion, gritty wall texture, high energy. It should feel like a comic page sprayed onto a city wall — punchy, youthful, alive.",
+  "negative": "no soft watercolour, no pastel, no photoreal, no calm storybook, no clean corporate vector, no gradients-without-halftone",
+  "ref_from": "KBS021 - Playful Social Caricature Typography",
+  "self_contained": true,
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "zip_source": "Authored from style name + Kibookal documents (world-class JSON), built into engine 2026-06-11",
+  "style_lock": {
+    "medium": "spray-paint + marker texture",
+    "linework": "bold black outlines with drips",
+    "palette": "High-saturation spray colours (electric blue, hot magenta, acid yellow, red) over concrete grey and black outline; halftone dots; one wall-texture neutral.",
+    "texture": "see visual_traits",
+    "finish": "comic panel logic",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS027/kbs027_ref001.jpeg",
+    "refs/kbs_refs/KBS027/kbs027_ref011.jpeg",
+    "refs/kbs_refs/KBS027/kbs027_ref022.jpeg",
+    "refs/kbs_refs/KBS027/kbs027_ref032.jpeg",
+    "refs/kbs_refs/KBS027/kbs027_ref043.jpeg",
+    "refs/kbs_refs/KBS027/kbs027_ref053.jpeg",
+    "refs/kbs_refs/KBS027/kbs027_ref064.jpeg",
+    "refs/kbs_refs/KBS027/kbs027_ref074.jpeg"
+  ]
+}

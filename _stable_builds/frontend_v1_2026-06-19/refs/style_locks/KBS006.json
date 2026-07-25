@@ -1,0 +1,44 @@
+{
+  "style_id": "KBS006",
+  "name": "Painterly Urban Sketchbook Story",
+  "zip_source": "06_inspiration__another-art-style__10Jun-0805",
+  "best_for": [
+    "city scenes",
+    "markets",
+    "journeys",
+    "slice-of-life story pages"
+  ],
+  "composition": "Street-level or slight wide angle scene; loose perspective; lively figures; signs replaced by blank marks; warm light; sketchbook feel.",
+  "visual_traits": [
+    "watercolour/gouache feel",
+    "ink and brush line",
+    "busy urban warmth",
+    "orange/teal/cream palette",
+    "loose human energy",
+    "observational travel sketch"
+  ],
+  "prompt_core": "Create a Kibookal painterly urban sketchbook scene of [SUBJECT]. Set it in an Indian street, market, school, temple lane or home courtyard as needed. Use lively hand-drawn perspective, warm cream paper, loose ink contours, flat gouache-like blocks, orange sunlight, teal shadows and small everyday details. The scene should feel observed from life, playful and story-rich. Keep typography as blank sign shapes only.",
+  "negative": "no photoreal city, no clean digital vector, no readable real-world brand names, no cinematic realism",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS006/IMG-20260610-WA0130.jpg",
+    "refs/kbs_refs/KBS006/IMG-20260610-WA0131.jpg",
+    "refs/kbs_refs/KBS006/IMG-20260610-WA0132.jpg",
+    "refs/kbs_refs/KBS006/IMG-20260610-WA0133.jpg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "watercolour/gouache feel",
+    "linework": "ink and brush line",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "observational travel sketch",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

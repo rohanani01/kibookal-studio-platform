@@ -1,0 +1,44 @@
+{
+  "style_id": "KBS024",
+  "name": "Vintage Natural History Surreal Collage",
+  "zip_source": "more styles.zip / Vintage Natural History Surreal Collage (41 curated inspiration refs)",
+  "best_for": [
+    "natural-history magazine pages",
+    "surreal creature plates",
+    "covers",
+    "decorative spreads"
+  ],
+  "composition": "Central surreal specimen with scientific-plate framing and handwritten labels on aged paper.",
+  "visual_traits": [
+    "antique engraving fragments",
+    "surreal recombination",
+    "aged ivory paper",
+    "muted natural pigments",
+    "specimen labels",
+    "scientific-plate framing"
+  ],
+  "prompt_core": "Create a Kibookal Vintage Natural History Surreal Collage of [SUBJECT]: composed from antique botanical and zoological engraving fragments recombined into a surreal living hybrid, on aged ivory paper with muted natural pigments, handwritten specimen labels and scientific-plate framing; uncanny, beautiful and discovered.",
+  "negative": "no modern flat vector, no neon, no glossy 3D, no photoreal, no exact reference copy",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS024/kbs024__vintage-natural-history-surreal-collage__ref001.jpeg",
+    "refs/kbs_refs/KBS024/kbs024__vintage-natural-history-surreal-collage__ref002.jpeg",
+    "refs/kbs_refs/KBS024/kbs024__vintage-natural-history-surreal-collage__ref003.jpeg",
+    "refs/kbs_refs/KBS024/kbs024__vintage-natural-history-surreal-collage__ref004.jpeg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "antique engraving fragments",
+    "linework": "surreal recombination",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "scientific-plate framing",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

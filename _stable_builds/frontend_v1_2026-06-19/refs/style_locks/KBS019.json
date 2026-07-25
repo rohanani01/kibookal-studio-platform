@@ -1,0 +1,44 @@
+{
+  "style_id": "KBS019",
+  "name": "Painterly Urban Sketchbook Story",
+  "zip_source": "more styles.zip / Painterly Urban Sketchbook Story voice (8 curated inspiration refs)",
+  "best_for": [
+    "sketchbook pages",
+    "character development",
+    "behind-the-scenes spreads",
+    "object studies"
+  ],
+  "composition": "Grids of repeated studies plus a hero sketch and handwritten margin notes on sketchbook paper.",
+  "visual_traits": [
+    "loose pen line",
+    "light watercolour wash",
+    "sketchbook paper",
+    "repeated studies",
+    "handwritten notes",
+    "story-voice"
+  ],
+  "prompt_core": "Create a Kibookal Painterly Urban Sketchbook page of [SUBJECT]: loose confident pen linework with light watercolour washes on sketchbook paper, repeated studies and expressive character sketches, handwritten margin notes, a warm observational story-voice.",
+  "negative": "no clean vector, no photoreal, no heavy rendering, no glossy finish, no exact reference copy",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS019/kbs019__painterly-urban-sketchbook-story__ref001.jpeg",
+    "refs/kbs_refs/KBS019/kbs019__painterly-urban-sketchbook-story__ref002.jpeg",
+    "refs/kbs_refs/KBS019/kbs019__painterly-urban-sketchbook-story__ref003.jpeg",
+    "refs/kbs_refs/KBS019/kbs019__painterly-urban-sketchbook-story__ref004.jpeg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "loose pen line",
+    "linework": "light watercolour wash",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "story-voice",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

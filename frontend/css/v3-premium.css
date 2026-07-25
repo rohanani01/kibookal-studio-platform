@@ -1,0 +1,157 @@
+/* ============================================================================
+   KIBOOKAL STUDIO v3.0 — PREMIUM REDESIGN LAYER   (loaded LAST · additive only)
+   Gen AI + Automation + Indian Mythology + Science creative studio.
+   Cosmic-dark base · gold/saffron myth accents · cyan/violet AI accents ·
+   16 per-section colour identities · glassmorphism · soft glow · micro-interactions.
+   Uses ONLY existing class names + CSS tokens. No DOM, no JS-logic, no engine changes.
+   ============================================================================ */
+
+/* ── 1. PER-SECTION COLOUR IDENTITY ───────────────────────────────────────────
+   Applies to <body data-section="…"> (set by setView) AND to any [data-section]
+   card (Home capability cards), so each surface glows in its own colour. */
+[data-section="home"]       { --sec:#3ad7ff; --sec2:#e8b84b; }   /* cosmic navy · gold · cyan */
+[data-section="studio"],
+[data-section="characters"] { --sec:#ff8a47; --sec2:#e0524a; }   /* saffron · amber · clay */
+[data-section="stylelock"]  { --sec:#1fb6ab; --sec2:#9b6cff; }   /* peacock teal · royal purple */
+[data-section="story"]      { --sec:#e58fad; --sec2:#c79a4a; }   /* lotus pink · ink brown */
+[data-section="comic"]      { --sec:#ef4444; --sec2:#ff8a3c; }   /* crimson · cinematic orange */
+[data-section="magazine"]   { --sec:#6d7bff; --sec2:#e8b84b; }   /* indigo · editorial gold */
+[data-section="layouts"]    { --sec:#4f93ff; --sec2:#67e8f9; }   /* blueprint blue · grid cyan */
+[data-section="batch"]      { --sec:#34d399; --sec2:#a3e635; }   /* automation green · neon lime */
+[data-section="compose"]    { --sec:#b06cff; --sec2:#ff6ec7; }   /* violet · magenta */
+[data-section="upscale"]    { --sec:#5ec8ff; --sec2:#dbeafe; }   /* cyan · crystal white */
+[data-section="animate"]    { --sec:#ff7a59; --sec2:#a78bfa; }   /* flame orange · motion purple */
+[data-section="lab3d"]      { --sec:#86d3ff; --sec2:#cbd5e1; }   /* holographic blue · chrome */
+[data-section="lookdev"]    { --sec:#e8b84b; --sec2:#9fb0c9; }   /* gold · calibrated neutral */
+[data-section="workflow"]   { --sec:#2ee06a; --sec2:#3b82f6; }   /* neon green · electric blue */
+[data-section="memory"]     { --sec:#c79248; --sec2:#9b6cff; }   /* manuscript brown · violet */
+[data-section="gallery"]    { --sec:#ecc45a; --sec2:#f3efe6; }   /* spotlight gold · ivory */
+body { --sec:#3ad7ff; --sec2:#e8b84b; }                          /* default before a section is set */
+:root { --sec-ink:#06101f; }
+
+/* ── 2. COSMIC DARK BASE + SUBTLE SACRED-GEOMETRY TEXTURE (dark-first) ───────── */
+:root[data-theme="dark"]{
+  --bg:#070b15; --paper:#0f1828; --paper-2:#15213a; --hl:#16294a;
+  --line:#243450; --line-strong:#3a5380; --ink:#eaf1ff; --ash:#94a3c4; --ash-2:#6e7fa4; --deep:#eaf1ff;
+}
+:root[data-theme="dark"] body{
+  background:
+    radial-gradient(1100px 720px at 10% -10%, color-mix(in srgb, var(--sec) 16%, transparent) 0, transparent 60%),
+    radial-gradient(1000px 700px at 100% 0%, color-mix(in srgb, var(--sec2) 11%, transparent) 0, transparent 55%),
+    radial-gradient(900px 900px at 50% 125%, rgba(139,92,246,.10) 0, transparent 60%),
+    #070b15 !important;
+  background-attachment: fixed !important;
+}
+/* faint constellation dot-field, masked so it fades downward — sits behind all content */
+body::before{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.6;
+  background-image: radial-gradient(circle, rgba(180,205,255,.06) 1px, transparent 1.5px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(130% 110% at 50% -10%, #000 38%, transparent 100%);
+          mask-image: radial-gradient(130% 110% at 50% -10%, #000 38%, transparent 100%);
+}
+:root[data-theme="light"] body::before{ opacity:.4; background-image: radial-gradient(circle, rgba(120,90,40,.05) 1px, transparent 1.5px); }
+
+/* ── 3. GLASS CARDS + SECTION-TINTED GLOW ─────────────────────────────────────── */
+:root[data-theme="dark"] .card,
+:root[data-theme="dark"] .section,
+:root[data-theme="dark"] .modal{
+  background: linear-gradient(180deg, color-mix(in srgb, var(--paper) 80%, transparent), color-mix(in srgb, var(--paper-2) 84%, transparent)) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(125%); backdrop-filter: blur(12px) saturate(125%);
+  border:1px solid color-mix(in srgb, var(--sec) 15%, var(--line)) !important;
+  border-radius:16px !important;
+  box-shadow: 0 12px 34px rgba(2,6,16,.42), inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+.card{ transition: border-color .18s ease, box-shadow .2s ease, transform .12s ease !important; }
+:root[data-theme="dark"] .card:hover{
+  border-color: color-mix(in srgb, var(--sec) 40%, var(--line)) !important;
+  box-shadow: 0 16px 44px rgba(2,6,16,.5), 0 0 30px color-mix(in srgb, var(--sec) 16%, transparent) !important;
+}
+.card-head{ border-bottom:1px solid color-mix(in srgb, var(--sec) 16%, var(--line)) !important; background:transparent !important; }
+/* accent rail on section/card titles */
+.card-title{ position:relative; padding-left:12px; }
+.card-title::before{ content:""; position:absolute; left:0; top:50%; transform:translateY(-50%); width:3px; height:1.05em; border-radius:3px; background:linear-gradient(var(--sec), var(--sec2)); box-shadow:0 0 10px var(--sec); }
+
+/* ── 4. NAVIGATION — glowing active pill, section-coloured ─────────────────────── */
+.topbar{ border-bottom:1px solid color-mix(in srgb, var(--sec) 20%, var(--line)) !important;
+  background: color-mix(in srgb, var(--paper) 78%, transparent) !important; }
+.tab.active{
+  background: linear-gradient(135deg, color-mix(in srgb,var(--sec) 92%, #000 8%), color-mix(in srgb,var(--sec2) 80%, #000 20%)) !important;
+  color:#fff !important; text-shadow:0 1px 2px rgba(0,0,0,.45); font-weight:700 !important;
+  box-shadow: 0 6px 18px color-mix(in srgb,var(--sec) 42%, transparent) !important;
+}
+.tab:hover{ background: color-mix(in srgb, var(--sec) 16%, transparent) !important; color: var(--ink) !important; }
+.brand sup{ color: var(--sec) !important; text-shadow:0 0 10px color-mix(in srgb,var(--sec) 50%, transparent); }
+.provider-pill{ border-color: color-mix(in srgb,var(--sec) 35%, var(--line)) !important; color: var(--sec) !important; }
+
+/* ── 5. BUTTONS — keep the readable brand primary, add section glow + clear tiers ─ */
+.btn{ border-radius:11px !important; font-weight:600 !important; transition: all .15s ease !important; }
+.btn.primary:hover{ box-shadow: 0 8px 26px color-mix(in srgb, var(--sec) 40%, transparent), 0 4px 14px rgba(197,54,120,.28) !important; }
+.btn.primary:active{ transform: translateY(1px); }
+.btn.ghost{ border:1px solid transparent !important; }
+.btn:not(.primary):not(.danger):not(.success):hover{ border-color: color-mix(in srgb,var(--sec) 45%, var(--line)) !important; color: var(--sec) !important; }
+
+/* ── 6. INPUTS / SELECTS / TEXTAREA — calm, glassy, section focus ring ─────────── */
+:root[data-theme="dark"] input[type="text"], :root[data-theme="dark"] input[type="number"],
+:root[data-theme="dark"] input[type="password"], :root[data-theme="dark"] select, :root[data-theme="dark"] textarea{
+  background: color-mix(in srgb, var(--paper-2) 70%, transparent) !important;
+  border:1px solid var(--line) !important; border-radius:10px !important; color:var(--ink) !important;
+}
+input:focus, select:focus, textarea:focus{
+  border-color: var(--sec) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sec) 22%, transparent) !important; outline:none !important;
+}
+
+/* ── 7. CHIPS · PILLS · BADGES ───────────────────────────────────────────────── */
+.pill{ border-radius:999px !important; }
+.pill.active{ background: color-mix(in srgb,var(--sec) 20%, transparent) !important; border-color: color-mix(in srgb,var(--sec) 50%, var(--line)) !important; color: var(--ink) !important; }
+.step-pill, .tag, .badge{ border-radius:999px !important; }
+.step-pill.required{ background: color-mix(in srgb,var(--sec) 22%, transparent) !important; color: var(--sec) !important; }
+
+/* ── 8. AI-GENERATION LOADING STATE — animated shimmer bar ─────────────────────── */
+.loader{ position:relative; overflow:hidden; }
+.loader:not(:empty)::after, .loader.on::after{
+  content:""; position:absolute; inset:0; border-radius:8px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb,var(--sec) 30%, transparent), transparent);
+  animation: kbAiSweep 1.15s linear infinite;
+}
+@keyframes kbAiSweep{ 0%{ transform:translateX(-100%);} 100%{ transform:translateX(100%);} }
+@keyframes kbPulse{ 0%,100%{ box-shadow:0 0 0 0 color-mix(in srgb,var(--sec) 45%, transparent);} 50%{ box-shadow:0 0 0 8px transparent;} }
+.is-generating, button[disabled].btn.primary{ animation: kbPulse 1.4s ease-in-out infinite; }
+
+/* ── 9. EMPTY STATES — premium, on-brand ──────────────────────────────────────── */
+.empty-state, .ce-h, .es-h{ }
+.empty-state{ border:1px dashed color-mix(in srgb,var(--sec) 22%, var(--line)) !important; border-radius:14px; background: color-mix(in srgb,var(--sec) 4%, transparent) !important; }
+.es-h, .ce-h{ color: var(--ink) !important; }
+
+/* ── 10. HOME — stunning landing, per-card section colours ─────────────────────── */
+#viewHome .card:first-child{ position:relative; overflow:hidden; }
+#viewHome .card:first-child::after{
+  content:""; position:absolute; right:-80px; top:-80px; width:320px; height:320px; pointer-events:none; opacity:.5;
+  background: radial-gradient(circle at center, color-mix(in srgb,var(--sec) 40%, transparent), transparent 62%);
+}
+.home-cap{ position:relative; overflow:hidden; transition: box-shadow .16s ease, transform .12s ease, border-color .16s ease !important; }
+.home-cap::before{ content:""; position:absolute; left:0; top:0; width:100%; height:3px; background:linear-gradient(90deg, var(--sec), var(--sec2)); opacity:.9; }
+.home-cap:hover{ transform: translateY(-3px); border-color: color-mix(in srgb,var(--sec) 55%, var(--line)) !important;
+  box-shadow: 0 14px 36px rgba(2,6,16,.5), 0 0 26px color-mix(in srgb,var(--sec) 22%, transparent) !important; }
+.home-cap > div:first-child{ filter: drop-shadow(0 0 10px color-mix(in srgb,var(--sec) 45%, transparent)); }
+
+/* ── 11. REFERENCE PREVIEWS + GALLERY/WORKFLOW EMBEDS ─────────────────────────── */
+.pf-ref-wrap{ border-color: color-mix(in srgb,var(--sec) 18%, var(--line)) !important; }
+#wfFrame, #gbFrame{ border-radius:0 0 16px 16px; }
+
+/* ── 12. PREMIUM SCROLLBARS (section-tinted) ──────────────────────────────────── */
+::-webkit-scrollbar{ width:11px; height:11px; }
+::-webkit-scrollbar-thumb{ background: color-mix(in srgb,var(--sec) 30%, var(--line-strong)); border-radius:999px; border:2px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover{ background: color-mix(in srgb,var(--sec) 55%, var(--line-strong)); }
+::-webkit-scrollbar-track{ background:transparent; }
+::selection{ background: color-mix(in srgb,var(--sec) 60%, transparent); color:#fff; }
+
+/* ── 13. SECTION HEADER GLOW (the gradient hero bands I added per section) ─────── */
+.klos-ref-panel > div{ border-color: color-mix(in srgb,var(--sec) 20%, var(--line)) !important; }
+
+/* ── 14. RESPONSIVE — keep the rich nav usable, no page overflow ───────────────── */
+.app, main.app{ overflow-x:hidden; }
+@media (max-width: 900px){
+  .card-title{ padding-left:10px; }
+}

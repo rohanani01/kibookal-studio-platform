@@ -1,0 +1,54 @@
+{
+  "style_id": "KBS030",
+  "name": "Kibookal Bold Athletic Pop Illustration",
+  "best_for": [
+    "sport/action posters",
+    "energetic character art",
+    "cover & merch graphics",
+    "activity-page heroes",
+    "brand visuals"
+  ],
+  "composition": "Dynamic athletic pose on a bold flat ground; strong diagonal energy, motion lines and impact shapes; subject large and heroic; halftone and burst accents.",
+  "visual_traits": [
+    "bold flat pop colour",
+    "heavy confident outline",
+    "halftone + motion lines",
+    "dynamic athletic poses",
+    "screenprint texture",
+    "impact bursts & speed shapes",
+    "high-contrast energetic",
+    "poster-graphic punch"
+  ],
+  "style_palette": "Punchy flat pop palette (red, royal blue, yellow, black) with one accent; halftone dots; flat colour only, screenprint feel.",
+  "prompt_core": "Create a Kibookal Bold Athletic Pop illustration of [SUBJECT]: render the subject as a dynamic, heroic pop-graphic — bold flat colour, heavy confident outlines, halftone shading, motion lines, impact bursts and strong diagonal energy. Screenprint texture, high contrast, poster punch. The subject should feel powerful and in motion, like a premium sports poster.",
+  "negative": "no soft painterly rendering, no photoreal, no muted pastel, no fine delicate detail, no calm composition, no gradients-without-halftone",
+  "ref_from": "KBS018 - Outdoor Sport Fishing Poster Graphic",
+  "self_contained": true,
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "zip_source": "Authored from style name + Kibookal documents (world-class JSON), built into engine 2026-06-11",
+  "style_lock": {
+    "medium": "bold flat pop colour",
+    "linework": "heavy confident outline",
+    "palette": "Punchy flat pop palette (red, royal blue, yellow, black) with one accent; halftone dots; flat colour only, screenprint feel.",
+    "texture": "see visual_traits",
+    "finish": "poster-graphic punch",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS030/kbs030_ref001.jpeg",
+    "refs/kbs_refs/KBS030/kbs030_ref010.jpeg",
+    "refs/kbs_refs/KBS030/kbs030_ref018.jpeg",
+    "refs/kbs_refs/KBS030/kbs030_ref027.jpeg",
+    "refs/kbs_refs/KBS030/kbs030_ref035.jpeg",
+    "refs/kbs_refs/KBS030/kbs030_ref044.jpeg",
+    "refs/kbs_refs/KBS030/kbs030_ref052.jpeg",
+    "refs/kbs_refs/KBS030/kbs030_ref061.jpeg"
+  ]
+}

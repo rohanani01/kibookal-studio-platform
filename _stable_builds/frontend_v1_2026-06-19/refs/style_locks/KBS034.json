@@ -1,0 +1,45 @@
+{
+  "style_id": "KBS034",
+  "name": "Kibookal Pichwai Devotional Tableau",
+  "zip_source": "chitrastori folk-art reference batch (16 Jun)",
+  "best_for": [
+    "deity tableaux",
+    "devotional temple-hangings",
+    "Devi/Krishna scenes",
+    "sacred tree-of-life pages",
+    "festival backdrops"
+  ],
+  "composition": "A vertical devotional tableau inside an ornate cusped temple-arch border; a central sacred subject (deity, tree-of-life, or peacock) on a deep indigo night ground; symmetrical lotus, cows/deer, birds in flight, full moon above; dense gold-outlined ornament filling every margin.",
+  "visual_traits": [
+    "deep indigo / midnight-blue ground",
+    "antique gold + ochre + terracotta + sage palette",
+    "ornate cusped temple-arch border",
+    "tree-of-life, peacock, deer, lotus, full moon",
+    "fine gold outline detailing",
+    "flat devotional symmetry",
+    "Nathdwara Pichwai temple-hanging feel"
+  ],
+  "prompt_core": "Create a Kibookal Pichwai devotional tableau of [SUBJECT] in the Nathdwara temple-hanging tradition: a vertical composition framed by an ornate cusped golden temple-arch border, [SUBJECT] centred on a deep indigo midnight ground, surrounded by a flowering tree-of-life, lotus ponds, cows or deer, peacocks and birds in flight beneath a luminous full moon. Antique gold, ochre, terracotta, sage-green and ivory on midnight blue; fine gold outlines, flat devotional symmetry, dense sacred ornament in every margin. Reverent, luminous, hand-painted temple art.",
+  "negative": "no phone UI, no status bar, no Instagram interface, no app chrome, no caption text, no screenshot border; no photoreal, no 3D, no flat vector, no Western cartoon, no exact reference copy",
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject identity, key features and intended action recognizable, but the medium, palette, linework, motifs, ornament and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "opaque gouache + gold on indigo cloth",
+    "linework": "fine gold and dark outline",
+    "palette": "deep indigo ground, antique gold, ochre, terracotta, sage, ivory",
+    "texture": "matte cloth/pichwai hanging",
+    "finish": "devotional Nathdwara temple-hanging",
+    "character_rule": "Render the requested SUBJECT fully in THIS exact tradition; identity stays recognizable, medium/palette/motifs/finish are 100% this style.",
+    "consistency": [
+      "Match the built-in reference images for palette, motifs, linework and density.",
+      "Hold the palette and finish identical across every render.",
+      "Authentic Indian folk-art tradition — never Western, never anime."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS034/kbs034__pichwai__ref001.jpeg",
+    "refs/kbs_refs/KBS034/kbs034__pichwai__ref002.jpeg",
+    "refs/kbs_refs/KBS034/kbs034__pichwai__ref003.jpeg",
+    "refs/kbs_refs/KBS034/kbs034__pichwai__ref004.jpeg"
+  ]
+}

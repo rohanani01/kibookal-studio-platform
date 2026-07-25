@@ -1,0 +1,44 @@
+{
+  "style_id": "KBS009",
+  "name": "Retro Risograph Mascot Poster Label",
+  "zip_source": "09_inspiration__another-fab-art-style__10Jun-0814",
+  "best_for": [
+    "chapter posters",
+    "character badges",
+    "event cards",
+    "product-like labels"
+  ],
+  "composition": "Bold central mascot or object; vintage label frame; loud flat background; limited screenprint palette; optional large title zone.",
+  "visual_traits": [
+    "retro poster",
+    "risograph/screenprint",
+    "grainy flat colour",
+    "bold typography area",
+    "mascot energy",
+    "red/yellow/green/blue blocks"
+  ],
+  "prompt_core": "Create an original Kibookal retro risograph mascot poster for [SUBJECT]. Use a bold central mascot/hero/object, vintage label framing, chunky black line, flat screenprint colours, slight grain, rough registration feel and playful poster energy. Leave title areas blank or pseudo-lettered unless final text is required. Make it feel collectible and handmade.",
+  "negative": "no copying existing posters, no modern glossy vector, no photorealism, no real brand names",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS009/IMG-20260610-WA0059.jpg",
+    "refs/kbs_refs/KBS009/IMG-20260610-WA0060.jpg",
+    "refs/kbs_refs/KBS009/IMG-20260610-WA0061.jpg",
+    "refs/kbs_refs/KBS009/IMG-20260610-WA0062.jpg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "retro poster",
+    "linework": "risograph/screenprint",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "red/yellow/green/blue blocks",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

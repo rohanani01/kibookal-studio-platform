@@ -1,0 +1,160 @@
+{
+  "system_name": "Kibookal Layout Engine",
+  "version": "1.0",
+  "generated": "2026-06-15",
+  "note": "Layouts are page STRUCTURES, independent of visual STYLE. Pick any style (KBS001-033) + any layout to get that style rendered in that page structure. Derived from KIBOOKAL Spread Production System v1.docx + Kibookal NOTEBOOK ENGINE.docx.",
+  "printable_rule": "ABSOLUTE OUTPUT FORMAT — READ FIRST. Output a FLAT 2D DIGITAL ARTWORK FILE: only the printed graphic content itself, filling 100% of the frame and bleeding off all four edges. This is NOT a photograph of anything. DO NOT draw a notebook, book, journal, page object, paper sheet, binding, spine, stitching, curled corner, torn edge, drop shadow, vignette, frame, border, margin, mat, or ANY surrounding colour field / surface / desk / background behind or around it. There is NO object and NO scene — there is ONLY the artwork, edge to edge, like a full-bleed print-ready file. If the style is described as a notebook / journal / page / poster, render the CONTENT that would be printed, NOT the physical object, and let it fill every pixel to the edge.",
+  "layouts": [
+    {
+      "layout_id": "LAY01",
+      "name": "Six-Layer Field Spread (A5+A5)",
+      "source": "KIBOOKAL Spread Production System v1.docx",
+      "canvas": "3:2",
+      "page_format": "TWO A5 portrait pages side by side = one A4-landscape spread, with a visible centre gutter / spine fold. Each A5 half is a complete readable page; together one unified spread.",
+      "best_for": [
+        "investigation spreads",
+        "case files",
+        "story spreads",
+        "deity/creature deep-dives"
+      ],
+      "structure_block": "Lay the page out as a SIX-LAYER FIELD SPREAD across two A5 pages joined at a centre gutter:\n  LAYER 1 ANCHOR — one dominant illustration of the subject, crossing the gutter to unify both pages.\n  LAYER 2 FIELD NOTES — handwritten dual-register paragraphs (each line: a physical observation AND a philosophical/taxonomic conclusion), first-person investigator voice.\n  LAYER 3 EVIDENCE — 5-8 found items (stamps, tickets, labels, fragments) with codes and official markings.\n  LAYER 4 CLASSIFICATION BADGES — black-rectangle department header, circular archive stamp, yellow-highlighted key terms, red-caps intensifier, orange date box.\n  LAYER 5 MICRO-MAP — a hand-drawn relational diagram with origin, destination, 3 waypoints, a distance and one anomaly.\n  LAYER 6 VERDICT — a bold CASE STATUS stamp (OPEN / CLOSED / MISCLASSIFIED).\nSix-level type hierarchy: large title caps → stamp-frame text → handwritten caps → flowing body → small technical annotations → marginal interjections. The page feels discovered, not designed."
+    },
+    {
+      "layout_id": "LAY02",
+      "name": "Field Notebook Page (A5) — refined",
+      "source": "Kibookal NOTEBOOK ENGINE.docx — field_observation_page",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page (148×210mm), taller than wide.",
+      "best_for": [
+        "creatures",
+        "places",
+        "temples",
+        "objects",
+        "symbols",
+        "plants",
+        "demons",
+        "rituals"
+      ],
+      "structure_block": "Lay out a single A5-portrait FIELD NOTEBOOK page with EXCELLENT typographic hierarchy and varied text blocks. Use these distinct paragraph types, each visually different, with clear breathing room (never a wall of text):\n  1. MASTHEAD (top): a LARGE hand-lettered TITLE + a small-caps line with a fake ARCHIVE CODE and DATE, separated by a thin rule.\n  2. LEAD OBSERVATION: one flowing 3-4 line handwritten first-person paragraph in the investigator voice (observation + a small reflection).\n  3. CENTRAL PLATE: the main illustration of the subject, with 4-6 tiny CALLOUT LABELS connected by fine curved arrows to specific parts.\n  4. FIELD FACTS: a short bulleted list (3-5 bullets) of measurements / materials / traits — visually distinct from the flowing paragraph.\n  5. CLASSIFICATION PANEL: a boxed, stamp-like block with CLASSIFICATION / RATING / STATUS lines.\n  6. MARGINALIA: 2-3 small angular side-notes or corrections tucked in the margins (smallest text).\n  7. PULL-QUOTE: one bold standout single line — an aphorism or verdict.\n  8. CLOSING QUESTION: one strange UNANSWERED QUESTION in its own framed box at the bottom.\nTYPOGRAPHY HIERARCHY (strict): title largest → section labels in small-caps with underline → handwritten body → micro callout-labels → marginalia smallest. Mix the block shapes (flowing paragraph, bullet list, boxed panel, marginal scrawl, framed question) so the page reads rich and designed-by-hand, not uniform.\nDense, intelligent, curious; a found page from a living world — discovered, not designed."
+    },
+    {
+      "layout_id": "LAY03",
+      "name": "Object Study Page (A5)",
+      "source": "Kibookal NOTEBOOK ENGINE.docx — object_study_page",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page.",
+      "best_for": [
+        "seal",
+        "coin",
+        "fragment",
+        "talisman",
+        "toy",
+        "stone",
+        "tool",
+        "leaf",
+        "fossil"
+      ],
+      "structure_block": "Lay the page out as a single-A5 OBJECT STUDY:\n  • ONE large object drawing (centre/top).\n  • Measurements + material notes.\n  • Possible use, and 2-3 crossed-out WRONG theories.\n  • A small comparison sketch.\n  • ONE final unresolved question.\nMuseum-record precision meets handmade field notes."
+    },
+    {
+      "layout_id": "LAY04",
+      "name": "Creature / Asura Page (A5)",
+      "source": "Kibookal NOTEBOOK ENGINE.docx — creature_or_asura_page",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page.",
+      "best_for": [
+        "demons",
+        "animals",
+        "invisible beings",
+        "strange forces",
+        "asuras"
+      ],
+      "structure_block": "Lay the page out as a single-A5 CREATURE / ASURA observation page:\n  • Creature name (hand-lettered title).\n  • ONE main sketch of the creature.\n  • Body notes + behaviour notes (labelled with arrows).\n  • A weakness and a bad habit.\n  • One comic observation in the margin.\n  • A danger rating in an official badge.\nFunny, intelligent, a little spooky but safe; discovered, not designed."
+    },
+    {
+      "layout_id": "LAY05",
+      "name": "Museum Catalogue Page (A5)",
+      "source": "Kibookal NOTEBOOK ENGINE.docx — museum_catalogue_page",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page.",
+      "best_for": [
+        "collections",
+        "categories",
+        "repeated symbols",
+        "sets of items"
+      ],
+      "structure_block": "Lay the page out as a single-A5 MUSEUM CATALOGUE:\n  • Collection title.\n  • A numbered grid of mini-drawings of the items.\n  • A label + origin note under each.\n  • A museum-style description.\n  • One empty 'missing item' slot.\nOrderly but handmade; archive-record feeling."
+    },
+    {
+      "layout_id": "LAY06",
+      "name": "Map / Route Page (A5)",
+      "source": "Kibookal NOTEBOOK ENGINE.docx — map_page",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page.",
+      "best_for": [
+        "journeys",
+        "territories",
+        "cosmic diagrams",
+        "temple routes",
+        "clue routes"
+      ],
+      "structure_block": "Lay the page out as a single-A5 MAP / ROUTE page:\n  • A rough hand-drawn map filling most of the page.\n  • A route line with waypoints.\n  • Danger zones marked.\n  • Found-object icons along the route.\n  • A legend, an unreliable scale, and ONE impossible-geography note.\nRelational not accurate; carries real data points."
+    },
+    {
+      "layout_id": "LAY07",
+      "name": "Folk Devotional Plate (A5)",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page (148x210mm), full-bleed.",
+      "structure_block": "Compose a SINGLE devotional folk-art PLATE that fills the whole A5 page edge-to-edge:\n  • The subject is the HERO, rendered fully in the chosen folk tradition's native composition (arch / border / banded mural / scroll / sculptural — per the style).\n  • Integrate the subject's NAME as hand-lettering IN THE STYLE's own script/banner (small, tasteful) — no separate caption blocks.\n  • NO field-notes, NO evidence stamps, NO classification boxes, NO verdict, NO arrows/callouts. This is a clean devotional painting, not an investigation page.\n  • Traditional ornament fills the margins per the style; balanced, symmetrical where the tradition calls for it.\nA finished folk-art plate you would frame — flat, printable, no background beyond the painting itself."
+    },
+    {
+      "layout_id": "LAY08",
+      "name": "Pichwai Devi Spread",
+      "canvas": "3:2",
+      "page_format": "TWO A5 portrait pages side by side = one A4-landscape spread, thin painted centre gutter.",
+      "structure_block": "Two-A5 Pichwai spread inside one grand cusped golden temple-arch spanning both pages. ANCHOR deity centred crossing the gutter under a full moon; FIELD NOTES in gold-bordered cartouches in the side margins; EVIDENCE as small painted lotus/peacock medallions; CLASSIFICATION as a gold cartouche stamp; MICRO-MAP as a small mandala diagram; VERDICT as a temple-seal medallion. Deep indigo ground, dense gold ornament every margin.\nFONT: ornate gold temple-display capitals for headers (Nathdwara devanagari-influenced), fine elegant serif for body; gold-outlined text cartouches.\nEach A5 half is a complete readable page; page numbers in the bottom outer corners; all text readable at A5."
+    },
+    {
+      "layout_id": "LAY09",
+      "name": "Madhubani Devi Spread",
+      "canvas": "3:2",
+      "page_format": "TWO A5 portrait pages side by side = one A4-landscape spread, thin painted centre gutter.",
+      "structure_block": "Two-A5 Madhubani spread framed by a strong double-line border across both pages. ANCHOR deity centred; FIELD NOTES inside double-outline boxes packed among fish/lotus/sun fill; EVIDENCE as little painted motif tokens; CLASSIFICATION in a bordered folk panel; MICRO-MAP as a folk river-line diagram; VERDICT in a motif cartouche. Horror-vacui: every gap filled with Mithila pattern.\nFONT: bold black double-outline folk display caps for headers, chunky hand-painted print for body; text sits inside double-line motif cartouches.\nEach A5 half is a complete readable page; page numbers in the bottom outer corners; all text readable at A5."
+    },
+    {
+      "layout_id": "LAY10",
+      "name": "Warli Devi Spread",
+      "canvas": "3:2",
+      "page_format": "TWO A5 portrait pages side by side = one A4-landscape spread, thin painted centre gutter.",
+      "structure_block": "Two-A5 Warli spread on a terracotta mud ground, all white pigment. ANCHOR figure rendered in Warli motifs centred; FIELD NOTES in thin white-line boxes; EVIDENCE as tiny white motif marks; CLASSIFICATION in a white-outline band; MICRO-MAP as a white dotted route; VERDICT in a white-line stamp. Minimal, rhythmic, monochrome white-on-earth.\nFONT: thin white tribal hand-lettering only, simple geometric caps; all text in white on the mud ground, inside thin white-line boxes.\nEach A5 half is a complete readable page; page numbers in the bottom outer corners; all text readable at A5."
+    },
+    {
+      "layout_id": "LAY11",
+      "name": "Kalamkari Devi Spread",
+      "canvas": "3:2",
+      "page_format": "TWO A5 portrait pages side by side = one A4-landscape spread, thin painted centre gutter.",
+      "structure_block": "Two-A5 Kalamkari scroll spread on cotton-cream, framed by repeating motif border bands across both pages. ANCHOR deity in fine pen line amid dense floral/creeper grounds; FIELD NOTES in pen script in floral-bordered panels; EVIDENCE as small block-printed motif stamps; CLASSIFICATION in a motif-band label; MICRO-MAP as a pen-line route; VERDICT in a bordered seal. Natural-dye indigo/madder/mustard palette.\nFONT: fine kalam pen script — slender hand-drawn caps for headers, delicate pen body text; framed by repeating motif border bands.\nEach A5 half is a complete readable page; page numbers in the bottom outer corners; all text readable at A5."
+    },
+    {
+      "layout_id": "LAY12",
+      "name": "Dhokra Devi Plaque-Spread",
+      "canvas": "3:2",
+      "page_format": "TWO A5 portrait pages side by side = one A4-landscape spread, thin painted centre gutter.",
+      "structure_block": "Two-A5 Dhokra spread presented as a wall of cast-bronze relief panels. ANCHOR a large Dhokra figure of the deity centred; FIELD NOTES on small rectangular bronze plaques with embossed text; EVIDENCE as little cast-metal tokens; CLASSIFICATION on a bronze nameplate; MICRO-MAP as an engraved metal map; VERDICT on a stamped bronze seal. Warm patina, coiled-thread texture throughout.\nFONT: cast-metal embossed relief lettering — raised bronze capitals for headers; captions on small bronze plaques. (Sculptural, not flat — Dhokra is metal craft.)\nEach A5 half is a complete readable page; page numbers in the bottom outer corners; all text readable at A5."
+    },
+    {
+      "layout_id": "LAY13",
+      "name": "Hand-drawn Diary Page (A5)",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page (148x210mm), full-bleed kraft/cream paper.",
+      "structure_block": "Lay out a single CHILD-S HAND-DRAWN DIARY page on warm kraft/cream paper (intimate personal journal, NOT a printed magazine):\n  - A big hand-lettered TITLE or date at the top in a kid-s hand.\n  - The DIARY ENTRY as flowing first-person HANDWRITTEN text in a main column (readable at A5).\n  - A central or corner ILLUSTRATION/SKETCH that depicts the entry - pencil plus light watercolour doodle - with small CALLOUT annotations and curved arrows labelling parts.\n  - Scattered MARGINAL DOODLES (little objects, creatures, clouds) with tiny handwritten captions.\n  - A small WHAT-IF musing cluster or a blank/lined journal box.\n  - A few sideways margin notes.\n  All hand-drawn, loose and imperfect, warm and personal; page number small in a corner. Everything readable at A5."
+    },
+    {
+      "layout_id": "LAY14",
+      "name": "Kibookal Master Diary Page (A5) — maximalist",
+      "canvas": "A5",
+      "page_format": "ONE A5 portrait page (148x210mm), full-bleed warm kraft/cream diary paper.",
+      "structure_block": "Compose the RICHEST possible Kibookal diary page - a discovery-dense, layered hand-drawn journal page where a child reads it once for the story, twice for the doodles, three times for the hidden meaning. On warm kraft/cream paper, hand-drawn, intimate, NOT a printed magazine. Layer these zones (arrange organically, overlapping like a real busy journal, generous but readable):\n  1. MASTHEAD: a big hand-lettered TITLE + the day/date + a tiny weather-or-mood doodle (sun, cloud, storm-in-the-tummy).\n  2. THE ENTRY: the flowing first-person HANDWRITTEN diary text - the heart of the page, clearly readable.\n  3. HERO SKETCH: one central pencil-and-light-watercolour scene of the day, with curved CALLOUT arrows + tiny annotations naming parts.\n  4. DEVI-OF-THE-DAY: a small framed emblem badge naming which of the nine Devis the writer became today (e.g. Today I was Kalaratri) with a 3-word reason.\n  5. THE EVOLVING FRIEND: a recurring small corner caricature of Arjun that grows a little more accurate/kind each page (a running visual thread across the diary).\n  6. WHAT-IF CLUSTER: 3-5 scattered tiny what-if musings in small hand, each with a mini-doodle.\n  7. MARGIN DOODLES: little objects/creatures from the day with one-word labels tucked in the margins.\n  8. PRESSED ARTIFACT: a taped ticket, pressed leaf, temple stamp or coin - proof the day happened.\n  9. BEEJA / VIBRATION CORNER: a small Om or beeja-mantra doodle with wavy vibration lines - the inner thread.\n 10. SECRET CONFESSION: a tiny boxed honest aside in the kid voice (A confession:).\n 11. INSIDE/OUTSIDE micro-panel: a tiny split sketch showing the day-s outer event mirrored as an inner feeling (battles outside = battles within).\n 12. TOMORROW SEED: a one-line tomorrow I want to... at the bottom, plus a small page number.\nUnity from one hand, one kraft paper, one warm palette. Layered and busy but every layer readable at A5. Maximum charm and things-to-discover.\n\nINVISIBLE STRUCTURE — CRITICAL: the zone names above (MASTHEAD, ENTRY, HERO SKETCH, DEVI-OF-THE-DAY, EVOLVING FRIEND, BEEJA, SECRET CONFESSION, INSIDE/OUTSIDE, MARGIN DOODLES, TOMORROW SEED, etc.) are layout instructions ONLY. NEVER print these zone names as headers or labels on the page. The page shows only the diary-s own hand-lettered title and natural handwritten content — like a real journal, with no design-zone captions."
+    }
+  ]
+}

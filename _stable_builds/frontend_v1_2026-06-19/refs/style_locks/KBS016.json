@@ -1,0 +1,44 @@
+{
+  "style_id": "KBS016",
+  "name": "Dreamy Comfort Storybook Illustration",
+  "zip_source": "more styles.zip / Dreamy Comfort Storybook Illustration (16 curated inspiration refs)",
+  "best_for": [
+    "emotional storybook pages",
+    "calm/wellbeing pages",
+    "covers",
+    "quiet character moments"
+  ],
+  "composition": "A single small character resting in a soft misty natural world, quiet negative space, optional soft caption.",
+  "visual_traits": [
+    "misty atmosphere",
+    "muted teal-sage-peach",
+    "soft painterly",
+    "gentle glow",
+    "lone tender character",
+    "breathing space"
+  ],
+  "prompt_core": "Create a Kibookal Dreamy Comfort Storybook illustration of [SUBJECT] as a small gentle character resting in a soft, misty natural world; muted teal-sage-peach palette, painterly atmosphere, tender glow, generous breathing space, a quiet hopeful mood; cosy and emotionally safe.",
+  "negative": "no harsh outlines, no neon, no busy clutter, no photoreal, no corporate look, no exact reference copy",
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS016/kbs016__dreamy-comfort-storybook-illustration__ref001.jpeg",
+    "refs/kbs_refs/KBS016/kbs016__dreamy-comfort-storybook-illustration__ref002.jpeg",
+    "refs/kbs_refs/KBS016/kbs016__dreamy-comfort-storybook-illustration__ref003.jpeg",
+    "refs/kbs_refs/KBS016/kbs016__dreamy-comfort-storybook-illustration__ref004.jpeg"
+  ],
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "style_lock": {
+    "medium": "misty atmosphere",
+    "linework": "muted teal-sage-peach",
+    "palette": "see prompt_core / global palette",
+    "texture": "see visual_traits",
+    "finish": "breathing space",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  }
+}

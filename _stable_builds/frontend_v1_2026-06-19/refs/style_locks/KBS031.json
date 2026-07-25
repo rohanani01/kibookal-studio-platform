@@ -1,0 +1,53 @@
+{
+  "style_id": "KBS031",
+  "name": "Kibookal Paper-Cut Wildlife Style",
+  "best_for": [
+    "endangered species education",
+    "wildlife picture books",
+    "nature activity pages",
+    "animal character sheets",
+    "eco-storytelling for children",
+    "handcrafted creature worlds"
+  ],
+  "composition": "Single wildlife subject built from layered cut-paper shapes on a textured ground; clear silhouette; assembled body segments; soft drop between layers; calm nature staging.",
+  "visual_traits": [
+    "cut-paper collage construction with visible layered geometric shapes, strips, polygons and organic forms",
+    "painted paper texture with brushstroke variation, grain and surface imperfection on each piece",
+    "simplified anatomical forms built from assembled components (body segments, limbs, tails, ears, feathers, scales, fur clusters)",
+    "oversized expressive eyes from concentric circles or painted spheres with clear pupils",
+    "earth-tone palette",
+    "handcrafted, tactile, layered depth"
+  ],
+  "style_palette": "Earth tones — ochre, burnt sienna, umber, olive green, coral pink, slate blue, cream, charcoal — with occasional bright accent colours. Painted-paper texture, flat layered.",
+  "prompt_core": "Create a Kibookal Paper-Cut Wildlife illustration of [SUBJECT]: build the animal/subject from layered cut-paper shapes — visible geometric strips, polygons and organic forms assembled into simplified anatomy (body segments, limbs, tails, ears, feathers, scales, fur clusters). Each piece shows painted-paper texture with brushstroke variation, grain and surface imperfection; oversized expressive eyes built from concentric circles or painted spheres with clear pupils; earth-tone palette with occasional bright accents; soft drop-shadow between layers. Handcrafted, tactile, warm — like a real cut-paper collage.",
+  "negative": "no photoreal, no smooth digital vector, no glossy 3D, no flat single-layer cartoon, no neon, no realistic fur rendering, no clean gradients",
+  "ref_from": "KBS024 - Vintage Natural History Surreal Collage",
+  "self_contained": true,
+  "universal_character": true,
+  "render_directive": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+  "zip_source": "Authored from style name + Kibookal documents (world-class JSON), built into engine 2026-06-11",
+  "style_lock": {
+    "medium": "cut-paper collage construction with visible layered geometric shapes, strips, polygons and organic forms",
+    "linework": "painted paper texture with brushstroke variation, grain and surface imperfection on each piece",
+    "palette": "Earth tones — ochre, burnt sienna, umber, olive green, coral pink, slate blue, cream, charcoal — with occasional bright accent colours. Painted-paper texture, flat layered.",
+    "texture": "see visual_traits",
+    "finish": "handcrafted, tactile, layered depth",
+    "character_rule": "Render the requested SUBJECT / CHARACTER fully in THIS exact style. Keep the subject's identity, key features and intended action recognizable, but the medium, palette, linework, texture, composition and finish are 100% this style. ANY character, deity, creature, person, animal or object can be rendered in this style — adapt the subject INTO the style; never bend the style toward the subject.",
+    "consistency": [
+      "Match the built-in reference images exactly where present (linework, palette, texture, rhythm).",
+      "Hold the locked palette and finish identical across every render.",
+      "Keep the subject's identity while fully adopting this style.",
+      "No drift toward generic AI art, photoreal, or another style."
+    ]
+  },
+  "_built_in_ref_paths": [
+    "refs/kbs_refs/KBS031/kbs031_ref001.jpeg",
+    "refs/kbs_refs/KBS031/kbs031_ref009.jpeg",
+    "refs/kbs_refs/KBS031/kbs031_ref018.jpeg",
+    "refs/kbs_refs/KBS031/kbs031_ref026.jpeg",
+    "refs/kbs_refs/KBS031/kbs031_ref035.jpeg",
+    "refs/kbs_refs/KBS031/kbs031_ref043.jpeg",
+    "refs/kbs_refs/KBS031/kbs031_ref052.jpeg",
+    "refs/kbs_refs/KBS031/kbs031_ref060.jpeg"
+  ]
+}
