@@ -13,6 +13,16 @@ A world-class GenAI production platform for generating comic books, character bi
 
 The frontend works standalone (just open `frontend/index.html` via any static server) — backend persistence is additive and optional.
 
+## Screenshots
+
+![Kibookal Studio v3.0 — Home](docs/screenshots/01-home.png)
+
+| Character Studio | Style Lock |
+|:---:|:---:|
+| ![Character Studio](docs/screenshots/02-characters.png) | ![Style Lock](docs/screenshots/03-stylelock.png) |
+| **Comic Builder** | **Magazine Builder** |
+| ![Comic Builder](docs/screenshots/04-comic.png) | ![Magazine Builder](docs/screenshots/05-magazine.png) |
+
 ## Quick start
 
 ### Windows (easiest)
